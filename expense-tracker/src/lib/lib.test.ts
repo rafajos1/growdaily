@@ -1,5 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { computeSummary, monthlyTotals, totalsByCategory } from "./analytics";
+import {
+  biggestExpenses,
+  categoryTrends,
+  computePace,
+  computeSummary,
+  detectRecurring,
+  monthlyTotals,
+  totalsByCategory,
+  typicalMonth,
+  weekdayTotals,
+} from "./analytics";
 import { escapeCsvCell, expensesToCsv } from "./csv";
 import { isValidISODate, toISODate } from "./dates";
 import { filterExpenses, sortExpenses, EMPTY_FILTERS } from "./filters";
@@ -166,5 +176,70 @@ describe("parseStoredExpenses", () => {
 
   it("throws a StorageError on corrupt JSON", () => {
     expect(() => parseStoredExpenses("{not json")).toThrow(StorageError);
+  });
+});
+
+describe("pace", () => {
+  it("tracks this month against last month on the same day", () => {
+    const now = new Date(2024, 5, 10); // June 10
+    const list = [exp("2024-06-02", 1000), exp("2024-06-10", 2000), exp("2024-05-05", 1500), exp("2024-05-20", 5000)];
+    const p = computePace(list, now);
+    expect(p.spentCents).toBe(3000);
+    expect(p.thisCumulative).toHaveLength(10);
+    expect(p.lastMonthAtDayCents).toBe(1500);
+    expect(p.lastMonthTotalCents).toBe(6500);
+    expect(p.projectedCents).toBe(9000); // 3000 / 10 days * 30
+  });
+
+  it("clamps to the end of a shorter previous month", () => {
+    const p = computePace([exp("2024-09-30", 700)], new Date(2024, 9, 31)); // Oct 31 vs 30-day Sep
+    expect(p.lastMonthAtDayCents).toBe(700);
+  });
+});
+
+describe("trends", () => {
+  const now = new Date(2024, 5, 15); // June 15
+  const list = [
+    exp("2024-03-03", 6000, "Bills", "Internet"), // Sunday
+    exp("2024-04-03", 6000, "Bills", "internet"),
+    exp("2024-05-03", 6000, "Bills", "Internet "),
+    exp("2024-05-04", 3000, "Food", "Dinner"), // Saturday
+    exp("2024-06-01", 1500, "Food", "Lunch"), // Saturday
+  ];
+
+  it("averages only complete months since the first expense", () => {
+    const t = typicalMonth(list, 5, now)!;
+    expect(t.basis.map((m) => m.month)).toEqual(["2024-03", "2024-04", "2024-05"]);
+    expect(t.averageCents).toBe(7000);
+    expect(t.highest.month).toBe("2024-05");
+  });
+
+  it("returns null before a full month of history exists", () => {
+    expect(typicalMonth([exp("2024-06-02", 500)], 5, now)).toBeNull();
+    expect(typicalMonth([], 5, now)).toBeNull();
+  });
+
+  it("builds per-category series with change vs. average", () => {
+    const food = categoryTrends(list, 6, now).find((c) => c.category === "Food")!;
+    expect(food.series).toEqual([0, 0, 0, 0, 3000, 1500]);
+    expect(food.averageCents).toBe(1000); // 3000 over Mar-May
+    expect(food.changePct).toBeCloseTo(200);
+    expect(categoryTrends(list, 6, now).map((c) => c.category)).toEqual(["Food", "Bills"]);
+  });
+
+  it("totals spending by weekday", () => {
+    const w = weekdayTotals(list);
+    expect(w[6]).toBe(4500); // Saturdays
+    expect(w.reduce((a, b) => a + b, 0)).toBe(22500);
+  });
+
+  it("detects repeats by description and amount across months", () => {
+    const r = detectRecurring(list);
+    expect(r).toHaveLength(1);
+    expect(r[0]).toMatchObject({ amountCents: 6000, months: 3, lastDate: "2024-05-03" });
+  });
+
+  it("ranks the biggest expenses since a date", () => {
+    expect(biggestExpenses(list, 2, "2024-05-01").map((e) => e.amountCents)).toEqual([6000, 3000]);
   });
 });

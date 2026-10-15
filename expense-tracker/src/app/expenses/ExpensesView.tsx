@@ -91,7 +91,7 @@ export function ExpensesView() {
           </button>
           <button type="button" onClick={loadSampleData} className={buttonStyles.secondary}>
             <Sparkles className="h-4 w-4" aria-hidden />
-            Load sample data
+            Load example data
           </button>
         </EmptyState>
       </>
@@ -104,13 +104,13 @@ export function ExpensesView() {
       <FiltersBar filters={filters} onChange={updateFilters} sort={sort} onSortChange={setSort} rangeError={rangeError} />
 
       <div className="flex flex-wrap items-baseline justify-between gap-2 px-1 text-sm" aria-live="polite">
-        <p className="text-slate-600">
-          <span className="font-semibold text-slate-900">{results.length}</span>{" "}
+        <p className="text-muted">
+          <span className="font-mono font-semibold text-fg">{results.length}</span>{" "}
           {results.length === 1 ? "expense" : "expenses"}
           {hasActiveFilters(filters) && <> of {expenses.length}</>}
         </p>
-        <p className="text-slate-600">
-          Total: <span className="font-semibold text-slate-900 tabular-nums">{formatCurrency(filteredTotal)}</span>
+        <p className="text-muted">
+          Total: <span className="font-mono font-semibold text-fg tabular-nums">{formatCurrency(filteredTotal)}</span>
         </p>
       </div>
 
@@ -137,7 +137,7 @@ export function ExpensesView() {
         <button
           type="button"
           onClick={() => setConfirmClear(true)}
-          className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-slate-400 hover:bg-rose-50 hover:text-rose-600"
+          className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold text-dim hover:bg-up/10 hover:text-up"
         >
           <Trash className="h-3.5 w-3.5" aria-hidden />
           Delete all data

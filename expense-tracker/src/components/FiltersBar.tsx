@@ -5,7 +5,7 @@ import { Search, X } from "lucide-react";
 import { daysAgoISO, endOfMonthISO, startOfMonthISO, todayISO, addMonths } from "@/lib/dates";
 import { EMPTY_FILTERS, hasActiveFilters } from "@/lib/filters";
 import { CATEGORIES, type ExpenseFilters, type SortKey } from "@/lib/types";
-import { cardStyles, inputStyles } from "./ui";
+import { inputStyles, panelStyles } from "./ui";
 
 interface Preset {
   label: string;
@@ -44,13 +44,13 @@ export function FiltersBar({ filters, onChange, sort, onSortChange, rangeError }
   const set = <K extends keyof ExpenseFilters>(key: K, value: ExpenseFilters[K]) => onChange({ ...filters, [key]: value });
 
   return (
-    <div className={clsx(cardStyles, "space-y-4 p-4 sm:p-5")}>
+    <div className={clsx(panelStyles, "space-y-4 p-4 sm:p-5")}>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-12">
         <div className="relative md:col-span-5">
           <label htmlFor="search" className="sr-only">
             Search expenses
           </label>
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-dim" aria-hidden />
           <input
             id="search"
             type="search"
@@ -95,7 +95,7 @@ export function FiltersBar({ filters, onChange, sort, onSortChange, rangeError }
       <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
         <div className="grid flex-1 grid-cols-2 gap-3 sm:max-w-md">
           <div>
-            <label htmlFor="from" className="mb-1 block text-xs font-medium text-slate-500">
+            <label htmlFor="from" className="mb-1 block font-mono text-xs text-muted">
               From
             </label>
             <input
@@ -109,7 +109,7 @@ export function FiltersBar({ filters, onChange, sort, onSortChange, rangeError }
             />
           </div>
           <div>
-            <label htmlFor="to" className="mb-1 block text-xs font-medium text-slate-500">
+            <label htmlFor="to" className="mb-1 block font-mono text-xs text-muted">
               To
             </label>
             <input
@@ -135,8 +135,8 @@ export function FiltersBar({ filters, onChange, sort, onSortChange, rangeError }
                 aria-pressed={active}
                 onClick={() => onChange({ ...filters, ...r })}
                 className={clsx(
-                  "rounded-full px-3 py-1.5 text-xs font-medium ring-1 ring-inset transition",
-                  active ? "bg-brand-600 text-white ring-brand-600" : "bg-white text-slate-600 ring-slate-300 hover:bg-slate-50",
+                  "rounded-full border px-3 py-1.5 text-xs font-semibold transition",
+                  active ? "border-amber bg-amber text-amber-ink" : "border-line bg-sunken text-soft hover:border-[#2c4060]",
                 )}
               >
                 {p.label}
@@ -147,7 +147,7 @@ export function FiltersBar({ filters, onChange, sort, onSortChange, rangeError }
             <button
               type="button"
               onClick={() => onChange(EMPTY_FILTERS)}
-              className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium text-slate-500 hover:bg-slate-100 hover:text-slate-700"
+              className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold text-muted hover:bg-raised hover:text-fg"
             >
               <X className="h-3.5 w-3.5" aria-hidden />
               Clear filters
@@ -156,7 +156,7 @@ export function FiltersBar({ filters, onChange, sort, onSortChange, rangeError }
         </div>
       </div>
       {rangeError && (
-        <p role="alert" className="text-xs font-medium text-rose-600">
+        <p role="alert" className="text-xs font-semibold text-up">
           {rangeError}
         </p>
       )}

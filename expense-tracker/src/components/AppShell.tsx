@@ -3,15 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { LayoutDashboard, ListOrdered, Plus, Wallet } from "lucide-react";
+import { CalendarDays, ListOrdered, Plus, TrendingUp } from "lucide-react";
+import type { ReactNode } from "react";
 import { useExpenseDialogs } from "./ExpenseDialogProvider";
 import { StorageErrorBanner } from "./StorageErrorBanner";
 import { buttonStyles } from "./ui";
-import type { ReactNode } from "react";
 
 const NAV = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/", label: "This month", icon: CalendarDays },
   { href: "/expenses", label: "Expenses", icon: ListOrdered },
+  { href: "/trends", label: "Trends", icon: TrendingUp },
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -21,27 +22,24 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen pb-24 sm:pb-0">
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-          <Link href="/" className="flex items-center gap-2.5 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-600">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-sm">
-              <Wallet className="h-5 w-5" aria-hidden />
-            </span>
-            <span className="text-base font-semibold tracking-tight text-slate-900">Spendwise</span>
+      <header className="sticky top-0 z-40 border-b border-hairline bg-bg/85 backdrop-blur">
+        <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+          <Link href="/" className="flex items-center gap-2.5 rounded-lg text-xl font-extrabold tracking-tight">
+            <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
+            Spendwise
           </Link>
 
-          <nav aria-label="Main" className="hidden items-center gap-1 sm:flex">
-            {NAV.map(({ href, label, icon: Icon }) => (
+          <nav aria-label="Main" className="hidden gap-1 rounded-[10px] border border-line bg-panel p-1 sm:flex">
+            {NAV.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
                 aria-current={isActive(href) ? "page" : undefined}
                 className={clsx(
-                  "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition",
-                  isActive(href) ? "bg-brand-50 text-brand-700" : "text-slate-600 hover:bg-slate-100 hover:text-slate-900",
+                  "rounded-[7px] px-3.5 py-1.5 text-sm font-semibold transition",
+                  isActive(href) ? "bg-raised text-fg" : "text-muted hover:text-fg",
                 )}
               >
-                <Icon className="h-4 w-4" aria-hidden />
                 {label}
               </Link>
             ))}
@@ -62,21 +60,22 @@ export function AppShell({ children }: { children: ReactNode }) {
       {/* Mobile bottom navigation */}
       <nav
         aria-label="Main mobile"
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-panel/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:hidden"
       >
-        <div className="grid h-16 grid-cols-3 items-center">
+        <div className="grid h-16 grid-cols-4 items-center">
           <MobileLink {...NAV[0]} active={isActive(NAV[0].href)} />
+          <MobileLink {...NAV[1]} active={isActive(NAV[1].href)} />
           <div className="flex justify-center">
             <button
               type="button"
               onClick={openCreate}
               aria-label="Add expense"
-              className="-mt-8 flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-white shadow-lg shadow-brand-600/30 transition active:scale-95"
+              className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber text-amber-ink shadow-lg shadow-black/40 transition active:scale-95"
             >
               <Plus className="h-6 w-6" aria-hidden />
             </button>
           </div>
-          <MobileLink {...NAV[1]} active={isActive(NAV[1].href)} />
+          <MobileLink {...NAV[2]} active={isActive(NAV[2].href)} />
         </div>
       </nav>
     </div>
@@ -88,7 +87,7 @@ function MobileLink({ href, label, icon: Icon, active }: (typeof NAV)[number] & 
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={clsx("flex flex-col items-center gap-1 text-xs font-medium", active ? "text-brand-600" : "text-slate-500")}
+      className={clsx("flex flex-col items-center gap-1 text-[11px] font-semibold", active ? "text-amber" : "text-muted")}
     >
       <Icon className="h-5 w-5" aria-hidden />
       {label}

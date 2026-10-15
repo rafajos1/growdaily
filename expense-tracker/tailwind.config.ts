@@ -1,28 +1,30 @@
 import type { Config } from "tailwindcss";
 
+// "Pace" theme: a deliberately dark interface. Amber is the single accent;
+// up/down are semantic (spending more / less) and never used as decoration.
 const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: "#eef2ff",
-          100: "#e0e7ff",
-          200: "#c7d2fe",
-          300: "#a5b4fc",
-          400: "#818cf8",
-          500: "#6366f1",
-          600: "#4f46e5",
-          700: "#4338ca",
-          800: "#3730a3",
-          900: "#312e81",
-        },
+        bg: "#0d1520",
+        panel: "#131e2c",
+        raised: "#1e2d42",
+        sunken: "#0f1a27",
+        line: "#22324a",
+        hairline: "#1b293b",
+        fg: "#e8eef5",
+        soft: "#cdd8e5",
+        muted: "#8a9bb2",
+        dim: "#6f829b",
+        amber: { DEFAULT: "#f2b54b", hover: "#f6c56d", ink: "#1b1408" },
+        up: "#f2846b",
+        down: "#53cfa0",
+        heat: { 0: "#172638", 1: "#1d4466", 2: "#246a96", 3: "#3a97c4", 4: "#8fd3ef" },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
-      },
-      boxShadow: {
-        card: "0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06)",
+        sans: ["var(--font-manrope)", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["var(--font-dm-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       keyframes: {
         "fade-in": { from: { opacity: "0" }, to: { opacity: "1" } },

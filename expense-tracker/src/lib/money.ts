@@ -37,3 +37,22 @@ export function parseAmountToCents(input: string): number | null {
 export function centsToInput(cents: number): string {
   return (cents / 100).toFixed(2);
 }
+
+const wholeFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: CURRENCY,
+  maximumFractionDigits: 0,
+});
+
+/** Whole-dollar format for chart labels, e.g. 58493 -> "$585". */
+export function formatCurrencyWhole(cents: number): string {
+  return wholeFormatter.format(Math.round(cents / 100));
+}
+
+/** Picks a round axis step (1, 2, 2.5 or 5 × 10^n cents) so `ticks` steps cover `max`. */
+export function niceStep(maxCents: number, ticks = 4): number {
+  const raw = Math.max(maxCents, 100) / ticks;
+  const magnitude = 10 ** Math.floor(Math.log10(raw));
+  const step = [1, 2, 2.5, 5, 10].map((m) => m * magnitude).find((s) => s >= raw)!;
+  return step;
+}

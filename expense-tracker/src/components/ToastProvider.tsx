@@ -25,7 +25,7 @@ interface ToastContextValue {
 const ToastContext = createContext<ToastContextValue | null>(null);
 
 const ICONS = { success: CheckCircle2, error: AlertCircle, info: Info } as const;
-const ICON_COLORS = { success: "text-emerald-500", error: "text-rose-500", info: "text-brand-500" } as const;
+const ICON_COLORS = { success: "text-down", error: "text-up", info: "text-amber" } as const;
 
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
@@ -59,7 +59,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             <div
               key={t.id}
               role={t.kind === "error" ? "alert" : "status"}
-              className="pointer-events-auto flex w-full max-w-sm animate-slide-up items-center gap-3 rounded-xl bg-slate-900 px-4 py-3 text-sm text-white shadow-lg"
+              className="pointer-events-auto flex w-full max-w-sm animate-slide-up items-center gap-3 rounded-xl border border-line bg-raised px-4 py-3 text-sm text-fg shadow-xl shadow-black/40"
             >
               <Icon className={clsx("h-5 w-5 shrink-0", ICON_COLORS[t.kind])} aria-hidden />
               <p className="flex-1">{t.message}</p>
@@ -70,7 +70,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                     t.action!.onClick();
                     dismiss(t.id);
                   }}
-                  className="rounded-md px-2 py-1 font-semibold text-brand-300 hover:bg-white/10"
+                  className="rounded-md px-2 py-1 font-bold text-amber hover:bg-white/10"
                 >
                   {t.action.label}
                 </button>
@@ -78,7 +78,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
               <button
                 type="button"
                 onClick={() => dismiss(t.id)}
-                className="rounded-md p-1 text-slate-400 hover:bg-white/10 hover:text-white"
+                className="rounded-md p-1 text-muted hover:bg-white/10 hover:text-fg"
                 aria-label="Dismiss notification"
               >
                 <X className="h-4 w-4" />

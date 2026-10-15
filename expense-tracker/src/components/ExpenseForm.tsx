@@ -68,7 +68,7 @@ export function ExpenseForm({ initial, onSubmit, onCancel }: ExpenseFormProps) {
 
   const fieldError = (field: keyof ExpenseFormValues) =>
     errors[field] ? (
-      <p id={`${id}-${field}-error`} className="mt-1.5 text-xs font-medium text-rose-600">
+      <p id={`${id}-${field}-error`} className="mt-1.5 text-xs font-semibold text-up">
         {errors[field]}
       </p>
     ) : null;
@@ -83,11 +83,11 @@ export function ExpenseForm({ initial, onSubmit, onCancel }: ExpenseFormProps) {
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor={`${id}-amount`} className="mb-1.5 block text-sm font-medium text-slate-700">
+          <label htmlFor={`${id}-amount`} className="mb-1.5 block text-sm font-semibold text-soft">
             Amount
           </label>
           <div className="relative">
-            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-sm text-slate-400">$</span>
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-sm text-dim">$</span>
             <input
               {...aria("amount")}
               type="text"
@@ -97,14 +97,14 @@ export function ExpenseForm({ initial, onSubmit, onCancel }: ExpenseFormProps) {
               value={values.amount}
               onChange={(e) => update("amount", e.target.value)}
               onBlur={() => blur("amount")}
-              className={clsx(inputStyles(Boolean(errors.amount)), "pl-7 tabular-nums")}
+              className={clsx(inputStyles(Boolean(errors.amount)), "pl-7 font-mono tabular-nums")}
             />
           </div>
           {fieldError("amount")}
         </div>
 
         <div>
-          <label htmlFor={`${id}-date`} className="mb-1.5 block text-sm font-medium text-slate-700">
+          <label htmlFor={`${id}-date`} className="mb-1.5 block text-sm font-semibold text-soft">
             Date
           </label>
           <input
@@ -122,7 +122,7 @@ export function ExpenseForm({ initial, onSubmit, onCancel }: ExpenseFormProps) {
       </div>
 
       <fieldset>
-        <legend className="mb-1.5 block text-sm font-medium text-slate-700">Category</legend>
+        <legend className="mb-1.5 block text-sm font-semibold text-soft">Category</legend>
         <div
           id={`${id}-category`}
           tabIndex={-1}
@@ -136,9 +136,9 @@ export function ExpenseForm({ initial, onSubmit, onCancel }: ExpenseFormProps) {
               <label
                 key={c}
                 className={clsx(
-                  "flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium ring-1 ring-inset transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-600",
-                  selected ? "bg-brand-50 text-brand-700 ring-brand-500" : "bg-white text-slate-700 ring-slate-300 hover:bg-slate-50",
-                  errors.category && !selected && "ring-rose-300",
+                  "flex cursor-pointer items-center gap-2 rounded-[10px] border px-3 py-2.5 text-sm font-semibold transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-amber",
+                  selected ? "border-amber bg-amber/10 text-fg" : "border-line bg-sunken text-soft hover:border-[#2c4060]",
+                  errors.category && !selected && "border-up/60",
                 )}
               >
                 <input
@@ -164,13 +164,13 @@ export function ExpenseForm({ initial, onSubmit, onCancel }: ExpenseFormProps) {
 
       <div>
         <div className="mb-1.5 flex items-baseline justify-between">
-          <label htmlFor={`${id}-description`} className="block text-sm font-medium text-slate-700">
+          <label htmlFor={`${id}-description`} className="block text-sm font-semibold text-soft">
             Description
           </label>
           <span
             className={clsx(
-              "text-xs tabular-nums",
-              values.description.trim().length > MAX_DESCRIPTION_LENGTH ? "text-rose-600" : "text-slate-400",
+              "font-mono text-xs tabular-nums",
+              values.description.trim().length > MAX_DESCRIPTION_LENGTH ? "text-up" : "text-dim",
             )}
           >
             {values.description.trim().length}/{MAX_DESCRIPTION_LENGTH}

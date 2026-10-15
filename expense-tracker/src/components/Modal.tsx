@@ -63,24 +63,24 @@ export function Modal({ open, title, description, onClose, children, size = "md"
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4">
-      <div className="absolute inset-0 animate-fade-in bg-slate-900/50 backdrop-blur-sm" onClick={onClose} aria-hidden />
+      <div className="absolute inset-0 animate-fade-in bg-black/60 backdrop-blur-sm" onClick={onClose} aria-hidden />
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
         aria-describedby={description ? "modal-description" : undefined}
-        className={`relative max-h-[92vh] w-full animate-slide-up overflow-y-auto rounded-t-2xl bg-white p-6 shadow-xl sm:rounded-2xl ${
+        className={`relative max-h-[92vh] w-full animate-slide-up overflow-y-auto rounded-t-2xl border border-line bg-panel p-6 shadow-2xl shadow-black/50 sm:rounded-2xl ${
           size === "sm" ? "sm:max-w-sm" : "sm:max-w-lg"
         }`}
       >
         <div className="mb-5 flex items-start justify-between gap-4">
           <div>
-            <h2 id="modal-title" className="text-lg font-semibold text-slate-900">
+            <h2 id="modal-title" className="text-lg font-bold text-fg">
               {title}
             </h2>
             {description && (
-              <p id="modal-description" className="mt-1 text-sm text-slate-500">
+              <p id="modal-description" className="mt-1 text-sm text-muted">
                 {description}
               </p>
             )}

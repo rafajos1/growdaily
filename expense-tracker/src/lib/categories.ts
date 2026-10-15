@@ -11,17 +11,20 @@ import type { Category } from "./types";
 
 interface CategoryMeta {
   icon: LucideIcon;
-  /** Hex color used in charts. */
+  /** Category hue, tuned to read on the dark panels. */
   color: string;
-  /** Tailwind classes for badges / icon chips. */
-  badge: string;
 }
 
 export const CATEGORY_META: Record<Category, CategoryMeta> = {
-  Food: { icon: UtensilsCrossed, color: "#f59e0b", badge: "bg-amber-50 text-amber-700 ring-amber-600/20" },
-  Transportation: { icon: Car, color: "#0ea5e9", badge: "bg-sky-50 text-sky-700 ring-sky-600/20" },
-  Entertainment: { icon: Clapperboard, color: "#a855f7", badge: "bg-purple-50 text-purple-700 ring-purple-600/20" },
-  Shopping: { icon: ShoppingBag, color: "#ec4899", badge: "bg-pink-50 text-pink-700 ring-pink-600/20" },
-  Bills: { icon: Receipt, color: "#10b981", badge: "bg-emerald-50 text-emerald-700 ring-emerald-600/20" },
-  Other: { icon: MoreHorizontal, color: "#64748b", badge: "bg-slate-100 text-slate-700 ring-slate-600/20" },
+  Food: { icon: UtensilsCrossed, color: "#f2b54b" },
+  Transportation: { icon: Car, color: "#5cb8e6" },
+  Entertainment: { icon: Clapperboard, color: "#b48cf2" },
+  Shopping: { icon: ShoppingBag, color: "#ef7fa8" },
+  Bills: { icon: Receipt, color: "#53cfa0" },
+  Other: { icon: MoreHorizontal, color: "#8796ab" },
 };
+
+/** Translucent fill of a category color, for chips and icon tiles. */
+export function categoryTint(category: Category, alpha = "1f"): string {
+  return CATEGORY_META[category].color + alpha;
+}

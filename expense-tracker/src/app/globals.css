@@ -3,20 +3,25 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
   html {
     -webkit-tap-highlight-color: transparent;
   }
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    @apply bg-bg text-fg antialiased;
   }
-  /* Make the native date picker icon match the design. */
   input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
-    opacity: 0.6;
+    filter: invert(0.8);
   }
-}
-
-/* Recharts focus outline on click looks out of place. */
-.recharts-wrapper *:focus {
-  outline: none;
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
