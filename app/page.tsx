@@ -150,6 +150,7 @@ export default function Home() {
         <Link href="/" className="flex items-center gap-2.5 text-xl font-extrabold tracking-tight">
           <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
           GrowDaily
+          <span className="rounded-full border border-amber/40 bg-amber/10 px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-amber">Beta</span>
         </Link>
         <nav className="flex items-center gap-1 text-sm font-semibold text-muted">
           <a href="#apps" className="rounded-lg px-3 py-2 hover:text-fg">Apps</a>
@@ -163,7 +164,7 @@ export default function Home() {
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-down" aria-hidden />
-              {live === APPS.length ? `${APPS.length} free apps · all live` : `${APPS.length} apps · ${live} live now`}
+              {live === APPS.length ? `${APPS.length} free apps · public beta` : `${APPS.length} apps · ${live} live now`}
             </p>
             <h1 className="mt-6 text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
               Free AI apps to run your life <span className="text-amber">better</span>.
@@ -179,6 +180,9 @@ export default function Home() {
                 See all apps
               </a>
             </div>
+            <p className="mt-5 max-w-[46ch] text-sm text-muted">
+              <span className="font-semibold text-soft">GrowDaily is in beta.</span> AI features are switching on over the coming weeks. Until then, every app already works with its built-in version.
+            </p>
           </div>
           <a href="/apps/spendwise" className="group block min-w-0" aria-label="Open Spendwise">
             <div className="overflow-hidden rounded-2xl border border-line bg-panel shadow-2xl shadow-black/50 transition group-hover:border-[#35507a] lg:[transform:perspective(1600px)_rotateY(-6deg)]">
@@ -216,7 +220,7 @@ export default function Home() {
             {[
               { icon: Lock, title: "Private by default", text: "What you enter is saved in your own browser, not on our servers. Export it any time." },
               { icon: UserX, title: "No account needed", text: "Open an app and start. No sign-up, no password, no trial that runs out." },
-              { icon: Sparkles, title: "AI where it helps", text: "Each app uses AI for one job it's genuinely good at, with a generous free daily allowance." },
+              { icon: Sparkles, title: "AI where it helps", text: "Each app uses AI for one job it's genuinely good at, with a generous free daily allowance. Rolling out during the beta." },
             ].map(({ icon: Icon, title, text }) => (
               <div key={title} className="rounded-2xl border border-line bg-panel p-6">
                 <Icon className="h-5 w-5 text-amber" aria-hidden />
@@ -242,7 +246,7 @@ export default function Home() {
 
       <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 border-t border-hairline py-8 font-mono text-xs text-dim">
         <span>© {new Date().getFullYear()} GrowDaily</span>
-        <span>Free apps · Your data stays on your device</span>
+        <span>Public beta · Free apps · Your data stays on your device</span>
       </footer>
     </div>
   );

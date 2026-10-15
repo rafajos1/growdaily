@@ -20,7 +20,7 @@ function isInput(v: unknown): v is InsightInput {
 
 export async function POST(req: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json({ error: "AI insights aren't set up on this site yet." }, { status: 503 });
+    return NextResponse.json({ error: "AI insights are coming soon. GrowDaily is in beta." }, { status: 503 });
   }
   let body: unknown;
   try {
