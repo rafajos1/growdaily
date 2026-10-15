@@ -5,6 +5,7 @@ const manrope = Manrope({ subsets: ["latin"], weight: ["500", "600", "700", "800
 const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-dm-mono", display: "swap" });
 
 export const metadata = {
+  metadataBase: new URL("https://www.growdaily.ai"),
   title: "GrowDaily · Free AI apps to run your life better",
   description: "Small, free apps for your money, habits, time, food and mood. No account needed, and your data stays on your device.",
   openGraph: {

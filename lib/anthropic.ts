@@ -12,10 +12,11 @@ export function getAnthropic(): Anthropic {
 export const CLAUDE_MODEL = "claude-opus-5-5";
 
 /** Sends a single-turn prompt to Claude and returns the text of the reply. */
-export async function generateText(prompt: string): Promise<string> {
+export async function generateText(prompt: string, options: { system?: string; maxTokens?: number } = {}): Promise<string> {
   const response = await getAnthropic().beta.messages.create({
     model: CLAUDE_MODEL,
-    max_tokens: 16000,
+    max_tokens: options.maxTokens ?? 16000,
+    ...(options.system ? { system: options.system } : {}),
     // If a safety classifier declines the request, re-run it server-side on
     // Anthropic's recommended fallback model instead of failing.
     betas: ["server-side-fallback-2026-07-01"],

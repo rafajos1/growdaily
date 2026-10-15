@@ -30,7 +30,8 @@ export const APPS: GrowApp[] = [
     color: "#53cfa0",
     tagline: "Check off daily habits and watch your streaks build on a calendar.",
     ai: "A weekly review that tells you when and why habits slip.",
-    status: "soon",
+    status: "live",
+    href: "/apps/habitwise",
   },
   {
     slug: "planwise",
