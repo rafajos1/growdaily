@@ -50,7 +50,8 @@ export const APPS: GrowApp[] = [
     color: "#ef7fa8",
     tagline: "Tell it what's in your fridge; get three dinners you can make tonight.",
     ai: "Suggests meals and writes the grocery list for what's missing.",
-    status: "soon",
+    status: "live",
+    href: "/apps/mealwise",
   },
   {
     slug: "moodwise",
