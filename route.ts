@@ -1,9 +1,9 @@
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   // Later, replace this with OneSignal, FCM, or Expo SDK call
-  const { data: users, error } = await supabase.from("users").select("id, email, niche, tone");
+  const { data: users, error } = await getSupabase().from("users").select("id, email, niche, tone");
 
   if (error) {
     console.error(error);

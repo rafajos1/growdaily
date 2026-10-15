@@ -1,0 +1,6 @@
+@import "../src/app/globals.css";
+
+/* Keep the sticky header clear of a phone's status bar. */
+header.sticky {
+  top: env(safe-area-inset-top, 0px);
+}
