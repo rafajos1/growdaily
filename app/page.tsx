@@ -163,7 +163,7 @@ export default function Home() {
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-down" aria-hidden />
-              {APPS.length} apps · {live} live now
+              {live === APPS.length ? `${APPS.length} free apps · all live` : `${APPS.length} apps · ${live} live now`}
             </p>
             <h1 className="mt-6 text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
               Free AI apps to run your life <span className="text-amber">better</span>.
@@ -200,7 +200,7 @@ export default function Home() {
               <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">The apps</p>
               <h2 className="mt-2 text-3xl font-extrabold tracking-tight">One app for each part of your day</h2>
             </div>
-            <p className="max-w-[40ch] text-sm text-muted">A new app launches every few weeks. Each one does one job well.</p>
+            <p className="max-w-[40ch] text-sm text-muted">Each one does one job well, and they all work on your phone.</p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {APPS.map((app, i) => (
@@ -231,8 +231,8 @@ export default function Home() {
           <div className="rounded-2xl border border-line bg-panel p-6 sm:p-10">
             <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-center">
               <div>
-                <h2 className="text-3xl font-extrabold tracking-tight">Get the next app first</h2>
-                <p className="mt-2 text-muted">One email when a new app launches. Nothing else.</p>
+                <h2 className="text-3xl font-extrabold tracking-tight">Get new apps first</h2>
+                <p className="mt-2 text-muted">One email when we launch something new. Nothing else.</p>
               </div>
               <Updates />
             </div>

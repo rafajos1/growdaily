@@ -60,6 +60,7 @@ export const APPS: GrowApp[] = [
     color: "#b48cf2",
     tagline: "A two-minute daily check-in on mood, energy and sleep.",
     ai: "Finds the patterns behind your best and worst days.",
-    status: "soon",
+    status: "live",
+    href: "/apps/moodwise",
   },
 ];
