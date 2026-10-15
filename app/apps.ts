@@ -40,7 +40,8 @@ export const APPS: GrowApp[] = [
     color: "#5cb8e6",
     tagline: "Dump everything on your mind; get a realistic plan for today.",
     ai: "Turns a messy list into time blocks, most important first.",
-    status: "soon",
+    status: "live",
+    href: "/apps/planwise",
   },
   {
     slug: "mealwise",
