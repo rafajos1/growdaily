@@ -1,4 +1,4 @@
-import openai from "../../../lib/openai";
+import { generateText } from "../../../lib/anthropic";
 import { supabase } from "../../../lib/supabase";
 import { NextResponse } from "next/server";
 
@@ -16,17 +16,9 @@ export async function POST(req: Request) {
   }
 
   // Step 1: Scan trends
-  const trendScan = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [
-      {
-        role: "user",
-        content: `List 3 trending content themes today for ${user.niche} creators on ${user.platform}.`
-      }
-    ]
-  });
-
-  const trends = trendScan.choices[0].message.content?.trim();
+  const trends = await generateText(
+    `List 3 trending content themes today for ${user.niche} creators on ${user.platform}.`
+  );
 
   // Step 2: Generate content pushes
   const prompt = `
@@ -41,12 +33,7 @@ Generate 3 short content pushes. Each push includes:
 ${user.faith_layer ? "End with a short faith reflection line." : ""}
 `;
 
-  const ideas = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [{ role: "user", content: prompt }]
-  });
-
-  const message = ideas.choices[0].message.content?.trim();
+  const message = await generateText(prompt);
   await supabase.from("ideas").insert({ user_id: userId, idea: message });
 
   return NextResponse.json({ message });
