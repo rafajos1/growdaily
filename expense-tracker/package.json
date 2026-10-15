@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:standalone": "node standalone/build.mjs"
   },
   "dependencies": {
     "clsx": "2.1.1",
@@ -22,6 +23,7 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "autoprefixer": "10.4.20",
+    "esbuild": "0.21.5",
     "eslint": "8.57.1",
     "eslint-config-next": "15.5.28",
     "postcss": "8.4.49",

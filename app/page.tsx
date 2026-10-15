@@ -1,121 +1,249 @@
 "use client";
-import { useState } from "react";
+
+import Link from "next/link";
+import { useState, type FormEvent } from "react";
+import { ArrowRight, Bell, Lock, Sparkles, UserX } from "lucide-react";
 import { getSupabase } from "../lib/supabase";
+import { APPS, type GrowApp } from "./apps";
+import { HabitArt, MealArt, MoodArt, PlanArt, SpendArt } from "./components/AppArt";
 
-export default function Home() {
+const ART: Record<string, (p: { color: string }) => React.ReactElement> = {
+  spendwise: SpendArt,
+  habitwise: HabitArt,
+  planwise: PlanArt,
+  mealwise: MealArt,
+  moodwise: MoodArt,
+};
+
+const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
+const btnPrimary = `inline-flex items-center justify-center gap-2 rounded-[10px] bg-amber px-5 py-3 text-sm font-bold text-amber-ink transition hover:bg-amber-hover ${focus}`;
+const btnSecondary = `inline-flex items-center justify-center gap-2 rounded-[10px] border border-line bg-raised px-5 py-3 text-sm font-semibold text-fg transition hover:bg-[#24364f] ${focus}`;
+
+function AppCard({ app, index, featured }: { app: GrowApp; index: number; featured?: boolean }) {
+  const Art = ART[app.slug];
+  const live = app.status === "live";
+  return (
+    <article
+      className={`group relative flex flex-col rounded-2xl border border-line bg-panel p-6 transition ${live ? "hover:border-[#35507a]" : ""} ${featured ? "md:col-span-2" : ""}`}
+    >
+      <div className="flex items-center justify-between gap-3">
+        <p className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: app.color }}>
+          {String(index + 1).padStart(2, "0")} · {app.area}
+        </p>
+        {live ? (
+          <span className="rounded-full bg-down/15 px-2.5 py-0.5 font-mono text-xs text-down">Live</span>
+        ) : (
+          <span className="rounded-full bg-muted/15 px-2.5 py-0.5 font-mono text-xs text-muted">Coming soon</span>
+        )}
+      </div>
+      <h3 className="mt-3 text-2xl font-extrabold tracking-tight">{app.name}</h3>
+      <p className="mt-2 max-w-[52ch] text-soft">{app.tagline}</p>
+      <div className={`my-5 ${live ? "" : "opacity-70"}`}>
+        <Art color={app.color} />
+      </div>
+      <p className="mt-auto flex gap-2 border-t border-hairline pt-4 text-sm text-muted">
+        <Sparkles className="mt-0.5 h-4 w-4 shrink-0" style={{ color: app.color }} aria-hidden />
+        {app.ai}
+      </p>
+      {live && app.href && (
+        <a href={app.href} className={`${btnPrimary} mt-5 self-start`}>
+          Open {app.name} <ArrowRight className="h-4 w-4" aria-hidden />
+          <span className="absolute inset-0" aria-hidden />
+        </a>
+      )}
+    </article>
+  );
+}
+
+const INTERESTS = [
+  { value: "money", label: "Money" },
+  { value: "habits", label: "Habits" },
+  { value: "time", label: "Time" },
+  { value: "food", label: "Food" },
+  { value: "mood", label: "Mood" },
+];
+
+function Updates() {
   const [email, setEmail] = useState("");
-  const [niche, setNiche] = useState("");
+  const [interest, setInterest] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [result, setResult] = useState<{ ok: boolean; text: string } | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
-    if (!email || !niche) {
-      setMessage("Please fill in all fields");
+    if (!email || !interest) {
+      setResult({ ok: false, text: "Enter your email and pick what you want to improve first." });
       return;
     }
-
     setLoading(true);
-    setMessage("");
-
+    setResult(null);
     try {
-      const { data, error } = await getSupabase()
-        .from('users')
-        .insert([
-          { 
-            email: email,
-            niche: niche,
-            created_at: new Date().toISOString()
-          }
-        ])
+      // The users table's `niche` column holds the area the person wants to improve first.
+      const { error } = await getSupabase()
+        .from("users")
+        .insert([{ email, niche: interest, created_at: new Date().toISOString() }])
         .select();
-
       if (error) {
-        setMessage(`Error: ${error.message}`);
+        setResult({ ok: false, text: `Couldn't sign you up: ${error.message}` });
       } else {
-        setMessage("Success! You're on the waitlist 🎉");
+        setResult({ ok: true, text: "You're on the list. We'll email you when the next app launches." });
         setEmail("");
-        setNiche("");
-        
-        // Optional: Save email to localStorage and redirect to dashboard
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('userEmail', email);
+        setInterest("");
+        try {
+          localStorage.setItem("userEmail", email);
+        } catch {
+          /* storage unavailable */
         }
       }
     } catch (err) {
-      setMessage("Something went wrong. Please try again.");
       console.error(err);
+      setResult({ ok: false, text: "Something went wrong. Please try again in a moment." });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center p-4">
-      <div className="text-center text-white max-w-2xl">
-        <h1 className="text-6xl font-bold mb-4">GrowDaily</h1>
-        <p className="text-2xl mb-8">Your daily dose of growth</p>
-        <p className="text-xl opacity-90 mb-12">
-          Get 5 personalized content ideas every morning ☀️
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row" noValidate>
+      <label htmlFor="email" className="sr-only">Email address</label>
+      <input
+        id="email"
+        type="email"
+        autoComplete="email"
+        placeholder="you@example.com"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="min-w-0 flex-1 rounded-[10px] border border-line bg-sunken px-4 py-3 text-sm text-fg placeholder:text-dim focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/30"
+      />
+      <label htmlFor="interest" className="sr-only">What do you want to improve first?</label>
+      <select
+        id="interest"
+        value={interest}
+        onChange={(e) => setInterest(e.target.value)}
+        className="rounded-[10px] border border-line bg-sunken px-4 py-3 text-sm text-fg focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/30"
+      >
+        <option value="">Improve first…</option>
+        {INTERESTS.map((i) => (
+          <option key={i.value} value={i.value}>
+            {i.label}
+          </option>
+        ))}
+      </select>
+      <button type="submit" disabled={loading} className={`${btnPrimary} disabled:opacity-60`}>
+        <Bell className="h-4 w-4" aria-hidden />
+        {loading ? "Signing up…" : "Notify me"}
+      </button>
+      {result && (
+        <p role="status" className={`basis-full text-sm font-semibold sm:order-last ${result.ok ? "text-down" : "text-up"}`}>
+          {result.text}
         </p>
+      )}
+    </form>
+  );
+}
 
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 max-w-md mx-auto">
-          <h2 className="text-2xl font-semibold mb-6">Join the Waitlist</h2>
-          
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="email"
-              placeholder="Your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-400"
-              required
-            />
-            
-            <select
-              value={niche}
-              onChange={(e) => setNiche(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-400"
-              required
-            >
-              <option value="">Select your niche</option>
-              <option value="fitness">Fitness</option>
-              <option value="beauty">Beauty</option>
-              <option value="food">Food & Cooking</option>
-              <option value="business">Business</option>
-              <option value="lifestyle">Lifestyle</option>
-              <option value="tech">Tech</option>
-              <option value="travel">Travel</option>
-              <option value="fashion">Fashion</option>
-              <option value="health">Health & Wellness</option>
-              <option value="other">Other</option>
-            </select>
+export default function Home() {
+  const live = APPS.filter((a) => a.status === "live").length;
+  return (
+    <div className="px-[max(16px,env(safe-area-inset-left))]">
+      <header className="mx-auto flex h-20 max-w-6xl items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5 text-xl font-extrabold tracking-tight">
+          <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
+          GrowDaily
+        </Link>
+        <nav className="flex items-center gap-1 text-sm font-semibold text-muted">
+          <a href="#apps" className="rounded-lg px-3 py-2 hover:text-fg">Apps</a>
+          <a href="#why" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">Why it&apos;s free</a>
+          <a href="#updates" className="rounded-lg px-3 py-2 hover:text-fg">Get updates</a>
+        </nav>
+      </header>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? "Joining..." : "Join Waitlist"}
-            </button>
-          </form>
-
-          {message && (
-            <div className={`mt-4 p-3 rounded-lg ${
-              message.includes("Success") 
-                ? "bg-green-500/20 text-green-100" 
-                : "bg-red-500/20 text-red-100"
-            }`}>
-              {message}
+      <main className="mx-auto max-w-6xl">
+        <section className="grid items-center gap-12 pb-20 pt-10 lg:grid-cols-[1fr_1.1fr] lg:pt-16">
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-muted">
+              <span className="h-1.5 w-1.5 rounded-full bg-down" aria-hidden />
+              {APPS.length} apps · {live} live now
+            </p>
+            <h1 className="mt-6 text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
+              Free AI apps to run your life <span className="text-amber">better</span>.
+            </h1>
+            <p className="mt-6 max-w-[46ch] text-lg text-soft">
+              Small, focused tools for your money, habits, time, food and mood. No account, and your data stays on your device.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="/apps/spendwise" className={btnPrimary}>
+                Open Spendwise <ArrowRight className="h-4 w-4" aria-hidden />
+              </a>
+              <a href="#apps" className={btnSecondary}>
+                See all apps
+              </a>
             </div>
-          )}
-        </div>
+          </div>
+          <a href="/apps/spendwise" className="group block min-w-0" aria-label="Open Spendwise">
+            <div className="overflow-hidden rounded-2xl border border-line bg-panel shadow-2xl shadow-black/50 transition group-hover:border-[#35507a] lg:[transform:perspective(1600px)_rotateY(-6deg)]">
+              <div className="flex items-center gap-1.5 border-b border-line px-4 py-3" aria-hidden>
+                <i className="h-2.5 w-2.5 rounded-full bg-[#2b3a50]" />
+                <i className="h-2.5 w-2.5 rounded-full bg-[#2b3a50]" />
+                <i className="h-2.5 w-2.5 rounded-full bg-[#2b3a50]" />
+                <span className="ml-3 font-mono text-xs text-dim">growdaily.ai/apps/spendwise</span>
+              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/apps/spendwise/preview.png" alt="Spendwise showing a month's spending pace and a daily calendar" className="block w-full" width={1320} height={1043} />
+            </div>
+          </a>
+        </section>
 
-        <p className="mt-8 text-sm opacity-75">
-          Launching February 2025 🚀
-        </p>
-      </div>
+        <section id="apps" className="scroll-mt-8 pb-20">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">The apps</p>
+              <h2 className="mt-2 text-3xl font-extrabold tracking-tight">One app for each part of your day</h2>
+            </div>
+            <p className="max-w-[40ch] text-sm text-muted">A new app launches every few weeks. Each one does one job well.</p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {APPS.map((app, i) => (
+              <AppCard key={app.slug} app={app} index={i} featured={i === 0} />
+            ))}
+          </div>
+        </section>
+
+        <section id="why" className="scroll-mt-8 pb-20">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Why it&apos;s free</p>
+          <h2 className="mt-2 max-w-[24ch] text-3xl font-extrabold tracking-tight">Built to be cheap to run, so it can stay free</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              { icon: Lock, title: "Private by default", text: "What you enter is saved in your own browser, not on our servers. Export it any time." },
+              { icon: UserX, title: "No account needed", text: "Open an app and start. No sign-up, no password, no trial that runs out." },
+              { icon: Sparkles, title: "AI where it helps", text: "Each app uses AI for one job it's genuinely good at, with a generous free daily allowance." },
+            ].map(({ icon: Icon, title, text }) => (
+              <div key={title} className="rounded-2xl border border-line bg-panel p-6">
+                <Icon className="h-5 w-5 text-amber" aria-hidden />
+                <h3 className="mt-4 text-lg font-bold">{title}</h3>
+                <p className="mt-1.5 text-sm text-muted">{text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="updates" className="scroll-mt-8 pb-24">
+          <div className="rounded-2xl border border-line bg-panel p-6 sm:p-10">
+            <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-center">
+              <div>
+                <h2 className="text-3xl font-extrabold tracking-tight">Get the next app first</h2>
+                <p className="mt-2 text-muted">One email when a new app launches. Nothing else.</p>
+              </div>
+              <Updates />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 border-t border-hairline py-8 font-mono text-xs text-dim">
+        <span>© {new Date().getFullYear()} GrowDaily</span>
+        <span>Free apps · Your data stays on your device</span>
+      </footer>
     </div>
   );
 }

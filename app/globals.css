@@ -1,1 +1,41 @@
 @import "tailwindcss";
+
+/* "Pace" palette shared with the GrowDaily apps. Deliberately dark-only. */
+@theme {
+  --color-bg: #0d1520;
+  --color-panel: #131e2c;
+  --color-raised: #1e2d42;
+  --color-sunken: #0f1a27;
+  --color-line: #22324a;
+  --color-hairline: #1b293b;
+  --color-fg: #e8eef5;
+  --color-soft: #cdd8e5;
+  --color-muted: #8a9bb2;
+  --color-dim: #6f829b;
+  --color-amber: #f2b54b;
+  --color-amber-hover: #f6c56d;
+  --color-amber-ink: #1b1408;
+  --color-up: #f2846b;
+  --color-down: #53cfa0;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
