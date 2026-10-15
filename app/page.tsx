@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import supabaseClient from "../utils/supabaseClient";
+import { getSupabase } from "../lib/supabase";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ export default function Home() {
     setMessage("");
 
     try {
-      const { data, error } = await supabaseClient
+      const { data, error } = await getSupabase()
         .from('users')
         .insert([
           { 

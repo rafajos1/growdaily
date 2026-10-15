@@ -1,11 +1,11 @@
 import { generateText } from "../../../lib/anthropic";
-import { supabase } from "../../../lib/supabase";
+import { getSupabase } from "../../../lib/supabase";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const { userId } = await req.json();
 
-  const { data: user } = await supabase
+  const { data: user } = await getSupabase()
     .from("users")
     .select("*")
     .eq("id", userId)
@@ -34,7 +34,7 @@ ${user.faith_layer ? "End with a short faith reflection line." : ""}
 `;
 
   const message = await generateText(prompt);
-  await supabase.from("ideas").insert({ user_id: userId, idea: message });
+  await getSupabase().from("ideas").insert({ user_id: userId, idea: message });
 
   return NextResponse.json({ message });
 }

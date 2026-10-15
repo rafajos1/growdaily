@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import supabase from "../../utils/supabaseClient";
+import { getSupabase } from "../../lib/supabase";
 // If you’ve added OneSignal, it’s optional to import & init here:
 // import OneSignal from "react-onesignal";
 
@@ -64,7 +64,7 @@ export default function ChatUI({ userId = "demo-user" }) {
 
       // Save to Supabase (best-effort)
       try {
-        await supabase.from("users").insert([final]);
+        await getSupabase().from("users").insert([final]);
       } catch (e) {
         console.warn("Supabase insert warning:", e?.message);
       }
