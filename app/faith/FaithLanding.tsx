@@ -62,6 +62,9 @@ export function FaithLanding() {
           <div className="mt-8 max-w-2xl">
             <p className="mb-2 text-sm font-semibold text-soft">Got a question? Ask it here. Doubts welcome.</p>
             <AskBox />
+            <Link href="/faith/questions" className="mt-3 inline-block text-sm font-semibold text-amber hover:underline">
+              Read answers to common questions
+            </Link>
           </div>
 
           <div className="mt-6 flex max-w-xl items-center gap-4 rounded-2xl border border-line bg-panel p-4 sm:p-5">

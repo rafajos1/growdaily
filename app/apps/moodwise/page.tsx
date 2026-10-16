@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
+import { ogImage, pageMetadata } from "../../../lib/seo";
+import { ABOUT } from "../../about";
+import { AppAbout } from "../../components/AppAbout";
 import { MoodwiseApp } from "./MoodwiseApp";
 
-export const metadata: Metadata = {
-  title: "Moodwise · GrowDaily",
-  description: "Free two-minute daily mood check-in. See what goes with your best days, with private notes that never leave your device.",
-};
+const about = ABOUT.moodwise;
 
-export default function MoodwisePage() {
-  return <MoodwiseApp />;
+export const metadata: Metadata = pageMetadata({
+  title: "Moodwise: Free Private Mood Tracker · GrowDaily",
+  description: about.description,
+  path: about.path,
+  image: ogImage("Moodwise", "Free Private Mood Tracker", "#b48cf2"),
+});
+
+export default function Page() {
+  return (
+    <>
+      <MoodwiseApp />
+      <AppAbout content={about} accent="#b48cf2" />
+    </>
+  );
 }

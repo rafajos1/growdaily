@@ -143,7 +143,12 @@ export function AskApp() {
           </form>
 
           <div className="mt-5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-dim">Questions people often ask</p>
+            <div className="flex items-baseline justify-between gap-3">
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-dim">Questions people often ask</p>
+              <Link href="/faith/questions" className="text-xs font-semibold text-muted hover:text-fg">
+                Browse all
+              </Link>
+            </div>
             <div className="mt-2 flex flex-wrap gap-2">
               {STARTERS.map((s) => (
                 <button key={s.question} type="button" onClick={() => void ask(s.question)} className={chip}>
