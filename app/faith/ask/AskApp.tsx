@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { ArrowLeft, ArrowRight, BookOpen, Footprints, HeartHandshake, MessageCircleQuestion, Scale, Send, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Footprints, HeartHandshake, MapPin, MessageCircleQuestion, Scale, Send, X } from "lucide-react";
 import { MAX_QUESTION, needsCrisisHelp, STARTERS, starterFor, type AskAnswer } from "../../../lib/faith/ask";
 import { chapterLink } from "../../../lib/faith/bible";
 
@@ -219,7 +219,15 @@ export function AskApp() {
           </section>
         )}
 
-        <p className="mt-12 font-mono text-xs text-dim">
+        <Link href="/faith/church" className="mt-10 flex items-center gap-3 rounded-2xl border border-line bg-panel p-5 transition hover:border-amber/50">
+          <MapPin className="h-5 w-5 shrink-0 text-amber" aria-hidden />
+          <span className="flex-1 text-sm">
+            <strong className="text-fg">Want to talk to someone in person?</strong> <span className="text-soft">Find a church near you.</span>
+          </span>
+          <ArrowRight className="h-4 w-4 shrink-0 text-muted" aria-hidden />
+        </Link>
+
+        <p className="mt-10 font-mono text-xs text-dim">
           Answers come from a Christian perspective and can make mistakes, so read the passages for yourself. GrowDaily isn&apos;t affiliated with any church.
         </p>
       </main>
