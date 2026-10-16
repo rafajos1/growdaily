@@ -201,7 +201,7 @@ export default function Home() {
               </a>
             </div>
             <p className="mt-5 max-w-[46ch] text-sm text-muted">
-              <span className="font-semibold text-soft">GrowDaily is in beta.</span> AI is now live in every app, with a free daily allowance, and the apps still work without it. Tell us what you think.
+              <span className="font-semibold text-soft">GrowDaily is in beta.</span> AI is now live in every app, with a free daily allowance, and the apps still work without it.
             </p>
           </div>
           <a href="/apps/spendwise" className="group block min-w-0" aria-label="Open Spendwise">
