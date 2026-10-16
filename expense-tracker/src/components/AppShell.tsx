@@ -6,6 +6,9 @@ import clsx from "clsx";
 import { CalendarDays, ListOrdered, Plus, TrendingUp } from "lucide-react";
 import type { ReactNode } from "react";
 import { useExpenseDialogs } from "./ExpenseDialogProvider";
+import { FaithToggle } from "./FaithToggle";
+import { useToast } from "./ToastProvider";
+import { useFaith } from "@/hooks/useFaith";
 import { StorageErrorBanner } from "./StorageErrorBanner";
 import { buttonStyles } from "./ui";
 
@@ -18,6 +21,12 @@ const NAV = [
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const { openCreate } = useExpenseDialogs();
+  const { toast } = useToast();
+  const [faith, setFaith] = useFaith();
+  const changeFaith = (on: boolean) => {
+    setFaith(on);
+    toast("info", on ? "Faith is on. This month now shows a generosity view." : "Faith is off.");
+  };
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
@@ -45,10 +54,13 @@ export function AppShell({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
-          <button type="button" onClick={openCreate} className={clsx(buttonStyles.primary, "hidden sm:inline-flex")}>
-            <Plus className="h-4 w-4" aria-hidden />
-            Add expense
-          </button>
+          <div className="flex items-center gap-2">
+            <FaithToggle on={faith} onChange={changeFaith} />
+            <button type="button" onClick={openCreate} className={clsx(buttonStyles.primary, "hidden sm:inline-flex")}>
+              <Plus className="h-4 w-4" aria-hidden />
+              Add expense
+            </button>
+          </div>
         </div>
       </header>
 

@@ -6,6 +6,7 @@ import { ArrowLeft, Check, Church, Coffee, Info, Pause, Play, RotateCcw, Sparkle
 import { markDone } from "../../../lib/journey";
 import { addQuietMoments, isQuiet } from "../../../lib/planwise/quiet";
 import { FaithPanel } from "../../components/FaithPanel";
+import { FaithToggle } from "../../components/FaithToggle";
 import { NextUp } from "../../components/NextUp";
 import { useFaith } from "../../components/useFaith";
 import { EXAMPLE_DUMP, EXAMPLE_PLAN } from "../../../lib/planwise/example";
@@ -190,6 +191,11 @@ export function PlanwiseApp() {
     [dayStart, dayEnd, date, faith],
   );
 
+  const changeFaith = (on: boolean) => {
+    setFaith(on);
+    setNotice(on ? { tone: "info", text: "Faith is on. New plans include short quiet moments to pause and talk with God, and Sundays get a lighter touch." } : null);
+  };
+
   const replanRest = () => {
     if (!plan) return;
     const rest = [...plan.blocks.filter((b) => b.kind !== "break" && !done.includes(blockKey(b)) && toMinutes(b.end)! > now).map((b) => b.title), ...plan.later.map((l) => l.title)];
@@ -223,6 +229,9 @@ export function PlanwiseApp() {
           <span className="h-3 w-3 rounded-full shadow-[0_0_0_4px_rgba(92,184,230,0.15)]" style={{ background: ACCENT }} aria-hidden />
           Planwise
         </span>
+        <div className="ml-auto">
+          <FaithToggle on={faith} onChange={changeFaith} />
+        </div>
       </header>
 
       <main className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-5 lg:grid-cols-[380px_1fr]">
@@ -439,7 +448,7 @@ export function PlanwiseApp() {
             </>
           )}
           {ready && (
-            <FaithPanel on={faith} onChange={setFaith}>
+            <FaithPanel on={faith} onChange={changeFaith}>
               Adds short quiet moments to your plan, and a lighter Sunday.
             </FaithPanel>
           )}
