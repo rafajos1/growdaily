@@ -6,11 +6,13 @@ import clsx from "clsx";
 import { ArrowRight, Plus, Sparkles, Wallet } from "lucide-react";
 import { CalendarHeatmap, CategoryStack, PaceChart } from "@/components/Charts";
 import { EmptyState } from "@/components/EmptyState";
+import { FaithPanel, GenerosityCard } from "@/components/Generosity";
 import { useExpenseDialogs } from "@/components/ExpenseDialogProvider";
 import { LatestList } from "@/components/ExpenseList";
 import { DashboardSkeleton } from "@/components/Skeleton";
 import { buttonStyles, eyebrowStyles, panelStyles } from "@/components/ui";
 import { useExpenses } from "@/hooks/useExpenses";
+import { useFaith } from "@/hooks/useFaith";
 import { computePace, dailyTotalsForMonth, totalsByCategory, type Pace } from "@/lib/analytics";
 import { monthKey, todayISO } from "@/lib/dates";
 import { sortExpenses } from "@/lib/filters";
@@ -42,6 +44,7 @@ function Verdict({ pace, month }: { pace: Pace; month: string }) {
 export default function ThisMonthPage() {
   const { expenses, status, loadSampleData } = useExpenses();
   const { openCreate } = useExpenseDialogs();
+  const [faith, setFaith] = useFaith();
 
   const view = useMemo(() => {
     const now = new Date();
@@ -117,6 +120,8 @@ export default function ThisMonthPage() {
         </section>
       </div>
 
+      {faith && <GenerosityCard expenses={expenses} />}
+
       <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
         <section className={clsx(panelStyles, "p-5 sm:p-6")} aria-labelledby="where-heading">
           <div className="flex items-baseline justify-between gap-3">
@@ -136,6 +141,8 @@ export default function ThisMonthPage() {
           <LatestList expenses={view.latest} />
         </section>
       </div>
+
+      <FaithPanel on={faith} onChange={setFaith} />
     </div>
   );
 }

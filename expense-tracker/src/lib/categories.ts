@@ -1,6 +1,7 @@
 import {
   Car,
   Clapperboard,
+  HandHeart,
   MoreHorizontal,
   Receipt,
   ShoppingBag,
@@ -21,6 +22,7 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
   Entertainment: { icon: Clapperboard, color: "#b48cf2" },
   Shopping: { icon: ShoppingBag, color: "#ef7fa8" },
   Bills: { icon: Receipt, color: "#53cfa0" },
+  Giving: { icon: HandHeart, color: "#8ea2ff" },
   Other: { icon: MoreHorizontal, color: "#8796ab" },
 };
 
