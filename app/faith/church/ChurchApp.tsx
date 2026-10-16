@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useRef, useState, type FormEvent } from "react";
 import { ArrowLeft, ChevronDown, ExternalLink, LocateFixed, MapPin, MessageCircleQuestion, Navigation, Search } from "lucide-react";
+import { SearchError, searchChurches } from "../../../lib/faith/churchSearch";
 import { directionsUrl, RADII_MILES, type Church } from "../../../lib/faith/churches";
 
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
@@ -32,17 +33,15 @@ export function ChurchApp() {
   const [filter, setFilter] = useState("Any");
   const resultsRef = useRef<HTMLDivElement>(null);
 
-  const search = async (params: Record<string, string>, where: string) => {
+  const search = async (where: { place: string } | { lat: number; lon: number }) => {
     setState({ kind: "loading" });
     setFilter("Any");
     requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
     try {
-      const res = await fetch(`/api/faith/churches?${new URLSearchParams({ ...params, miles: String(miles) })}`);
-      const body = (await res.json().catch(() => ({}))) as { churches?: Church[]; label?: string; miles?: number; error?: string };
-      if (!res.ok || !body.churches) throw new Error(body.error ?? "Something went wrong. Please try again.");
-      setState({ kind: "results", churches: body.churches, where: body.label || where, miles: body.miles ?? miles });
+      const { churches, label } = await searchChurches(where, miles);
+      setState({ kind: "results", churches, where: label, miles });
     } catch (err) {
-      setState({ kind: "error", message: err instanceof Error ? err.message : "Something went wrong. Please try again." });
+      setState({ kind: "error", message: err instanceof SearchError ? err.message : "The church map isn't answering right now. Please try again in a minute." });
     }
   };
 
@@ -50,7 +49,7 @@ export function ChurchApp() {
     if (!("geolocation" in navigator)) return setState({ kind: "error", message: "Your browser can't share its location. Type a city or ZIP code instead." });
     setState({ kind: "loading" });
     navigator.geolocation.getCurrentPosition(
-      (pos) => void search({ lat: pos.coords.latitude.toFixed(4), lon: pos.coords.longitude.toFixed(4) }, "you"),
+      (pos) => void search({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
       () => setState({ kind: "error", message: "We couldn't get your location. Type a city or ZIP code instead." }),
       { timeout: 10_000, maximumAge: 600_000 },
     );
@@ -59,7 +58,7 @@ export function ChurchApp() {
   const submit = (e: FormEvent) => {
     e.preventDefault();
     if (place.trim().length < 2) return setState({ kind: "error", message: "Type a city or ZIP code first." });
-    void search({ place: place.trim() }, place.trim());
+    void search({ place: place.trim() });
   };
 
   const denominations = useMemo(() => {
