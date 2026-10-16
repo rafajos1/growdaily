@@ -14,4 +14,7 @@ export interface Entry {
   tags: Tag[];
   /** Private; never sent anywhere. */
   note: string;
+  /** Evening reflection (the Examen), shown when Faith is on. Private; never sent anywhere. */
+  gift?: string;
+  heavy?: string;
 }

@@ -2,10 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Annoyed, ArrowLeft, Frown, HeartHandshake, Info, Laugh, Meh, Minus, Moon, Pencil, Plus, Smile, Sparkles, type LucideIcon } from "lucide-react";
+import { Annoyed, ArrowLeft, BookOpen, Church, Frown, HeartHandshake, Info, Laugh, Meh, Minus, Moon, Pencil, Plus, Smile, Sparkles, type LucideIcon } from "lucide-react";
 import { addDays, fromISO, todayISO, weekday } from "../../../lib/habitwise/dates";
 import { buildInsightInput, inRange, moodLabel, needsSupport, parseEntries, sleepVsMood, streak, tagImpact, upsert } from "../../../lib/moodwise/logic";
+import { passageUrl } from "../../../lib/habitwise/faith";
+import { comfortFor, isHardDay, recentGifts } from "../../../lib/moodwise/examen";
 import { sampleEntries } from "../../../lib/moodwise/sample";
+import { FaithSwitch } from "../../components/FaithSwitch";
+import { useFaith } from "../../components/useFaith";
 import { ENERGY_LABELS, MOOD_LABELS, TAGS, type Entry, type Tag } from "../../../lib/moodwise/types";
 
 const ACCENT = "#b48cf2";
@@ -53,6 +57,7 @@ export function MoodwiseApp() {
   const [tab, setTab] = useState<Tab>("today");
   const [editing, setEditing] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [faith, setFaith] = useFaith();
 
   useEffect(() => {
     let loaded: Entry[] = [];
@@ -117,7 +122,9 @@ export function MoodwiseApp() {
             <HeartHandshake className="h-6 w-6 shrink-0 text-up" aria-hidden />
             <div className="text-sm text-soft">
               <p className="text-base font-bold text-fg">It sounds like a hard few days</p>
-              <p className="mt-1">You don&apos;t have to handle it alone. Talking to someone you trust, or a doctor or counselor, can really help.</p>
+              <p className="mt-1">
+                You don&apos;t have to handle it alone. Talking to someone you trust{faith ? ", a pastor," : ""} or a doctor or counselor can really help.
+              </p>
               <p className="mt-2">
                 If you&apos;re in crisis or thinking about harming yourself, call or text <strong className="text-fg">988</strong> in the US, or find a free helpline in your country at{" "}
                 <a href="https://findahelpline.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-fg underline">findahelpline.com</a>.
@@ -140,12 +147,13 @@ export function MoodwiseApp() {
           <div className={`${panel} h-72 animate-pulse`} aria-busy="true" aria-label="Loading" />
         ) : tab === "today" ? (
           todayEntry && !editing ? (
-            <TodayDone entry={todayEntry} entries={entries} today={today} onEdit={() => setEditing(true)} />
+            <TodayDone entry={todayEntry} entries={entries} today={today} faith={faith} onEdit={() => setEditing(true)} />
           ) : (
             <CheckIn
               key={todayEntry?.date ?? "new"}
               initial={todayEntry}
               today={today}
+              faith={faith}
               onCancel={todayEntry ? () => setEditing(false) : undefined}
               onSave={(entry) => {
                 save(upsert(entries, entry));
@@ -155,7 +163,29 @@ export function MoodwiseApp() {
             />
           )
         ) : (
-          <Insights entries={entries} today={today} />
+          <Insights entries={entries} today={today} faith={faith} />
+        )}
+        {ready && (
+          <section className={`${panel} mx-auto flex max-w-2xl items-center gap-4 p-4 sm:p-5 ${tab === "insights" ? "lg:max-w-none" : ""}`}>
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber/15 text-amber">
+              <Church className="h-5 w-5" aria-hidden />
+            </span>
+            <div className="min-w-0 flex-1">
+              <p id="faith-label" className="text-sm font-semibold">Faith</p>
+              <p className="mt-0.5 text-xs text-muted">
+                Adds a short evening reflection to your check-in, an old Christian practice for noticing God in your day. Questions welcome.{" "}
+                <Link href="/faith" className="text-amber underline-offset-2 hover:underline">More about Faith</Link>
+              </p>
+            </div>
+            <FaithSwitch
+              on={faith}
+              onChange={(on) => {
+                setFaith(on);
+                setToast(on ? "Faith is on across GrowDaily." : "Faith is off.");
+              }}
+              labelledBy="faith-label"
+            />
+          </section>
         )}
       </main>
 
@@ -195,18 +225,23 @@ function Scale({ label, value, onChange, labels, faces }: { label: string; value
   );
 }
 
-function CheckIn({ initial, today, onSave, onCancel }: { initial?: Entry; today: string; onSave: (e: Entry) => void; onCancel?: () => void }) {
+function CheckIn({ initial, today, faith, onSave, onCancel }: { initial?: Entry; today: string; faith: boolean; onSave: (e: Entry) => void; onCancel?: () => void }) {
   const [mood, setMood] = useState(initial?.mood ?? 0);
   const [energy, setEnergy] = useState(initial?.energy ?? 0);
   const [sleep, setSleep] = useState<number | null>(initial ? initial.sleep : 7);
   const [tags, setTags] = useState<Tag[]>(initial?.tags ?? []);
   const [note, setNote] = useState(initial?.note ?? "");
+  const [gift, setGift] = useState(initial?.gift ?? "");
+  const [heavy, setHeavy] = useState(initial?.heavy ?? "");
   const [error, setError] = useState<string | null>(null);
 
   const submit = () => {
     if (!mood) return setError("Pick how you're feeling first.");
     if (!energy) return setError("Pick your energy level.");
-    onSave({ date: today, mood, energy, sleep, tags, note: note.trim().slice(0, 200) });
+    // Reflections typed earlier are kept even if Faith has since been turned off.
+    const g = (faith ? gift : (initial?.gift ?? "")).trim().slice(0, 200);
+    const h = (faith ? heavy : (initial?.heavy ?? "")).trim().slice(0, 200);
+    onSave({ date: today, mood, energy, sleep, tags, note: note.trim().slice(0, 200), ...(g ? { gift: g } : {}), ...(h ? { heavy: h } : {}) });
   };
 
   return (
@@ -245,6 +280,22 @@ function CheckIn({ initial, today, onSave, onCancel }: { initial?: Entry; today:
         <label htmlFor="note" className="mb-2 block text-sm font-semibold text-soft">One line about today <span className="font-normal text-muted">(optional, stays on this device)</span></label>
         <input id="note" value={note} onChange={(e) => setNote(e.target.value)} maxLength={200} placeholder="e.g. Long walk with Sam, felt lighter after" className="block w-full rounded-[10px] border border-line bg-sunken px-3 py-2.5 text-sm text-fg placeholder:text-dim focus:border-[#b48cf2] focus:outline-none focus:ring-2 focus:ring-[#b48cf2]/30" />
       </div>
+      {faith && (
+        <fieldset className="rounded-xl border border-amber/30 bg-amber/[0.06] p-4 sm:p-5">
+          <legend className="sr-only">Look back with God</legend>
+          <p className="flex items-center gap-2 text-sm font-bold text-fg" aria-hidden>
+            <Church className="h-4 w-4 text-amber" /> Look back with God <span className="font-normal text-muted">(optional)</span>
+          </p>
+          <p className="mt-1 text-sm text-muted">
+            Christians have prayed this way for 500 years. It&apos;s called the Examen: notice where good showed up, name what was hard, and hand both to God. You don&apos;t need the right words.
+          </p>
+          <label htmlFor="gift" className="mb-1.5 mt-4 block text-sm font-semibold text-soft">Where did you notice something good today?</label>
+          <input id="gift" value={gift} onChange={(e) => setGift(e.target.value)} maxLength={200} placeholder="e.g. A kind word from a coworker" className="block w-full rounded-[10px] border border-line bg-sunken px-3 py-2.5 text-sm text-fg placeholder:text-dim focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/30" />
+          <label htmlFor="heavy" className="mb-1.5 mt-3 block text-sm font-semibold text-soft">What felt heavy, or pulled you away from peace?</label>
+          <input id="heavy" value={heavy} onChange={(e) => setHeavy(e.target.value)} maxLength={200} placeholder="e.g. Worrying about money all afternoon" className="block w-full rounded-[10px] border border-line bg-sunken px-3 py-2.5 text-sm text-fg placeholder:text-dim focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/30" />
+          <p className="mt-2 font-mono text-[11px] text-dim">Stays on this device. Never sent anywhere, including to AI.</p>
+        </fieldset>
+      )}
       {error && <p role="alert" className="text-sm font-semibold text-up">{error}</p>}
       <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
         {onCancel && <button type="button" onClick={onCancel} className={btn.secondary}>Cancel</button>}
@@ -254,7 +305,54 @@ function CheckIn({ initial, today, onSave, onCancel }: { initial?: Entry; today:
   );
 }
 
-function TodayDone({ entry, entries, today, onEdit }: { entry: Entry; entries: Entry[]; today: string; onEdit: () => void }) {
+function Tonight({ entry, today, onEdit }: { entry: Entry; today: string; onEdit: () => void }) {
+  const comfort = comfortFor(today);
+  const reflected = Boolean(entry.gift || entry.heavy);
+  return (
+    <section className={`${panel} relative overflow-hidden p-5 sm:p-7`} aria-labelledby="tonight-heading">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-amber" aria-hidden />
+      <p id="tonight-heading" className={`${eyebrow} flex items-center gap-1.5`}>
+        <Church className="h-3.5 w-3.5 text-amber" aria-hidden /> Look back with God
+      </p>
+      {reflected ? (
+        <dl className="mt-3 space-y-3">
+          {entry.gift && (
+            <div>
+              <dt className="text-xs font-semibold text-muted">Something good</dt>
+              <dd className="mt-0.5 text-soft">{entry.gift}</dd>
+            </div>
+          )}
+          {entry.heavy && (
+            <div>
+              <dt className="text-xs font-semibold text-muted">Something heavy</dt>
+              <dd className="mt-0.5 text-soft">{entry.heavy}</dd>
+            </div>
+          )}
+        </dl>
+      ) : (
+        <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-muted">Take a minute: where did good show up today, and what felt heavy?</p>
+          <button type="button" onClick={onEdit} className={btn.secondary}>Add a reflection</button>
+        </div>
+      )}
+      {isHardDay(entry) && (
+        <figure className="mt-5 rounded-xl border border-line bg-sunken p-4">
+          <p className="flex items-center gap-1.5 text-xs font-semibold text-muted"><BookOpen className="h-3.5 w-3.5 text-amber" aria-hidden /> For a hard day</p>
+          <p className="mt-2 text-[17px] leading-relaxed text-fg">{comfort.text}</p>
+          <figcaption className="mt-2 font-mono text-xs text-muted">
+            Inspired by {comfort.ref} ·{" "}
+            <a href={passageUrl(comfort)} target="_blank" rel="noopener noreferrer" className="text-amber underline-offset-2 hover:underline">Read it</a>
+          </figcaption>
+        </figure>
+      )}
+      <p className="mt-5 text-[15px] italic leading-relaxed text-soft">
+        A prayer, if you&apos;d like: God, thank you for what was good today. I give you what was heavy. Help me rest, and meet me again tomorrow.
+      </p>
+    </section>
+  );
+}
+
+function TodayDone({ entry, entries, today, faith, onEdit }: { entry: Entry; entries: Entry[]; today: string; faith: boolean; onEdit: () => void }) {
   const Face = FACES[entry.mood - 1];
   const days = Array.from({ length: 7 }, (_, i) => addDays(today, i - 6));
   const s = streak(entries, today);
@@ -280,6 +378,7 @@ function TodayDone({ entry, entries, today, onEdit }: { entry: Entry; entries: E
         )}
         {entry.note && <p className="mt-4 border-l-2 border-[#b48cf2]/50 pl-3 text-soft">{entry.note}</p>}
       </section>
+      {faith && <Tonight entry={entry} today={today} onEdit={onEdit} />}
       <section className={`${panel} p-5 sm:p-6`}>
         <div className="flex items-baseline justify-between">
           <h2 className="text-base font-bold">This week</h2>
@@ -306,7 +405,8 @@ function TodayDone({ entry, entries, today, onEdit }: { entry: Entry; entries: E
 
 // ---------------------------------------------------------------------------
 
-function Insights({ entries, today }: { entries: Entry[]; today: string }) {
+function Insights({ entries, today, faith }: { entries: Entry[]; today: string; faith: boolean }) {
+  const gifts = useMemo(() => (faith ? recentGifts(entries) : []), [entries, faith]);
   const last30 = useMemo(() => inRange(entries, today, 30), [entries, today]);
   const impacts = useMemo(() => tagImpact(last30), [last30]);
   const sleep = useMemo(() => sleepVsMood(last30), [last30]);
@@ -402,6 +502,21 @@ function Insights({ entries, today }: { entries: Entry[]; today: string }) {
           </div>
         </section>
       </div>
+
+      {gifts.length > 0 && (
+        <section className={`${panel} p-5 sm:p-6`}>
+          <h2 className="flex items-center gap-2 text-base font-bold"><Church className="h-4 w-4 text-amber" aria-hidden /> Good things you noticed</h2>
+          <p className="mt-1 text-sm text-muted">From your evening reflections. Looking back on these is part of the practice.</p>
+          <ul className="mt-4 divide-y divide-hairline">
+            {gifts.map((g) => (
+              <li key={g.date} className="flex gap-4 py-2.5">
+                <span className="w-14 shrink-0 font-mono text-xs leading-6 text-dim">{fromISO(g.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</span>
+                <span className="text-sm text-soft">{g.text}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </>
   );
 }
