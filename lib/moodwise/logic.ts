@@ -134,6 +134,8 @@ export function parseEntries(raw: string | null): Entry[] {
       sleep: typeof e.sleep === "number" && e.sleep >= 0 && e.sleep <= 16 ? e.sleep : null,
       tags: Array.isArray(e.tags) ? e.tags.filter((t): t is Tag => (TAGS as readonly string[]).includes(t)) : [],
       note: typeof e.note === "string" ? e.note.slice(0, 200) : "",
+      ...(typeof e.gift === "string" && e.gift ? { gift: e.gift.slice(0, 200) } : {}),
+      ...(typeof e.heavy === "string" && e.heavy ? { heavy: e.heavy.slice(0, 200) } : {}),
     }))
     .sort((a, b) => a.date.localeCompare(b.date));
 }

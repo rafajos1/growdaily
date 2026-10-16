@@ -17,7 +17,9 @@ import {
   todayProgress,
   toggleCheck,
 } from "../../../lib/habitwise/logic";
-import { chapterUrl, FAITH_HABITS, FAITH_KEY, verseFor } from "../../../lib/habitwise/faith";
+import { chapterUrl, FAITH_HABITS, verseFor } from "../../../lib/habitwise/faith";
+import { FaithSwitch } from "../../components/FaithSwitch";
+import { useFaith } from "../../components/useFaith";
 import { sampleData } from "../../../lib/habitwise/sample";
 import { loadData, newId, saveData, STORAGE_KEY } from "../../../lib/habitwise/storage";
 import type { Habit, HabitData } from "../../../lib/habitwise/types";
@@ -57,7 +59,7 @@ export function HabitwiseApp() {
   const [tab, setTab] = useState<Tab>("today");
   const [dialog, setDialog] = useState<Dialog>({ kind: "none" });
   const [toast, setToast] = useState<string | null>(null);
-  const [faith, setFaith] = useState(false);
+  const [faith, setFaith] = useFaith();
   const today = todayISO();
   const takenNames = new Set(data.habits.map((h) => h.name.toLowerCase()));
   const faithSuggestions = faith ? FAITH_HABITS.filter((f) => !takenNames.has(f.name.toLowerCase())) : undefined;
@@ -76,7 +78,6 @@ export function HabitwiseApp() {
     } catch {
       setStorageError("Your browser isn't letting Habitwise save. Changes will be lost when you close the page.");
     }
-    setFaith(safeGet(FAITH_KEY) === "1");
     setReady(true);
     if (location.hash === "#progress") setTab("progress");
     const onStorage = (e: StorageEvent) => {
@@ -134,8 +135,7 @@ export function HabitwiseApp() {
   const toggleFaith = () => {
     const next = !faith;
     setFaith(next);
-    safeSet(FAITH_KEY, next ? "1" : "0");
-    setToast(next ? "Faith features on. A verse for each day, plus faith habit ideas when you add a habit." : "Faith features off.");
+    setToast(next ? "Faith is on across GrowDaily. A verse for each day, plus faith habit ideas when you add a habit." : "Faith is off.");
   };
 
   const clearExamples = () => {
@@ -224,7 +224,7 @@ export function HabitwiseApp() {
         ) : (
           <ProgressView data={data} today={today} faith={faith} />
         )}
-        {ready && <FaithSwitch on={faith} onToggle={toggleFaith} />}
+        {ready && <FaithPanel on={faith} onToggle={toggleFaith} />}
       </main>
 
       {/* Mobile add button */}
@@ -286,7 +286,7 @@ function ProgressRing({ done, due }: { done: number; due: number }) {
   );
 }
 
-function FaithSwitch({ on, onToggle }: { on: boolean; onToggle: () => void }) {
+function FaithPanel({ on, onToggle }: { on: boolean; onToggle: () => void }) {
   return (
     <section className={`${panel} flex items-center gap-4 p-4 sm:p-5`}>
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber/15 text-amber">
@@ -296,18 +296,14 @@ function FaithSwitch({ on, onToggle }: { on: boolean; onToggle: () => void }) {
         <p id="faith-label" className="text-sm font-semibold">
           Faith
         </p>
-        <p className="mt-0.5 text-xs text-muted">A Bible verse each day, faith habit ideas, and a weekly review that honors your spiritual habits.</p>
+        <p className="mt-0.5 text-xs text-muted">
+          A Bible verse each day, ideas like prayer and gratitude, and a weekly review that honors them. Questions welcome, no church background needed.{" "}
+          <Link href="/faith" className="text-amber underline-offset-2 hover:underline">
+            More about Faith
+          </Link>
+        </p>
       </div>
-      <button
-        type="button"
-        role="switch"
-        aria-checked={on}
-        aria-labelledby="faith-label"
-        onClick={onToggle}
-        className={`relative h-7 w-12 shrink-0 rounded-full border transition ${on ? "border-amber bg-amber" : "border-line bg-sunken"}`}
-      >
-        <span className={`absolute top-0.5 h-[22px] w-[22px] rounded-full shadow transition-all ${on ? "left-[22px] bg-[#2a1c05]" : "left-0.5 bg-muted"}`} />
-      </button>
+      <FaithSwitch on={on} onChange={onToggle} labelledBy="faith-label" />
     </section>
   );
 }

@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
-import { ArrowRight, Bell, Lock, Sparkles, UserX } from "lucide-react";
+import { ArrowRight, Bell, Church, Lock, Sparkles, UserX } from "lucide-react";
 import { getSupabase } from "../lib/supabase";
 import { APPS, type GrowApp } from "./apps";
 import { HabitArt, MealArt, MoodArt, PlanArt, SpendArt } from "./components/AppArt";
+import { FaithSwitch } from "./components/FaithSwitch";
+import { useFaith } from "./components/useFaith";
 
 const ART: Record<string, (p: { color: string }) => React.ReactElement> = {
   spendwise: SpendArt,
@@ -19,7 +21,13 @@ const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outli
 const btnPrimary = `inline-flex items-center justify-center gap-2 rounded-[10px] bg-amber px-5 py-3 text-sm font-bold text-amber-ink transition hover:bg-amber-hover ${focus}`;
 const btnSecondary = `inline-flex items-center justify-center gap-2 rounded-[10px] border border-line bg-raised px-5 py-3 text-sm font-semibold text-fg transition hover:bg-[#24364f] ${focus}`;
 
-function AppCard({ app, index, featured }: { app: GrowApp; index: number; featured?: boolean }) {
+/** What Faith adds to each app today, shown on the cards when it's on. */
+const FAITH_NOTES: Record<string, string> = {
+  habitwise: "With Faith: a daily Bible verse and habits like prayer and gratitude.",
+  moodwise: "With Faith: a short evening reflection with God.",
+};
+
+function AppCard({ app, index, featured, faith }: { app: GrowApp; index: number; featured?: boolean; faith: boolean }) {
   const Art = ART[app.slug];
   const live = app.status === "live";
   return (
@@ -45,6 +53,12 @@ function AppCard({ app, index, featured }: { app: GrowApp; index: number; featur
         <Sparkles className="mt-0.5 h-4 w-4 shrink-0" style={{ color: app.color }} aria-hidden />
         {app.ai}
       </p>
+      {faith && FAITH_NOTES[app.slug] && (
+        <p className="mt-2 flex gap-2 text-sm text-soft">
+          <Church className="mt-0.5 h-4 w-4 shrink-0 text-amber" aria-hidden />
+          {FAITH_NOTES[app.slug]}
+        </p>
+      )}
       {live && app.href && (
         <a href={app.href} className={`${btnPrimary} mt-5 self-start`}>
           Open {app.name} <ArrowRight className="h-4 w-4" aria-hidden />
@@ -144,6 +158,7 @@ function Updates() {
 
 export default function Home() {
   const live = APPS.filter((a) => a.status === "live").length;
+  const [faith, setFaith] = useFaith();
   return (
     <div className="px-[max(16px,env(safe-area-inset-left))]">
       <header className="mx-auto flex h-20 max-w-6xl items-center justify-between">
@@ -208,7 +223,7 @@ export default function Home() {
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {APPS.map((app, i) => (
-              <AppCard key={app.slug} app={app} index={i} featured={i === 0} />
+              <AppCard key={app.slug} app={app} index={i} featured={i === 0} faith={faith} />
             ))}
           </div>
         </section>
@@ -228,6 +243,30 @@ export default function Home() {
                 <p className="mt-1.5 text-sm text-muted">{text}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section id="faith" className="scroll-mt-8 pb-20">
+          <div className="grid gap-6 rounded-2xl border border-amber/30 bg-amber/[0.05] p-6 sm:p-10 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+            <div>
+              <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-amber">
+                <Church className="h-4 w-4" aria-hidden /> Faith
+              </p>
+              <h2 className="mt-2 text-3xl font-extrabold tracking-tight">Room for your soul, too</h2>
+              <p className="mt-2 max-w-[52ch] text-muted">
+                Curious about God? Turn on Faith and the apps leave a little room for him in your day: a Bible verse each morning, an evening reflection, habits like prayer and gratitude. Questions welcome, no church background needed.
+              </p>
+              <a href="/faith" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
+                What Faith adds <ArrowRight className="h-4 w-4" aria-hidden />
+              </a>
+            </div>
+            <div className="flex items-center gap-4 rounded-xl border border-line bg-panel p-4 sm:p-5">
+              <div className="min-w-0 flex-1">
+                <p id="home-faith-label" className="font-semibold">Faith {faith ? "is on" : "is off"}</p>
+                <p className="mt-0.5 text-sm text-muted">{faith ? "On in every app on this device." : "Off by default. Turn it on any time."}</p>
+              </div>
+              <FaithSwitch on={faith} onChange={setFaith} labelledBy="home-faith-label" />
+            </div>
           </div>
         </section>
 

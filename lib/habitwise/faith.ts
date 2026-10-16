@@ -1,8 +1,5 @@
 import { EVERY_DAY, WEEKDAYS } from "./types";
 
-/** localStorage key for the Faith switch. Off unless the person turns it on. */
-export const FAITH_KEY = "habitwise:faith";
-
 export interface FaithHabit {
   name: string;
   days: number[];
