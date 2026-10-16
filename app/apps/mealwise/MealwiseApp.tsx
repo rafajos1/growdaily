@@ -6,6 +6,7 @@ import { ArrowLeft, Check, ChefHat, ChevronDown, Church, Clock, Copy, Heart, Inf
 import { localISO, markDone } from "../../../lib/journey";
 import { graceFor } from "../../../lib/mealwise/grace";
 import { FaithPanel } from "../../components/FaithPanel";
+import { FaithToggle } from "../../components/FaithToggle";
 import { NextUp } from "../../components/NextUp";
 import { useDay } from "../../components/useDay";
 import { useFaith } from "../../components/useFaith";
@@ -107,6 +108,11 @@ export function MealwiseApp() {
     return () => clearTimeout(t);
   }, [toast]);
 
+  const changeFaith = (on: boolean) => {
+    setFaith(on);
+    setToast(on ? "Faith is on. Meal ideas now come with a short grace before you eat." : "Faith is off.");
+  };
+
   const switchTab = (t: Tab) => {
     setTab(t);
     history.replaceState(null, "", t === "ideas" ? location.pathname : `#${t}`);
@@ -178,7 +184,8 @@ export function MealwiseApp() {
 
   return (
     <div className="min-h-screen px-[max(16px,env(safe-area-inset-left))] pb-16">
-      <header className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-2">
+      {/* Wraps onto two lines on narrow phones, where the tabs and Faith toggle don't fit beside the name. */}
+      <header className="mx-auto flex min-h-[72px] max-w-6xl flex-wrap items-center justify-between gap-2 py-3 sm:py-0">
         <div className="flex items-center gap-1 sm:gap-3">
           <Link href="/" className={btn.ghost} aria-label="Back to GrowDaily">
             <ArrowLeft className="h-5 w-5" />
@@ -188,7 +195,8 @@ export function MealwiseApp() {
             Mealwise
           </span>
         </div>
-        <nav aria-label="Mealwise" className="flex gap-1 rounded-[10px] border border-line bg-panel p-1">
+        <div className="ml-auto flex items-center gap-2">
+          <nav aria-label="Mealwise" className="flex gap-1 rounded-[10px] border border-line bg-panel p-1">
           {([
             ["ideas", "Ideas", 0],
             ["grocery", "List", openGrocery],
@@ -206,6 +214,8 @@ export function MealwiseApp() {
             </button>
           ))}
         </nav>
+          <FaithToggle on={faith} onChange={changeFaith} />
+        </div>
       </header>
 
       <main className="mx-auto max-w-6xl">
@@ -425,7 +435,7 @@ export function MealwiseApp() {
           </section>
         )}
         {ready && (
-          <FaithPanel on={faith} onChange={setFaith} className="mx-auto mt-5 max-w-6xl">
+          <FaithPanel on={faith} onChange={changeFaith} className="mx-auto mt-5 max-w-6xl">
             Adds a simple grace before meals, and a nudge to make room at the table.
           </FaithPanel>
         )}

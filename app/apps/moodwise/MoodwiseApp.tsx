@@ -10,6 +10,7 @@ import { comfortFor, isHardDay, recentGifts } from "../../../lib/moodwise/examen
 import { sampleEntries } from "../../../lib/moodwise/sample";
 import { markDone } from "../../../lib/journey";
 import { FaithSwitch } from "../../components/FaithSwitch";
+import { FaithToggle } from "../../components/FaithToggle";
 import { NextUp } from "../../components/NextUp";
 import { useFaith } from "../../components/useFaith";
 import { ENERGY_LABELS, MOOD_LABELS, TAGS, type Entry, type Tag } from "../../../lib/moodwise/types";
@@ -94,6 +95,11 @@ export function MoodwiseApp() {
     history.replaceState(null, "", t === "insights" ? "#insights" : location.pathname);
   };
 
+  const changeFaith = (on: boolean) => {
+    setFaith(on);
+    setToast(on ? "Faith is on. Your check-in now ends with a short evening reflection." : "Faith is off.");
+  };
+
   const todayEntry = entries.find((e) => e.date === today);
   // A check-in for today counts as Moodwise done for the day.
   useEffect(() => {
@@ -103,7 +109,8 @@ export function MoodwiseApp() {
 
   return (
     <div className="min-h-screen px-[max(16px,env(safe-area-inset-left))] pb-16">
-      <header className="mx-auto flex h-[72px] max-w-5xl items-center justify-between gap-2">
+      {/* Wraps onto two lines on narrow phones, where the tabs and Faith toggle don't fit beside the name. */}
+      <header className="mx-auto flex min-h-[72px] max-w-5xl flex-wrap items-center justify-between gap-2 py-3 sm:py-0">
         <div className="flex items-center gap-1 sm:gap-3">
           <Link href="/" className={btn.ghost} aria-label="Back to GrowDaily">
             <ArrowLeft className="h-5 w-5" />
@@ -113,13 +120,16 @@ export function MoodwiseApp() {
             Moodwise
           </span>
         </div>
-        <nav aria-label="Moodwise" className="flex gap-1 rounded-[10px] border border-line bg-panel p-1">
-          {(["today", "insights"] as const).map((t) => (
-            <button key={t} type="button" aria-current={tab === t ? "page" : undefined} onClick={() => switchTab(t)} className={`rounded-[7px] px-3 py-1.5 text-sm font-semibold capitalize transition ${tab === t ? "bg-raised text-fg" : "text-muted hover:text-fg"}`}>
-              {t}
-            </button>
-          ))}
-        </nav>
+        <div className="ml-auto flex items-center gap-2">
+          <nav aria-label="Moodwise" className="flex gap-1 rounded-[10px] border border-line bg-panel p-1">
+            {(["today", "insights"] as const).map((t) => (
+              <button key={t} type="button" aria-current={tab === t ? "page" : undefined} onClick={() => switchTab(t)} className={`rounded-[7px] px-3 py-1.5 text-sm font-semibold capitalize transition ${tab === t ? "bg-raised text-fg" : "text-muted hover:text-fg"}`}>
+                {t}
+              </button>
+            ))}
+          </nav>
+          <FaithToggle on={faith} onChange={changeFaith} />
+        </div>
       </header>
 
       <main className="mx-auto max-w-5xl space-y-5">
@@ -183,14 +193,7 @@ export function MoodwiseApp() {
                 <Link href="/faith" className="text-amber underline-offset-2 hover:underline">More about Faith</Link>
               </p>
             </div>
-            <FaithSwitch
-              on={faith}
-              onChange={(on) => {
-                setFaith(on);
-                setToast(on ? "Faith is on across GrowDaily." : "Faith is off.");
-              }}
-              labelledBy="faith-label"
-            />
+            <FaithSwitch on={faith} onChange={changeFaith} labelledBy="faith-label" />
           </section>
         )}
       </main>

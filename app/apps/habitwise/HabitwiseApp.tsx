@@ -20,6 +20,7 @@ import {
 import { encouragementFor, FAITH_HABITS, passageUrl } from "../../../lib/habitwise/faith";
 import { markDone } from "../../../lib/journey";
 import { FaithSwitch } from "../../components/FaithSwitch";
+import { FaithToggle } from "../../components/FaithToggle";
 import { NextUp } from "../../components/NextUp";
 import { useFaith } from "../../components/useFaith";
 import { sampleData } from "../../../lib/habitwise/sample";
@@ -155,7 +156,8 @@ export function HabitwiseApp() {
 
   return (
     <div className="min-h-screen pb-28 px-[max(16px,env(safe-area-inset-left))] sm:pb-16">
-      <header className="mx-auto flex h-[72px] max-w-5xl items-center justify-between gap-2">
+      {/* Wraps onto two lines on narrow phones, where the tabs and Faith toggle don't fit beside the name. */}
+      <header className="mx-auto flex min-h-[72px] max-w-5xl flex-wrap items-center justify-between gap-2 py-3 sm:py-0">
         <div className="flex items-center gap-1 sm:gap-3">
           <Link href="/" className={btn.ghost} aria-label="Back to GrowDaily">
             <ArrowLeft className="h-5 w-5" />
@@ -165,23 +167,26 @@ export function HabitwiseApp() {
             Habitwise
           </span>
         </div>
-        <nav aria-label="Habitwise" className="flex gap-1 rounded-[10px] border border-line bg-panel p-1">
-          {(["today", "progress"] as const).map((t) => (
-            <button
-              key={t}
-              type="button"
-              aria-current={tab === t ? "page" : undefined}
-              onClick={() => switchTab(t)}
-              className={`rounded-[7px] px-3 py-1.5 text-sm font-semibold capitalize transition ${tab === t ? "bg-raised text-fg" : "text-muted hover:text-fg"}`}
-            >
-              {t}
+        <div className="ml-auto flex items-center gap-2">
+          <nav aria-label="Habitwise" className="flex gap-1 rounded-[10px] border border-line bg-panel p-1">
+            {(["today", "progress"] as const).map((t) => (
+              <button
+                key={t}
+                type="button"
+                aria-current={tab === t ? "page" : undefined}
+                onClick={() => switchTab(t)}
+                className={`rounded-[7px] px-3 py-1.5 text-sm font-semibold capitalize transition ${tab === t ? "bg-raised text-fg" : "text-muted hover:text-fg"}`}
+              >
+                {t}
+              </button>
+            ))}
+          </nav>
+          <FaithToggle on={faith} onChange={toggleFaith} />
+          <div className="hidden sm:block">
+            <button type="button" onClick={() => setDialog({ kind: "create" })} className={btn.primary}>
+              <Plus className="h-4 w-4" aria-hidden /> New habit
             </button>
-          ))}
-        </nav>
-        <div className="hidden sm:block">
-          <button type="button" onClick={() => setDialog({ kind: "create" })} className={btn.primary}>
-            <Plus className="h-4 w-4" aria-hidden /> New habit
-          </button>
+          </div>
         </div>
       </header>
 
