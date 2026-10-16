@@ -23,7 +23,7 @@ const ADDS: Record<string, { live: boolean; text: string }> = {
 const NEXT_STEPS = [
   { icon: BookOpen, title: "Read about Jesus", text: "Start with the Gospel of John, one short chapter a day, in plain modern English.", href: "https://www.biblegateway.com/passage/?search=John%201&version=NLT", cta: "Read John 1" },
   { icon: MessageCircleQuestion, title: "Ask your questions", text: "Ask anything about God, Jesus or the Bible and get an honest answer in plain words. Doubts welcome.", href: "/faith/ask", cta: "Ask a question" },
-  { icon: MapPin, title: "Find a church near you", text: "Help finding a welcoming church, and what to expect on your first visit. Coming soon.", href: null, cta: null },
+  { icon: MapPin, title: "Find a church near you", text: "See churches nearby, and know what to expect on your first visit. No pressure.", href: "/faith/church", cta: "Find a church" },
 ];
 
 export function FaithLanding() {
