@@ -68,10 +68,45 @@ export function denominationLabel(tag: string | undefined): string {
   return key.split("_").filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join(" ");
 }
 
-/** Overpass query for Christian places of worship around a point. */
+/** Public Overpass servers with the same OpenStreetMap data, tried in order. */
+export const OVERPASS_SERVERS = [
+  "https://overpass-api.de/api/interpreter",
+  "https://overpass.kumi.systems/api/interpreter",
+  "https://overpass.private.coffee/api/interpreter",
+];
+
+/**
+ * Overpass query for Christian places of worship around a point. Written as a
+ * node/way/relation union with "out tags center" so every Overpass server
+ * version accepts it.
+ */
 export function overpassQuery(lat: number, lon: number, radiusMeters: number): string {
-  return `[out:json][timeout:20];nwr["amenity"="place_of_worship"]["religion"="christian"](around:${Math.round(radiusMeters)},${lat.toFixed(5)},${lon.toFixed(5)});out center tags 200;`;
+  const filter = `["amenity"="place_of_worship"]["religion"="christian"](around:${Math.round(radiusMeters)},${lat.toFixed(5)},${lon.toFixed(5)})`;
+  return `[out:json][timeout:20];(node${filter};way${filter};relation${filter};);out tags center 200;`;
 }
+
+/** Reads a Photon (komoot) or Nominatim geocoding response into a point. */
+export function parseGeocode(json: unknown, fallbackLabel: string): { lat: number; lon: number; label: string } | null {
+  // Photon: GeoJSON features with [lon, lat] coordinates.
+  const feature = (json as { features?: { geometry?: { coordinates?: number[] }; properties?: Record<string, string> }[] })?.features?.[0];
+  if (feature?.geometry?.coordinates?.length === 2) {
+    const [lon, lat] = feature.geometry.coordinates;
+    const p = feature.properties ?? {};
+    const label = [p.name ?? p.city, p.state].filter(Boolean).join(", ") || fallbackLabel;
+    return Number.isFinite(lat) && Number.isFinite(lon) ? { lat, lon, label } : null;
+  }
+  // Nominatim: an array of places with string coordinates.
+  const hit = Array.isArray(json) ? (json[0] as { lat?: string; lon?: string; display_name?: string } | undefined) : undefined;
+  const lat = Number(hit?.lat);
+  const lon = Number(hit?.lon);
+  if (!hit || !Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+  return { lat, lon, label: (hit.display_name ?? fallbackLabel).split(",").slice(0, 2).join(",").trim() };
+}
+
+export const geocodeUrls = (place: string) => [
+  `https://photon.komoot.io/api/?${new URLSearchParams({ q: place, limit: "1" })}`,
+  `https://nominatim.openstreetmap.org/search?${new URLSearchParams({ q: place, format: "jsonv2", limit: "1" })}`,
+];
 
 export function milesBetween(aLat: number, aLon: number, bLat: number, bLon: number): number {
   const toRad = (d: number) => (d * Math.PI) / 180;

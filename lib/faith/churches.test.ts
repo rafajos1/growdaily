@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { denominationLabel, directionsUrl, milesBetween, normalizeChurches, overpassQuery } from "./churches";
+import { denominationLabel, directionsUrl, milesBetween, normalizeChurches, overpassQuery, parseGeocode } from "./churches";
 
 // Around downtown Nashville.
 const LAT = 36.1627;
@@ -20,9 +20,8 @@ describe("denominationLabel", () => {
 
 describe("overpassQuery", () => {
   it("asks for Christian places of worship around the point, with centers for buildings", () => {
-    expect(overpassQuery(LAT, LON, 16093.4)).toBe(
-      '[out:json][timeout:20];nwr["amenity"="place_of_worship"]["religion"="christian"](around:16093,36.16270,-86.78160);out center tags 200;',
-    );
+    const f = '["amenity"="place_of_worship"]["religion"="christian"](around:16093,36.16270,-86.78160)';
+    expect(overpassQuery(LAT, LON, 16093.4)).toBe(`[out:json][timeout:20];(node${f};way${f};relation${f};);out tags center 200;`);
   });
 });
 
@@ -66,5 +65,20 @@ describe("normalizeChurches", () => {
 
   it("links to directions", () => {
     expect(directionsUrl({ lat: 36.17, lon: -86.78 })).toBe("https://www.google.com/maps/dir/?api=1&destination=36.170000,-86.780000");
+  });
+});
+
+describe("parseGeocode", () => {
+  it("reads Photon results", () => {
+    const photon = { features: [{ geometry: { coordinates: [-86.7816, 36.1627] }, properties: { name: "Nashville", state: "Tennessee" } }] };
+    expect(parseGeocode(photon, "nashville")).toEqual({ lat: 36.1627, lon: -86.7816, label: "Nashville, Tennessee" });
+  });
+  it("reads Nominatim results", () => {
+    expect(parseGeocode([{ lat: "36.1627", lon: "-86.7816", display_name: "Nashville, Davidson County, Tennessee" }], "x")).toEqual({ lat: 36.1627, lon: -86.7816, label: "Nashville, Davidson County" });
+  });
+  it("returns null when nothing matched", () => {
+    expect(parseGeocode({ features: [] }, "x")).toBeNull();
+    expect(parseGeocode([], "x")).toBeNull();
+    expect(parseGeocode(null, "x")).toBeNull();
   });
 });
