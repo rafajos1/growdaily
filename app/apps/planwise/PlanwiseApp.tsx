@@ -2,7 +2,12 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowLeft, Check, Coffee, Info, Pause, Play, RotateCcw, Sparkles, Square, Target, Wand2 } from "lucide-react";
+import { ArrowLeft, Check, Church, Coffee, Info, Pause, Play, RotateCcw, Sparkles, Square, Sun, Target, Wand2 } from "lucide-react";
+import { markDone } from "../../../lib/journey";
+import { addQuietMoments, isQuiet } from "../../../lib/planwise/quiet";
+import { FaithPanel } from "../../components/FaithPanel";
+import { NextUp } from "../../components/NextUp";
+import { useFaith } from "../../components/useFaith";
 import { EXAMPLE_DUMP, EXAMPLE_PLAN } from "../../../lib/planwise/example";
 import {
   basicPlan,
@@ -89,6 +94,7 @@ export function PlanwiseApp() {
   const [now, setNow] = useState(nowMinutes);
   const [timer, setTimer] = useState<{ key: string; title: string; endsAt: number; remaining: number; paused: boolean } | null>(null);
   const dumpRef = useRef<HTMLTextAreaElement>(null);
+  const [faith, setFaith] = useFaith();
 
   useEffect(() => {
     const saved = load();
@@ -125,6 +131,11 @@ export function PlanwiseApp() {
     }
   }, [ready, date, dump, dayStart, dayEnd, plan, source, done]);
 
+  // A real plan for today counts as Planwise done for the day.
+  useEffect(() => {
+    if (ready && plan && source !== "example") markDone("planwise");
+  }, [ready, plan, source]);
+
   // Focus timer tick.
   useEffect(() => {
     if (!timer || timer.paused) return;
@@ -156,7 +167,7 @@ export function PlanwiseApp() {
         });
         const body = (await res.json().catch(() => ({}))) as { plan?: Plan; error?: string };
         if (res.ok && body.plan) {
-          setPlan(body.plan);
+          setPlan(faith ? addQuietMoments(body.plan, dayStart, dayEnd, current) : body.plan);
           setSource("ai");
         } else if (res.status === 400) {
           setError(body.error ?? "Something about that request didn't work.");
@@ -166,7 +177,7 @@ export function PlanwiseApp() {
         }
       } catch (err) {
         const fallback = basicPlan(text, dayStart, dayEnd, current > s! ? current : undefined);
-        setPlan(fallback);
+        setPlan(faith ? addQuietMoments(fallback, dayStart, dayEnd, current) : fallback);
         setSource("basic");
         setNotice({ tone: "warn", text: `${err instanceof Error ? err.message : "AI planning isn't available right now."} Here's a basic plan in the order you wrote things.` });
       } finally {
@@ -176,7 +187,7 @@ export function PlanwiseApp() {
         setNow(nowMinutes());
       }
     },
-    [dayStart, dayEnd, date],
+    [dayStart, dayEnd, date, faith],
   );
 
   const replanRest = () => {
@@ -277,6 +288,14 @@ export function PlanwiseApp() {
               </button>
             </div>
           )}
+          {faith && new Date(`${date}T12:00:00`).getDay() === 0 && (
+            <div className="flex items-start gap-3 rounded-xl border border-amber/30 bg-amber/[0.06] p-4 text-sm text-soft">
+              <Sun className="mt-0.5 h-5 w-5 shrink-0 text-amber" aria-hidden />
+              <p>
+                <strong className="text-fg">It&apos;s Sunday.</strong> Rest is a gift, not a reward. Keep today light: plan just what matters and leave room to breathe, worship and be with people you love.
+              </p>
+            </div>
+          )}
           {notice && (
             <p role="status" className={`rounded-xl border p-4 text-sm ${notice.tone === "warn" ? "border-amber/40 bg-amber/10 text-soft" : "border-line bg-panel text-soft"}`}>
               {notice.text}
@@ -315,9 +334,16 @@ export function PlanwiseApp() {
                     </p>
                   </div>
                   {source !== "example" && (
-                    <button type="button" onClick={replanRest} className={btn.secondary} disabled={loading}>
-                      <RotateCcw className="h-4 w-4" aria-hidden /> Re-plan from now
-                    </button>
+                    <div className="flex flex-wrap gap-2">
+                      {faith && !plan.blocks.some(isQuiet) && (
+                        <button type="button" onClick={() => setPlan(addQuietMoments(plan, dayStart, dayEnd, now))} className={btn.secondary}>
+                          <Church className="h-4 w-4 text-amber" aria-hidden /> Add quiet moments
+                        </button>
+                      )}
+                      <button type="button" onClick={replanRest} className={btn.secondary} disabled={loading}>
+                        <RotateCcw className="h-4 w-4" aria-hidden /> Re-plan from now
+                      </button>
+                    </div>
                   )}
                 </div>
                 {plan.summary && <p className="mt-4 max-w-[60ch] text-soft">{plan.summary}</p>}
@@ -340,7 +366,8 @@ export function PlanwiseApp() {
                   const isNow = i === current && toMinutes(b.start)! <= now;
                   const isNext = i === current && !isNow;
                   const past = toMinutes(b.end)! <= now;
-                  const kind = KIND[b.kind];
+                  const quiet = isQuiet(b);
+                  const kind = quiet ? { label: "Pause, breathe, and talk with God", color: "#f2b54b" } : KIND[b.kind];
                   const isBreak = b.kind === "break";
                   return (
                     <li key={key} className={`relative flex items-center gap-3 px-4 py-3.5 sm:gap-4 sm:px-5 ${isNow ? "bg-[#5cb8e6]/[0.07]" : ""} ${past && !isNow ? "opacity-55" : ""}`}>
@@ -352,7 +379,11 @@ export function PlanwiseApp() {
                       <span className="h-9 w-1 shrink-0 rounded-full" style={{ background: kind.color }} aria-hidden />
                       <div className="min-w-0 flex-1">
                         <p className={`truncate font-semibold ${isDone ? "text-muted line-through decoration-2" : ""}`}>
-                          {isBreak && <Coffee className="mr-1.5 inline h-4 w-4 align-[-2px] text-down" aria-hidden />}
+                          {quiet ? (
+                            <Church className="mr-1.5 inline h-4 w-4 align-[-2px] text-amber" aria-hidden />
+                          ) : (
+                            isBreak && <Coffee className="mr-1.5 inline h-4 w-4 align-[-2px] text-down" aria-hidden />
+                          )}
                           {b.title}
                         </p>
                         <p className="mt-0.5 flex flex-wrap items-center gap-x-2 font-mono text-xs" style={{ color: kind.color }}>
@@ -403,7 +434,14 @@ export function PlanwiseApp() {
                   </ul>
                 </div>
               )}
+
+              {source !== "example" && <NextUp current="planwise" />}
             </>
+          )}
+          {ready && (
+            <FaithPanel on={faith} onChange={setFaith}>
+              Adds short quiet moments to your plan, and a lighter Sunday.
+            </FaithPanel>
           )}
         </section>
       </main>

@@ -7,6 +7,7 @@ import { getSupabase } from "../lib/supabase";
 import { APPS, type GrowApp } from "./apps";
 import { HabitArt, MealArt, MoodArt, PlanArt, SpendArt } from "./components/AppArt";
 import { FaithSwitch } from "./components/FaithSwitch";
+import { YourDay } from "./components/NextUp";
 import { useFaith } from "./components/useFaith";
 
 const ART: Record<string, (p: { color: string }) => React.ReactElement> = {
@@ -24,6 +25,8 @@ const btnSecondary = `inline-flex items-center justify-center gap-2 rounded-[10p
 /** What Faith adds to each app today, shown on the cards when it's on. */
 const FAITH_NOTES: Record<string, string> = {
   spendwise: "With Faith: a generosity view, with a gentle nudge to give first each month.",
+  planwise: "With Faith: short quiet moments built into your plan, and a lighter Sunday.",
+  mealwise: "With Faith: a simple grace before meals, and room at the table for one more.",
   habitwise: "With Faith: a daily word of encouragement and habits like prayer and gratitude.",
   moodwise: "With Faith: a short evening reflection with God.",
 };
@@ -176,6 +179,7 @@ export default function Home() {
       </header>
 
       <main className="mx-auto max-w-6xl">
+        <YourDay />
         <section className="grid items-center gap-12 pb-20 pt-10 lg:grid-cols-[1fr_1.1fr] lg:pt-16">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-muted">

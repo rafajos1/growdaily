@@ -8,7 +8,9 @@ import { buildInsightInput, inRange, moodLabel, needsSupport, parseEntries, slee
 import { passageUrl } from "../../../lib/habitwise/faith";
 import { comfortFor, isHardDay, recentGifts } from "../../../lib/moodwise/examen";
 import { sampleEntries } from "../../../lib/moodwise/sample";
+import { markDone } from "../../../lib/journey";
 import { FaithSwitch } from "../../components/FaithSwitch";
+import { NextUp } from "../../components/NextUp";
 import { useFaith } from "../../components/useFaith";
 import { ENERGY_LABELS, MOOD_LABELS, TAGS, type Entry, type Tag } from "../../../lib/moodwise/types";
 
@@ -93,6 +95,10 @@ export function MoodwiseApp() {
   };
 
   const todayEntry = entries.find((e) => e.date === today);
+  // A check-in for today counts as Moodwise done for the day.
+  useEffect(() => {
+    if (todayEntry) markDone("moodwise");
+  }, [todayEntry]);
   const support = useMemo(() => needsSupport(entries, today), [entries, today]);
 
   return (
@@ -379,6 +385,7 @@ function TodayDone({ entry, entries, today, faith, onEdit }: { entry: Entry; ent
         {entry.note && <p className="mt-4 border-l-2 border-[#b48cf2]/50 pl-3 text-soft">{entry.note}</p>}
       </section>
       {faith && <Tonight entry={entry} today={today} onEdit={onEdit} />}
+      <NextUp current="moodwise" />
       <section className={`${panel} p-5 sm:p-6`}>
         <div className="flex items-baseline justify-between">
           <h2 className="text-base font-bold">This week</h2>
