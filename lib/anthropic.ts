@@ -39,14 +39,19 @@ export async function generateText(prompt: string, options: { system?: string; m
  * is constrained to `schema` with structured outputs, so it is always valid JSON
  * of that shape (callers should still validate the values).
  */
-export async function generateJSON<T>(prompt: string, schema: Record<string, unknown>, options: { system?: string; maxTokens?: number } = {}): Promise<T> {
+export async function generateJSON<T>(
+  prompt: string,
+  schema: Record<string, unknown>,
+  options: { system?: string; maxTokens?: number; effort?: "low" | "medium" | "high" } = {},
+): Promise<T> {
   const response = await getAnthropic().beta.messages.create({
     model: CLAUDE_MODEL,
     max_tokens: options.maxTokens ?? 16000,
     ...(options.system ? { system: options.system } : {}),
     betas: ["server-side-fallback-2026-07-01"],
     fallbacks: "default",
-    output_config: { format: { type: "json_schema", schema } },
+    // Effort sets how much the model thinks before answering (claude-opus-5-5 defaults to medium).
+    output_config: { format: { type: "json_schema", schema }, ...(options.effort ? { effort: options.effort } : {}) },
     messages: [{ role: "user", content: prompt }],
   });
 
