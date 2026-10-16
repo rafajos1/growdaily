@@ -180,3 +180,12 @@ export function starterFor(question: string): AskAnswer | undefined {
   const q = question.trim().toLowerCase().replace(/[?!.\s]+$/, "");
   return STARTERS.find((s) => s.question.toLowerCase().replace(/\?$/, "") === q);
 }
+
+/** URL slug for a question page, e.g. "Is God real?" → "is-god-real". */
+export function slugFor(question: string): string {
+  return question.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+export function starterBySlug(slug: string): AskAnswer | undefined {
+  return STARTERS.find((s) => slugFor(s.question) === slug);
+}

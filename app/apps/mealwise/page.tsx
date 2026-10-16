@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
+import { ogImage, pageMetadata } from "../../../lib/seo";
+import { ABOUT } from "../../about";
+import { AppAbout } from "../../components/AppAbout";
 import { MealwiseApp } from "./MealwiseApp";
 
-export const metadata: Metadata = {
-  title: "Mealwise · GrowDaily",
-  description: "Free AI meal ideas: tell it what's in your fridge and get three meals you can make tonight, plus a grocery list for what's missing.",
-};
+const about = ABOUT.mealwise;
 
-export default function MealwisePage() {
-  return <MealwiseApp />;
+export const metadata: Metadata = pageMetadata({
+  title: "Mealwise: What Can I Cook With What I Have? · GrowDaily",
+  description: about.description,
+  path: about.path,
+  image: ogImage("Mealwise", "What Can I Cook With What I Have?", "#ef7fa8"),
+});
+
+export default function Page() {
+  return (
+    <>
+      <MealwiseApp />
+      <AppAbout content={about} accent="#ef7fa8" />
+    </>
+  );
 }
