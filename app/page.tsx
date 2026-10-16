@@ -261,9 +261,14 @@ export default function Home() {
               <p className="mt-2 max-w-[52ch] text-muted">
                 Curious about God? Turn on Faith and the apps leave a little room for him in your day: a word of encouragement each morning, an evening reflection, habits like prayer and gratitude. Questions welcome, no church background needed.
               </p>
-              <a href="/faith" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
-                What Faith adds <ArrowRight className="h-4 w-4" aria-hidden />
-              </a>
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+                <a href="/faith/ask" className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
+                  Ask a question about God <ArrowRight className="h-4 w-4" aria-hidden />
+                </a>
+                <a href="/faith" className="inline-flex items-center gap-1.5 text-sm font-semibold text-soft hover:text-fg hover:underline">
+                  What Faith adds
+                </a>
+              </div>
             </div>
             <div className="flex items-center gap-4 rounded-xl border border-line bg-panel p-4 sm:p-5">
               <div className="min-w-0 flex-1">

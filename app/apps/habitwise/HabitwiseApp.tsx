@@ -312,6 +312,10 @@ function FaithPanel({ on, onToggle }: { on: boolean; onToggle: () => void }) {
         </p>
         <p className="mt-0.5 text-xs text-muted">
           A word of encouragement each day drawn from the Bible, ideas like prayer and gratitude, and a weekly review that honors them. Questions welcome, no church background needed.{" "}
+          <Link href="/faith/ask" className="font-semibold text-amber underline-offset-2 hover:underline">
+            Ask a question
+          </Link>
+          {" · "}
           <Link href="/faith" className="text-amber underline-offset-2 hover:underline">
             More about Faith
           </Link>

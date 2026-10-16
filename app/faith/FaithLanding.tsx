@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, Church, MapPin, MessageCircleQuestion } from "lucide-react";
 import { APPS } from "../apps";
+import { AskBox } from "../components/AskBox";
 import { FaithSwitch } from "../components/FaithSwitch";
 import { useFaith } from "../components/useFaith";
 
@@ -58,7 +59,12 @@ export function FaithLanding() {
             Turn on Faith and the same free apps leave a little room for God in your day. No church background needed, nothing to sign up for, and you can turn it off any time.
           </p>
 
-          <div className="mt-8 flex max-w-xl items-center gap-4 rounded-2xl border border-line bg-panel p-4 sm:p-5">
+          <div className="mt-8 max-w-2xl">
+            <p className="mb-2 text-sm font-semibold text-soft">Got a question? Ask it here. Doubts welcome.</p>
+            <AskBox />
+          </div>
+
+          <div className="mt-6 flex max-w-xl items-center gap-4 rounded-2xl border border-line bg-panel p-4 sm:p-5">
             <div className="min-w-0 flex-1">
               <p id="faith-label" className="font-semibold">Faith {faith ? "is on" : "is off"}</p>
               <p className="mt-0.5 text-sm text-muted">{faith ? "It's on in every GrowDaily app on this device." : "Turn it on to add faith to every app."}</p>

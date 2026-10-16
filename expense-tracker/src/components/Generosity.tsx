@@ -88,6 +88,8 @@ export function FaithPanel({ on, onChange }: { on: boolean; onChange: (on: boole
         <p className="mt-0.5 text-xs text-muted">
           Adds a generosity view: what you&apos;ve given, and a gentle nudge to give first each month. No rules, no percentages.{" "}
           {/* A plain link: /faith is a GrowDaily page, outside Spendwise. */}
+          <a href="/faith/ask" className="font-semibold text-amber underline-offset-2 hover:underline">Ask a question</a>
+          {" · "}
           <a href="/faith" className="text-amber underline-offset-2 hover:underline">More about Faith</a>
         </p>
       </div>

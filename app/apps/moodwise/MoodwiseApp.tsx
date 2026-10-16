@@ -190,6 +190,8 @@ export function MoodwiseApp() {
               <p id="faith-label" className="text-sm font-semibold">Faith</p>
               <p className="mt-0.5 text-xs text-muted">
                 Adds a short evening reflection to your check-in, an old Christian practice for noticing God in your day. Questions welcome.{" "}
+                <Link href="/faith/ask" className="font-semibold text-amber underline-offset-2 hover:underline">Ask a question</Link>
+                {" · "}
                 <Link href="/faith" className="text-amber underline-offset-2 hover:underline">More about Faith</Link>
               </p>
             </div>
