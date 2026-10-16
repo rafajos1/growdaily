@@ -201,7 +201,7 @@ export default function Home() {
               </a>
             </div>
             <p className="mt-5 max-w-[46ch] text-sm text-muted">
-              <span className="font-semibold text-soft">GrowDaily is in beta.</span> AI features are switching on over the coming weeks. Until then, every app already works with its built-in version.
+              <span className="font-semibold text-soft">GrowDaily is in beta.</span> AI is now live in every app, with a free daily allowance, and the apps still work without it.
             </p>
           </div>
           <a href="/apps/spendwise" className="group block min-w-0" aria-label="Open Spendwise">
@@ -240,7 +240,7 @@ export default function Home() {
             {[
               { icon: Lock, title: "Private by default", text: "What you enter is saved in your own browser, not on our servers. Export it any time." },
               { icon: UserX, title: "No account needed", text: "Open an app and start. No sign-up, no password, no trial that runs out." },
-              { icon: Sparkles, title: "AI where it helps", text: "Each app uses AI for one job it's genuinely good at, with a generous free daily allowance. Rolling out during the beta." },
+              { icon: Sparkles, title: "AI where it helps", text: "Each app uses AI for one job it's genuinely good at, with a generous free daily allowance." },
             ].map(({ icon: Icon, title, text }) => (
               <div key={title} className="rounded-2xl border border-line bg-panel p-6">
                 <Icon className="h-5 w-5 text-amber" aria-hidden />
