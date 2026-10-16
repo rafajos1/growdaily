@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { COMFORT, comfortVerse, recentGifts } from "./examen";
+import { COMFORT, comfortFor, recentGifts } from "./examen";
 import { buildInsightInput, parseEntries } from "./logic";
 import type { Entry } from "./types";
 
@@ -25,8 +25,8 @@ describe("Examen reflection", () => {
     expect(recentGifts(list).map((g) => g.text)).toEqual(["new", "old"]);
   });
 
-  it("draws comfort verses from the shared list and rotates daily", () => {
+  it("draws comfort from the shared list and rotates daily", () => {
     expect(COMFORT).toHaveLength(5);
-    expect(comfortVerse("2024-06-10")).not.toBe(comfortVerse("2024-06-11"));
+    expect(comfortFor("2024-06-10")).not.toBe(comfortFor("2024-06-11"));
   });
 });

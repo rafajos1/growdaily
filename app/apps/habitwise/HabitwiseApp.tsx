@@ -17,7 +17,7 @@ import {
   todayProgress,
   toggleCheck,
 } from "../../../lib/habitwise/logic";
-import { chapterUrl, FAITH_HABITS, verseFor } from "../../../lib/habitwise/faith";
+import { encouragementFor, FAITH_HABITS, passageUrl } from "../../../lib/habitwise/faith";
 import { FaithSwitch } from "../../components/FaithSwitch";
 import { useFaith } from "../../components/useFaith";
 import { sampleData } from "../../../lib/habitwise/sample";
@@ -135,7 +135,7 @@ export function HabitwiseApp() {
   const toggleFaith = () => {
     const next = !faith;
     setFaith(next);
-    setToast(next ? "Faith is on across GrowDaily. A verse for each day, plus faith habit ideas when you add a habit." : "Faith is off.");
+    setToast(next ? "Faith is on across GrowDaily. A word of encouragement each day, plus faith habit ideas when you add a habit." : "Faith is off.");
   };
 
   const clearExamples = () => {
@@ -297,7 +297,7 @@ function FaithPanel({ on, onToggle }: { on: boolean; onToggle: () => void }) {
           Faith
         </p>
         <p className="mt-0.5 text-xs text-muted">
-          A Bible verse each day, ideas like prayer and gratitude, and a weekly review that honors them. Questions welcome, no church background needed.{" "}
+          A word of encouragement each day drawn from the Bible, ideas like prayer and gratitude, and a weekly review that honors them. Questions welcome, no church background needed.{" "}
           <Link href="/faith" className="text-amber underline-offset-2 hover:underline">
             More about Faith
           </Link>
@@ -308,20 +308,20 @@ function FaithPanel({ on, onToggle }: { on: boolean; onToggle: () => void }) {
   );
 }
 
-function VerseCard({ today, canSuggest, onAddFaithHabit }: { today: string; canSuggest: boolean; onAddFaithHabit: () => void }) {
-  const v = verseFor(today);
+function WordForToday({ today, canSuggest, onAddFaithHabit }: { today: string; canSuggest: boolean; onAddFaithHabit: () => void }) {
+  const v = encouragementFor(today);
   return (
-    <section className={`${panel} relative overflow-hidden p-5 sm:p-6`} aria-labelledby="verse-heading">
+    <section className={`${panel} relative overflow-hidden p-5 sm:p-6`} aria-labelledby="word-heading">
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-amber" aria-hidden />
-      <p id="verse-heading" className={`${eyebrow} flex items-center gap-1.5`}>
-        <BookOpen className="h-3.5 w-3.5 text-amber" aria-hidden /> Verse for today
+      <p id="word-heading" className={`${eyebrow} flex items-center gap-1.5`}>
+        <BookOpen className="h-3.5 w-3.5 text-amber" aria-hidden /> A word for today
       </p>
-      <blockquote className="mt-3 text-lg font-medium leading-relaxed text-fg sm:text-xl">“{v.text}”</blockquote>
+      <p className="mt-3 text-lg font-medium leading-relaxed text-fg sm:text-xl">{v.text}</p>
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
         <p className="font-mono text-xs text-muted">
-          {v.ref} · KJV ·{" "}
-          <a href={chapterUrl(v)} target="_blank" rel="noopener noreferrer" className="text-amber underline-offset-2 hover:underline">
-            Read {v.chapter}
+          Inspired by {v.ref} ·{" "}
+          <a href={passageUrl(v)} target="_blank" rel="noopener noreferrer" className="text-amber underline-offset-2 hover:underline">
+            Read it
           </a>
         </p>
         {canSuggest && (
@@ -372,7 +372,7 @@ function TodayView({
         <ProgressRing done={done} due={due} />
       </section>
 
-      {faith && <VerseCard today={today} canSuggest={canSuggest} onAddFaithHabit={onAddFaithHabit} />}
+      {faith && <WordForToday today={today} canSuggest={canSuggest} onAddFaithHabit={onAddFaithHabit} />}
 
       <ul className="space-y-3">
         {sorted.map((h) => {

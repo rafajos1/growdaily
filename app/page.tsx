@@ -23,7 +23,7 @@ const btnSecondary = `inline-flex items-center justify-center gap-2 rounded-[10p
 
 /** What Faith adds to each app today, shown on the cards when it's on. */
 const FAITH_NOTES: Record<string, string> = {
-  habitwise: "With Faith: a daily Bible verse and habits like prayer and gratitude.",
+  habitwise: "With Faith: a daily word of encouragement and habits like prayer and gratitude.",
   moodwise: "With Faith: a short evening reflection with God.",
 };
 
@@ -254,7 +254,7 @@ export default function Home() {
               </p>
               <h2 className="mt-2 text-3xl font-extrabold tracking-tight">Room for your soul, too</h2>
               <p className="mt-2 max-w-[52ch] text-muted">
-                Curious about God? Turn on Faith and the apps leave a little room for him in your day: a Bible verse each morning, an evening reflection, habits like prayer and gratitude. Questions welcome, no church background needed.
+                Curious about God? Turn on Faith and the apps leave a little room for him in your day: a word of encouragement each morning, an evening reflection, habits like prayer and gratitude. Questions welcome, no church background needed.
               </p>
               <a href="/faith" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
                 What Faith adds <ArrowRight className="h-4 w-4" aria-hidden />

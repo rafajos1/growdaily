@@ -5,8 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Annoyed, ArrowLeft, BookOpen, Church, Frown, HeartHandshake, Info, Laugh, Meh, Minus, Moon, Pencil, Plus, Smile, Sparkles, type LucideIcon } from "lucide-react";
 import { addDays, fromISO, todayISO, weekday } from "../../../lib/habitwise/dates";
 import { buildInsightInput, inRange, moodLabel, needsSupport, parseEntries, sleepVsMood, streak, tagImpact, upsert } from "../../../lib/moodwise/logic";
-import { chapterUrl } from "../../../lib/habitwise/faith";
-import { comfortVerse, isHardDay, recentGifts } from "../../../lib/moodwise/examen";
+import { passageUrl } from "../../../lib/habitwise/faith";
+import { comfortFor, isHardDay, recentGifts } from "../../../lib/moodwise/examen";
 import { sampleEntries } from "../../../lib/moodwise/sample";
 import { FaithSwitch } from "../../components/FaithSwitch";
 import { useFaith } from "../../components/useFaith";
@@ -306,7 +306,7 @@ function CheckIn({ initial, today, faith, onSave, onCancel }: { initial?: Entry;
 }
 
 function Tonight({ entry, today, onEdit }: { entry: Entry; today: string; onEdit: () => void }) {
-  const verse = comfortVerse(today);
+  const comfort = comfortFor(today);
   const reflected = Boolean(entry.gift || entry.heavy);
   return (
     <section className={`${panel} relative overflow-hidden p-5 sm:p-7`} aria-labelledby="tonight-heading">
@@ -338,10 +338,10 @@ function Tonight({ entry, today, onEdit }: { entry: Entry; today: string; onEdit
       {isHardDay(entry) && (
         <figure className="mt-5 rounded-xl border border-line bg-sunken p-4">
           <p className="flex items-center gap-1.5 text-xs font-semibold text-muted"><BookOpen className="h-3.5 w-3.5 text-amber" aria-hidden /> For a hard day</p>
-          <blockquote className="mt-2 text-[17px] leading-relaxed text-fg">“{verse.text}”</blockquote>
+          <p className="mt-2 text-[17px] leading-relaxed text-fg">{comfort.text}</p>
           <figcaption className="mt-2 font-mono text-xs text-muted">
-            {verse.ref} · KJV ·{" "}
-            <a href={chapterUrl(verse)} target="_blank" rel="noopener noreferrer" className="text-amber underline-offset-2 hover:underline">Read {verse.chapter}</a>
+            Inspired by {comfort.ref} ·{" "}
+            <a href={passageUrl(comfort)} target="_blank" rel="noopener noreferrer" className="text-amber underline-offset-2 hover:underline">Read it</a>
           </figcaption>
         </figure>
       )}

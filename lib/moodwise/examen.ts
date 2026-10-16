@@ -1,15 +1,15 @@
-import { VERSES, type Verse } from "../habitwise/faith";
+import { ENCOURAGEMENTS, type Encouragement } from "../habitwise/faith";
 import type { Entry } from "./types";
 
-/** Verses of comfort from the shared KJV list, offered after a low check-in. */
+/** Encouragements of comfort from the shared list, offered after a low check-in. */
 const COMFORT_REFS = ["Psalm 34:18", "Matthew 11:28", "1 Peter 5:7", "Isaiah 41:10", "John 14:27"];
-export const COMFORT: Verse[] = COMFORT_REFS.map((ref) => {
-  const v = VERSES.find((x) => x.ref === ref);
-  if (!v) throw new Error(`Missing verse ${ref}`);
+export const COMFORT: Encouragement[] = COMFORT_REFS.map((ref) => {
+  const v = ENCOURAGEMENTS.find((x) => x.ref === ref);
+  if (!v) throw new Error(`Missing encouragement ${ref}`);
   return v;
 });
 
-export function comfortVerse(iso: string): Verse {
+export function comfortFor(iso: string): Encouragement {
   const [y, m, d] = iso.split("-").map(Number);
   return COMFORT[Math.floor(Date.UTC(y, m - 1, d) / 86_400_000) % COMFORT.length];
 }

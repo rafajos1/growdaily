@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight, BookOpen, Church, Clapperboard, MapPin, MessageCircleQuestion } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Church, MapPin, MessageCircleQuestion } from "lucide-react";
 import { APPS } from "../apps";
 import { FaithSwitch } from "../components/FaithSwitch";
 import { useFaith } from "../components/useFaith";
@@ -12,7 +12,7 @@ const btnPrimary = `inline-flex items-center justify-center gap-2 rounded-[10px]
 
 /** What Faith adds to each app. Apps not listed here are still on the way. */
 const ADDS: Record<string, { live: boolean; text: string }> = {
-  habitwise: { live: true, text: "A Bible verse each day, and one-tap habits like prayer, gratitude and rest." },
+  habitwise: { live: true, text: "A word of encouragement each day, drawn from the Bible, and one-tap habits like prayer, gratitude and rest." },
   moodwise: { live: true, text: "A two-minute evening reflection: notice where good showed up, name what was hard, and hand both to God." },
   spendwise: { live: false, text: "Generosity: a giving category and a gentle look at where your money goes." },
   planwise: { live: false, text: "Rhythms for your soul: quiet moments built into the day, and a real day of rest." },
@@ -20,8 +20,7 @@ const ADDS: Record<string, { live: boolean; text: string }> = {
 };
 
 const NEXT_STEPS = [
-  { icon: BookOpen, title: "Read about Jesus", text: "Start with the Gospel of John, one short chapter a day.", href: "https://www.biblegateway.com/passage/?search=John%201&version=NLT", cta: "Read John 1" },
-  { icon: Clapperboard, title: "Watch The Chosen", text: "A TV series about Jesus and the ordinary people who met him.", href: "https://www.thechosen.tv", cta: "Visit The Chosen" },
+  { icon: BookOpen, title: "Read about Jesus", text: "Start with the Gospel of John, one short chapter a day, in plain modern English.", href: "https://www.biblegateway.com/passage/?search=John%201&version=NLT", cta: "Read John 1" },
   { icon: MessageCircleQuestion, title: "Ask your questions", text: "A calm place to ask anything about God, with honest answers. Coming soon.", href: null, cta: null },
   { icon: MapPin, title: "Find a church near you", text: "Help finding a welcoming church, and what to expect on your first visit. Coming soon.", href: null, cta: null },
 ];
@@ -101,7 +100,7 @@ export function FaithLanding() {
         <section className="pb-16" aria-labelledby="explore-heading">
           <h2 id="explore-heading" className="text-2xl font-extrabold tracking-tight">Exploring faith?</h2>
           <p className="mt-2 max-w-[56ch] text-muted">If you&apos;re curious about Jesus but not sure where to start, here are a few gentle first steps.</p>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+          <ul className="mt-6 grid gap-4 sm:grid-cols-3">
             {NEXT_STEPS.map(({ icon: Icon, title, text, href, cta }) => (
               <li key={title} className="rounded-2xl border border-line bg-panel p-5">
                 <Icon className="h-5 w-5 text-amber" aria-hidden />
@@ -121,7 +120,7 @@ export function FaithLanding() {
           <h2 className="text-xl font-bold">Our promise</h2>
           <ul className="mt-3 space-y-2 text-sm text-soft">
             <li>· Your reflections and notes stay on your device. They&apos;re never sent anywhere, including to AI.</li>
-            <li>· Bible verses come from the King James Version, and you can always read the full chapter.</li>
+            <li>· Every encouragement is drawn from the Bible and names where it comes from, so you can read it for yourself.</li>
             <li>· Grace, not guilt. A missed day is just a missed day.</li>
           </ul>
           <a href="/apps/moodwise" className={`${btnPrimary} mt-6`}>
@@ -129,7 +128,7 @@ export function FaithLanding() {
           </a>
         </section>
 
-        <p className="mt-10 font-mono text-xs text-dim">GrowDaily is independent and isn&apos;t affiliated with any church or with The Chosen.</p>
+        <p className="mt-10 font-mono text-xs text-dim">GrowDaily is independent and isn&apos;t affiliated with any church.</p>
       </main>
     </div>
   );
