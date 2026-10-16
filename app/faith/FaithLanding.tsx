@@ -21,7 +21,7 @@ const ADDS: Record<string, { live: boolean; text: string }> = {
 
 const NEXT_STEPS = [
   { icon: BookOpen, title: "Read about Jesus", text: "Start with the Gospel of John, one short chapter a day, in plain modern English.", href: "https://www.biblegateway.com/passage/?search=John%201&version=NLT", cta: "Read John 1" },
-  { icon: MessageCircleQuestion, title: "Ask your questions", text: "A calm place to ask anything about God, with honest answers. Coming soon.", href: null, cta: null },
+  { icon: MessageCircleQuestion, title: "Ask your questions", text: "Ask anything about God, Jesus or the Bible and get an honest answer in plain words. Doubts welcome.", href: "/faith/ask", cta: "Ask a question" },
   { icon: MapPin, title: "Find a church near you", text: "Help finding a welcoming church, and what to expect on your first visit. Coming soon.", href: null, cta: null },
 ];
 
@@ -107,7 +107,7 @@ export function FaithLanding() {
                 <h3 className="mt-3 font-bold">{title}</h3>
                 <p className="mt-1 text-sm text-muted">{text}</p>
                 {href && (
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
+                  <a href={href} {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
                     {cta} <ArrowRight className="h-4 w-4" aria-hidden />
                   </a>
                 )}
