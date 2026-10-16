@@ -36,7 +36,11 @@ function mulberry32(seed: number) {
 export function generateSampleExpenses(count = 70, days = 170): Expense[] {
   const rand = mulberry32(42);
   const now = new Date().toISOString();
-  return Array.from({ length: count }, () => {
+  // A monthly donation, so the Giving category and generosity view have something to show.
+  const donations: Expense[] = [5, 35, 65, 95, 125, 155]
+    .filter((ago) => ago < days)
+    .map((ago) => ({ id: createId(), date: daysAgoISO(ago), amountCents: 4000, category: "Giving", description: "Monthly donation", createdAt: now, updatedAt: now }));
+  return [...donations, ...Array.from({ length: count }, (): Expense => {
     const t = TEMPLATES[Math.floor(rand() * TEMPLATES.length)];
     const amount = Math.round(t.min + rand() * (t.max - t.min));
     return {
@@ -48,5 +52,5 @@ export function generateSampleExpenses(count = 70, days = 170): Expense[] {
       createdAt: now,
       updatedAt: now,
     };
-  });
+  })];
 }

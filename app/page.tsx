@@ -23,6 +23,7 @@ const btnSecondary = `inline-flex items-center justify-center gap-2 rounded-[10p
 
 /** What Faith adds to each app today, shown on the cards when it's on. */
 const FAITH_NOTES: Record<string, string> = {
+  spendwise: "With Faith: a generosity view, with a gentle nudge to give first each month.",
   habitwise: "With Faith: a daily word of encouragement and habits like prayer and gratitude.",
   moodwise: "With Faith: a short evening reflection with God.",
 };

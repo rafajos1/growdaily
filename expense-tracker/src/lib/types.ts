@@ -4,6 +4,7 @@ export const CATEGORIES = [
   "Entertainment",
   "Shopping",
   "Bills",
+  "Giving",
   "Other",
 ] as const;
 

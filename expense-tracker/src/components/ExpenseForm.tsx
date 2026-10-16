@@ -12,11 +12,13 @@ import { buttonStyles, inputStyles } from "./ui";
 
 interface ExpenseFormProps {
   initial?: Expense;
+  /** Prefilled fields for a new expense, e.g. the Giving category. */
+  defaults?: Partial<Pick<ExpenseInput, "category" | "description">>;
   onSubmit: (input: ExpenseInput) => boolean;
   onCancel: () => void;
 }
 
-function initialValues(expense?: Expense): ExpenseFormValues {
+function initialValues(expense?: Expense, defaults?: ExpenseFormProps["defaults"]): ExpenseFormValues {
   return expense
     ? {
         date: expense.date,
@@ -24,12 +26,12 @@ function initialValues(expense?: Expense): ExpenseFormValues {
         category: expense.category,
         description: expense.description,
       }
-    : { date: todayISO(), amount: "", category: "", description: "" };
+    : { date: todayISO(), amount: "", category: defaults?.category ?? "", description: defaults?.description ?? "" };
 }
 
-export function ExpenseForm({ initial, onSubmit, onCancel }: ExpenseFormProps) {
+export function ExpenseForm({ initial, defaults, onSubmit, onCancel }: ExpenseFormProps) {
   const id = useId();
-  const [values, setValues] = useState<ExpenseFormValues>(() => initialValues(initial));
+  const [values, setValues] = useState<ExpenseFormValues>(() => initialValues(initial, defaults));
   const [errors, setErrors] = useState<ExpenseFormErrors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof ExpenseFormValues, boolean>>>({});
   const [submitting, setSubmitting] = useState(false);

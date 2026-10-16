@@ -9,15 +9,19 @@ import { Modal } from "./Modal";
 import { useToast } from "./ToastProvider";
 import { buttonStyles } from "./ui";
 
+type CreateDefaults = Partial<Pick<ExpenseInput, "category" | "description">>;
+
 interface DialogContextValue {
   openCreate: () => void;
+  /** Opens "Add expense" with some fields already filled in. */
+  openCreateWith: (defaults: CreateDefaults) => void;
   openEdit: (expense: Expense) => void;
   confirmDelete: (expense: Expense) => void;
 }
 
 type DialogState =
   | { kind: "closed" }
-  | { kind: "create" }
+  | { kind: "create"; defaults?: CreateDefaults }
   | { kind: "edit"; expense: Expense }
   | { kind: "delete"; expense: Expense };
 
@@ -34,6 +38,10 @@ export function ExpenseDialogProvider({ children }: { children: ReactNode }) {
   const openCreate = useCallback(() => {
     setFormKey((k) => k + 1);
     setState({ kind: "create" });
+  }, []);
+  const openCreateWith = useCallback((defaults: CreateDefaults) => {
+    setFormKey((k) => k + 1);
+    setState({ kind: "create", defaults });
   }, []);
   const openEdit = useCallback((expense: Expense) => {
     setFormKey((k) => k + 1);
@@ -54,7 +62,7 @@ export function ExpenseDialogProvider({ children }: { children: ReactNode }) {
     return ok;
   };
 
-  const value = useMemo(() => ({ openCreate, openEdit, confirmDelete }), [openCreate, openEdit, confirmDelete]);
+  const value = useMemo(() => ({ openCreate, openCreateWith, openEdit, confirmDelete }), [openCreate, openCreateWith, openEdit, confirmDelete]);
 
   return (
     <DialogContext.Provider value={value}>
@@ -69,6 +77,7 @@ export function ExpenseDialogProvider({ children }: { children: ReactNode }) {
         <ExpenseForm
           key={formKey}
           initial={state.kind === "edit" ? state.expense : undefined}
+          defaults={state.kind === "create" ? state.defaults : undefined}
           onSubmit={handleSubmit}
           onCancel={close}
         />
