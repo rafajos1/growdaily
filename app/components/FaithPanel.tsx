@@ -16,6 +16,8 @@ export function FaithPanel({ on, onChange, children, className = "" }: { on: boo
         <p id="faith-label" className="text-sm font-semibold">Faith</p>
         <p className="mt-0.5 text-xs text-muted">
           {children} Questions welcome.{" "}
+          <Link href="/faith/ask" className="font-semibold text-amber underline-offset-2 hover:underline">Ask a question</Link>
+          {" · "}
           <Link href="/faith" className="text-amber underline-offset-2 hover:underline">More about Faith</Link>
         </p>
       </div>

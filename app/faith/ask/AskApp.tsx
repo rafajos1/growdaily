@@ -35,6 +35,18 @@ export function AskApp() {
 
   useEffect(() => setHistory(loadHistory()), []);
 
+  // A question passed from elsewhere on GrowDaily (/faith/ask?q=...) is answered right away.
+  const askedFromLink = useRef(false);
+  useEffect(() => {
+    if (askedFromLink.current) return;
+    askedFromLink.current = true;
+    const q = new URLSearchParams(location.search).get("q");
+    if (!q) return;
+    window.history.replaceState(null, "", location.pathname);
+    void ask(q.slice(0, MAX_QUESTION));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs once on arrival
+  }, []);
+
   const remember = (a: AskAnswer) => {
     setHistory((h) => {
       const next = [a, ...h.filter((x) => x.question.toLowerCase() !== a.question.toLowerCase())].slice(0, 8);
