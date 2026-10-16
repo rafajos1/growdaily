@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import type { FaithHabit } from "../../../lib/habitwise/faith";
 import { EVERY_DAY, HABIT_COLORS, WEEKDAYS, type Habit } from "../../../lib/habitwise/types";
 import { btn } from "./ui";
 
@@ -14,7 +15,18 @@ const DAY_LETTERS = ["S", "M", "T", "W", "T", "F", "S"];
 const DAY_LABELS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const MAX_NAME = 40;
 
-export function HabitForm({ initial, onSubmit, onCancel }: { initial?: Habit; onSubmit: (d: HabitDraft) => void; onCancel: () => void }) {
+export function HabitForm({
+  initial,
+  suggestions,
+  onSubmit,
+  onCancel,
+}: {
+  initial?: Habit;
+  /** Quick picks that fill in the form (Faith habits when that switch is on). */
+  suggestions?: FaithHabit[];
+  onSubmit: (d: HabitDraft) => void;
+  onCancel: () => void;
+}) {
   const [name, setName] = useState(initial?.name ?? "");
   const [color, setColor] = useState(initial?.color ?? HABIT_COLORS[0]);
   const [days, setDays] = useState<number[]>(initial?.days ?? EVERY_DAY);
@@ -34,6 +46,30 @@ export function HabitForm({ initial, onSubmit, onCancel }: { initial?: Habit; on
 
   return (
     <form onSubmit={submit} noValidate className="space-y-5">
+      {!initial && suggestions && suggestions.length > 0 && (
+        <fieldset>
+          <legend className="mb-1.5 text-sm font-semibold text-soft">Faith habits</legend>
+          <div className="flex flex-wrap gap-2">
+            {suggestions.map((s) => (
+              <button
+                key={s.name}
+                type="button"
+                aria-pressed={name === s.name}
+                title={s.hint}
+                onClick={() => {
+                  setName(s.name);
+                  setDays(s.days);
+                  setColor(s.color);
+                  setError(null);
+                }}
+                className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${name === s.name ? "border-down bg-down/15 text-fg" : "border-line text-soft hover:border-[#2c4060]"}`}
+              >
+                {s.name}
+              </button>
+            ))}
+          </div>
+        </fieldset>
+      )}
       <div>
         <label htmlFor="habit-name" className="mb-1.5 block text-sm font-semibold text-soft">
           Habit

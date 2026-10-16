@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { ArrowLeft, Check, Flame, Info, Pencil, Plus, Sparkles, Trash2 } from "lucide-react";
+import { ArrowLeft, BookOpen, Check, Church, Flame, Info, Pencil, Plus, Sparkles, Trash2 } from "lucide-react";
 import { addDays, fromISO, todayISO, weekday } from "../../../lib/habitwise/dates";
 import {
   bestStreak,
@@ -17,6 +17,7 @@ import {
   todayProgress,
   toggleCheck,
 } from "../../../lib/habitwise/logic";
+import { chapterUrl, FAITH_HABITS, FAITH_KEY, verseFor } from "../../../lib/habitwise/faith";
 import { sampleData } from "../../../lib/habitwise/sample";
 import { loadData, newId, saveData, STORAGE_KEY } from "../../../lib/habitwise/storage";
 import type { Habit, HabitData } from "../../../lib/habitwise/types";
@@ -56,7 +57,10 @@ export function HabitwiseApp() {
   const [tab, setTab] = useState<Tab>("today");
   const [dialog, setDialog] = useState<Dialog>({ kind: "none" });
   const [toast, setToast] = useState<string | null>(null);
+  const [faith, setFaith] = useState(false);
   const today = todayISO();
+  const takenNames = new Set(data.habits.map((h) => h.name.toLowerCase()));
+  const faithSuggestions = faith ? FAITH_HABITS.filter((f) => !takenNames.has(f.name.toLowerCase())) : undefined;
 
   // Load once; seed examples on the very first visit so the app opens in a working state.
   useEffect(() => {
@@ -72,6 +76,7 @@ export function HabitwiseApp() {
     } catch {
       setStorageError("Your browser isn't letting Habitwise save. Changes will be lost when you close the page.");
     }
+    setFaith(safeGet(FAITH_KEY) === "1");
     setReady(true);
     if (location.hash === "#progress") setTab("progress");
     const onStorage = (e: StorageEvent) => {
@@ -124,6 +129,13 @@ export function HabitwiseApp() {
     delete checks[habit.id];
     commit({ habits: data.habits.filter((h) => h.id !== habit.id), checks }, `Deleted “${habit.name}”.`);
     setDialog({ kind: "none" });
+  };
+
+  const toggleFaith = () => {
+    const next = !faith;
+    setFaith(next);
+    safeSet(FAITH_KEY, next ? "1" : "0");
+    setToast(next ? "Faith features on. A verse for each day, plus faith habit ideas when you add a habit." : "Faith features off.");
   };
 
   const clearExamples = () => {
@@ -208,10 +220,11 @@ export function HabitwiseApp() {
             </button>
           </div>
         ) : tab === "today" ? (
-          <TodayView data={data} today={today} onToggle={(id, date) => commit(toggleCheck(data, id, date))} onEdit={(h) => setDialog({ kind: "edit", habit: h })} onDelete={(h) => setDialog({ kind: "delete", habit: h })} />
+          <TodayView data={data} today={today} faith={faith} canSuggest={!!faithSuggestions?.length} onAddFaithHabit={() => setDialog({ kind: "create" })} onToggle={(id, date) => commit(toggleCheck(data, id, date))} onEdit={(h) => setDialog({ kind: "edit", habit: h })} onDelete={(h) => setDialog({ kind: "delete", habit: h })} />
         ) : (
-          <ProgressView data={data} today={today} />
+          <ProgressView data={data} today={today} faith={faith} />
         )}
+        {ready && <FaithSwitch on={faith} onToggle={toggleFaith} />}
       </main>
 
       {/* Mobile add button */}
@@ -225,7 +238,7 @@ export function HabitwiseApp() {
       </button>
 
       <Modal open={dialog.kind === "create" || dialog.kind === "edit"} title={dialog.kind === "edit" ? "Edit habit" : "New habit"} onClose={() => setDialog({ kind: "none" })}>
-        <HabitForm key={dialog.kind === "edit" ? dialog.habit.id : "new"} initial={dialog.kind === "edit" ? dialog.habit : undefined} onSubmit={saveHabit} onCancel={() => setDialog({ kind: "none" })} />
+        <HabitForm key={dialog.kind === "edit" ? dialog.habit.id : "new"} initial={dialog.kind === "edit" ? dialog.habit : undefined} suggestions={faithSuggestions} onSubmit={saveHabit} onCancel={() => setDialog({ kind: "none" })} />
       </Modal>
       <Modal open={dialog.kind === "delete"} title="Delete habit?" onClose={() => setDialog({ kind: "none" })}>
         {dialog.kind === "delete" && (
@@ -273,7 +286,77 @@ function ProgressRing({ done, due }: { done: number; due: number }) {
   );
 }
 
-function TodayView({ data, today, onToggle, onEdit, onDelete }: { data: HabitData; today: string; onToggle: (id: string, date: string) => void; onEdit: (h: Habit) => void; onDelete: (h: Habit) => void }) {
+function FaithSwitch({ on, onToggle }: { on: boolean; onToggle: () => void }) {
+  return (
+    <section className={`${panel} flex items-center gap-4 p-4 sm:p-5`}>
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber/15 text-amber">
+        <Church className="h-5 w-5" aria-hidden />
+      </span>
+      <div className="min-w-0 flex-1">
+        <p id="faith-label" className="text-sm font-semibold">
+          Faith
+        </p>
+        <p className="mt-0.5 text-xs text-muted">A Bible verse each day, faith habit ideas, and a weekly review that honors your spiritual habits.</p>
+      </div>
+      <button
+        type="button"
+        role="switch"
+        aria-checked={on}
+        aria-labelledby="faith-label"
+        onClick={onToggle}
+        className={`relative h-7 w-12 shrink-0 rounded-full border transition ${on ? "border-amber bg-amber" : "border-line bg-sunken"}`}
+      >
+        <span className={`absolute top-0.5 h-[22px] w-[22px] rounded-full shadow transition-all ${on ? "left-[22px] bg-[#2a1c05]" : "left-0.5 bg-muted"}`} />
+      </button>
+    </section>
+  );
+}
+
+function VerseCard({ today, canSuggest, onAddFaithHabit }: { today: string; canSuggest: boolean; onAddFaithHabit: () => void }) {
+  const v = verseFor(today);
+  return (
+    <section className={`${panel} relative overflow-hidden p-5 sm:p-6`} aria-labelledby="verse-heading">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-amber" aria-hidden />
+      <p id="verse-heading" className={`${eyebrow} flex items-center gap-1.5`}>
+        <BookOpen className="h-3.5 w-3.5 text-amber" aria-hidden /> Verse for today
+      </p>
+      <blockquote className="mt-3 text-lg font-medium leading-relaxed text-fg sm:text-xl">“{v.text}”</blockquote>
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+        <p className="font-mono text-xs text-muted">
+          {v.ref} · KJV ·{" "}
+          <a href={chapterUrl(v)} target="_blank" rel="noopener noreferrer" className="text-amber underline-offset-2 hover:underline">
+            Read {v.chapter}
+          </a>
+        </p>
+        {canSuggest && (
+          <button type="button" onClick={onAddFaithHabit} className={btn.secondary}>
+            <Plus className="h-4 w-4" aria-hidden /> Add a faith habit
+          </button>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function TodayView({
+  data,
+  today,
+  faith,
+  canSuggest,
+  onAddFaithHabit,
+  onToggle,
+  onEdit,
+  onDelete,
+}: {
+  data: HabitData;
+  today: string;
+  faith: boolean;
+  canSuggest: boolean;
+  onAddFaithHabit: () => void;
+  onToggle: (id: string, date: string) => void;
+  onEdit: (h: Habit) => void;
+  onDelete: (h: Habit) => void;
+}) {
   const { due, done } = todayProgress(data, data.habits, today);
   const week = Array.from({ length: 7 }, (_, i) => addDays(today, i - 6));
   const message =
@@ -292,6 +375,8 @@ function TodayView({ data, today, onToggle, onEdit, onDelete }: { data: HabitDat
         </div>
         <ProgressRing done={done} due={due} />
       </section>
+
+      {faith && <VerseCard today={today} canSuggest={canSuggest} onAddFaithHabit={onAddFaithHabit} />}
 
       <ul className="space-y-3">
         {sorted.map((h) => {
@@ -413,7 +498,7 @@ function Heatmap({ data, today }: { data: HabitData; today: string }) {
   );
 }
 
-function ReviewPanel({ data, today }: { data: HabitData; today: string }) {
+function ReviewPanel({ data, today, faith }: { data: HabitData; today: string; faith: boolean }) {
   const [state, setState] = useState<{ status: "idle" | "loading" | "done" | "error"; text?: string; date?: string }>({ status: "idle" });
 
   useEffect(() => {
@@ -433,7 +518,7 @@ function ReviewPanel({ data, today }: { data: HabitData; today: string }) {
       const res = await fetch("/api/habitwise/review", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(buildReviewInput(data, today)),
+        body: JSON.stringify({ ...buildReviewInput(data, today), faith }),
       });
       const body = (await res.json().catch(() => ({}))) as { review?: string; error?: string };
       if (!res.ok || !body.review) throw new Error(body.error || "The review couldn't be written right now. Please try again.");
@@ -478,7 +563,7 @@ function ReviewPanel({ data, today }: { data: HabitData; today: string }) {
   );
 }
 
-function ProgressView({ data, today }: { data: HabitData; today: string }) {
+function ProgressView({ data, today, faith }: { data: HabitData; today: string; faith: boolean }) {
   const stats = useMemo(
     () =>
       data.habits.map((h) => ({
@@ -516,7 +601,7 @@ function ProgressView({ data, today }: { data: HabitData; today: string }) {
             <Heatmap data={data} today={today} />
           </div>
         </section>
-        <ReviewPanel data={data} today={today} />
+        <ReviewPanel data={data} today={today} faith={faith} />
       </div>
 
       <div className="grid items-start gap-5 lg:grid-cols-[1.25fr_1fr]">
