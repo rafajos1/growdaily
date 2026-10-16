@@ -15,8 +15,8 @@ const ADDS: Record<string, { live: boolean; text: string }> = {
   habitwise: { live: true, text: "A word of encouragement each day, drawn from the Bible, and one-tap habits like prayer, gratitude and rest." },
   moodwise: { live: true, text: "A two-minute evening reflection: notice where good showed up, name what was hard, and hand both to God." },
   spendwise: { live: true, text: "Generosity: see what you've given each month, with a gentle nudge to give first. No rules, no percentages." },
-  planwise: { live: false, text: "Rhythms for your soul: quiet moments built into the day, and a real day of rest." },
-  mealwise: { live: false, text: "The table: grace before meals and ideas for inviting someone over." },
+  planwise: { live: true, text: "Rhythms for your soul: short quiet moments built into your plan, and a lighter Sunday." },
+  mealwise: { live: true, text: "The table: a simple grace before meals, and a nudge to make room for one more." },
 };
 
 const NEXT_STEPS = [

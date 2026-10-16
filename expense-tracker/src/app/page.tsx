@@ -7,6 +7,7 @@ import { ArrowRight, Plus, Sparkles, Wallet } from "lucide-react";
 import { CalendarHeatmap, CategoryStack, PaceChart } from "@/components/Charts";
 import { EmptyState } from "@/components/EmptyState";
 import { FaithPanel, GenerosityCard } from "@/components/Generosity";
+import { NextUp } from "@/components/NextUp";
 import { useExpenseDialogs } from "@/components/ExpenseDialogProvider";
 import { LatestList } from "@/components/ExpenseList";
 import { DashboardSkeleton } from "@/components/Skeleton";
@@ -119,6 +120,8 @@ export default function ThisMonthPage() {
           <CalendarHeatmap year={now.getFullYear()} month={now.getMonth()} daily={view.daily} today={pace.day} />
         </section>
       </div>
+
+      <NextUp />
 
       {faith && <GenerosityCard expenses={expenses} />}
 

@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
-import { ArrowLeft, Check, ChefHat, ChevronDown, Clock, Copy, Heart, Info, Plus, ShoppingBasket, Sparkles, Users, X } from "lucide-react";
+import { ArrowLeft, Check, ChefHat, ChevronDown, Church, Clock, Copy, Heart, Info, Plus, ShoppingBasket, Sparkles, UserPlus, Users, X } from "lucide-react";
+import { localISO, markDone } from "../../../lib/journey";
+import { graceFor } from "../../../lib/mealwise/grace";
+import { FaithPanel } from "../../components/FaithPanel";
+import { NextUp } from "../../components/NextUp";
+import { useDay } from "../../components/useDay";
+import { useFaith } from "../../components/useFaith";
 import { addToGrocery, groceryText, normalizeItem, parsePantry, suggestFromLibrary, type GroceryItem } from "../../../lib/mealwise/match";
 import { DIETS, TIMES, type Diet, type Meal } from "../../../lib/mealwise/types";
 
@@ -17,6 +23,7 @@ const btn = {
 };
 const panel = "rounded-2xl border border-line bg-panel";
 const COMMON = ["egg", "rice", "pasta", "onion", "garlic", "tomato", "cheese", "chicken", "beans", "spinach", "potato", "bell pepper"];
+const SERVING_OPTIONS = [1, 2, 3, 4, 5, 6, 8];
 const DIET_LABEL: Record<Diet, string> = { vegetarian: "Vegetarian", vegan: "Vegan", "gluten-free": "Gluten-free", "dairy-free": "Dairy-free" };
 const EXAMPLE_PANTRY = ["egg", "rice", "spinach", "cheese", "tomato", "garlic", "pasta", "onion", "peas", "soy sauce"];
 
@@ -53,6 +60,8 @@ export function MealwiseApp() {
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const [faith, setFaith] = useFaith();
+  const dayDone = useDay();
 
   useEffect(() => {
     let saved: Saved | null = null;
@@ -128,6 +137,7 @@ export function MealwiseApp() {
       if (res.ok && body.meals?.length) {
         setMeals(body.meals);
         setSource("ai");
+        markDone("mealwise");
       } else if (res.status === 400) {
         setError(body.error ?? "Something about that request didn't work.");
       } else {
@@ -137,6 +147,7 @@ export function MealwiseApp() {
       const fallback = suggestFromLibrary(request);
       setMeals(fallback);
       setSource("basic");
+      if (fallback.length) markDone("mealwise");
       setNotice(`${err instanceof Error ? err.message : "AI meal ideas aren't available right now."} Here are the closest matches from our recipe book instead.`);
     } finally {
       setLoading(false);
@@ -262,7 +273,7 @@ export function MealwiseApp() {
                 <div className="min-w-0">
                   <label htmlFor="servings" className="mb-1 block font-mono text-xs text-muted">Servings</label>
                   <select id="servings" value={servings} onChange={(e) => setServings(Number(e.target.value))} className="block w-full min-w-0 rounded-[10px] border border-line bg-sunken px-3 py-2.5 text-sm text-fg">
-                    {[1, 2, 3, 4, 5, 6, 8].map((s) => <option key={s} value={s}>{s} {s === 1 ? "person" : "people"}</option>)}
+                    {SERVING_OPTIONS.map((s) => <option key={s} value={s}>{s} {s === 1 ? "person" : "people"}</option>)}
                   </select>
                 </div>
               </div>
@@ -300,6 +311,31 @@ export function MealwiseApp() {
                 </p>
               )}
               {notice && <p role="status" className="rounded-xl border border-amber/40 bg-amber/10 p-4 text-sm text-soft">{notice}</p>}
+              {faith && meals.length > 0 && !loading && (
+                <div className={`${panel} relative overflow-hidden p-5`} aria-labelledby="grace-heading">
+                  <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-amber" aria-hidden />
+                  <p id="grace-heading" className="flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.14em] text-muted">
+                    <Church className="h-3.5 w-3.5 text-amber" aria-hidden /> Before you eat
+                  </p>
+                  <p className="mt-2 text-[17px] leading-relaxed text-fg">{graceFor(localISO())}</p>
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-hairline pt-4">
+                    <p className="text-sm text-muted">Know someone eating alone tonight? There&apos;s room at the table.</p>
+                    {SERVING_OPTIONS.some((o) => o > servings) && (
+                      <button
+                        type="button"
+                        className={btn.secondary}
+                        onClick={() => {
+                          const next = SERVING_OPTIONS.find((o) => o > servings) ?? servings;
+                          setServings(next);
+                          setToast(`Cooking for ${next}. Press Suggest 3 meals to size the recipes.`);
+                        }}
+                      >
+                        <UserPlus className="h-4 w-4" aria-hidden /> Cook for one more
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
               {loading ? (
                 [0, 1, 2].map((i) => <div key={i} className={`${panel} h-40 animate-pulse`} aria-hidden />)
               ) : meals.length === 0 ? (
@@ -316,6 +352,7 @@ export function MealwiseApp() {
                 ))
               )}
               <p className="text-center font-mono text-[11px] text-dim">Check labels if you have allergies. Suggestions can make mistakes.</p>
+              {source !== "example" && dayDone.includes("mealwise") && <NextUp current="mealwise" />}
             </section>
           </div>
         )}
@@ -386,6 +423,11 @@ export function MealwiseApp() {
               favorites.map((m) => <MealCard key={m.name} meal={m} favorite onList={onList(m)} onFavorite={() => toggleFavorite(m)} onAddMissing={() => addMissing(m)} />)
             )}
           </section>
+        )}
+        {ready && (
+          <FaithPanel on={faith} onChange={setFaith} className="mx-auto mt-5 max-w-6xl">
+            Adds a simple grace before meals, and a nudge to make room at the table.
+          </FaithPanel>
         )}
       </main>
 

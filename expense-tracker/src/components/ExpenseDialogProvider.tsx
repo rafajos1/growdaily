@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
 import { useExpenses } from "@/hooks/useExpenses";
+import { markDone } from "@/lib/journey";
 import { formatCurrency } from "@/lib/money";
 import type { Expense, ExpenseInput } from "@/lib/types";
 import { ExpenseForm } from "./ExpenseForm";
@@ -53,7 +54,11 @@ export function ExpenseDialogProvider({ children }: { children: ReactNode }) {
     let ok = false;
     if (state.kind === "create") {
       ok = addExpense(input);
-      if (ok) toast("success", `Added ${formatCurrency(input.amountCents)} for ${input.description}.`);
+      if (ok) {
+        toast("success", `Added ${formatCurrency(input.amountCents)} for ${input.description}.`);
+        // Logging an expense counts as Spendwise done for the day.
+        markDone("spendwise");
+      }
     } else if (state.kind === "edit") {
       ok = updateExpense(state.expense.id, input);
       if (ok) toast("success", "Expense updated.");

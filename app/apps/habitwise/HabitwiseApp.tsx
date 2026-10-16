@@ -18,7 +18,9 @@ import {
   toggleCheck,
 } from "../../../lib/habitwise/logic";
 import { encouragementFor, FAITH_HABITS, passageUrl } from "../../../lib/habitwise/faith";
+import { markDone } from "../../../lib/journey";
 import { FaithSwitch } from "../../components/FaithSwitch";
+import { NextUp } from "../../components/NextUp";
 import { useFaith } from "../../components/useFaith";
 import { sampleData } from "../../../lib/habitwise/sample";
 import { loadData, newId, saveData, STORAGE_KEY } from "../../../lib/habitwise/storage";
@@ -98,6 +100,13 @@ export function HabitwiseApp() {
     const t = setTimeout(() => setToast(null), 3500);
     return () => clearTimeout(t);
   }, [toast]);
+
+  // Every habit due today checked off counts as Habitwise done for the day.
+  const progress = todayProgress(data, data.habits, today);
+  const allDone = ready && progress.due > 0 && progress.done === progress.due;
+  useEffect(() => {
+    if (allDone) markDone("habitwise");
+  }, [allDone]);
 
   const commit = useCallback((next: HabitData, message?: string) => {
     setData(next);
@@ -447,6 +456,7 @@ function TodayView({
         })}
       </ul>
       <p className="text-center font-mono text-xs text-dim">Forgot a day? Tap any square in the last week to fill it in.</p>
+      {due > 0 && done === due && <NextUp current="habitwise" />}
     </>
   );
 }
