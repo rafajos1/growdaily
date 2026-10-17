@@ -1,5 +1,6 @@
 import "./globals.css";
 import { DM_Mono, Manrope } from "next/font/google";
+import { SyncAgent } from "./components/SyncAgent";
 
 const manrope = Manrope({ subsets: ["latin"], weight: ["500", "600", "700", "800"], variable: "--font-manrope", display: "swap" });
 const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-dm-mono", display: "swap" });
@@ -19,7 +20,10 @@ export const viewport = { themeColor: "#0d1520" };
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${manrope.variable} ${dmMono.variable}`}>
-      <body className="min-h-screen font-sans antialiased">{children}</body>
+      <body className="min-h-screen font-sans antialiased">
+        {children}
+        <SyncAgent />
+      </body>
     </html>
   );
 }

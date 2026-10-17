@@ -7,6 +7,7 @@ import { markDone } from "../../../lib/journey";
 import { addQuietMoments, isQuiet } from "../../../lib/planwise/quiet";
 import { FaithPanel } from "../../components/FaithPanel";
 import { FaithToggle } from "../../components/FaithToggle";
+import { SaveProgress } from "../../components/SaveProgress";
 import { NextUp } from "../../components/NextUp";
 import { useFaith } from "../../components/useFaith";
 import { EXAMPLE_DUMP, EXAMPLE_PLAN } from "../../../lib/planwise/example";
@@ -233,6 +234,10 @@ export function PlanwiseApp() {
           <FaithToggle on={faith} onChange={changeFaith} />
         </div>
       </header>
+
+      <div className="mx-auto mb-5 max-w-6xl">
+        <SaveProgress />
+      </div>
 
       <main className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-5 lg:grid-cols-[380px_1fr]">
         {/* Brain dump */}

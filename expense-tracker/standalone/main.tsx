@@ -10,6 +10,8 @@ import DashboardPage from "@/app/page";
 import { ExpensesView } from "@/app/expenses/ExpensesView";
 import { TrendsView } from "@/app/trends/TrendsView";
 import { usePathname } from "./shims/router";
+// Shared with the main GrowDaily apps.
+import { SaveProgress } from "../../app/components/SaveProgress";
 
 const SEEDED_KEY = "expense-tracker:examples-loaded";
 
@@ -138,6 +140,9 @@ function App() {
   const pathname = usePathname();
   return (
     <Providers>
+      <div className="mb-6">
+        <SaveProgress />
+      </div>
       <ExamplesBanner />
       <CsvDialog />
       {pathname === "/expenses" ? <ExpensesView /> : pathname === "/trends" ? <TrendsView /> : <DashboardPage />}

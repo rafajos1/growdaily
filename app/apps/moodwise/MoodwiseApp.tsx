@@ -11,6 +11,7 @@ import { sampleEntries } from "../../../lib/moodwise/sample";
 import { markDone } from "../../../lib/journey";
 import { FaithSwitch } from "../../components/FaithSwitch";
 import { FaithToggle } from "../../components/FaithToggle";
+import { SaveProgress } from "../../components/SaveProgress";
 import { NextUp } from "../../components/NextUp";
 import { useFaith } from "../../components/useFaith";
 import { ENERGY_LABELS, MOOD_LABELS, TAGS, type Entry, type Tag } from "../../../lib/moodwise/types";
@@ -131,6 +132,10 @@ export function MoodwiseApp() {
           <FaithToggle on={faith} onChange={changeFaith} />
         </div>
       </header>
+
+      <div className="mx-auto mb-5 max-w-5xl">
+        <SaveProgress />
+      </div>
 
       <main className="mx-auto max-w-5xl space-y-5">
         {support && (
