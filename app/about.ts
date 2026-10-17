@@ -1,6 +1,6 @@
 import type { AboutContent } from "./components/AppAbout";
 
-const PRIVATE = "Everything you enter is saved in your own browser on this device, not on GrowDaily's servers.";
+const PRIVATE = "Everything you enter is saved in your own browser on this device. If you tap Save my progress and sign in with your email, a private copy is kept in your GrowDaily account so it comes back on any device.";
 
 /** Search-friendly explainers for each app, shown under the app and used in structured data. */
 export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise", AboutContent> = {
@@ -54,7 +54,7 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise", A
     heading: "A free, private mood tracker that finds what goes with your better days",
     intro: "Moodwise is a two-minute daily check-in on mood, energy and sleep, with optional tags and a one-line note. Over time it shows a mood calendar, how sleep and habits like exercise line up with your mood, and AI insights into your patterns.",
     faqs: [
-      { q: "Are my notes private?", a: `${PRIVATE} Notes never leave your device, and only numbers and tag names are used for insights.` },
+      { q: "Are my notes private?", a: `${PRIVATE} Notes are never sent for AI insights; only numbers and tag names are.` },
       { q: "When do insights unlock?", a: "After seven check-ins, so there's enough to see real patterns." },
       { q: "Is Moodwise free?", a: "Yes. No account, sign-up or trial." },
       { q: "Is this a substitute for professional help?", a: "No. Moodwise can help you notice patterns, but it isn't medical advice. If you're struggling, talk to a doctor or counselor. In the US you can call or text 988 any time." },

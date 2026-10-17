@@ -190,7 +190,7 @@ export function HomePage() {
               Free AI apps to run your life <span className="text-amber">better</span>.
             </h1>
             <p className="mt-6 max-w-[46ch] text-lg text-soft">
-              Small, focused tools for your money, habits, time, food and mood. No account, and your data stays on your device.
+              Small, focused tools for your money, habits, time, food and mood. No account needed, and your data stays on your device unless you choose to save it.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="/apps/spendwise" className={btnPrimary}>
@@ -295,7 +295,7 @@ export function HomePage() {
 
       <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 border-t border-hairline py-8 font-mono text-xs text-dim">
         <span>© {new Date().getFullYear()} GrowDaily</span>
-        <span>Public beta · Free apps · Your data stays on your device</span>
+        <span>Public beta · Free apps · No account needed</span>
       </footer>
     </div>
   );
