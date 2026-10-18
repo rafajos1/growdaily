@@ -8,7 +8,7 @@ import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, 
 export const servicePage = (slug: ServicePage["slug"]) => SERVICE_PAGES.find((p) => p.slug === slug)!;
 
 export function serviceMetadata(p: ServicePage): Metadata {
-  return pageMetadata({ title: p.title, description: p.description, path: `/build/${p.slug}`, image: ogImage(p.h1, "Small businesses & nonprofits · Ask for a quote") });
+  return pageMetadata({ title: p.title, description: p.description, path: `/build/${p.slug}`, image: ogImage(p.h1, "Businesses & nonprofits · Ask for a quote") });
 }
 
 /** /build/ai-training and /build/ai-consulting. */
@@ -21,7 +21,7 @@ export function ServicePageView({ page: p }: { page: ServicePage }) {
     serviceType: p.label,
     description: p.description,
     url: `${SITE_URL}${path}`,
-    audience: { "@type": "Audience", audienceType: "Small businesses and nonprofits" },
+    audience: { "@type": "Audience", audienceType: "Businesses and nonprofits" },
     provider: { "@type": "Organization", name: "GrowDaily", url: SITE_URL },
   };
   const breadcrumbs = {
@@ -40,7 +40,7 @@ export function ServicePageView({ page: p }: { page: ServicePage }) {
       <BuildHeader />
       <main className="mx-auto max-w-6xl">
         <section className="pb-20 pt-10 lg:pt-16">
-          <p className={eyebrow}>{p.label} · small businesses &amp; nonprofits</p>
+          <p className={eyebrow}>{p.label} · businesses &amp; nonprofits</p>
           <h1 className="mt-4 max-w-[22ch] text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">{p.h1}</h1>
           <p className="mt-6 max-w-[56ch] text-lg text-soft">{p.intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">

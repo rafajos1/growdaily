@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { buildAlertEmail } from "./notify";
 
-const input = { name: "Sam <Rivera>", email: "sam@example.org", orgType: "Small business" as const, interest: "AI training" as const, idea: "Help us with <b>emails</b>\nand notes." };
+const input = { name: "Sam <Rivera>", email: "sam@example.org", orgType: "Business" as const, interest: "AI training" as const, idea: "Help us with <b>emails</b>\nand notes." };
 
 describe("buildAlertEmail", () => {
   it("summarizes the request in the subject", () => {
-    expect(buildAlertEmail(input, null, "/build/ai-training").subject).toBe("New quote request: AI training, Small business (Sam <Rivera>)");
+    expect(buildAlertEmail(input, null, "/build/ai-training").subject).toBe("New quote request: AI training, Business (Sam <Rivera>)");
   });
   it("escapes what people typed in the HTML", () => {
     const { html, text } = buildAlertEmail(input, null, "/build");

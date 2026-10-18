@@ -1,6 +1,6 @@
 /** "Tell us your idea" on /build: validation and the AI's quick sketch of a first version. */
 
-export const ORG_TYPES = ["Small business", "Nonprofit", "Church or ministry", "Something else"] as const;
+export const ORG_TYPES = ["Business", "Nonprofit", "Church or ministry", "Something else"] as const;
 export type OrgType = (typeof ORG_TYPES)[number];
 
 export const INTERESTS = ["Build an app", "AI training", "AI plan", "Care plan", "Not sure yet"] as const;
