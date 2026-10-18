@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { generateJSON } from "../../../../lib/anthropic";
 import { normalizeSketch, SKETCH_SCHEMA, validateIdea, wantsSketch, type IdeaSketch } from "../../../../lib/build/idea";
+import { sendInquiryAlert } from "../../../../lib/build/notify";
 import { allowDaily, clientIp } from "../../../../lib/rateLimit";
 import { getSupabase } from "../../../../lib/supabase";
 
@@ -42,14 +43,24 @@ export async function POST(req: Request) {
   }
 
   const page = typeof body.page === "string" ? body.page.slice(0, 100) : "";
-  try {
-    const { error } = await getSupabase()
-      .from("build_inquiries")
-      .insert({ name: input.name, email: input.email, org_type: input.orgType, interest: input.interest, idea: input.idea, sketch, page });
-    if (error) throw error;
-  } catch (err) {
-    console.error("Build inquiry could not be saved", err);
-    return NextResponse.json({ error: "We couldn't send your idea just now. Please try again in a few minutes." }, { status: 503 });
+  // Saved to Supabase and emailed to you; either one is enough not to lose the request.
+  const [saved, emailed] = await Promise.all([
+    (async () => {
+      try {
+        const { error } = await getSupabase()
+          .from("build_inquiries")
+          .insert({ name: input.name, email: input.email, org_type: input.orgType, interest: input.interest, idea: input.idea, sketch, page });
+        if (error) throw error;
+        return true;
+      } catch (err) {
+        console.error("Build inquiry could not be saved", err);
+        return false;
+      }
+    })(),
+    sendInquiryAlert(input, sketch, page),
+  ]);
+  if (!saved && !emailed) {
+    return NextResponse.json({ error: "We couldn't send your request just now. Please try again in a few minutes." }, { status: 503 });
   }
 
   return NextResponse.json({ sketch });
