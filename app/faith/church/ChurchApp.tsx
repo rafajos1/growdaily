@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useRef, useState, type FormEvent } from "react";
 import { ArrowLeft, ChevronDown, ExternalLink, LocateFixed, MapPin, MessageCircleQuestion, Navigation, Search } from "lucide-react";
-import { SearchError, searchChurches } from "../../../lib/faith/churchSearch";
+import { SearchError, searchChurches, type Attempt } from "../../../lib/faith/churchSearch";
 import { directionsUrl, RADII_MILES, type Church } from "../../../lib/faith/churches";
 import { FIRST_VISIT } from "../../../lib/faith/firstVisit";
 
@@ -15,7 +15,7 @@ type State =
   | { kind: "idle" }
   | { kind: "loading" }
   | { kind: "results"; churches: Church[]; where: string; miles: number }
-  | { kind: "error"; message: string };
+  | { kind: "error"; message: string; details?: Attempt[] };
 
 
 export function ChurchApp() {
@@ -33,7 +33,11 @@ export function ChurchApp() {
       const { churches, label } = await searchChurches(where, miles);
       setState({ kind: "results", churches, where: label, miles });
     } catch (err) {
-      setState({ kind: "error", message: err instanceof SearchError ? err.message : "The church map isn't answering right now. Please try again in a minute." });
+      setState(
+        err instanceof SearchError
+          ? { kind: "error", message: err.message, details: err.details }
+          : { kind: "error", message: "The church map isn't answering right now. Please try again in a minute.", details: [{ service: "page", reason: String(err).slice(0, 80) }] },
+      );
     }
   };
 
@@ -125,9 +129,21 @@ export function ChurchApp() {
             </div>
           )}
           {state.kind === "error" && (
-            <p role="alert" className="rounded-xl border border-up/40 bg-up/10 p-4 text-sm font-semibold text-up">
-              {state.message}
-            </p>
+            <div role="alert" className="rounded-xl border border-up/40 bg-up/10 p-4 text-sm">
+              <p className="font-semibold text-up">{state.message}</p>
+              {state.details && state.details.length > 0 && (
+                <details className="mt-2 text-xs text-muted">
+                  <summary className="cursor-pointer select-none">Details</summary>
+                  <ul className="mt-1 space-y-0.5 font-mono">
+                    {state.details.map((d, i) => (
+                      <li key={i}>
+                        {d.service}: {d.reason}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+            </div>
           )}
           {state.kind === "results" && (
             <section aria-labelledby="results-heading">

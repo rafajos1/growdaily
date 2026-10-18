@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { geocodeUrls, normalizeChurches, OVERPASS_SERVERS, overpassQuery, parseGeocode, RADII_MILES, type Church } from "../../../../lib/faith/churches";
+import { geocodeUrls, OVERPASS_SERVERS, parseGeocode, RADII_MILES, type Church } from "../../../../lib/faith/churches";
+import { churchesAt, failureReason, type Attempt } from "../../../../lib/faith/churchSearch";
 import { allowDaily, clientIp } from "../../../../lib/rateLimit";
 
 // The page searches from the visitor's browser first; this route is the
@@ -14,7 +15,7 @@ const HOUR = 60 * 60 * 1000;
 
 async function getJson(url: string, init: RequestInit, ms: number): Promise<unknown> {
   const res = await fetch(url, { ...init, headers: { ...HEADERS, ...init.headers }, signal: AbortSignal.timeout(ms) });
-  if (!res.ok) throw new Error(`${new URL(url).host} ${res.status}`);
+  if (!res.ok) throw Object.assign(new Error(`HTTP ${res.status}`), { status: res.status });
   return res.json();
 }
 
@@ -30,7 +31,7 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "That's a lot of searches for one day. Try again tomorrow." }, { status: 429 });
   }
 
-  const failures: string[] = [];
+  const failures: Attempt[] = [];
   try {
     if (place) {
       let found: ReturnType<typeof parseGeocode> = null;
@@ -39,7 +40,7 @@ export async function GET(req: Request) {
           found = parseGeocode(await getJson(url, {}, 8000), place);
           if (found) break;
         } catch (err) {
-          failures.push(String(err));
+          failures.push({ service: new URL(url).host, reason: failureReason(err) });
         }
       }
       if (!found) {
@@ -56,20 +57,12 @@ export async function GET(req: Request) {
     const hit = cache.get(key);
     if (hit && Date.now() - hit.at < HOUR) return NextResponse.json({ churches: hit.churches, label, miles: radius });
 
-    const body = new URLSearchParams({ data: overpassQuery(lat, lon, radius * 1609.34) });
-    for (const server of OVERPASS) {
-      try {
-        const churches = normalizeChurches(await getJson(server, { method: "POST", body, headers: { "Content-Type": "application/x-www-form-urlencoded" } }, 20_000), lat, lon, radius);
-        if (cache.size > 500) cache.clear();
-        cache.set(key, { at: Date.now(), churches });
-        return NextResponse.json({ churches, label, miles: radius });
-      } catch (err) {
-        failures.push(String(err));
-      }
-    }
-    throw new Error("no map server answered");
+    const churches = await churchesAt(lat, lon, radius, failures, { getJson, servers: OVERPASS });
+    if (cache.size > 500) cache.clear();
+    cache.set(key, { at: Date.now(), churches });
+    return NextResponse.json({ churches, label, miles: radius });
   } catch (err) {
     console.error("Church search failed", err, failures);
-    return NextResponse.json({ error: "The church map isn't answering right now. Please try again in a minute." }, { status: 502 });
+    return NextResponse.json({ error: "The church map isn't answering right now. Please try again in a minute.", details: failures }, { status: 502 });
   }
 }
