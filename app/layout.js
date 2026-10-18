@@ -1,6 +1,9 @@
 import "./globals.css";
+import Script from "next/script";
 import { DM_Mono, Manrope } from "next/font/google";
 import { SyncAgent } from "./components/SyncAgent";
+
+const GA_ID = "G-D3TJDXQZBD";
 
 const manrope = Manrope({ subsets: ["latin"], weight: ["500", "600", "700", "800"], variable: "--font-manrope", display: "swap" });
 const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-dm-mono", display: "swap" });
@@ -23,6 +26,14 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen font-sans antialiased">
         {children}
         <SyncAgent />
+        {/* Google Analytics (GA4) */}
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+        <Script id="ga4" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`}
+        </Script>
       </body>
     </html>
   );
