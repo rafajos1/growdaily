@@ -3,6 +3,12 @@
 export const ORG_TYPES = ["Small business", "Nonprofit", "Church or ministry", "Something else"] as const;
 export type OrgType = (typeof ORG_TYPES)[number];
 
+export const INTERESTS = ["Build an app", "AI training", "AI plan", "Care plan", "Not sure yet"] as const;
+export type Interest = (typeof INTERESTS)[number];
+
+/** An instant app sketch only makes sense when someone is thinking about an app. */
+export const wantsSketch = (interest: Interest) => interest === "Build an app" || interest === "AI plan" || interest === "Not sure yet";
+
 export interface IdeaSketch {
   name: string;
   oneLiner: string;
@@ -42,6 +48,7 @@ export interface IdeaInput {
   name: string;
   email: string;
   orgType: OrgType;
+  interest: Interest;
   idea: string;
 }
 
@@ -50,10 +57,11 @@ export function validateIdea(body: Record<string, unknown>): IdeaInput | { error
   const name = clean(body.name, 100);
   const email = clean(body.email, 200).toLowerCase();
   const orgType = ORG_TYPES.find((t) => t === body.orgType) ?? "Something else";
+  const interest = INTERESTS.find((t) => t === body.interest) ?? "Not sure yet";
   const idea = typeof body.idea === "string" ? body.idea.trim().slice(0, 2001) : "";
   if (!name) return { error: "Add your name so we know who to reply to." };
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { error: "Enter a valid email address." };
-  if (idea.length < 20) return { error: "Tell us a little more about your idea (a sentence or two is plenty)." };
+  if (idea.length < 20) return { error: "Tell us a little more (a sentence or two is plenty)." };
   if (idea.length > 2000) return { error: "Keep your idea under 2,000 characters. We'll talk through the details on the call." };
-  return { name, email, orgType, idea };
+  return { name, email, orgType, interest, idea };
 }

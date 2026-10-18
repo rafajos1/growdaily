@@ -3,17 +3,17 @@ import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../lib/seo";
 import { JsonLd } from "../components/JsonLd";
-import { AUDIENCES, BUILD_FAQS, CASES } from "./content";
-import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection } from "./parts";
+import { AUDIENCES, BUILD_FAQS, CASES, SERVICES } from "./content";
+import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection, ServicesSection } from "./parts";
 
 const DESCRIPTION =
-  "We build simple, useful AI apps and website assistants for small businesses, nonprofits and other organizations. Try seven of our AI apps live, then tell us your idea for a free call and a fixed quote.";
+  "AI training, consulting and custom AI apps for small businesses and nonprofits. Try seven of our AI apps live, then ask for a quote: team workshops, an AI plan, a custom app, or ongoing care.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Custom AI App Development for Small Businesses & Nonprofits · GrowDaily",
+  title: "AI Training, Consulting & App Development for Small Businesses & Nonprofits · GrowDaily",
   description: DESCRIPTION,
   path: "/build",
-  image: ogImage("We build simple, useful AI apps", "Try our work live, then tell us your idea"),
+  image: ogImage("We help small teams put AI to work", "Training · Consulting · Custom AI apps"),
 });
 
 const serviceSchema = {
@@ -22,12 +22,12 @@ const serviceSchema = {
   name: "GrowDaily",
   url: `${SITE_URL}/build`,
   description: DESCRIPTION,
-  serviceType: "AI app development",
-  knowsAbout: ["AI app development", "AI chatbots for websites", "AI assistants for churches", "AI tools for nonprofits", "Custom web apps"],
+  serviceType: ["AI training", "AI consulting", "AI app development", "AI app maintenance"],
+  knowsAbout: ["AI training for teams", "AI consulting", "AI app development", "AI chatbots for websites", "AI tools for nonprofits", "Custom web apps"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "AI apps we build",
-    itemListElement: AUDIENCES.map((a) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: a.h1, url: `${SITE_URL}/build/${a.slug}` } })),
+    name: "Services",
+    itemListElement: SERVICES.map((sv) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: sv.name, description: sv.tagline, ...(sv.href ? { url: `${SITE_URL}${sv.href}` } : {}) } })),
   },
 };
 
@@ -39,22 +39,24 @@ export default function BuildPage() {
       <BuildHeader />
       <main className="mx-auto max-w-6xl">
         <section className="pb-20 pt-10 lg:pt-16">
-          <p className={eyebrow}>AI app development</p>
+          <p className={eyebrow}>AI training · consulting · custom apps</p>
           <h1 className="mt-4 max-w-[20ch] text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
-            We build simple, useful <span className="text-amber">AI apps</span>.
+            We help small teams put <span className="text-amber">AI</span> to work.
           </h1>
-          <p className="mt-6 max-w-[52ch] text-lg text-soft">
-            You don&apos;t have to imagine what we make. Every app on GrowDaily is our work, and you can try them right now. Then tell us what you wish an app did for your business or nonprofit.
+          <p className="mt-6 max-w-[54ch] text-lg text-soft">
+            Training for your team, a plain-English AI plan, custom AI apps, and care to keep them running. You don&apos;t have to imagine what we make: every app on GrowDaily is our work, and you can try them right now.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#idea" className={btnPrimary}>
-              Tell us your idea <ArrowRight className="h-4 w-4" aria-hidden />
+              Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
             <a href="#work" className={btnSecondary}>
               See our work
             </a>
           </div>
         </section>
+
+        <ServicesSection />
 
         <section aria-labelledby="who-heading" className="pb-20">
           <p className={eyebrow}>Who we build for</p>

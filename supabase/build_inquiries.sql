@@ -8,10 +8,14 @@ create table if not exists public.build_inquiries (
   name text not null check (length(name) between 1 and 100),
   email text not null check (length(email) between 3 and 200),
   org_type text not null check (length(org_type) <= 40),
+  interest text check (length(interest) <= 40),
   idea text not null check (length(idea) between 20 and 2000),
   sketch jsonb,
   page text check (length(page) <= 100)
 );
+
+-- Safe to re-run if you created the table before "interest" was added.
+alter table public.build_inquiries add column if not exists interest text check (length(interest) <= 40);
 
 alter table public.build_inquiries enable row level security;
 

@@ -5,7 +5,7 @@ import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../../lib/seo";
 import type { OrgType } from "../../../lib/build/idea";
 import { JsonLd } from "../../components/JsonLd";
 import { AUDIENCES, audienceBySlug, caseByName, type AudienceSlug } from "../content";
-import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection } from "../parts";
+import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection, ServicesSection } from "../parts";
 
 export const dynamicParams = false;
 
@@ -57,7 +57,7 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
           <p className="mt-6 max-w-[56ch] text-lg text-soft">{a.intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#idea" className={btnPrimary}>
-              Tell us your idea <ArrowRight className="h-4 w-4" aria-hidden />
+              Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
             <a href="#work" className={btnSecondary}>
               Try our work
@@ -92,6 +92,7 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
           </div>
         </section>
 
+        <ServicesSection heading={`How we help ${a.label.toLowerCase()}`} />
         <HowItWorks />
         <Faqs faqs={a.faqs} />
         <IdeaSection defaultOrg={ORG[a.slug]} page={path} />

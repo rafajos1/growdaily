@@ -1,4 +1,45 @@
-/** Content for the "Build with GrowDaily" pages: the apps as a portfolio, and who we build for. */
+/** Content for the "Build with GrowDaily" pages: services, the apps as a portfolio, and who we build for. */
+
+import type { Interest } from "../../lib/build/idea";
+
+export interface Service {
+  name: string;
+  interest: Interest;
+  tagline: string;
+  includes: string[];
+  /** A page with more detail, when there is one. */
+  href?: string;
+}
+
+/** Each service leads naturally to the next: learn, plan, build, look after it. */
+export const SERVICES: Service[] = [
+  {
+    name: "AI training",
+    interest: "AI training",
+    tagline: "A hands-on workshop so your team uses AI well and safely, starting the next morning.",
+    includes: ["Live or on Zoom, for staff, boards or volunteers", "Practice on your own real tasks", "A simple AI policy you can adopt"],
+    href: "/build/ai-training",
+  },
+  {
+    name: "AI plan",
+    interest: "AI plan",
+    tagline: "We find the few places AI would save your team the most time, and say plainly where it wouldn't.",
+    includes: ["Short interviews with your team", "Tool recommendations, often ones you already have", "A one-page plan with next steps"],
+    href: "/build/ai-consulting",
+  },
+  {
+    name: "Custom AI app",
+    interest: "Build an app",
+    tagline: "A small, focused app or website assistant built around how you work. You own it.",
+    includes: ["A fixed quote before work starts", "A small first version to try with real people", "Guardrails written with you"],
+  },
+  {
+    name: "Care plan",
+    interest: "Care plan",
+    tagline: "We keep your AI app running, up to date and improving, for a simple monthly fee.",
+    includes: ["Hosting, monitoring and updates", "Small changes and improvements", "A monthly check-in"],
+  },
+];
 
 export interface CaseStudy {
   name: string;
@@ -70,8 +111,8 @@ export const CASES: CaseStudy[] = [
 ];
 
 export const PROCESS = [
-  { title: "A free 20-minute call", text: "Tell us what you wish an app did. We'll say honestly whether AI is a good fit, and if it isn't, we'll tell you." },
-  { title: "A fixed quote and a small first version", text: "We agree on one job the app does well and a fixed price before any work starts. No hourly surprises." },
+  { title: "A free 20-minute call", text: "Tell us what you need. We'll say honestly whether AI is a good fit, and if it isn't, we'll tell you." },
+  { title: "A clear quote", text: "Every service is quoted up front for what you actually need. No hourly surprises." },
   { title: "Launch, learn, improve", text: "You try it with real people, we improve it together, and you own what we build." },
 ];
 
@@ -84,7 +125,9 @@ export const PRINCIPLES = [
 
 export const BUILD_FAQS = [
   { q: "What kinds of AI apps do you build?", a: "Small, focused web apps and website assistants: tools that answer questions in your voice, turn messy requests into next steps, recommend the right product or service, or give people a short personal summary. Every app in GrowDaily is an example you can try." },
-  { q: "How much does a custom AI app cost?", a: "Every project gets a fixed price after a free call, based on what the first version needs to do. We keep first versions deliberately small so they're affordable and quick to try." },
+  { q: "How much does it cost?", a: "Ask for a quote. Training, AI plans, apps and care plans are each quoted after a free call, based on what you actually need. First versions of apps are deliberately small so they're affordable and quick to try." },
+  { q: "Do you offer AI training for teams?", a: "Yes. Hands-on workshops, live or on Zoom, that teach your team to use AI tools well and safely on their own real work, plus a simple AI policy." },
+  { q: "Can you look after an app once it's built?", a: "Yes. A care plan covers hosting, monitoring, updates, small changes and a monthly check-in, for a simple monthly fee." },
   { q: "Who owns the app?", a: "You do. We hand over the code and the accounts it runs on, so you're never locked in." },
   { q: "What does the AI cost to run?", a: "Usually a small monthly amount that depends on how many people use it. We design apps to keep it low, and we'll estimate it before you decide." },
   { q: "Will the AI say things we don't agree with?", a: "We write clear instructions and guardrails with you, test them with tricky questions, and design the app so people are pointed to a real person when it matters." },
@@ -177,3 +220,63 @@ export const AUDIENCES: Audience[] = [
 
 export const audienceBySlug = (slug: string) => AUDIENCES.find((a) => a.slug === slug);
 export const caseByName = (name: string) => CASES.find((c) => c.name === name)!;
+
+export interface ServicePage {
+  slug: "ai-training" | "ai-consulting";
+  interest: Interest;
+  label: string;
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+  sections: { title: string; text: string }[];
+  forWho: string[];
+  faqs: { q: string; a: string }[];
+}
+
+export const SERVICE_PAGES: ServicePage[] = [
+  {
+    slug: "ai-training",
+    interest: "AI training",
+    label: "AI training",
+    title: "AI Training for Small Businesses & Nonprofits · GrowDaily",
+    description: "Hands-on AI training for small business and nonprofit teams: practical workshops on using ChatGPT, Claude and other AI tools safely for everyday work, plus a simple AI policy. Live or on Zoom.",
+    h1: "AI training for your team",
+    intro: "Most teams have tried AI once or twice and aren't sure what's safe, what's useful, or where to start. Our workshops are practical and jargon-free: your team practices on their own real work, and leaves with habits they'll use the next morning.",
+    sections: [
+      { title: "AI basics, done right", text: "What AI tools are good at, where they make mistakes, and how to check their work." },
+      { title: "Your real tasks", text: "Emails, meeting notes, planning, summaries, customer replies: practiced on examples from your own work." },
+      { title: "Safe and private", text: "What's okay to paste into an AI tool and what isn't, with a simple policy your team can adopt." },
+      { title: "Follow-up", text: "A short guide to keep, and an easy way to ask questions after the workshop." },
+    ],
+    forWho: ["Staff teams", "Boards and leadership", "Volunteers", "Solo owners and small offices"],
+    faqs: [
+      { q: "Do people need any experience with AI?", a: "No. We start from the beginning and keep it practical, and people who already use AI still pick up new habits." },
+      { q: "Which AI tools do you teach?", a: "Whichever your team has or would use, such as ChatGPT, Claude, Copilot or Gemini. The habits work across all of them." },
+      { q: "Can it be done on Zoom?", a: "Yes. Workshops work live or on Zoom, and we can record it for people who can't attend." },
+      { q: "How much does AI training cost?", a: "Ask for a quote. It depends on the length of the workshop and the size of your group." },
+    ],
+  },
+  {
+    slug: "ai-consulting",
+    interest: "AI plan",
+    label: "AI consulting",
+    title: "AI Consulting for Small Businesses & Nonprofits · GrowDaily",
+    description: "Practical AI consulting for small businesses and nonprofits: we find where AI would save your team the most time, recommend tools you may already have, and write a clear one-page AI plan.",
+    h1: "AI consulting that starts with your work, not the hype",
+    intro: "You don't need an AI strategy deck. You need to know the few places AI would actually save your team time, which tools to use, and what to leave alone. Our AI plan answers exactly that, in plain words.",
+    sections: [
+      { title: "Listen first", text: "Short conversations with the people doing the work, to find the repetitive, time-consuming tasks." },
+      { title: "Pick the right tool", text: "Often it's a tool you already pay for, used better. Sometimes it's a small custom app. Sometimes it's not AI at all." },
+      { title: "Weigh the risks", text: "Privacy, accuracy and what still needs a person, for each recommendation." },
+      { title: "A one-page plan", text: "The top opportunities, what to do first, and what it would take, ready to act on with or without us." },
+    ],
+    forWho: ["Owners and directors", "Operations and admin teams", "Programs and services", "Anyone told to \"figure out AI\""],
+    faqs: [
+      { q: "Will you just try to sell us a custom app?", a: "No. Many recommendations use tools you already have. If a custom app would help, we'll say so, and you can build it with us or anyone else." },
+      { q: "What do we get at the end?", a: "A short, plain-English plan: the top opportunities, which tools to use, the risks, and the first steps." },
+      { q: "How much of our time does it take?", a: "A few short conversations with the right people. We do the rest." },
+      { q: "How much does AI consulting cost?", a: "Ask for a quote. It depends on the size of your team and how many areas we look at." },
+    ],
+  },
+];

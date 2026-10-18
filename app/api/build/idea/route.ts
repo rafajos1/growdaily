@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { generateJSON } from "../../../../lib/anthropic";
-import { normalizeSketch, SKETCH_SCHEMA, validateIdea, type IdeaSketch } from "../../../../lib/build/idea";
+import { normalizeSketch, SKETCH_SCHEMA, validateIdea, wantsSketch, type IdeaSketch } from "../../../../lib/build/idea";
 import { allowDaily, clientIp } from "../../../../lib/rateLimit";
 import { getSupabase } from "../../../../lib/supabase";
 
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
   }
 
   let sketch: IdeaSketch | null = null;
-  if (process.env.ANTHROPIC_API_KEY) {
+  if (process.env.ANTHROPIC_API_KEY && wantsSketch(input.interest)) {
     try {
       const raw = await generateJSON(`Organization type: ${input.orgType}\n\n<idea>\n${input.idea}\n</idea>`, SKETCH_SCHEMA, { system: SYSTEM, maxTokens: 2000, effort: "low" });
       sketch = normalizeSketch(raw);
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
   try {
     const { error } = await getSupabase()
       .from("build_inquiries")
-      .insert({ name: input.name, email: input.email, org_type: input.orgType, idea: input.idea, sketch, page });
+      .insert({ name: input.name, email: input.email, org_type: input.orgType, interest: input.interest, idea: input.idea, sketch, page });
     if (error) throw error;
   } catch (err) {
     console.error("Build inquiry could not be saved", err);

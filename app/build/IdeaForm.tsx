@@ -1,15 +1,26 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Check, Loader2, Sparkles } from "lucide-react";
-import { ORG_TYPES, type IdeaSketch, type OrgType } from "../../lib/build/idea";
+import { INTERESTS, ORG_TYPES, wantsSketch, type IdeaSketch, type Interest, type OrgType } from "../../lib/build/idea";
 
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
 const input = `block min-h-12 w-full rounded-[10px] border border-line bg-sunken px-3.5 text-base text-fg placeholder:text-dim ${focus}`;
 
-/** "Tell us your idea": sends an inquiry and shows an AI sketch of a small first version. */
-export function IdeaForm({ defaultOrg = "Something else", page }: { defaultOrg?: OrgType; page: string }) {
+export const INTEREST_EVENT = "growdaily:build-interest";
+
+const PROMPTS: Record<Interest, { label: string; placeholder: string }> = {
+  "Build an app": { label: "What do you wish an app did for you?", placeholder: "e.g. Answer customer questions on our website and send me the ones that need a person." },
+  "AI training": { label: "Tell us about your team and what you'd like to learn", placeholder: "e.g. 12 staff, a few use ChatGPT. We'd like to save time on emails and meeting notes, safely." },
+  "AI plan": { label: "Where does your team lose the most time?", placeholder: "e.g. Answering the same questions, writing reports, and copying information between systems." },
+  "Care plan": { label: "Tell us about the app or tool you need looked after", placeholder: "e.g. A website assistant someone built for us last year that nobody maintains now." },
+  "Not sure yet": { label: "What would you like help with?", placeholder: "e.g. We keep hearing about AI and want to know where it could actually help us." },
+};
+
+/** "Ask for a quote": sends an inquiry, and for app ideas shows an AI sketch of a small first version. */
+export function IdeaForm({ defaultOrg = "Small business", defaultInterest = "Build an app", page }: { defaultOrg?: OrgType; defaultInterest?: Interest; page: string }) {
   const [orgType, setOrgType] = useState<OrgType>(defaultOrg);
+  const [interest, setInterest] = useState<Interest>(defaultInterest);
   const [idea, setIdea] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,6 +28,13 @@ export function IdeaForm({ defaultOrg = "Something else", page }: { defaultOrg?:
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<{ sketch: IdeaSketch | null } | null>(null);
+
+  // "Ask for a quote" buttons on service cards pick the matching option here.
+  useEffect(() => {
+    const onPick = (e: Event) => setInterest((e as CustomEvent<Interest>).detail);
+    window.addEventListener(INTEREST_EVENT, onPick);
+    return () => window.removeEventListener(INTEREST_EVENT, onPick);
+  }, []);
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
@@ -26,7 +44,7 @@ export function IdeaForm({ defaultOrg = "Something else", page }: { defaultOrg?:
       const res = await fetch("/api/build/idea", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orgType, idea, name, email, website, page }),
+        body: JSON.stringify({ orgType, interest, idea, name, email, website, page }),
       });
       const json = (await res.json()) as { sketch?: IdeaSketch | null; error?: string };
       if (!res.ok) throw new Error(json.error ?? "Something went wrong. Please try again.");
@@ -45,7 +63,7 @@ export function IdeaForm({ defaultOrg = "Something else", page }: { defaultOrg?:
         <p className="flex items-start gap-3 rounded-xl border border-down/40 bg-down/10 p-4 text-sm text-soft">
           <Check className="mt-0.5 h-5 w-5 shrink-0 text-down" aria-hidden />
           <span>
-            <strong className="text-fg">Thanks, {name.split(" ")[0]}.</strong> We&apos;ve got your idea and will email {email} to set up a free 20-minute call.
+            <strong className="text-fg">Thanks, {name.split(" ")[0]}.</strong> We&apos;ve got your request and will email {email} to set up a free 20-minute call and a quote.
           </span>
         </p>
         {s && (
@@ -83,7 +101,18 @@ export function IdeaForm({ defaultOrg = "Something else", page }: { defaultOrg?:
   return (
     <form onSubmit={submit} className="space-y-5">
       <fieldset>
-        <legend className="mb-2 text-sm font-semibold">You&apos;re building for a…</legend>
+        <legend className="mb-2 text-sm font-semibold">What are you looking for?</legend>
+        <div className="flex flex-wrap gap-2">
+          {INTERESTS.map((t) => (
+            <label key={t} className={`cursor-pointer rounded-full border px-3.5 py-2 text-sm font-semibold transition has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-amber ${interest === t ? "border-amber bg-amber/15 text-fg" : "border-line text-muted hover:text-fg"}`}>
+              <input type="radio" name="interest" value={t} checked={interest === t} onChange={() => setInterest(t)} className="sr-only" />
+              {t}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend className="mb-2 text-sm font-semibold">For a…</legend>
         <div className="flex flex-wrap gap-2">
           {ORG_TYPES.map((t) => (
             <label key={t} className={`cursor-pointer rounded-full border px-3.5 py-2 text-sm font-semibold transition has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-amber ${orgType === t ? "border-amber bg-amber/15 text-fg" : "border-line text-muted hover:text-fg"}`}>
@@ -95,7 +124,7 @@ export function IdeaForm({ defaultOrg = "Something else", page }: { defaultOrg?:
       </fieldset>
       <div>
         <label htmlFor="idea-text" className="mb-1.5 block text-sm font-semibold">
-          What do you wish an app did for you?
+          {PROMPTS[interest].label}
         </label>
         <textarea
           id="idea-text"
@@ -103,7 +132,7 @@ export function IdeaForm({ defaultOrg = "Something else", page }: { defaultOrg?:
           value={idea}
           onChange={(e) => setIdea(e.target.value)}
           maxLength={2000}
-          placeholder="e.g. Answer customer questions on our website and send me the ones that need a person."
+          placeholder={PROMPTS[interest].placeholder}
           className={`${input} py-3`}
         />
       </div>
@@ -132,8 +161,8 @@ export function IdeaForm({ defaultOrg = "Something else", page }: { defaultOrg?:
         </p>
       )}
       <button type="submit" disabled={busy} className={`inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-amber px-5 text-base font-bold text-[#2a1c05] transition hover:brightness-110 disabled:opacity-60 sm:w-auto ${focus}`}>
-        {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : <Sparkles className="h-4 w-4" aria-hidden />}
-        {busy ? "Sketching your idea…" : "Send my idea and see a sketch"}
+        {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : wantsSketch(interest) ? <Sparkles className="h-4 w-4" aria-hidden /> : null}
+        {busy ? (wantsSketch(interest) ? "Sketching your idea…" : "Sending…") : wantsSketch(interest) ? "Ask for a quote and see a sketch" : "Ask for a quote"}
       </button>
       <p className="text-xs text-dim">Free, no obligation. We only use your details to reply to you.</p>
     </form>
