@@ -18,7 +18,7 @@ const PROMPTS: Record<Interest, { label: string; placeholder: string }> = {
 };
 
 /** "Ask for a quote": sends an inquiry, and for app ideas shows an AI sketch of a small first version. */
-export function IdeaForm({ defaultOrg = "Small business", defaultInterest = "Build an app", page }: { defaultOrg?: OrgType; defaultInterest?: Interest; page: string }) {
+export function IdeaForm({ defaultOrg = "Business", defaultInterest = "Build an app", page }: { defaultOrg?: OrgType; defaultInterest?: Interest; page: string }) {
   const [orgType, setOrgType] = useState<OrgType>(defaultOrg);
   const [interest, setInterest] = useState<Interest>(defaultInterest);
   const [idea, setIdea] = useState("");

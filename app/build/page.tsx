@@ -7,13 +7,13 @@ import { AUDIENCES, BUILD_FAQS, CASES, SERVICES } from "./content";
 import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection, ServicesSection } from "./parts";
 
 const DESCRIPTION =
-  "AI training, consulting and custom AI apps for small businesses and nonprofits. Try seven of our AI apps live, then ask for a quote: team workshops, an AI plan, a custom app, or ongoing care.";
+  "AI training, consulting and custom AI apps for businesses of any size and nonprofits. Try seven of our AI apps live, then ask for a quote: team workshops, an AI plan, a custom app, or ongoing care.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "AI Training, Consulting & App Development for Small Businesses & Nonprofits · GrowDaily",
+  title: "AI Training, Consulting & App Development for Businesses & Nonprofits · GrowDaily",
   description: DESCRIPTION,
   path: "/build",
-  image: ogImage("We help small teams put AI to work", "Training · Consulting · Custom AI apps"),
+  image: ogImage("We help teams put AI to work", "Training · Consulting · Custom AI apps"),
 });
 
 const serviceSchema = {
@@ -41,7 +41,7 @@ export default function BuildPage() {
         <section className="pb-20 pt-10 lg:pt-16">
           <p className={eyebrow}>AI training · consulting · custom apps</p>
           <h1 className="mt-4 max-w-[20ch] text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
-            We help small teams put <span className="text-amber">AI</span> to work.
+            We help teams put <span className="text-amber">AI</span> to work.
           </h1>
           <p className="mt-6 max-w-[54ch] text-lg text-soft">
             Training for your team, a plain-English AI plan, custom AI apps, and care to keep them running. You don&apos;t have to imagine what we make: every app on GrowDaily is our work, and you can try them right now.
@@ -61,7 +61,7 @@ export default function BuildPage() {
         <section aria-labelledby="who-heading" className="pb-20">
           <p className={eyebrow}>Who we build for</p>
           <h2 id="who-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
-            Small teams with big jobs to do
+            Teams of any size, one clear job at a time
           </h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {AUDIENCES.map((a) => (

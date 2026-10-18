@@ -134,7 +134,7 @@ export const BUILD_FAQS = [
   { q: "Do we need technical staff?", a: "No. The apps run in a web browser and on phones with nothing to install, and we handle the setup." },
 ];
 
-export type AudienceSlug = "churches" | "small-business" | "nonprofits";
+export type AudienceSlug = "churches" | "businesses" | "nonprofits";
 
 export interface Audience {
   slug: AudienceSlug;
@@ -151,13 +151,13 @@ export interface Audience {
 
 export const AUDIENCES: Audience[] = [
   {
-    slug: "small-business",
-    label: "Small businesses",
-    short: "Customer assistants, quote and intake tools, and recommenders built around your business.",
-    title: "Custom AI App Development for Small Businesses · GrowDaily",
-    description: "Custom AI apps for small businesses: a website assistant that answers customer questions, quote and intake tools, product recommenders and internal helpers. Fixed price, you own it.",
-    h1: "Custom AI apps for small businesses",
-    intro: "You don't need a big AI project. You need one tool that saves time every week or helps customers decide faster. We build small, focused AI apps around how your business actually works, and you own them.",
+    slug: "businesses",
+    label: "Businesses",
+    short: "Customer assistants, quote and intake tools, recommenders and internal helpers, for teams of any size.",
+    title: "Custom AI App Development for Businesses · GrowDaily",
+    description: "Custom AI apps for businesses of any size: website assistants that answer customer questions, quote and intake tools, product recommenders and internal helpers. Quoted up front, and you own it.",
+    h1: "Custom AI apps for your business",
+    intro: "Whether you're a team of five or five hundred, the best AI projects start with one job done well: a tool that saves time every week or helps customers decide faster. We build focused AI apps around how your business actually works, and you own them.",
     ideas: [
       { title: "A website assistant that knows your business", text: "Answers customer questions from your own hours, services, policies and pricing, and hands off to you for anything else." },
       { title: "Quote and estimate builder", text: "Customers describe the job in their own words; the app asks follow-ups and drafts an estimate for you to approve." },
@@ -175,11 +175,11 @@ export const AUDIENCES: Audience[] = [
   {
     slug: "nonprofits",
     label: "Nonprofits",
-    short: "Volunteer, intake, referral and reporting helpers for small teams.",
+    short: "Volunteer, intake, referral and reporting helpers that give staff time back.",
     title: "AI Tools & App Development for Nonprofits · GrowDaily",
     description: "Custom AI tools for nonprofits: volunteer and FAQ assistants, intake and referral helpers, donor thank-you drafts and report summaries. Private by default, fixed price.",
-    h1: "AI tools for nonprofits with small teams",
-    intro: "Small teams spend hours answering the same questions and writing the same updates. We build careful AI tools that give that time back, while keeping the people you serve private and safe.",
+    h1: "AI tools for nonprofits",
+    intro: "Nonprofit teams spend hours answering the same questions and writing the same updates. We build careful AI tools that give that time back, while keeping the people you serve private and safe.",
     ideas: [
       { title: "Volunteer and FAQ assistant", text: "Answers \"When is the next shift? What do I bring?\" from your own information, any time of day." },
       { title: "Intake and referral helper", text: "Helps people describe what they need and points them to the right program or partner nearby, like Find a church does." },
@@ -239,8 +239,8 @@ export const SERVICE_PAGES: ServicePage[] = [
     slug: "ai-training",
     interest: "AI training",
     label: "AI training",
-    title: "AI Training for Small Businesses & Nonprofits · GrowDaily",
-    description: "Hands-on AI training for small business and nonprofit teams: practical workshops on using ChatGPT, Claude and other AI tools safely for everyday work, plus a simple AI policy. Live or on Zoom.",
+    title: "AI Training for Businesses & Nonprofits · GrowDaily",
+    description: "Hands-on AI training for business and nonprofit teams of any size: practical workshops on using ChatGPT, Claude and other AI tools safely for everyday work, plus a simple AI policy. Live or on Zoom.",
     h1: "AI training for your team",
     intro: "Most teams have tried AI once or twice and aren't sure what's safe, what's useful, or where to start. Our workshops are practical and jargon-free: your team practices on their own real work, and leaves with habits they'll use the next morning.",
     sections: [
@@ -249,7 +249,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       { title: "Safe and private", text: "What's okay to paste into an AI tool and what isn't, with a simple policy your team can adopt." },
       { title: "Follow-up", text: "A short guide to keep, and an easy way to ask questions after the workshop." },
     ],
-    forWho: ["Staff teams", "Boards and leadership", "Volunteers", "Solo owners and small offices"],
+    forWho: ["Staff teams and departments", "Leadership and boards", "Volunteers", "Owners and small offices"],
     faqs: [
       { q: "Do people need any experience with AI?", a: "No. We start from the beginning and keep it practical, and people who already use AI still pick up new habits." },
       { q: "Which AI tools do you teach?", a: "Whichever your team has or would use, such as ChatGPT, Claude, Copilot or Gemini. The habits work across all of them." },
@@ -261,8 +261,8 @@ export const SERVICE_PAGES: ServicePage[] = [
     slug: "ai-consulting",
     interest: "AI plan",
     label: "AI consulting",
-    title: "AI Consulting for Small Businesses & Nonprofits · GrowDaily",
-    description: "Practical AI consulting for small businesses and nonprofits: we find where AI would save your team the most time, recommend tools you may already have, and write a clear one-page AI plan.",
+    title: "AI Consulting for Businesses & Nonprofits · GrowDaily",
+    description: "Practical AI consulting for businesses and nonprofits of any size: we find where AI would save your team the most time, recommend tools you may already have, and write a clear one-page AI plan.",
     h1: "AI consulting that starts with your work, not the hype",
     intro: "You don't need an AI strategy deck. You need to know the few places AI would actually save your team time, which tools to use, and what to leave alone. Our AI plan answers exactly that, in plain words.",
     sections: [

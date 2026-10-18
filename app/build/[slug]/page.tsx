@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return pageMetadata({ title: a.title, description: a.description, path: `/build/${a.slug}`, image: ogImage(a.h1, "Try our work live · Free first call") });
 }
 
-const ORG: Record<AudienceSlug, OrgType> = { churches: "Church or ministry", "small-business": "Small business", nonprofits: "Nonprofit" };
+const ORG: Record<AudienceSlug, OrgType> = { churches: "Church or ministry", businesses: "Business", nonprofits: "Nonprofit" };
 
 export default async function AudiencePage({ params }: { params: Promise<{ slug: string }> }) {
   const a = audienceBySlug((await params).slug);
