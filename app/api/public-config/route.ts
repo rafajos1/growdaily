@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { supabaseSettings } from "../../../lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -7,8 +8,8 @@ export const dynamic = "force-dynamic";
 export function GET() {
   return NextResponse.json(
     {
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL ?? null,
-      supabaseAnonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? null,
+      supabaseUrl: supabaseSettings().url ?? null,
+      supabaseAnonKey: supabaseSettings().anonKey ?? null,
       // Turned on in Vercel (SYNC_ENABLED=1) once supabase/app_state.sql has run and email sign-in is set up.
       syncEnabled: process.env.SYNC_ENABLED === "1",
     },

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { allowDaily, clientIp } from "../../../../lib/rateLimit";
-import { getSupabase } from "../../../../lib/supabase";
+import { getSupabase, supabaseSettingNames } from "../../../../lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -16,8 +16,8 @@ export async function GET(req: Request) {
   try {
     const { error } = await getSupabase().from("build_inquiries").select("id").limit(0);
     database = !error ? "ok" : error.code === "42P01" || error.code === "PGRST205" || /does not exist|schema cache/i.test(error.message) ? "missing table: run supabase/build_inquiries.sql" : `error: ${[error.code, error.message].filter(Boolean).join(" ").slice(0, 160)}`;
-  } catch {
-    database = "not configured";
+  } catch (err) {
+    database = `not configured: ${err instanceof Error ? err.message : "unknown"}`;
   }
 
   const key = process.env.RESEND_API_KEY;
@@ -34,6 +34,7 @@ export async function GET(req: Request) {
 
   return NextResponse.json({
     database,
+    supabaseSettingsFound: supabaseSettingNames(),
     email: {
       RESEND_API_KEY: resendKey,
       INQUIRY_EMAIL: process.env.INQUIRY_EMAIL ? "set" : "missing",
