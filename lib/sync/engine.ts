@@ -220,8 +220,8 @@ function getConfig(): Promise<Config | null> {
       }
       try {
         const res = await fetch("/api/public-config");
-        const json = (await res.json()) as { supabaseUrl?: string; supabaseAnonKey?: string };
-        if (!json.supabaseUrl || !json.supabaseAnonKey) return null;
+        const json = (await res.json()) as { supabaseUrl?: string; supabaseAnonKey?: string; syncEnabled?: boolean };
+        if (!json.syncEnabled || !json.supabaseUrl || !json.supabaseAnonKey) return null;
         const config = { url: json.supabaseUrl.replace(/\/$/, ""), anonKey: json.supabaseAnonKey };
         try {
           sessionStorage.setItem(CONFIG_KEY, JSON.stringify(config));
@@ -236,6 +236,11 @@ function getConfig(): Promise<Config | null> {
     })();
   }
   return configPromise;
+}
+
+/** Whether "Save my progress" is switched on for this site. */
+export async function syncAvailable(): Promise<boolean> {
+  return (await getConfig()) !== null;
 }
 
 class HttpError extends Error {

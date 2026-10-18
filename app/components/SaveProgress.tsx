@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { CircleCheck, Cloud, CloudOff, Loader2, X } from "lucide-react";
-import { deleteSavedCopy, getStatus, inAppBrowserName, sendSignInEmail, signOut, startSync, subscribe, syncNow, verifyCode, type SyncStatus } from "../../lib/sync/engine";
+import { deleteSavedCopy, getStatus, inAppBrowserName, sendSignInEmail, signOut, startSync, subscribe, syncAvailable, syncNow, verifyCode, type SyncStatus } from "../../lib/sync/engine";
 
 const DISMISS_KEY = "growdaily:save-dismissed";
 const DISMISS_DAYS = 14;
@@ -17,8 +17,18 @@ export function useSyncStatus(): SyncStatus | null {
   const [status, setStatus] = useState<SyncStatus | null>(null);
   useEffect(() => {
     startSync();
-    setStatus(getStatus());
-    return subscribe(setStatus);
+    let live = true;
+    let unsubscribe = () => {};
+    // Shows nothing until saving is switched on for the site.
+    void syncAvailable().then((on) => {
+      if (!on || !live) return;
+      setStatus(getStatus());
+      unsubscribe = subscribe(setStatus);
+    });
+    return () => {
+      live = false;
+      unsubscribe();
+    };
   }, []);
   return status;
 }
