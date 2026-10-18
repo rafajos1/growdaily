@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { denominationLabel, directionsUrl, milesBetween, normalizeChurches, overpassQuery, parseGeocode } from "./churches";
+import { boundingBox, denominationLabel, directionsUrl, milesBetween, normalizeChurches, normalizePlaces, overpassQuery, parseGeocode, placeSearchUrls } from "./churches";
 
 // Around downtown Nashville.
 const LAT = 36.1627;
@@ -80,5 +80,45 @@ describe("parseGeocode", () => {
     expect(parseGeocode({ features: [] }, "x")).toBeNull();
     expect(parseGeocode([], "x")).toBeNull();
     expect(parseGeocode(null, "x")).toBeNull();
+  });
+});
+
+describe("boundingBox and placeSearchUrls", () => {
+  it("draws a box about the right size", () => {
+    const [w, s, e, n] = boundingBox(LAT, LON, 10);
+    expect(n - s).toBeCloseTo(20 / 69, 2);
+    expect(e - w).toBeGreaterThan(n - s);
+  });
+  it("asks Photon and Nominatim for churches inside the box", () => {
+    const [photon, nominatim] = placeSearchUrls(LAT, LON, 10);
+    expect(photon).toContain("photon.komoot.io");
+    expect(photon).toContain("osm_tag=amenity%3Aplace_of_worship");
+    expect(nominatim).toContain("bounded=1");
+    expect(nominatim).toContain("extratags=1");
+  });
+});
+
+describe("normalizePlaces", () => {
+  it("reads Photon results and skips non-churches", () => {
+    const json = {
+      features: [
+        { geometry: { coordinates: [-86.781, 36.163] }, properties: { name: "First Baptist Church", osm_type: "W", osm_id: "9", osm_value: "place_of_worship", street: "Main St", housenumber: "1", city: "Nashville" } },
+        { geometry: { coordinates: [-86.782, 36.164] }, properties: { name: "Islamic Center", osm_value: "place_of_worship" } },
+        { geometry: { coordinates: [-86.782, 36.164] }, properties: { name: "Church Street Cafe", osm_value: "cafe" } },
+      ],
+    };
+    const list = normalizePlaces(json, LAT, LON, 10);
+    expect(list.map((c) => c.name)).toEqual(["First Baptist Church"]);
+    expect(list[0]).toMatchObject({ id: "way/9", address: "1 Main St, Nashville" });
+  });
+  it("reads Nominatim results with religion and denomination", () => {
+    const json = [
+      { lat: "36.170", lon: "-86.780", name: "St. Mary's", category: "amenity", type: "place_of_worship", osm_type: "node", osm_id: 5, extratags: { religion: "christian", denomination: "roman_catholic", website: "stmarys.example" }, address: { road: "Fifth Ave", city: "Nashville" } },
+      { lat: "36.171", lon: "-86.781", name: "Temple Beth", category: "amenity", type: "place_of_worship", extratags: { religion: "jewish" } },
+      { lat: "36.172", lon: "-86.782", name: "Church Hill Park", category: "leisure", type: "park" },
+    ];
+    const list = normalizePlaces(json, LAT, LON, 10);
+    expect(list).toHaveLength(1);
+    expect(list[0]).toMatchObject({ name: "St. Mary's", denomination: "Catholic", website: "https://stmarys.example/", address: "Fifth Ave, Nashville" });
   });
 });

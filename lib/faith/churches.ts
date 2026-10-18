@@ -71,8 +71,9 @@ export function denominationLabel(tag: string | undefined): string {
 /** Public Overpass servers with the same OpenStreetMap data, tried in order. */
 export const OVERPASS_SERVERS = [
   "https://overpass-api.de/api/interpreter",
-  "https://overpass.kumi.systems/api/interpreter",
+  "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
   "https://overpass.private.coffee/api/interpreter",
+  "https://overpass.kumi.systems/api/interpreter",
 ];
 
 /**
@@ -114,6 +115,72 @@ export function milesBetween(aLat: number, aLon: number, bLat: number, bLon: num
   const dLon = toRad(bLon - aLon);
   const h = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(aLat)) * Math.cos(toRad(bLat)) * Math.sin(dLon / 2) ** 2;
   return 3958.8 * 2 * Math.asin(Math.sqrt(h));
+}
+
+/** A box around a point, [west, south, east, north], roughly `miles` in each direction. */
+export function boundingBox(lat: number, lon: number, miles: number): [number, number, number, number] {
+  const dLat = miles / 69;
+  const dLon = miles / (69 * Math.max(Math.cos((lat * Math.PI) / 180), 0.01));
+  const r = (n: number) => Math.round(n * 1e5) / 1e5;
+  return [r(lon - dLon), r(lat - dLat), r(lon + dLon), r(lat + dLat)];
+}
+
+/**
+ * Place-search services used when every Overpass server is down: Photon and
+ * Nominatim, asked for churches inside the search box. They return fewer
+ * churches than Overpass, but they're separate systems that are rarely down together.
+ */
+export function placeSearchUrls(lat: number, lon: number, miles: number): string[] {
+  const [w, s, e, n] = boundingBox(lat, lon, miles);
+  return [
+    `https://photon.komoot.io/api/?${new URLSearchParams({ q: "church", lat: String(lat), lon: String(lon), limit: "50", osm_tag: "amenity:place_of_worship", bbox: `${w},${s},${e},${n}` })}`,
+    `https://nominatim.openstreetmap.org/search?${new URLSearchParams({ q: "church", format: "jsonv2", limit: "50", bounded: "1", viewbox: `${w},${n},${e},${s}`, extratags: "1", addressdetails: "1" })}`,
+  ];
+}
+
+// Places of worship that aren't churches, for results that don't say their religion.
+const NOT_CHURCH = /\b(mosque|masjid|islamic|synagogue|temple|mandir|gurdwara|jewish|buddhist|hindu|sikh|jain|baha'?i)\b/i;
+
+/** Photon or Nominatim results → churches, in the same shape as Overpass gives. */
+export function normalizePlaces(json: unknown, originLat: number, originLon: number, radiusMiles: number): Church[] {
+  const elements: OverpassElement[] = [];
+  const photon = (json as { features?: unknown })?.features;
+  if (Array.isArray(photon)) {
+    for (const f of photon as { geometry?: { coordinates?: number[] }; properties?: Record<string, string> }[]) {
+      const p = f.properties ?? {};
+      const [lon, lat] = f.geometry?.coordinates ?? [];
+      if (p.osm_value && p.osm_value !== "place_of_worship") continue;
+      elements.push({
+        type: { N: "node", W: "way", R: "relation" }[p.osm_type] ?? "node",
+        id: Number(p.osm_id),
+        lat,
+        lon,
+        tags: { name: p.name ?? "", "addr:housenumber": p.housenumber ?? "", "addr:street": p.street ?? "", "addr:city": p.city ?? "" },
+      });
+    }
+  } else if (Array.isArray(json)) {
+    for (const r of json as { lat?: string; lon?: string; name?: string; category?: string; type?: string; osm_type?: string; osm_id?: number; extratags?: Record<string, string> | null; address?: Record<string, string> }[]) {
+      const extra = r.extratags ?? {};
+      const isChurch = (r.category === "amenity" && r.type === "place_of_worship") || (r.category === "building" && (r.type === "church" || r.type === "chapel" || r.type === "cathedral"));
+      if (!isChurch || (extra.religion && extra.religion !== "christian")) continue;
+      const a = r.address ?? {};
+      elements.push({
+        type: r.osm_type,
+        id: r.osm_id,
+        lat: Number(r.lat),
+        lon: Number(r.lon),
+        tags: {
+          name: r.name ?? "",
+          denomination: extra.denomination ?? "",
+          website: extra.website ?? extra["contact:website"] ?? "",
+          "addr:housenumber": a.house_number ?? "",
+          "addr:street": a.road ?? "",
+          "addr:city": a.city ?? a.town ?? a.village ?? "",
+        },
+      });
+    }
+  }
+  return normalizeChurches({ elements: elements.filter((e) => !NOT_CHURCH.test(e.tags?.name ?? "")) }, originLat, originLon, radiusMiles);
 }
 
 interface OverpassElement {
