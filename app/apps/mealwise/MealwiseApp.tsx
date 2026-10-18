@@ -7,6 +7,7 @@ import { localISO, markDone } from "../../../lib/journey";
 import { graceFor } from "../../../lib/mealwise/grace";
 import { FaithPanel } from "../../components/FaithPanel";
 import { FaithToggle } from "../../components/FaithToggle";
+import { SaveProgress } from "../../components/SaveProgress";
 import { NextUp } from "../../components/NextUp";
 import { useDay } from "../../components/useDay";
 import { useFaith } from "../../components/useFaith";
@@ -217,6 +218,10 @@ export function MealwiseApp() {
           <FaithToggle on={faith} onChange={changeFaith} />
         </div>
       </header>
+
+      <div className="mx-auto mb-5 max-w-6xl">
+        <SaveProgress />
+      </div>
 
       <main className="mx-auto max-w-6xl">
         {tab === "ideas" && (

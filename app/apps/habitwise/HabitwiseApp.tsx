@@ -21,6 +21,7 @@ import { encouragementFor, FAITH_HABITS, passageUrl } from "../../../lib/habitwi
 import { markDone } from "../../../lib/journey";
 import { FaithSwitch } from "../../components/FaithSwitch";
 import { FaithToggle } from "../../components/FaithToggle";
+import { SaveProgress } from "../../components/SaveProgress";
 import { NextUp } from "../../components/NextUp";
 import { useFaith } from "../../components/useFaith";
 import { sampleData } from "../../../lib/habitwise/sample";
@@ -189,6 +190,10 @@ export function HabitwiseApp() {
           </div>
         </div>
       </header>
+
+      <div className="mx-auto mb-5 max-w-5xl">
+        <SaveProgress />
+      </div>
 
       <main className="mx-auto max-w-5xl space-y-5">
         {storageError && (

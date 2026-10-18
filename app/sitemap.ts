@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { slugFor, STARTERS } from "../lib/faith/ask";
 import { SITE_URL } from "../lib/seo";
 import { APPS } from "./apps";
+import { AUDIENCES, SERVICE_PAGES } from "./build/content";
 
 /** Every public page, for search engines. Served at /sitemap.xml. */
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -14,5 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/faith/church", 0.7),
     page("/faith/questions", 0.7),
     ...STARTERS.map((s) => page(`/faith/questions/${slugFor(s.question)}`, 0.6)),
+    page("/build", 0.8),
+    ...SERVICE_PAGES.map((p) => page(`/build/${p.slug}`, 0.7)),
+    ...AUDIENCES.map((a) => page(`/build/${a.slug}`, 0.7)),
   ];
 }

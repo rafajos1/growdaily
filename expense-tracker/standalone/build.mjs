@@ -36,6 +36,10 @@ await build({
       setup(b) {
         b.onResolve({ filter: /.*/ }, (args) => {
           if (shims[args.path]) return { path: shims[args.path] };
+          // Shared GrowDaily components (../app, ../lib) must use Spendwise's single copy of React.
+          if (/^(react|react-dom|lucide-react)(\/|$)/.test(args.path) && args.importer && !args.importer.startsWith(root)) {
+            return b.resolve(args.path, { resolveDir: root, kind: args.kind });
+          }
           if (args.path.startsWith("@real/")) return { path: path.join(root, "src", args.path.slice(6)) + ".ts" };
           if (args.path.startsWith("@/")) return b.resolve("./" + args.path.slice(2), { resolveDir: path.join(root, "src"), kind: args.kind });
           return undefined;
@@ -54,11 +58,11 @@ if (/<\/script/i.test(js)) throw new Error("Bundle contains a </script> sequence
 // Search and social metadata, kept in step with the main site's lib/seo.ts.
 const SITE = "https://www.growdaily.ai";
 const TITLE = "Spendwise: Free Expense Tracker, No Sign-Up · GrowDaily";
-const DESCRIPTION = "Free expense tracker that shows your spending pace for the month, which days you spend most, and what repeats every month. No sign-up; your data stays in your browser. Export to CSV any time.";
+const DESCRIPTION = "Free expense tracker that shows your spending pace for the month, which days you spend most, and what repeats every month. No sign-up; your data stays in your browser unless you choose to save it. Export to CSV any time.";
 const OG_IMAGE = `${SITE}/og?${new URLSearchParams({ title: "Spendwise", subtitle: "Free expense tracker. No sign-up.", color: "#f2b54b" })}`;
 const FAQS = [
   { q: "Is Spendwise really free?", a: "Yes. There's no account, sign-up or trial. Open it and start adding expenses." },
-  { q: "Where is my spending data stored?", a: "In your own browser on this device, not on GrowDaily's servers. You can export everything to CSV at any time." },
+  { q: "Where is my spending data stored?", a: "In your own browser on this device. If you tap Save my progress and sign in with your email, a private copy is kept in your GrowDaily account so it comes back on any device. You can export everything to CSV at any time." },
   { q: "What does the monthly pace show?", a: "How much you've spent so far this month compared with the same point last month, and where the month is likely to end if you keep going at the same rate." },
   { q: "Does it work on my phone?", a: "Yes. Spendwise works in any modern browser on phones, tablets and computers." },
 ];
@@ -117,6 +121,7 @@ const about = `<section aria-labelledby="about-heading" style="max-width:72rem;m
 ${FAQS.map(({ q, a }) => `<div><dt style="font-weight:600">${esc(q)}</dt><dd style="margin:4px 0 0;font-size:14px;line-height:1.6;color:#8a9bb2">${esc(a)}</dd></div>`).join("\n")}
 </dl>
 <p style="margin:32px 0 0;font-size:14px"><a href="/" style="color:#f2b54b;font-weight:600">More free apps from GrowDaily</a></p>
+<p style="margin:12px 0 0;font-size:14px;color:#8a9bb2">Spendwise is built by GrowDaily. <a href="/build" style="color:#cdd8e5;font-weight:600">Want an AI app like this for your business or nonprofit? →</a></p>
 </div>
 </section>`;
 const body = `<div id="root"></div>\n${about}\n<script>\n${js}\n</script>`;

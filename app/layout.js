@@ -1,6 +1,7 @@
 import "./globals.css";
 import Script from "next/script";
 import { DM_Mono, Manrope } from "next/font/google";
+import { SyncAgent } from "./components/SyncAgent";
 
 const GA_ID = "G-D3TJDXQZBD";
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${manrope.variable} ${dmMono.variable}`}>
       <body className="min-h-screen font-sans antialiased">
         {children}
+        <SyncAgent />
         {/* Google Analytics (GA4) */}
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
         <Script id="ga4" strategy="afterInteractive">

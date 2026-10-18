@@ -174,7 +174,8 @@ export function HomePage() {
         <nav className="flex items-center gap-1 text-sm font-semibold text-muted">
           <a href="#apps" className="rounded-lg px-3 py-2 hover:text-fg">Apps</a>
           <a href="#why" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">Why it&apos;s free</a>
-          <a href="#updates" className="rounded-lg px-3 py-2 hover:text-fg">Get updates</a>
+          <a href="#updates" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">Get updates</a>
+          <Link href="/build" className="rounded-lg px-3 py-2 hover:text-fg">Build with us</Link>
         </nav>
       </header>
 
@@ -190,7 +191,7 @@ export function HomePage() {
               Free AI apps to run your life <span className="text-amber">better</span>.
             </h1>
             <p className="mt-6 max-w-[46ch] text-lg text-soft">
-              Small, focused tools for your money, habits, time, food and mood. No account, and your data stays on your device.
+              Small, focused tools for your money, habits, time, food and mood. No account needed, and your data stays on your device unless you choose to save it.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="/apps/spendwise" className={btnPrimary}>
@@ -280,6 +281,27 @@ export function HomePage() {
           </div>
         </section>
 
+        <section id="build" aria-labelledby="build-heading" className="scroll-mt-8 pb-20">
+          <div className="grid gap-6 rounded-2xl border border-line bg-panel p-6 sm:p-10 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Build with us</p>
+              <h2 id="build-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Want AI working for your team?</h2>
+              <p className="mt-2 max-w-[52ch] text-muted">
+                We help small businesses and nonprofits put AI to work: team training, a plain-English AI plan, custom apps like these, and care to keep them running.
+              </p>
+              <Link href="/build" className={`${btnPrimary} mt-5`}>
+                Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            </div>
+            <ul className="grid gap-2 text-sm font-semibold">
+              <li><Link href="/build/ai-training" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI training for your team <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
+              <li><Link href="/build/ai-consulting" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI consulting and planning <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
+              <li><Link href="/build/small-business" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI apps for small businesses <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
+              <li><Link href="/build/nonprofits" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI tools for nonprofits <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
+            </ul>
+          </div>
+        </section>
+
         <section id="updates" className="scroll-mt-8 pb-24">
           <div className="rounded-2xl border border-line bg-panel p-6 sm:p-10">
             <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-center">
@@ -295,7 +317,7 @@ export function HomePage() {
 
       <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 border-t border-hairline py-8 font-mono text-xs text-dim">
         <span>© {new Date().getFullYear()} GrowDaily</span>
-        <span>Public beta · Free apps · Your data stays on your device</span>
+        <span>Public beta · Free apps · <Link href="/build" className="hover:text-fg">AI app development</Link></span>
       </footer>
     </div>
   );
