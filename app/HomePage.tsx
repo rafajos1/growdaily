@@ -287,16 +287,16 @@ export function HomePage() {
               <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Build with us</p>
               <h2 id="build-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Want an AI app like these?</h2>
               <p className="mt-2 max-w-[52ch] text-muted">
-                We build simple, useful AI apps and website assistants for churches, small businesses and nonprofits. Tell us your idea and see an instant sketch of a first version.
+                We build simple, useful AI apps and website assistants for small businesses and nonprofits. Tell us your idea and see an instant sketch of a first version.
               </p>
               <Link href="/build" className={`${btnPrimary} mt-5`}>
                 Tell us your idea <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
             </div>
             <ul className="grid gap-2 text-sm font-semibold">
-              <li><Link href="/build/churches" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI tools for churches <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
               <li><Link href="/build/small-business" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI apps for small businesses <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
               <li><Link href="/build/nonprofits" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI tools for nonprofits <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
+              <li><Link href="/build/churches" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI tools for churches <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
             </ul>
           </div>
         </section>

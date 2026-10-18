@@ -108,28 +108,6 @@ export interface Audience {
 
 export const AUDIENCES: Audience[] = [
   {
-    slug: "churches",
-    label: "Churches & ministries",
-    short: "Website assistants, newcomer welcome and care tools that sound like your church.",
-    title: "AI Chatbot & App Development for Churches · GrowDaily",
-    description: "Custom AI tools for churches and ministries: a faith questions assistant for your website, newcomer welcome, small-group and care tools. Built with guardrails, in your church's voice.",
-    h1: "AI tools for your church, built with care",
-    intro: "People with questions about faith often won't call the church office, but they will type a question at midnight. We build simple, careful AI tools that answer in your church's voice, welcome newcomers, and connect people to a real person when it matters.",
-    ideas: [
-      { title: "A \"Questions about faith?\" assistant", text: "On your website, answering honestly in your church's beliefs and tone, with passages to read and a gentle next step." },
-      { title: "Plan-your-visit helper", text: "Answers \"What should I wear? Is there something for my kids?\" and helps a newcomer plan their first Sunday." },
-      { title: "Sermon to small-group guide", text: "Turns this week's sermon notes into discussion questions and a short devotional for groups." },
-      { title: "Care and prayer follow-up", text: "Sorts prayer requests and care needs so the right person follows up, with privacy built in." },
-    ],
-    demos: ["Ask", "Find a church", "Habitwise"],
-    faqs: [
-      { q: "Will an AI assistant say things that don't match our beliefs?", a: "We write its instructions from your statement of faith and with your pastors, test it with hard questions, and have it point people to your staff on anything pastoral or sensitive." },
-      { q: "What happens if someone in crisis uses it?", a: "It stops and shows real help first, like the 988 Suicide & Crisis Lifeline and your church's contact, the same way GrowDaily's Ask does." },
-      { q: "Can it be added to our existing website?", a: "Yes. It can live on its own page or as a small box on the site you already have." },
-      { q: "Is it affordable for a small church?", a: "First versions are deliberately small, with a fixed price agreed after a free call, and running costs designed to stay low." },
-    ],
-  },
-  {
     slug: "small-business",
     label: "Small businesses",
     short: "Customer assistants, quote and intake tools, and recommenders built around your business.",
@@ -171,6 +149,28 @@ export const AUDIENCES: Audience[] = [
       { q: "Can it work for people who aren't comfortable with technology?", a: "Yes. The apps use plain words, work on any phone, and need no account to start." },
       { q: "Is it affordable on a nonprofit budget?", a: "First versions are deliberately small, with a fixed price after a free call, and running costs designed to stay low." },
       { q: "What if the AI gets something wrong?", a: "Anything important is reviewed by a person before it goes out, and the app makes it easy to reach your team." },
+    ],
+  },
+  {
+    slug: "churches",
+    label: "Churches & ministries",
+    short: "Website assistants, newcomer welcome and care tools that sound like your church.",
+    title: "AI Chatbot & App Development for Churches · GrowDaily",
+    description: "Custom AI tools for churches and ministries: a faith questions assistant for your website, newcomer welcome, small-group and care tools. Built with guardrails, in your church's voice.",
+    h1: "AI tools for your church, built with care",
+    intro: "People with questions about faith often won't call the church office, but they will type a question at midnight. We build simple, careful AI tools that answer in your church's voice, welcome newcomers, and connect people to a real person when it matters.",
+    ideas: [
+      { title: "A \"Questions about faith?\" assistant", text: "On your website, answering honestly in your church's beliefs and tone, with passages to read and a gentle next step." },
+      { title: "Plan-your-visit helper", text: "Answers \"What should I wear? Is there something for my kids?\" and helps a newcomer plan their first Sunday." },
+      { title: "Sermon to small-group guide", text: "Turns this week's sermon notes into discussion questions and a short devotional for groups." },
+      { title: "Care and prayer follow-up", text: "Sorts prayer requests and care needs so the right person follows up, with privacy built in." },
+    ],
+    demos: ["Ask", "Find a church", "Habitwise"],
+    faqs: [
+      { q: "Will an AI assistant say things that don't match our beliefs?", a: "We write its instructions from your statement of faith and with your pastors, test it with hard questions, and have it point people to your staff on anything pastoral or sensitive." },
+      { q: "What happens if someone in crisis uses it?", a: "It stops and shows real help first, like the 988 Suicide & Crisis Lifeline and your church's contact, the same way GrowDaily's Ask does." },
+      { q: "Can it be added to our existing website?", a: "Yes. It can live on its own page or as a small box on the site you already have." },
+      { q: "Is it affordable for a small church?", a: "First versions are deliberately small, with a fixed price agreed after a free call, and running costs designed to stay low." },
     ],
   },
 ];

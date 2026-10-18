@@ -4,7 +4,7 @@ import { normalizeSketch, SKETCH_SCHEMA, validateIdea, type IdeaSketch } from ".
 import { allowDaily, clientIp } from "../../../../lib/rateLimit";
 import { getSupabase } from "../../../../lib/supabase";
 
-const SYSTEM = `You help GrowDaily, a small studio that builds focused AI web apps for churches, small businesses and nonprofits. Someone has described an app they wish existed. Sketch a small, realistic first version.
+const SYSTEM = `You help GrowDaily, a small studio that builds focused AI web apps for small businesses, nonprofits and other organizations. Someone has described an app they wish existed. Sketch a small, realistic first version.
 
 Rules:
 - "name": a short, friendly working name (one or two words).

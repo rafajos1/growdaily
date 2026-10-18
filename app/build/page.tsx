@@ -7,10 +7,10 @@ import { AUDIENCES, BUILD_FAQS, CASES } from "./content";
 import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection } from "./parts";
 
 const DESCRIPTION =
-  "We build simple, useful AI apps and website assistants for churches, small businesses and nonprofits. Try seven of our AI apps live, then tell us your idea for a free call and a fixed quote.";
+  "We build simple, useful AI apps and website assistants for small businesses, nonprofits and other organizations. Try seven of our AI apps live, then tell us your idea for a free call and a fixed quote.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Custom AI App Development for Churches, Small Businesses & Nonprofits · GrowDaily",
+  title: "Custom AI App Development for Small Businesses & Nonprofits · GrowDaily",
   description: DESCRIPTION,
   path: "/build",
   image: ogImage("We build simple, useful AI apps", "Try our work live, then tell us your idea"),
@@ -44,7 +44,7 @@ export default function BuildPage() {
             We build simple, useful <span className="text-amber">AI apps</span>.
           </h1>
           <p className="mt-6 max-w-[52ch] text-lg text-soft">
-            You don&apos;t have to imagine what we make. Every app on GrowDaily is our work, and you can try them right now. Then tell us what you wish an app did for your church, business or nonprofit.
+            You don&apos;t have to imagine what we make. Every app on GrowDaily is our work, and you can try them right now. Then tell us what you wish an app did for your business or nonprofit.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#idea" className={btnPrimary}>

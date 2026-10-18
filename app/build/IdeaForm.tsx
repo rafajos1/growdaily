@@ -103,7 +103,7 @@ export function IdeaForm({ defaultOrg = "Something else", page }: { defaultOrg?:
           value={idea}
           onChange={(e) => setIdea(e.target.value)}
           maxLength={2000}
-          placeholder="e.g. Answer the questions newcomers ask before visiting, and help them plan their first Sunday."
+          placeholder="e.g. Answer customer questions on our website and send me the ones that need a person."
           className={`${input} py-3`}
         />
       </div>
