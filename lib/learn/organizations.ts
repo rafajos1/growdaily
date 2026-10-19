@@ -118,12 +118,13 @@ export const ORGANIZATION_GUIDES: Guide[] = [
           {
             list: [
               "Communications: drafting newsletters, announcements and social posts from staff notes.",
-              "Newcomers: answering \"what to expect\" questions on your website.",
+              "Newcomers: a [website assistant](/learn/how-to-build-a-church-chatbot-with-claude) that answers \"what to expect\" questions, like our [Ask](/faith/ask) does for questions about God.",
               "Volunteers: scheduling, reminders and answering common questions.",
               "Admin: meeting summaries, event planning, forms and reports.",
               "Small groups: turning sermon notes into discussion questions, written and checked by staff.",
             ],
           },
+          "For reaching and welcoming new people, see [how to use AI to grow your church](/learn/how-to-use-ai-to-grow-your-church).",
         ],
       },
       {
@@ -137,12 +138,13 @@ export const ORGANIZATION_GUIDES: Guide[] = [
               "Be open with your congregation about how AI is and isn't used.",
             ],
           },
+          "More on this in [should pastors use AI for sermon prep?](/learn/should-pastors-use-ai-for-sermons)",
         ],
       },
       {
         heading: "Why every church needs an AI policy",
         blocks: [
-          "Surveys in 2026 found church leaders using AI widely but only a small minority of churches with written AI guidelines, even though most pastors say they need one. Our free church AI policy template covers preaching, pastoral care and prayer requests.",
+          "Surveys in 2026 found church leaders using AI widely but only a small minority of churches with written AI guidelines, even though most pastors say they need one. Our free [church AI policy template](/learn/church-ai-policy-template) covers preaching, pastoral care and prayer requests.",
         ],
       },
     ],

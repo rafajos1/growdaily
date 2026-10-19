@@ -235,6 +235,13 @@ export function AskApp() {
         <p className="mt-10 font-mono text-xs text-dim">
           Answers come from a Christian perspective and can make mistakes, so read the passages for yourself. GrowDaily isn&apos;t affiliated with any church.
         </p>
+        <p className="mt-3 text-xs text-dim">
+          Church leader?{" "}
+          <Link href="/learn/how-to-build-a-church-chatbot-with-claude" className="underline underline-offset-2 hover:text-fg">
+            Learn how to build an assistant like this for your church
+          </Link>
+          .
+        </p>
       </main>
     </div>
   );

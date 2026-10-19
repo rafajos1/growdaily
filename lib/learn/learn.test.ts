@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { GUIDES, guideBySlug, TOPICS } from "./index";
 
@@ -33,6 +35,19 @@ describe("Learn guides", () => {
       expect(g.faqs.length).toBeGreaterThanOrEqual(2);
       expect(g.updated >= g.published).toBe(true);
       for (const s of g.sources ?? []) expect(s.url).toMatch(/^https:\/\//);
+    }
+  });
+
+  it("use inline links that point at real pages", () => {
+    for (const g of GUIDES) {
+      const text = g.sections.flatMap((s) => s.blocks.map((b) => JSON.stringify(b))).join(" ");
+      for (const [, href] of text.matchAll(/\]\(([^)\s]+)\)/g)) {
+        if (!href.startsWith("/")) continue;
+        expect(href, g.slug).not.toBe(`/learn/${g.slug}`);
+        const learn = href.match(/^\/learn\/([a-z0-9-]+)$/);
+        if (learn) expect(guideBySlug(learn[1]), `${g.slug} → ${href}`).toBeDefined();
+        else expect(existsSync(join(process.cwd(), "app", href.split("#")[0], "page.tsx")), `${g.slug} → ${href}`).toBe(true);
+      }
     }
   });
 });
