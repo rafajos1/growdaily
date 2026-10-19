@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { CalendarDays, ListOrdered, Plus, TrendingUp } from "lucide-react";
+import { CalendarDays, House, ListOrdered, Plus, TrendingUp } from "lucide-react";
 import type { ReactNode } from "react";
 import { useExpenseDialogs } from "./ExpenseDialogProvider";
 import { FaithToggle } from "./FaithToggle";
@@ -33,10 +33,22 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen pb-24 sm:pb-0">
       <header className="sticky top-0 z-40 border-b border-hairline bg-bg/85 backdrop-blur">
         <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-          <Link href="/" className="flex items-center gap-2.5 rounded-lg text-xl font-extrabold tracking-tight">
-            <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
-            Spendwise
-          </Link>
+          <div className="flex items-center gap-1 sm:gap-2">
+            {/* A plain link on purpose: in-app links are hash routes, and this one leaves for the GrowDaily home page. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a
+              href="/"
+              aria-label="GrowDaily home"
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-lg px-2.5 text-sm font-semibold text-muted transition hover:bg-raised hover:text-fg"
+            >
+              <House className="h-5 w-5" aria-hidden />
+              <span className="hidden sm:inline">Home</span>
+            </a>
+            <Link href="/" className="flex items-center gap-2.5 rounded-lg text-xl font-extrabold tracking-tight">
+              <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
+              Spendwise
+            </Link>
+          </div>
 
           <nav aria-label="Main" className="hidden gap-1 rounded-[10px] border border-line bg-panel p-1 sm:flex">
             {NAV.map(({ href, label }) => (

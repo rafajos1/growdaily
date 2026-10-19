@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { ArrowLeft, BookOpen, Check, Church, Flame, Info, Pencil, Plus, Sparkles, Trash2 } from "lucide-react";
+import { BookOpen, Check, Church, Flame, Info, Pencil, Plus, Sparkles, Trash2 } from "lucide-react";
+import { HomeLink } from "../../components/HomeLink";
 import { addDays, fromISO, todayISO, weekday } from "../../../lib/habitwise/dates";
 import {
   bestStreak,
@@ -160,9 +161,7 @@ export function HabitwiseApp() {
       {/* Wraps onto two lines on narrow phones, where the tabs and Faith toggle don't fit beside the name. */}
       <header className="mx-auto flex min-h-[72px] max-w-5xl flex-wrap items-center justify-between gap-2 py-3 sm:py-0">
         <div className="flex items-center gap-1 sm:gap-3">
-          <Link href="/" className={btn.ghost} aria-label="Back to GrowDaily">
-            <ArrowLeft className="h-5 w-5" />
-          </Link>
+          <HomeLink />
           <span className="flex items-center gap-2.5 text-lg font-extrabold tracking-tight sm:text-xl">
             <span className="h-3 w-3 rounded-full bg-down shadow-[0_0_0_4px_rgba(83,207,160,0.15)]" aria-hidden />
             Habitwise

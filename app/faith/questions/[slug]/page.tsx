@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, Footprints, MapPin, MessageCircleQuestion, Scale } from "lucide-react";
+import { HomeLink } from "../../../components/HomeLink";
 import { slugFor, starterBySlug, STARTERS } from "../../../../lib/faith/ask";
 import { chapterLink } from "../../../../lib/faith/bible";
 import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../../../lib/seo";
@@ -37,12 +38,13 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
   return (
     <div className="px-[max(16px,env(safe-area-inset-left))]">
       <JsonLd data={{ ...faqSchema([{ q: s.question, a: s.answer.replace(/\n+/g, " ") }]), url: `${SITE_URL}${path}` }} />
-      <header className="mx-auto flex h-20 max-w-3xl items-center">
+      <header className="mx-auto flex h-20 max-w-3xl items-center justify-between">
         <Link href="/faith/questions" className="flex items-center gap-2.5 text-lg font-extrabold tracking-tight">
           <ArrowLeft className="h-5 w-5 text-muted" aria-hidden />
           <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
           Questions
         </Link>
+        <HomeLink />
       </header>
       <main className="mx-auto max-w-3xl pb-24">
         <article>

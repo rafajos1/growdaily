@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Annoyed, ArrowLeft, BookOpen, Church, Frown, HeartHandshake, Info, Laugh, Meh, Minus, Moon, Pencil, Plus, Smile, Sparkles, type LucideIcon } from "lucide-react";
+import { Annoyed, BookOpen, Church, Frown, HeartHandshake, Info, Laugh, Meh, Minus, Moon, Pencil, Plus, Smile, Sparkles, type LucideIcon } from "lucide-react";
+import { HomeLink } from "../../components/HomeLink";
 import { addDays, fromISO, todayISO, weekday } from "../../../lib/habitwise/dates";
 import { buildInsightInput, inRange, moodLabel, needsSupport, parseEntries, sleepVsMood, streak, tagImpact, upsert } from "../../../lib/moodwise/logic";
 import { passageUrl } from "../../../lib/habitwise/faith";
@@ -113,9 +114,7 @@ export function MoodwiseApp() {
       {/* Wraps onto two lines on narrow phones, where the tabs and Faith toggle don't fit beside the name. */}
       <header className="mx-auto flex min-h-[72px] max-w-5xl flex-wrap items-center justify-between gap-2 py-3 sm:py-0">
         <div className="flex items-center gap-1 sm:gap-3">
-          <Link href="/" className={btn.ghost} aria-label="Back to GrowDaily">
-            <ArrowLeft className="h-5 w-5" />
-          </Link>
+          <HomeLink />
           <span className="flex items-center gap-2.5 text-lg font-extrabold tracking-tight sm:text-xl">
             <span className="h-3 w-3 rounded-full shadow-[0_0_0_4px_rgba(180,140,242,0.15)]" style={{ background: ACCENT }} aria-hidden />
             Moodwise

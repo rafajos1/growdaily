@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowLeft, Check, Church, Coffee, Info, Pause, Play, RotateCcw, Sparkles, Square, Sun, Target, Wand2 } from "lucide-react";
+import { Check, Church, Coffee, Info, Pause, Play, RotateCcw, Sparkles, Square, Sun, Target, Wand2 } from "lucide-react";
+import { HomeLink } from "../../components/HomeLink";
 import { markDone } from "../../../lib/journey";
 import { addQuietMoments, isQuiet } from "../../../lib/planwise/quiet";
 import { FaithPanel } from "../../components/FaithPanel";
@@ -223,9 +223,7 @@ export function PlanwiseApp() {
   return (
     <div className={`min-h-screen px-[max(16px,env(safe-area-inset-left))] ${timer ? "pb-32" : "pb-16"}`}>
       <header className="mx-auto flex h-[72px] max-w-6xl items-center gap-2">
-        <Link href="/" className={btn.ghost} aria-label="Back to GrowDaily">
-          <ArrowLeft className="h-5 w-5" />
-        </Link>
+        <HomeLink />
         <span className="flex items-center gap-2.5 text-lg font-extrabold tracking-tight sm:text-xl">
           <span className="h-3 w-3 rounded-full shadow-[0_0_0_4px_rgba(92,184,230,0.15)]" style={{ background: ACCENT }} aria-hidden />
           Planwise
