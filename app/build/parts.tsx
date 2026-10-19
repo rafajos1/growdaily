@@ -19,6 +19,9 @@ export function BuildHeader() {
         GrowDaily
       </Link>
       <nav aria-label="Build with GrowDaily" className="flex items-center gap-1 text-sm font-semibold text-muted">
+        <Link href="/learn" className="rounded-lg px-3 py-2 hover:text-fg">
+          Learn
+        </Link>
         <Link href="/build#services" className="rounded-lg px-3 py-2 hover:text-fg">
           Services
         </Link>
@@ -37,6 +40,15 @@ export function BuildFooter() {
   return (
     <footer className="mx-auto max-w-6xl border-t border-hairline py-8 text-sm text-muted">
       <div className="flex flex-wrap gap-x-6 gap-y-2">
+        <Link href="/learn" className="hover:text-fg">
+          Learn AI at work
+        </Link>
+        <Link href="/learn/what-is-an-ai-agent" className="hover:text-fg">
+          What is an AI agent?
+        </Link>
+        <Link href="/learn/ai-policy-template" className="hover:text-fg">
+          AI policy template
+        </Link>
         <Link href="/build" className="hover:text-fg">
           AI app development
         </Link>
