@@ -89,6 +89,21 @@ export default function BuildPage() {
           </div>
         </section>
 
+        <section aria-labelledby="me-heading" className="pb-20">
+          <div className="rounded-2xl border border-line bg-panel p-6 sm:p-8">
+            <p className={eyebrow}>Who you&apos;ll work with</p>
+            <h2 id="me-heading" className="mt-2 text-2xl font-extrabold tracking-tight">
+              Rafael, founder of GrowDaily
+            </h2>
+            <p className="mt-2 max-w-[62ch] text-muted">
+              25+ years leading enterprise data, analytics and AI transformation, now bringing the same practices to businesses, nonprofits and churches of every size: value first, with governance and quality built in.
+            </p>
+            <Link href="/about" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
+              More about me <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
+        </section>
+
         <HowItWorks />
         <Faqs faqs={BUILD_FAQS} />
         <IdeaSection page="/build" />

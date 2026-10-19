@@ -65,6 +65,9 @@ export function BuildFooter() {
         <Link href="/" className="hover:text-fg">
           Try the free apps
         </Link>
+        <Link href="/about" className="hover:text-fg">
+          About
+        </Link>
         <Link href="/privacy" className="hover:text-fg">
           Privacy
         </Link>
