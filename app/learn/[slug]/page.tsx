@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Lightbulb } from "lucide-react";
 import { GUIDES, guideBySlug, TOPICS, type Block, type Guide, type Service } from "../../../lib/learn";
+import { AUTHOR } from "../../../lib/author";
 import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../../lib/seo";
 import { BuildFooter, BuildHeader, btnPrimary, eyebrow } from "../../build/parts";
 import { JsonLd } from "../../components/JsonLd";
@@ -141,7 +142,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     dateModified: g.updated,
     mainEntityOfPage: `${SITE_URL}${path}`,
     image: `${SITE_URL}${ogImage(g.title, "A plain-English guide from GrowDaily")}`,
-    author: { "@type": "Organization", name: "GrowDaily", url: SITE_URL },
+    author: AUTHOR.schema,
     publisher: { "@type": "Organization", name: "GrowDaily", url: SITE_URL },
     about: topic.title,
   };
@@ -174,7 +175,11 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <article>
           <h1 className="mt-4 text-4xl font-extrabold leading-[1.08] tracking-[-0.03em] [text-wrap:balance] sm:text-5xl">{g.title}</h1>
           <p className="mt-4 text-sm text-muted">
-            Updated <time dateTime={g.updated}>{longDate(g.updated)}</time> · {minutes} min read
+            By{" "}
+            <Link href={AUTHOR.path} className="font-semibold text-soft underline-offset-2 hover:text-fg hover:underline">
+              {AUTHOR.name}
+            </Link>{" "}
+            · Updated <time dateTime={g.updated}>{longDate(g.updated)}</time> · {minutes} min read
           </p>
 
           <div className="mt-8 rounded-2xl border border-amber/30 bg-amber/[0.06] p-5 sm:p-6">
