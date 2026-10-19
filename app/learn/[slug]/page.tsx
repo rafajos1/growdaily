@@ -68,6 +68,18 @@ function BlockView({ block }: { block: Block }) {
         <span>{block.callout}</span>
       </p>
     );
+  if ("code" in block)
+    return (
+      <figure className="overflow-hidden rounded-2xl border border-line">
+        <figcaption className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-raised px-4 py-3">
+          <span className="font-mono text-sm font-semibold text-fg">{block.code.title}</span>
+          <CopyButton text={block.code.text} label="Copy code" />
+        </figcaption>
+        <pre className="max-h-[32rem] overflow-auto bg-sunken p-4 font-mono text-[13px] leading-relaxed text-soft">
+          <code>{block.code.text}</code>
+        </pre>
+      </figure>
+    );
   return (
     <figure className="overflow-hidden rounded-2xl border border-line">
       <figcaption className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-raised px-4 py-3">

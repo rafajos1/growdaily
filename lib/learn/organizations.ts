@@ -105,7 +105,7 @@ export const ORGANIZATION_GUIDES: Guide[] = [
   },
   {
     slug: "ai-for-churches",
-    topic: "organizations",
+    topic: "churches",
     title: "How churches can use AI wisely",
     seoTitle: "AI for Churches: How to Use It Wisely (Plus a Policy Start)",
     description: "How churches can use AI wisely: communications, admin, newcomer questions and volunteer scheduling, where to draw lines on preaching and pastoral care, and why every church needs an AI policy.",
@@ -142,7 +142,7 @@ export const ORGANIZATION_GUIDES: Guide[] = [
       {
         heading: "Why every church needs an AI policy",
         blocks: [
-          "Surveys in 2026 found church leaders using AI widely but only a small minority of churches with written AI guidelines, even though most pastors say they need one. Start with our free AI policy template and add a section on preaching and pastoral care.",
+          "Surveys in 2026 found church leaders using AI widely but only a small minority of churches with written AI guidelines, even though most pastors say they need one. Our free church AI policy template covers preaching, pastoral care and prayer requests.",
         ],
       },
     ],
@@ -150,7 +150,7 @@ export const ORGANIZATION_GUIDES: Guide[] = [
       { q: "Is it wrong for pastors to use AI for sermons?", a: "Christians disagree on the details. Many leaders are comfortable using AI for research and organization, but believe the message itself should be the pastor's own, prayed over and written by them." },
       { q: "Can a church website have an AI assistant?", a: "Yes. It can answer newcomer questions about service times, kids' programs and what to expect, written in the church's voice with clear guardrails, and point people to a real person for anything pastoral." },
     ],
-    related: ["ai-policy-template", "ai-agent-examples", "how-to-train-your-team-on-ai", "is-it-safe-to-put-business-data-in-ai"],
+    related: ["church-ai-policy-template", "how-to-build-a-church-chatbot-with-claude", "should-pastors-use-ai-for-sermons", "ai-agent-examples"],
     service: "ai-training",
     published: D,
     updated: D,
