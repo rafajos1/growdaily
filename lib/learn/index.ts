@@ -11,7 +11,7 @@ export const GUIDES: Guide[] = [...AGENT_GUIDES, ...WORKPLACE_GUIDES, ...CHURCH_
 export const TOPICS: { id: TopicId; title: string; blurb: string }[] = [
   { id: "agents", title: "AI agents", blurb: "What agents are, real examples, MCP, and how to start safely." },
   { id: "workplace", title: "Using AI at work", blurb: "Everyday uses, prompts, policies, training and data safety." },
-  { id: "churches", title: "Churches & ministries", blurb: "Church AI policies, sermon prep, and building a chatbot for your church website." },
+  { id: "churches", title: "Churches & ministries", blurb: "Reaching and welcoming new people, church AI policies, sermon prep, and a chatbot for your website." },
   { id: "organizations", title: "For your organization", blurb: "Where to start as a small business or nonprofit." },
 ];
 

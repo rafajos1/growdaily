@@ -112,6 +112,128 @@ We review this policy every [6–12 months] because AI tools change quickly.`;
 
 export const CHURCH_GUIDES: Guide[] = [
   {
+    slug: "how-to-use-ai-to-grow-your-church",
+    topic: "churches",
+    title: "How to use AI to grow your church (without losing the heart of it)",
+    seoTitle: "How to Use AI to Grow Your Church: A Practical Guide",
+    description: "Practical, honest ways churches use AI to reach and welcome new people: a clearer website, answering questions at any hour, faster newcomer follow-up and easier connection, plus what not to automate.",
+    shortAnswer:
+      "AI won't grow a church on its own, but it can remove the friction that keeps newcomers away: a website that answers real questions, a reply at midnight, a personal follow-up within days, and an easy next step. Use it to give your people more time for people, and keep relationships, prayer and pastoral care human.",
+    sections: [
+      {
+        heading: "Why this matters now",
+        blocks: [
+          "Barna's 2025 State of the Church research found Gen Z and Millennial churchgoers attending more often than any other generation, roughly doubling since 2020. Many of these people look a church up online before they ever walk in, and many have questions they would rather type than ask out loud.",
+          "People are also already asking AI about faith. In 2026 research from Barna and Gloo, nearly one in three U.S. adults said spiritual advice from AI is as trustworthy as advice from a pastor, rising to about two in five among Gen Z and Millennials. That's a reason for churches to show up with clear, honest answers of their own.",
+          { callout: "Growth here means people finding a welcoming church and taking a next step toward faith and community. AI helps with the logistics so your people have more time for the relationships." },
+        ],
+      },
+      {
+        heading: "1. Make your church easy to find and understand",
+        blocks: [
+          "Most first impressions happen on a phone. Use AI to review and rewrite your website for someone who has never been to church:",
+          {
+            list: [
+              "A \"Plan your visit\" page: service times, parking, what to wear, what happens in a service, and what's there for kids.",
+              "Plain words instead of insider terms. Ask AI to flag church jargon a newcomer wouldn't understand.",
+              "Up-to-date details everywhere people search, including your Google Business Profile: address, service times, photos and website.",
+              "Short, clear answers to common questions. Search engines and AI assistants both summarize websites, and clear facts are easier to find and quote correctly.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "2. Answer questions at any hour",
+        blocks: [
+          "Plenty of people won't call the church office, but they will type a question late at night. A website assistant can answer \"Is there something for my kids?\" or \"What do you believe about...?\" in your church's voice, and point people to a real person for anything personal.",
+          "Build it with guardrails: answers grounded in your beliefs and information, honesty when Christians disagree, crisis resources like the 988 Lifeline, and no collecting of personal details. Our step-by-step chatbot guide includes a ready-to-copy set of instructions.",
+        ],
+      },
+      {
+        heading: "3. Follow up with newcomers quickly and personally",
+        blocks: [
+          "Follow-up is where many first visits are won or lost, and it's where busy teams fall behind. AI can do the drafting and reminding; people do the relating.",
+          {
+            steps: [
+              { title: "Collect a simple connection card", text: "Name, best way to reach them, and what they'd like (\"I have a question\", \"Tell me about groups\", \"Prayer\")." },
+              { title: "Draft a personal note", text: "Use AI to draft a warm text or email from a named person, mentioning what they asked about. A real person reads, edits and sends it, within a couple of days." },
+              { title: "Offer one easy next step", text: "Coffee with a pastor, a newcomers' lunch, or a small group that fits their stage of life. One clear invitation, never pressure." },
+              { title: "Set reminders", text: "Use your church software or a simple workflow to remind the right person to check in again a few weeks later." },
+            ],
+          },
+          "Keep prayer requests and personal details out of general AI tools unless the tool is approved for that information. Our church AI policy template covers this.",
+        ],
+      },
+      {
+        heading: "4. Help people get connected and stay",
+        blocks: [
+          {
+            list: [
+              "Small groups: turn the pastor's sermon notes into discussion questions, written and checked by staff.",
+              "Volunteering: match people to serving roles from their interests and availability, and send friendly schedules and reminders.",
+              "Multilingual welcome: draft translations of key pages and announcements, then have a fluent speaker check them.",
+              "Care for people who drift: a gentle reminder to the right leader when someone hasn't been around for a while, so a person can reach out.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "5. Share what's happening, consistently",
+        blocks: [
+          "Small teams struggle to keep social media and newsletters going. AI can turn a week's notes into a newsletter draft, a few social posts and an event description in minutes. Keep a person in charge of the final words, and use real photos and real stories shared with permission.",
+          {
+            template: {
+              title: "Prompts to try this week",
+              text: `1. Website review
+"Here is our church's homepage text: [paste]. Read it as someone who has never been to church. List anything confusing, any insider words, and the questions they would still have. Then suggest a clearer version."
+
+2. Plan-your-visit page
+"Write a friendly 'Plan your visit' page for [church name] in [city]. Services: [times]. Parking: [details]. Kids: [details]. Dress: [casual/etc.]. Keep it warm, plain and under 300 words."
+
+3. Newcomer follow-up
+"Draft a short, warm text from [your name] at [church name] to [first name], who visited Sunday and asked about [topic]. Offer [one next step]. No pressure, under 60 words."
+
+4. Small-group questions
+"Here are this week's sermon notes: [paste]. Write 6 discussion questions for a small group, from easy to deeper, plus one practical question for the week ahead."
+
+5. Weekly newsletter
+"Turn these notes into a friendly weekly email with a short opening, 3 to 4 items with dates, and one warm invitation: [paste notes]."`,
+            },
+          },
+        ],
+      },
+      {
+        heading: "What not to automate",
+        blocks: [
+          {
+            list: [
+              "Pretending to be human. Say clearly when people are talking to an AI assistant.",
+              "Pastoral care, counseling and prayer. These stay with people.",
+              "Invented stories or testimonies. Only share real ones, with permission.",
+              "Pressure. Automated sequences that nag people work against the welcome you want to offer.",
+              "Measuring the wrong thing. Page views matter less than how many newcomers come back and get connected.",
+            ],
+          },
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Can AI really help a church grow?", a: "Not by itself. People stay because of real welcome and community. AI helps by removing friction: clearer information, faster replies and consistent follow-up, so your people have more time for the relationships that matter." },
+      { q: "What should a small church with no staff do first?", a: "Rewrite your website's 'Plan your visit' information for a first-time guest, make sure your Google Business Profile is accurate, and use AI to draft newcomer follow-up notes that a volunteer personalizes and sends." },
+      { q: "Is it okay for a church to use AI in outreach?", a: "Many church leaders are comfortable using it for communication and logistics while keeping teaching, prayer and pastoral care personal. Be open with your congregation about how you use it, and put it in a short AI policy." },
+      { q: "Should our church website have an AI chatbot?", a: "It can help if it's built carefully: grounded in your church's information and beliefs, honest about being AI, and quick to point people to a real person. Start small and test it with hard questions first." },
+    ],
+    related: ["how-to-build-a-church-chatbot-with-claude", "church-ai-policy-template", "ai-for-churches", "how-to-write-ai-prompts"],
+    service: "ai-consulting",
+    published: D,
+    updated: D,
+    sources: [
+      { label: "Barna: young adults lead a resurgence in church attendance (State of the Church 2025)", url: "https://access.barna.com/articles/young-adults-lead-resurgence-in-church-attendance" },
+      { label: "Barna and Gloo: AI is becoming a spiritual authority in Americans' lives (2026)", url: "https://www.businesswire.com/news/home/20260219270610/en/ai-is-becoming-a-spiritual-authority-in-americans%e2%80%99-lives-new-research-reveals/" },
+      { label: "Google: add or claim your Business Profile", url: "https://support.google.com/business/answer/2911778" },
+    ],
+  },
+  {
     slug: "how-to-build-a-church-chatbot-with-claude",
     topic: "churches",
     title: "How to build an AI chatbot for your church website (with Claude)",
@@ -203,7 +325,7 @@ export const CHURCH_GUIDES: Guide[] = [
       { q: "Is it safe for people in crisis to use a church chatbot?", a: "Only with clear crisis instructions: it should stop and point people to 988 (in the U.S.), emergency services and your pastor, and never try to counsel." },
       { q: "Do we need a developer?", a: "A no-code staff assistant needs none. A public website chatbot needs someone comfortable with a small server function. A volunteer developer, or us, can set it up." },
     ],
-    related: ["church-ai-policy-template", "ai-for-churches", "should-pastors-use-ai-for-sermons", "how-to-write-ai-prompts"],
+    related: ["how-to-use-ai-to-grow-your-church", "church-ai-policy-template", "ai-for-churches", "should-pastors-use-ai-for-sermons"],
     service: "build",
     published: D,
     updated: D,
