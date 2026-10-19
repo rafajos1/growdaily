@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
-import { ArrowLeft, Check, ChefHat, ChevronDown, Church, Clock, Copy, Heart, Info, Plus, ShoppingBasket, Sparkles, UserPlus, Users, X } from "lucide-react";
+import { Check, ChefHat, ChevronDown, Church, Clock, Copy, Heart, Info, Plus, ShoppingBasket, Sparkles, UserPlus, Users, X } from "lucide-react";
+import { HomeLink } from "../../components/HomeLink";
 import { localISO, markDone } from "../../../lib/journey";
 import { graceFor } from "../../../lib/mealwise/grace";
 import { FaithPanel } from "../../components/FaithPanel";
@@ -188,9 +188,7 @@ export function MealwiseApp() {
       {/* Wraps onto two lines on narrow phones, where the tabs and Faith toggle don't fit beside the name. */}
       <header className="mx-auto flex min-h-[72px] max-w-6xl flex-wrap items-center justify-between gap-2 py-3 sm:py-0">
         <div className="flex items-center gap-1 sm:gap-3">
-          <Link href="/" className={btn.ghost} aria-label="Back to GrowDaily">
-            <ArrowLeft className="h-5 w-5" />
-          </Link>
+          <HomeLink />
           <span className="flex items-center gap-2.5 text-lg font-extrabold tracking-tight sm:text-xl">
             <span className="h-3 w-3 rounded-full shadow-[0_0_0_4px_rgba(239,127,168,0.15)]" style={{ background: ACCENT }} aria-hidden />
             Mealwise

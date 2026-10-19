@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useRef, useState, type FormEvent } from "react";
 import { ArrowLeft, ChevronDown, ExternalLink, LocateFixed, MapPin, MessageCircleQuestion, Navigation, Search } from "lucide-react";
+import { HomeLink } from "../../components/HomeLink";
 import { SearchError, searchChurches, type Attempt } from "../../../lib/faith/churchSearch";
 import { directionsUrl, RADII_MILES, type Church } from "../../../lib/faith/churches";
 import { FIRST_VISIT } from "../../../lib/faith/firstVisit";
@@ -67,12 +68,13 @@ export function ChurchApp() {
 
   return (
     <div className="px-[max(16px,env(safe-area-inset-left))]">
-      <header className="mx-auto flex h-20 max-w-3xl items-center">
+      <header className="mx-auto flex h-20 max-w-3xl items-center justify-between">
         <Link href="/faith" className="flex items-center gap-2.5 text-lg font-extrabold tracking-tight">
           <ArrowLeft className="h-5 w-5 text-muted" aria-hidden />
           <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
           Faith
         </Link>
+        <HomeLink />
       </header>
 
       <main className="mx-auto max-w-3xl pb-24">
