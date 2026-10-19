@@ -21,5 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/build", 0.8),
     ...SERVICE_PAGES.map((p) => page(`/build/${p.slug}`, 0.7)),
     ...AUDIENCES.map((a) => page(`/build/${a.slug}`, 0.7)),
+    page("/privacy", 0.2),
   ];
 }

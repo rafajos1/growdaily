@@ -319,7 +319,7 @@ export function HomePage() {
 
       <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 border-t border-hairline py-8 font-mono text-xs text-dim">
         <span>© {new Date().getFullYear()} GrowDaily</span>
-        <span>Public beta · Free apps · <Link href="/build" className="hover:text-fg">AI app development</Link></span>
+        <span>Public beta · Free apps · <Link href="/build" className="hover:text-fg">AI app development</Link> · <Link href="/privacy" className="hover:text-fg">Privacy</Link></span>
       </footer>
     </div>
   );

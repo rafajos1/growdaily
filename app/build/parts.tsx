@@ -65,6 +65,9 @@ export function BuildFooter() {
         <Link href="/" className="hover:text-fg">
           Try the free apps
         </Link>
+        <Link href="/privacy" className="hover:text-fg">
+          Privacy
+        </Link>
       </div>
       <p className="mt-4 font-mono text-xs text-dim">© {new Date().getFullYear()} GrowDaily</p>
     </footer>

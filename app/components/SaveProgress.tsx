@@ -266,7 +266,13 @@ function SignInSheet({ onClose }: { onClose: () => void }) {
 
   return (
     <Sheet title="Save my progress" onClose={onClose}>
-      <p className="text-sm text-soft">Your habits, plans, meals, moods and spending will save to a private copy and come back on any device. No password to remember.</p>
+      <p className="text-sm text-soft">
+        Your habits, plans, meals, moods and spending will save to a private copy and come back on any device. No password to remember.{" "}
+        {/* A plain link, opened in a new tab so the sign-in isn't lost; it's shared with the static Spendwise page, where next/link becomes a hash route. */}
+        <a href="/privacy" target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-fg">
+          Privacy
+        </a>
+      </p>
       <form onSubmit={send} className="mt-5 space-y-3">
         <label htmlFor="save-email" className="block text-sm font-semibold">
           Email
