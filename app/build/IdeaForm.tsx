@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 import { Check, Loader2, Sparkles } from "lucide-react";
 import { INTERESTS, ORG_TYPES, wantsSketch, type IdeaSketch, type Interest, type OrgType } from "../../lib/build/idea";
@@ -164,7 +165,12 @@ export function IdeaForm({ defaultOrg = "Business", defaultInterest = "Build an 
         {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : wantsSketch(interest) ? <Sparkles className="h-4 w-4" aria-hidden /> : null}
         {busy ? (wantsSketch(interest) ? "Sketching your idea…" : "Sending…") : wantsSketch(interest) ? "Ask for a quote and see a sketch" : "Ask for a quote"}
       </button>
-      <p className="text-xs text-dim">Free, no obligation. We only use your details to reply to you.</p>
+      <p className="text-xs text-dim">
+        Free, no obligation. We only use your details to reply to you.{" "}
+        <Link href="/privacy" className="underline underline-offset-2 hover:text-fg">
+          Privacy
+        </Link>
+      </p>
     </form>
   );
 }
