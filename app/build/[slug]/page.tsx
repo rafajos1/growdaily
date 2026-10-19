@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
+import { guideBySlug } from "../../../lib/learn";
 import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../../lib/seo";
 import type { OrgType } from "../../../lib/build/idea";
 import { JsonLd } from "../../components/JsonLd";
@@ -8,6 +10,13 @@ import { AUDIENCES, audienceBySlug, caseByName, type AudienceSlug } from "../con
 import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection, ServicesSection } from "../parts";
 
 export const dynamicParams = false;
+
+/** Free Learn guides worth reading before a call, per audience. */
+const GUIDES: Record<AudienceSlug, string[]> = {
+  churches: ["how-to-build-a-church-chatbot-with-claude", "church-ai-policy-template", "should-pastors-use-ai-for-sermons"],
+  businesses: ["ai-for-small-business", "what-is-an-ai-agent", "ai-implementation-plan"],
+  nonprofits: ["ai-for-nonprofits", "ai-policy-template", "how-to-train-your-team-on-ai"],
+};
 
 export function generateStaticParams() {
   return AUDIENCES.map((a) => ({ slug: a.slug }));
@@ -90,6 +99,26 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
               <CaseCard key={name} c={caseByName(name)} />
             ))}
           </div>
+        </section>
+
+        <section aria-labelledby="guides-heading" className="pb-20">
+          <p className={eyebrow}>Free guides</p>
+          <h2 id="guides-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
+            Prefer to start on your own?
+          </h2>
+          <ul className="mt-6 grid gap-3 md:grid-cols-3">
+            {GUIDES[a.slug].map((slug) => {
+              const g = guideBySlug(slug)!;
+              return (
+                <li key={slug}>
+                  <Link href={`/learn/${slug}`} className="group flex h-full items-start justify-between gap-4 rounded-2xl border border-line bg-panel p-5 transition hover:border-[#35507a]">
+                    <span className="font-bold">{g.title}</span>
+                    <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:text-amber" aria-hidden />
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </section>
 
         <ServicesSection heading={`How we help ${a.label.toLowerCase()}`} />

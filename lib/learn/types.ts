@@ -5,9 +5,10 @@ export type Block =
   | { list: string[] }
   | { steps: { title: string; text: string }[] }
   | { template: { title: string; text: string } }
+  | { code: { title: string; text: string } }
   | { callout: string };
 
-export type TopicId = "agents" | "workplace" | "organizations";
+export type TopicId = "agents" | "workplace" | "churches" | "organizations";
 
 export type Service = "ai-training" | "ai-consulting" | "build";
 
