@@ -235,6 +235,13 @@ export function ChurchApp() {
           </a>
           . Listings can be incomplete or out of date. GrowDaily isn&apos;t affiliated with any church.
         </p>
+        <p className="mt-3 text-xs text-dim">
+          Church leader?{" "}
+          <Link href="/learn/how-to-use-ai-to-grow-your-church" className="underline underline-offset-2 hover:text-fg">
+            Free guide: how to use AI to welcome new people
+          </Link>
+          .
+        </p>
       </main>
     </div>
   );

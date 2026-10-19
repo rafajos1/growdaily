@@ -35,13 +35,44 @@ function wordsIn(g: Guide): number {
   return text.split(/\s+/).length;
 }
 
+/** Renders text with inline [label](href) links: internal paths stay in the site, others open in a new tab. */
+function Rich({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\([^)\s]+\))/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        const m = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
+        if (!m) return part;
+        const [, label, href] = m;
+        const cls = "font-semibold text-amber underline-offset-2 hover:underline";
+        return href.startsWith("/") ? (
+          <Link key={i} href={href} className={cls}>
+            {label}
+          </Link>
+        ) : (
+          <a key={i} href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+            {label}
+          </a>
+        );
+      })}
+    </>
+  );
+}
+
 function BlockView({ block }: { block: Block }) {
-  if (typeof block === "string") return <p>{block}</p>;
+  if (typeof block === "string")
+    return (
+      <p>
+        <Rich text={block} />
+      </p>
+    );
   if ("list" in block)
     return (
       <ul className="list-disc space-y-2 pl-5 marker:text-amber">
         {block.list.map((item) => (
-          <li key={item}>{item}</li>
+          <li key={item}>
+            <Rich text={item} />
+          </li>
         ))}
       </ul>
     );
@@ -55,7 +86,7 @@ function BlockView({ block }: { block: Block }) {
             </span>
             <span>
               <strong className="block text-fg">{step.title}</strong>
-              {step.text}
+              <Rich text={step.text} />
             </span>
           </li>
         ))}
@@ -65,7 +96,9 @@ function BlockView({ block }: { block: Block }) {
     return (
       <p className="flex gap-3 rounded-xl border border-amber/30 bg-amber/[0.06] p-4">
         <Lightbulb className="mt-1 h-4 w-4 shrink-0 text-amber" aria-hidden />
-        <span>{block.callout}</span>
+        <span>
+          <Rich text={block.callout} />
+        </span>
       </p>
     );
   if ("code" in block)

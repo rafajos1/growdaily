@@ -137,6 +137,7 @@ export const CHURCH_GUIDES: Guide[] = [
               "A \"Plan your visit\" page: service times, parking, what to wear, what happens in a service, and what's there for kids.",
               "Plain words instead of insider terms. Ask AI to flag church jargon a newcomer wouldn't understand.",
               "Up-to-date details everywhere people search, including your Google Business Profile: address, service times, photos and website.",
+              "Your listing on OpenStreetMap, the open map data that some map apps and church finders use, including our [Find a church](/faith/church) tool. Check that your church's name, address and website are right.",
               "Short, clear answers to common questions. Search engines and AI assistants both summarize websites, and clear facts are easier to find and quote correctly.",
             ],
           },
@@ -146,7 +147,7 @@ export const CHURCH_GUIDES: Guide[] = [
         heading: "2. Answer questions at any hour",
         blocks: [
           "Plenty of people won't call the church office, but they will type a question late at night. A website assistant can answer \"Is there something for my kids?\" or \"What do you believe about...?\" in your church's voice, and point people to a real person for anything personal.",
-          "Build it with guardrails: answers grounded in your beliefs and information, honesty when Christians disagree, crisis resources like the 988 Lifeline, and no collecting of personal details. Our step-by-step chatbot guide includes a ready-to-copy set of instructions.",
+          "Build it with guardrails: answers grounded in your beliefs and information, honesty when Christians disagree, crisis resources like the 988 Lifeline, and no collecting of personal details. Our [step-by-step church chatbot guide](/learn/how-to-build-a-church-chatbot-with-claude) includes a ready-to-copy set of instructions, and you can try [Ask](/faith/ask) to see an assistant like this in action.",
         ],
       },
       {
@@ -161,7 +162,7 @@ export const CHURCH_GUIDES: Guide[] = [
               { title: "Set reminders", text: "Use your church software or a simple workflow to remind the right person to check in again a few weeks later." },
             ],
           },
-          "Keep prayer requests and personal details out of general AI tools unless the tool is approved for that information. Our church AI policy template covers this.",
+          "Keep prayer requests and personal details out of general AI tools unless the tool is approved for that information. Our [church AI policy template](/learn/church-ai-policy-template) covers this.",
         ],
       },
       {
@@ -169,7 +170,7 @@ export const CHURCH_GUIDES: Guide[] = [
         blocks: [
           {
             list: [
-              "Small groups: turn the pastor's sermon notes into discussion questions, written and checked by staff.",
+              "Small groups: turn the pastor's sermon notes into discussion questions, written and checked by staff. More in our guide to [AI and sermon prep](/learn/should-pastors-use-ai-for-sermons).",
               "Volunteering: match people to serving roles from their interests and availability, and send friendly schedules and reminders.",
               "Multilingual welcome: draft translations of key pages and announcements, then have a fluent speaker check them.",
               "Care for people who drift: a gentle reminder to the right leader when someone hasn't been around for a while, so a person can reach out.",
@@ -252,7 +253,7 @@ export const CHURCH_GUIDES: Guide[] = [
               "Shouldn't: counsel, take prayer requests or personal details, pretend to be a pastor, or guess at facts it wasn't given.",
             ],
           },
-          { callout: "See a working example: our free Ask tool answers questions about God with real Bible references, a gentle next step, and crisis guardrails. It's built the way this guide describes." },
+          { callout: "See a working example: try our free [Ask tool](/faith/ask). It answers questions about God with real Bible references, a gentle next step and crisis guardrails, built the way this guide describes. Ask it something hard and see how it responds." },
         ],
       },
       {
@@ -279,7 +280,7 @@ export const CHURCH_GUIDES: Guide[] = [
       {
         heading: "Free system prompt template",
         blocks: [
-          "Fill in the brackets with your church's details. Keep beliefs to a short summary of your statement of faith; the more specific your information, the better the answers.",
+          "Fill in the brackets with your church's details. Keep beliefs to a short summary of your statement of faith; the more specific your information, the better the answers. For more on writing instructions, see [how to write AI prompts](/learn/how-to-write-ai-prompts).",
           { template: { title: "Church chatbot instructions", text: CHATBOT_PROMPT } },
         ],
       },
@@ -310,6 +311,7 @@ export const CHURCH_GUIDES: Guide[] = [
               "Unknowns: ask about something you didn't include. It should say it isn't sure and share contact details.",
             ],
           },
+          "Want a benchmark? Put the faith, crisis and trick questions to [Ask](/faith/ask) and compare its answers with yours.",
         ],
       },
       {
@@ -350,6 +352,7 @@ export const CHURCH_GUIDES: Guide[] = [
         blocks: [
           "Churches hold some of the most sensitive information there is: confessions, prayer requests, family crises, children's details. And many church leaders say their top AI concern is the integrity of the message. A general workplace policy doesn't cover those, so this template adds them.",
           "Surveys in 2026 found that most church leaders already use AI, but only a small minority of churches have written guidelines.",
+          "Planning a chatbot for your church website? The template includes rules for it, and our [church chatbot guide](/learn/how-to-build-a-church-chatbot-with-claude) shows how to build one safely.",
         ],
       },
       {
@@ -425,7 +428,7 @@ export const CHURCH_GUIDES: Guide[] = [
       {
         heading: "Being honest with your congregation",
         blocks: [
-          "Trust is the point. If you use AI in preparation, a simple explanation of how, and how not, helps people trust both you and the message. Put your approach in your church's AI policy.",
+          "Trust is the point. If you use AI in preparation, a simple explanation of how, and how not, helps people trust both you and the message. Put your approach in your church's AI policy; our free [church AI policy template](/learn/church-ai-policy-template) has a section for preaching.",
         ],
       },
     ],
@@ -433,7 +436,7 @@ export const CHURCH_GUIDES: Guide[] = [
       { q: "Is using AI for sermons plagiarism?", a: "Preaching AI-written content as your own raises the same honesty concerns as preaching someone else's sermon. Using AI for research or editing, then writing the message yourself, is closer to using a commentary or an editor." },
       { q: "Can AI help with Bible study?", a: "It can suggest context, cross-references and questions, but verify facts and interpretations against trusted sources. It can make mistakes, including misquoting Scripture." },
     ],
-    related: ["church-ai-policy-template", "ai-for-churches", "how-to-build-a-church-chatbot-with-claude"],
+    related: ["church-ai-policy-template", "ai-for-churches", "how-to-build-a-church-chatbot-with-claude", "how-to-use-ai-to-grow-your-church"],
     service: "ai-training",
     published: D,
     updated: D,

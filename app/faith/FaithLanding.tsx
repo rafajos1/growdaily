@@ -138,6 +138,13 @@ export function FaithLanding() {
         </section>
 
         <p className="mt-10 font-mono text-xs text-dim">GrowDaily is independent and isn&apos;t affiliated with any church.</p>
+        <p className="mt-3 text-xs text-dim">
+          Church leader?{" "}
+          <Link href="/learn#churches" className="underline underline-offset-2 hover:text-fg">
+            Free guides to using AI in your church
+          </Link>
+          .
+        </p>
       </main>
     </div>
   );
