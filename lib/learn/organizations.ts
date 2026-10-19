@@ -150,7 +150,7 @@ export const ORGANIZATION_GUIDES: Guide[] = [
       { q: "Is it wrong for pastors to use AI for sermons?", a: "Christians disagree on the details. Many leaders are comfortable using AI for research and organization, but believe the message itself should be the pastor's own, prayed over and written by them." },
       { q: "Can a church website have an AI assistant?", a: "Yes. It can answer newcomer questions about service times, kids' programs and what to expect, written in the church's voice with clear guardrails, and point people to a real person for anything pastoral." },
     ],
-    related: ["church-ai-policy-template", "how-to-build-a-church-chatbot-with-claude", "should-pastors-use-ai-for-sermons", "ai-agent-examples"],
+    related: ["church-ai-policy-template", "how-to-build-a-church-chatbot-with-claude", "should-pastors-use-ai-for-sermons", "how-to-use-ai-to-grow-your-church"],
     service: "ai-training",
     published: D,
     updated: D,

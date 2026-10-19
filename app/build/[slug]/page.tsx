@@ -13,7 +13,7 @@ export const dynamicParams = false;
 
 /** Free Learn guides worth reading before a call, per audience. */
 const GUIDES: Record<AudienceSlug, string[]> = {
-  churches: ["how-to-build-a-church-chatbot-with-claude", "church-ai-policy-template", "should-pastors-use-ai-for-sermons"],
+  churches: ["how-to-use-ai-to-grow-your-church", "how-to-build-a-church-chatbot-with-claude", "church-ai-policy-template"],
   businesses: ["ai-for-small-business", "what-is-an-ai-agent", "ai-implementation-plan"],
   nonprofits: ["ai-for-nonprofits", "ai-policy-template", "how-to-train-your-team-on-ai"],
 };
