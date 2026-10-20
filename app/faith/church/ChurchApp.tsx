@@ -5,7 +5,7 @@ import { useMemo, useRef, useState, type FormEvent } from "react";
 import { ArrowLeft, ChevronDown, ExternalLink, LocateFixed, MapPin, MessageCircleQuestion, Navigation, Search } from "lucide-react";
 import { HomeLink } from "../../components/HomeLink";
 import { SearchError, searchChurches, type Attempt } from "../../../lib/faith/churchSearch";
-import { directionsUrl, RADII_MILES, type Church } from "../../../lib/faith/churches";
+import { appleDirectionsUrl, directionsUrl, RADII_MILES, type Church } from "../../../lib/faith/churches";
 import { FIRST_VISIT } from "../../../lib/faith/firstVisit";
 
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
@@ -19,11 +19,19 @@ type State =
   | { kind: "error"; message: string; details?: Attempt[] };
 
 
+/** Both maps apps, so people can open directions in the one they use. */
+const MAPS = [
+  { name: "Apple Maps", url: appleDirectionsUrl },
+  { name: "Google Maps", url: directionsUrl },
+];
+
 export function ChurchApp() {
   const [place, setPlace] = useState("");
   const [miles, setMiles] = useState<number>(10);
   const [state, setState] = useState<State>({ kind: "idle" });
   const [filter, setFilter] = useState("Any");
+  // Results only appear after a search, so reading the browser here can't cause a hydration mismatch.
+  const [appleFirst] = useState(() => typeof navigator !== "undefined" && /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent));
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const search = async (where: { place: string } | { lat: number; lon: number }) => {
@@ -186,9 +194,11 @@ export function ChurchApp() {
                           <span className="shrink-0 font-mono text-sm text-amber">{c.miles < 0.1 ? "<0.1" : c.miles} mi</span>
                         </div>
                         <div className="mt-3 flex flex-wrap gap-2">
-                          <a href={directionsUrl(c)} target="_blank" rel="noopener noreferrer" className={`${btnSecondary} px-3 py-2`}>
-                            <Navigation className="h-4 w-4" aria-hidden /> Directions
-                          </a>
+                          {(appleFirst ? MAPS : [...MAPS].reverse()).map((m) => (
+                            <a key={m.name} href={m.url(c)} target="_blank" rel="noopener noreferrer" aria-label={`Directions to ${c.name} in ${m.name}`} className={`${btnSecondary} px-3 py-2`}>
+                              <Navigation className="h-4 w-4" aria-hidden /> {m.name}
+                            </a>
+                          ))}
                           {c.website && (
                             <a href={c.website} target="_blank" rel="noopener noreferrer nofollow" className={`${btnSecondary} px-3 py-2`}>
                               <ExternalLink className="h-4 w-4" aria-hidden /> Website

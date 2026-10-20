@@ -247,7 +247,12 @@ export function normalizeChurches(json: unknown, originLat: number, originLon: n
   return out.sort((a, b) => a.miles - b.miles).slice(0, MAX_RESULTS);
 }
 
-/** Directions from wherever the person is, in their maps app. */
+/** Directions from wherever the person is, in Google Maps. */
 export function directionsUrl(c: Pick<Church, "lat" | "lon">): string {
   return `https://www.google.com/maps/dir/?api=1&destination=${c.lat.toFixed(6)},${c.lon.toFixed(6)}`;
+}
+
+/** Directions from wherever the person is, in Apple Maps (opens the app on Apple devices). */
+export function appleDirectionsUrl(c: Pick<Church, "lat" | "lon">): string {
+  return `https://maps.apple.com/?daddr=${c.lat.toFixed(6)},${c.lon.toFixed(6)}`;
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { boundingBox, denominationLabel, directionsUrl, isProtestantOrCatholic, milesBetween, normalizeChurches, normalizePlaces, overpassQuery, parseGeocode, placeSearchUrls } from "./churches";
+import { appleDirectionsUrl, boundingBox, denominationLabel, directionsUrl, isProtestantOrCatholic, milesBetween, normalizeChurches, normalizePlaces, overpassQuery, parseGeocode, placeSearchUrls } from "./churches";
 
 // Around downtown Nashville.
 const LAT = 36.1627;
@@ -65,6 +65,7 @@ describe("normalizeChurches", () => {
 
   it("links to directions", () => {
     expect(directionsUrl({ lat: 36.17, lon: -86.78 })).toBe("https://www.google.com/maps/dir/?api=1&destination=36.170000,-86.780000");
+    expect(appleDirectionsUrl({ lat: 36.17, lon: -86.78 })).toBe("https://maps.apple.com/?daddr=36.170000,-86.780000");
   });
 });
 
