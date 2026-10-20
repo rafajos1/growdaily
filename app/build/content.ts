@@ -85,6 +85,14 @@ export const CASES: CaseStudy[] = [
     forYou: "Recommenders that match your products, menu or services to what a customer has and needs.",
   },
   {
+    name: "Cafewise",
+    href: "/apps/cafewise",
+    color: "#d9965b",
+    problem: "Cafés run out of oat milk on busy Saturdays and throw away pastries on slow Tuesdays, and few owners know what each drink really costs.",
+    ai: "Turns quick stock counts into an order list and reviews four weeks of use and waste to suggest better par levels.",
+    forYou: "Ordering, costing and stock tools for your business, connected to the systems you already use.",
+  },
+  {
     name: "Moodwise",
     href: "/apps/moodwise",
     color: "#b48cf2",
@@ -164,7 +172,7 @@ export const AUDIENCES: Audience[] = [
       { title: "Intake that sorts itself", text: "Messy emails and forms become organized requests with the next step, like Planwise does for a to-do list." },
       { title: "\"What's right for me?\" recommender", text: "Matches customers to the right product, menu item or service, like Mealwise matches meals to a fridge." },
     ],
-    demos: ["Planwise", "Mealwise", "Spendwise"],
+    demos: ["Cafewise", "Planwise", "Spendwise"],
     faqs: [
       { q: "Will it make things up about my business?", a: "It answers from information you give it, says when it doesn't know, and hands off to you. We test it with real customer questions before launch." },
       { q: "Do I need to change my website?", a: "No. The app can live on its own page or as a small box on your current site." },

@@ -161,4 +161,115 @@ export const ORGANIZATION_GUIDES: Guide[] = [
       { label: "Exponential: your church needs an AI policy", url: "https://exponential.org/your-church-needs-an-ai-policy-and-heres-how-to-start/" },
     ],
   },
+  {
+    slug: "coffee-shop-inventory-management",
+    topic: "organizations",
+    title: "Coffee shop inventory: par levels, ordering and what each drink costs",
+    seoTitle: "Coffee Shop Inventory: Par Levels, Ordering & Drink Costs",
+    description: "A practical guide to coffee shop inventory: how often to count, how to set par levels, how to cost a latte, how to cut waste, and a free app that does the math.",
+    shortAnswer:
+      "Count perishables like milk and pastries at every delivery and dry goods weekly, set a par level for each item (enough to last until the next delivery plus a buffer), and order the difference. Then cost each drink from what you pay for every ingredient, cup and lid, so you know your margin.",
+    sections: [
+      {
+        heading: "Why inventory is hard in a café",
+        blocks: [
+          "Coffee shops juggle perishables that spoil in days, like milk and pastries, alongside fast-moving supplies like beans, cups and lids. Without a simple routine, you either run out at the worst moment or throw money away. Many single-location cafés manage with paper or a spreadsheet, but it takes time every week, and the math is easy to get wrong, such as buying milk by the gallon but using it by the ounce.",
+        ],
+      },
+      {
+        heading: "How often to count",
+        blocks: [
+          {
+            list: [
+              "Milk, alternative milks and pastries: at each delivery and at close. They move fast and spoil.",
+              "Beans, syrups and other bar items: weekly.",
+              "Cups, lids, sleeves and other paper goods: weekly or every other week.",
+            ],
+          },
+          "Count in the unit you buy (gallons, cartons, bags, cases), so the count turns straight into an order.",
+        ],
+      },
+      {
+        heading: "How to set par levels",
+        blocks: [
+          "A par level is how much of an item you want on hand right after a delivery. When you count, you order the difference between par and what's left.",
+          {
+            steps: [
+              { title: "Find your daily use", text: "Compare two counts and add what was delivered in between: used = before + delivered − after. Divide by the days in between." },
+              { title: "Cover until the next delivery", text: "Multiply daily use by the days until your next delivery. Many cafés get milk several times a week, so that's often about 3 days." },
+              { title: "Add a buffer", text: "Add about 25% for busy days. For example, 4 gallons a day × 3 days × 1.25 = a par of 15 gallons." },
+              { title: "Adjust by day", text: "If you run out every Saturday, raise the order before the weekend. If pastries are left over on Tuesdays, order fewer that day." },
+            ],
+          },
+          { callout: "These are rules of thumb, not fixed rules. Your counts over a few weeks are the best guide." },
+        ],
+      },
+      {
+        heading: "How to work out what a latte costs",
+        blocks: [
+          "Add up everything that goes into the drink, using what you actually pay:",
+          {
+            list: [
+              "Espresso: price per bag ÷ grams in the bag × your dose. A $55 five-pound bag (2,268 g) at 18 g is about $0.44.",
+              "Milk: price per gallon ÷ 128 oz × ounces used. $4.50 a gallon at 10 oz is about $0.35.",
+              "Cup, lid and sleeve: case price ÷ count per case. They often add $0.10 to $0.20.",
+            ],
+          },
+          "In this example, a 12 oz latte costs about $0.93 to make. At $4.75 that's about 20% of the price. A common rule of thumb is to keep ingredient costs around 30 to 35% of sales, but remember rent and wages come on top. Alternative milks can push a drink well over that, so check them separately.",
+        ],
+      },
+      {
+        heading: "Cut waste without running out",
+        blocks: [
+          {
+            list: [
+              "Log what you throw away and why: unsold, expired or spilled. A week of notes usually shows one or two big leaks.",
+              "Order perishables more often in smaller amounts rather than in big batches.",
+              "Match pastry orders to the day of the week, not one number for every day.",
+              "Rotate stock: first in, first out.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Try it free: Cafewise",
+        blocks: [
+          "We built [Cafewise](/apps/cafewise) to do all of the above on your phone, for free and without an account. Count with quick − and + buttons, get an order list grouped by supplier that you can text in one tap, see the cost and margin of every drink, log waste, and get an AI ordering review that spots what you keep running out of or throwing away. It opens with an example café so you can see how it works first.",
+        ],
+      },
+      {
+        heading: "Want a version built for your café?",
+        blocks: [
+          "Cafewise covers the basics for one location. GrowDaily can build a custom version around how your café works, for example:",
+          {
+            list: [
+              "Connected to your point of sale, so drink sales update stock on their own.",
+              "Several locations, with a combined order list and each shop's own pars.",
+              "Staff logins, so whoever closes can count and the owner sees it.",
+              "Supplier ordering by email, and reading prices from a photo of an invoice.",
+              "Your menu, recipes and suppliers set up for you, with training for your team.",
+            ],
+          },
+          "First versions are kept small, with a fixed price agreed after a free call, and you own what we build. [Ask for a quote](/build#idea) and tell us how you order today.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "What is a good par level for milk in a coffee shop?", a: "Enough to last until your next delivery plus a buffer for busy days, often about 25%. Work it out from your own daily use: for example, 4 gallons a day with deliveries every 3 days gives a par of about 15 gallons." },
+      { q: "How much does a latte cost to make?", a: "It depends on your prices, but a typical 12 oz latte with whole milk often costs well under a dollar in ingredients and supplies. Add up espresso, milk, cup and lid at your own prices; alternative milks cost noticeably more." },
+      { q: "Can I just use Square or Toast for inventory?", a: "Point-of-sale systems include some inventory features, and some offer more detailed add-ons. Many small cafés still find a simple count-and-order routine is what they actually need. Use whichever you'll keep up with." },
+      { q: "Is there a free coffee shop inventory app?", a: "Yes. Cafewise from GrowDaily is free with no account: stock counts, order lists from par levels, cost per drink, a waste log and an AI ordering review." },
+    ],
+    related: ["ai-for-small-business", "ai-agent-examples", "ai-implementation-plan", "how-to-write-ai-prompts"],
+    service: "build",
+    published: "2026-10-20",
+    updated: "2026-10-20",
+    sources: [
+      { label: "Toast: coffee shop inventory management guide", url: "https://pos.toasttab.com/blog/on-the-line/coffee-shop-inventory-software" },
+      { label: "Roasters: inventory management for specialty cafés", url: "https://roasters.app/business/inventory-management-for-specialty-cafes" },
+      { label: "Fresh Cup: how three coffee shops tackle inventory management", url: "https://freshcup.com/how-three-coffee-shops-tackle-inventory-management/" },
+      { label: "Intermix: what a latte really costs", url: "https://www.intermixbev.com/resources/what-a-latte-really-costs" },
+      { label: "Baristalife: café cost per cup", url: "https://baristalife.co/blogs/blog/cafe-cost-per-cup" },
+    ],
+  },
 ];

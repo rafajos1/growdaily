@@ -296,6 +296,7 @@ export function HomePage() {
             </div>
             <ul className="grid gap-2 text-sm font-semibold">
               <li><Link href="/learn" className="flex items-center justify-between rounded-xl border border-amber/40 bg-amber/[0.06] px-4 py-3 hover:border-amber/70">Free guides: learn AI at work <ArrowRight className="h-4 w-4 text-amber" aria-hidden /></Link></li>
+              <li><Link href="/apps/cafewise" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">New: Cafewise, free for coffee shops <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
               <li><Link href="/build/ai-training" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI training for your team <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
               <li><Link href="/build/ai-consulting" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI consulting and planning <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
               <li><Link href="/build/businesses" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI apps for businesses <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
