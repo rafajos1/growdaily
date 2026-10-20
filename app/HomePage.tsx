@@ -34,7 +34,7 @@ const FAITH_NOTES: Record<string, string> = {
 const BUSINESS_TOOLS = [
   { name: "Quotewise", href: "/apps/quotewise", color: "#8fb3ff", who: "Trades & services", text: "Describe the job and AI drafts the quote. Print, PDF or email it, then turn it into an invoice." },
   { name: "Cafewise", href: "/apps/cafewise", color: "#d9965b", who: "Coffee shops", text: "Count stock on your phone, get an order list from your par levels, and see what each drink costs you." },
-  { name: "Roomwise", href: "/apps/roomwise", color: "#4fc7b8", who: "Churches & buildings", text: "Book rooms on a map of your building, with no double bookings, weekly repeats and requests to confirm." },
+  { name: "Roomwise", href: "/apps/roomwise", color: "#4fc7b8", who: "Churches, offices & spaces", text: "Book rooms on a map of your building, with no double bookings, weekly repeats and requests to confirm." },
 ];
 
 function AppCard({ app, index, featured, faith }: { app: GrowApp; index: number; featured?: boolean; faith: boolean }) {

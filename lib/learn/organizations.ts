@@ -364,4 +364,75 @@ export const ORGANIZATION_GUIDES: Guide[] = [
       { label: "FreshBooks: estimate vs. quote vs. bid vs. proposal", url: "https://www.freshbooks.com/blog/estimate-quote-bid-proposal" },
     ],
   },
+  {
+    slug: "meeting-room-booking-for-small-business",
+    topic: "organizations",
+    title: "Meeting room booking for small businesses: stop double-booked rooms",
+    seoTitle: "Free Meeting Room Booking for Small Businesses & Offices",
+    description: "How small businesses can book meeting rooms and shared spaces without double-booking: one calendar, a few simple rules, your existing tools, and a free room booking app.",
+    shortAnswer:
+      "Put every bookable room in one shared calendar, set a few simple rules (book the setup time, release rooms you don't need, keep long bookings for big groups), and check for clashes before you confirm. Google Workspace and Microsoft 365 can handle basic room calendars; a simple room booking tool with a floor plan can be easier for small teams and shared spaces.",
+    sections: [
+      {
+        heading: "Why room booking goes wrong",
+        blocks: [
+          "In a small office, studio or shared space, rooms are usually booked by whoever grabs them first: a sticky note on the door, a group chat or one person's memory. That works until two teams show up for the same conference room, a client meeting lands on top of a training session, or a room sits empty because someone booked it \"just in case\".",
+        ],
+      },
+      {
+        heading: "A simple system",
+        blocks: [
+          {
+            steps: [
+              { title: "One calendar for every room", text: "List each bookable space with how many it seats and what it has: TV or screen, whiteboard, video call setup." },
+              { title: "A few house rules", text: "Book setup and cleanup time, cancel what you don't need, and keep the biggest room for the biggest groups." },
+              { title: "Check clashes before confirming", text: "Including every week of a recurring meeting." },
+              { title: "Make it visible", text: "Share the day's schedule, or post it by the door, so walk-ins know what's free." },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Can I use Google or Microsoft?",
+        blocks: [
+          "Often, yes. In Google Workspace an admin can add rooms as calendar resources, and people add the room to a meeting like a guest. In Microsoft 365, rooms are room mailboxes that accept or decline invitations based on availability, and Outlook's Room Finder shows what's free. Both work well for teams that already live in those calendars. They're less helpful when guests or outside groups book, or when you want a visual view of the whole space.",
+        ],
+      },
+      {
+        heading: "Try it free: Roomwise",
+        blocks: [
+          "[Roomwise](/apps/roomwise) is a free room booking app with a map of your space. Drag rooms into place to draw your floor plan, see what's free or booked at any time, book once or every week without double-booking, keep requests pending until confirmed, and print or copy the day's schedule. You can ask for a room in plain words, like \"a room for 8 with a TV tomorrow at 2pm\". No account needed. It opens with an example building so you can see how it works first.",
+          "Running a church office? See [church room booking and facility scheduling](/learn/church-room-booking-and-facility-scheduling).",
+        ],
+      },
+      {
+        heading: "Want a booking system built for your space?",
+        blocks: [
+          "Roomwise is for the person who manages the calendar. GrowDaily can build a version around how your business works, for example:",
+          {
+            list: [
+              "Staff book from Slack, Teams or their calendar, and get reminders.",
+              "A tablet by each door showing what's on, with check-in that releases no-show bookings.",
+              "Customers or members book rentable rooms online, with payments and rules by room.",
+              "Reports on how rooms are used, so you know whether you need more space or less.",
+            ],
+          },
+          "First versions are kept small, with a fixed price agreed after a free call, and you own what we build. [Ask for a quote](/build#idea).",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "What is the easiest way to book meeting rooms in a small office?", a: "One shared calendar for all rooms, a few simple rules, and a clash check before anything's confirmed. Use your Google or Microsoft calendar if everyone already does, or a simple room booking app if you want a visual view or guests book too." },
+      { q: "How do I stop meeting rooms being double-booked?", a: "Use one calendar that checks for overlaps, including each week of recurring meetings, and make it the only place rooms get booked." },
+      { q: "Is there a free meeting room booking app?", a: "Yes. Roomwise from GrowDaily is free with no account: a floor-plan map, conflict checks, weekly repeats, pending requests and AI room search." },
+    ],
+    related: ["church-room-booking-and-facility-scheduling", "ai-for-small-business", "how-to-write-a-quote-for-a-job", "ai-implementation-plan"],
+    service: "build",
+    published: "2026-10-20",
+    updated: "2026-10-20",
+    sources: [
+      { label: "Google Workspace Admin Help: create buildings, features and calendar resources", url: "https://support.google.com/a/answer/1686462" },
+      { label: "Microsoft Learn: manage resource mailboxes in Exchange Online", url: "https://learn.microsoft.com/en-us/exchange/recipients-in-exchange-online/manage-resource-mailboxes" },
+    ],
+  },
 ];

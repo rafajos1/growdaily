@@ -8,7 +8,7 @@ import { ACCENT } from "./ui";
 const about = ABOUT.roomwise;
 
 export const metadata: Metadata = pageMetadata({
-  title: "Roomwise: Free Church Room Booking & Facility Scheduling · GrowDaily",
+  title: "Roomwise: Free Room Booking for Churches, Offices & Spaces · GrowDaily",
   description: about.description,
   path: about.path,
   image: ogImage("Roomwise", "Free room booking with a floor plan", ACCENT),
