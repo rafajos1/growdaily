@@ -39,3 +39,48 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/*
+ * Printing a single document (a quote, invoice or schedule): the app adds
+ * `print-doc` to <html> just before window.print(), and only `.print-area`
+ * shows, in black on white.
+ */
+@media print {
+  html.print-doc {
+    color-scheme: light;
+  }
+  html.print-doc body {
+    background: #fff;
+  }
+  html.print-doc body * {
+    visibility: hidden;
+  }
+  html.print-doc .print-area,
+  html.print-doc .print-area * {
+    visibility: visible;
+  }
+  /* A preview overlay holding the document stops being an overlay, so the document starts at the top of the page. */
+  html.print-doc .print-host {
+    position: static !important;
+    overflow: visible !important;
+    background: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+  }
+  /* Where supported, drop everything else from the layout too, so there are no blank pages. */
+  html.print-doc body *:not(:has(.print-area)):not(.print-area):not(.print-area *) {
+    display: none !important;
+  }
+  html.print-doc body *:has(.print-area) {
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  html.print-doc .print-area {
+    position: absolute;
+    inset: 0 0 auto 0;
+    margin: 0;
+    box-shadow: none;
+    border: 0;
+  }
+}

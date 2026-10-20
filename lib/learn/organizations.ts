@@ -272,4 +272,96 @@ export const ORGANIZATION_GUIDES: Guide[] = [
       { label: "Baristalife: café cost per cup", url: "https://baristalife.co/blogs/blog/cafe-cost-per-cup" },
     ],
   },
+  {
+    slug: "how-to-write-a-quote-for-a-job",
+    topic: "organizations",
+    title: "How to write a quote for a job (with a free quote maker)",
+    seoTitle: "How to Write a Quote for a Job: What to Include + Free Tool",
+    description: "How to write a professional quote or estimate for a job: quote vs. estimate, what to include, how to price labor and materials, and a free AI quote maker.",
+    shortAnswer:
+      "A good quote clearly lists who it's for, what you'll do, itemized labor and materials, tax, the total, how long the price is valid and your payment terms. Use an estimate when the scope might change and a quote when you're committing to a price. Send it quickly, and turn it into an invoice when the client says yes.",
+    sections: [
+      {
+        heading: "Quote or estimate?",
+        blocks: [
+          "People use the words loosely, but there's a real difference. An estimate is your best guess when the scope isn't certain, like work behind a wall, and the final price can change. A quote is a firm price for the work described, valid for a set time. Don't call something a quote unless you're prepared to stand by the price.",
+        ],
+      },
+      {
+        heading: "What to include",
+        blocks: [
+          {
+            list: [
+              "Your business name and contact details.",
+              "A quote number and the date.",
+              "The client's name, contact details and job address.",
+              "A short description of the job, including what's not included.",
+              "Itemized lines: labor (hours × your rate) and materials (quantity × price).",
+              "Discount and sales tax, if they apply, and the total.",
+              "How long the price is valid. This protects you if material prices change.",
+              "Payment terms: deposit, when payment is due and how to pay.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "How to price the job",
+        blocks: [
+          {
+            steps: [
+              { title: "Estimate the hours", text: "Break the job into steps and estimate each one. Include travel, setup and cleanup." },
+              { title: "Use your real hourly rate", text: "Your rate should cover your time plus overhead: insurance, vehicle, tools and the hours you spend on quotes and admin." },
+              { title: "List materials at your cost", text: "Check current supplier prices. Many trades add a markup on materials for sourcing and handling; decide what's right for your business and be consistent." },
+              { title: "Add a buffer where the scope is uncertain", text: "Or say clearly in the notes what would change the price." },
+            ],
+          },
+          { callout: "Sales tax on services and materials varies by state and by type of work. Check what applies to you." },
+        ],
+      },
+      {
+        heading: "Send it fast, and follow up",
+        blocks: [
+          "Customers often contact more than one business, and a clear quote that arrives quickly makes a strong first impression. Send it the same day if you can, by email or as a PDF, and follow up a few days later if you haven't heard back. When the client accepts, turn the quote into an invoice with the same line items.",
+        ],
+      },
+      {
+        heading: "Try it free: Quotewise",
+        blocks: [
+          "We built [Quotewise](/apps/quotewise) so you can make a professional quote on your phone in minutes, free and without an account. Describe the job in plain words and AI drafts the line items, using your hourly rate for labor and estimating materials for you to check. Add tax or a discount, print it or save it as a PDF, email it, and turn it into an invoice in one tap. It opens with an example handyman business so you can see how it works.",
+        ],
+      },
+      {
+        heading: "Want quoting built for your business?",
+        blocks: [
+          "Quotewise covers the basics. GrowDaily can build a version around how your business works, for example:",
+          {
+            list: [
+              "Your own price list and packages, so quotes use your real prices every time.",
+              "Online quote approval with an e-signature, and deposits or payments by card.",
+              "Connected to your accounting software, CRM or job scheduling.",
+              "Branded PDFs with your logo, and automatic follow-up reminders.",
+              "Photos of the job turned into a first draft of the quote.",
+            ],
+          },
+          "First versions are kept small, with a fixed price agreed after a free call, and you own what we build. [Ask for a quote](/build#idea) and tell us how you quote today.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Is a quote legally binding?", a: "A written quote that a client accepts can be treated as an agreement in many situations, which is why it should be clear about scope, price and how long it's valid. For anything significant, a written contract is better. This isn't legal advice." },
+      { q: "How long should a quote be valid?", a: "Commonly 14 to 30 days. A shorter window protects you when material prices move." },
+      { q: "Should I show labor and materials separately?", a: "Usually yes. Itemized quotes are easier for clients to trust and compare, and they make changes easier to price." },
+      { q: "Is there a free quote and estimate app?", a: "Yes. Quotewise from GrowDaily is free with no account: AI-drafted line items, tax and discounts, print or PDF, email, and one-tap invoices." },
+    ],
+    related: ["ai-for-small-business", "coffee-shop-inventory-management", "how-to-write-ai-prompts", "ai-implementation-plan"],
+    service: "build",
+    published: "2026-10-20",
+    updated: "2026-10-20",
+    sources: [
+      { label: "Invoice2go: quote vs. estimate", url: "https://www.invoice2go.com/learn/estimates/quote-vs-estimate/" },
+      { label: "Tradebase: estimates vs. quotes", url: "https://www.yourtradebase.com/blog/estimates-vs-quotes" },
+      { label: "GoCardless: the difference between a quote and an estimate", url: "https://gocardless.com/en-us/guides/posts/difference-between-a-quote-and-estimate/" },
+      { label: "FreshBooks: estimate vs. quote vs. bid vs. proposal", url: "https://www.freshbooks.com/blog/estimate-quote-bid-proposal" },
+    ],
+  },
 ];
