@@ -147,7 +147,7 @@ export const WORKPLACE_GUIDES: Guide[] = [
       { q: "Should we ban ChatGPT at work?", a: "Bans tend to push AI use underground. Approving specific tools, with clear rules about data and review, is usually safer than a ban." },
       { q: "What should an AI policy for a church include?", a: "The same basics, plus clear lines on pastoral care information, prayer requests, and how AI may or may not be used in preaching and teaching." },
     ],
-    related: ["is-it-safe-to-put-business-data-in-ai", "how-to-train-your-team-on-ai", "ai-for-churches", "ai-for-nonprofits"],
+    related: ["is-it-safe-to-put-business-data-in-ai", "how-to-train-your-team-on-ai", "what-is-shadow-ai", "ai-for-nonprofits"],
     service: "ai-training",
     published: D,
     updated: D,
@@ -158,7 +158,7 @@ export const WORKPLACE_GUIDES: Guide[] = [
   },
   {
     slug: "is-it-safe-to-put-business-data-in-ai",
-    topic: "workplace",
+    topic: "security",
     title: "Is it safe to put business data into ChatGPT, Claude or Copilot?",
     seoTitle: "Is It Safe to Put Business Data Into ChatGPT or Claude?",
     description: "When it's safe to use business information with AI tools, the difference between free and business accounts, what \"shadow AI\" is, and simple rules to protect your data.",
@@ -170,12 +170,13 @@ export const WORKPLACE_GUIDES: Guide[] = [
         blocks: [
           "With free or personal accounts, what you type may be stored and, depending on settings and terms, used to improve the service. Business, team and enterprise plans typically add contract terms, admin controls and commitments about how your data is used.",
           { callout: "Check the current terms for the exact plan you use. They change, and they differ between providers and plans." },
+          "Using personal accounts? See [how to stop ChatGPT, Claude, Gemini and Copilot from training on your data](/learn/how-to-stop-ai-training-on-your-data). Need more control? See [private AI for business](/learn/private-ai-for-business).",
         ],
       },
       {
         heading: "What \"shadow AI\" means",
         blocks: [
-          "Shadow AI is staff using AI tools the organization hasn't approved, usually personal accounts, for work. It's rarely malicious; people just want to get work done. The risk is that customer lists, contracts or personal information leave your control.",
+          "Shadow AI is staff using AI tools the organization hasn't approved, usually personal accounts, for work. It's rarely malicious; people just want to get work done. The risk is that customer lists, contracts or personal information leave your control. More in [what shadow AI is and how to manage it](/learn/what-is-shadow-ai).",
         ],
       },
       {
@@ -197,10 +198,10 @@ export const WORKPLACE_GUIDES: Guide[] = [
       { q: "Does ChatGPT or Claude train on my data?", a: "It depends on the account type and settings. Business and enterprise plans from major providers generally don't train on your data by default; free personal accounts may, depending on settings. Check the current terms for your plan." },
       { q: "What is the safest way to use AI with customer data?", a: "Use an approved business or enterprise plan, share only the data the task needs, remove identifying details where possible, and follow a written policy." },
     ],
-    related: ["ai-policy-template", "how-to-use-ai-at-work", "what-is-mcp"],
+    related: ["how-to-stop-ai-training-on-your-data", "private-ai-for-business", "what-is-shadow-ai", "ai-policy-template"],
     service: "ai-consulting",
     published: D,
-    updated: D,
+    updated: "2026-10-20",
   },
   {
     slug: "how-to-train-your-team-on-ai",

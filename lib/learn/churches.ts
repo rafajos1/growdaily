@@ -379,7 +379,7 @@ export const CHURCH_GUIDES: Guide[] = [
       { q: "Can volunteers use AI for church communications?", a: "Usually yes, for drafts, with a staff member reviewing before anything is sent and with private information kept out of AI tools." },
       { q: "Should we tell our congregation we use AI?", a: "Many churches choose to be open about it, especially about preaching. A brief, honest explanation tends to build trust." },
     ],
-    related: ["should-pastors-use-ai-for-sermons", "how-to-build-a-church-chatbot-with-claude", "ai-for-churches", "ai-policy-template"],
+    related: ["should-pastors-use-ai-for-sermons", "how-to-build-a-church-chatbot-with-claude", "ai-for-churches", "ai-voice-cloning-scams"],
     service: "ai-training",
     published: D,
     updated: D,
