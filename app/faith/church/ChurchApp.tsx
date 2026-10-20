@@ -85,7 +85,7 @@ export function ChurchApp() {
           <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] [text-wrap:balance] sm:text-5xl">
             Find a church <span className="text-amber">near you</span>.
           </h1>
-          <p className="mt-4 max-w-[56ch] text-lg text-soft">Every church is different. Here&apos;s a simple way to find some nearby, and what to expect when you walk in.</p>
+          <p className="mt-4 max-w-[56ch] text-lg text-soft">Every church is different. Here&apos;s a simple way to find Protestant and Catholic churches nearby, and what to expect when you walk in.</p>
 
           <div className="mt-7 rounded-2xl border border-line bg-panel p-4 sm:p-5">
             <button type="button" onClick={useLocation} disabled={state.kind === "loading"} className={`${btnPrimary} w-full sm:w-auto`}>

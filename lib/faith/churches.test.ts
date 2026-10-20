@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { boundingBox, denominationLabel, directionsUrl, milesBetween, normalizeChurches, normalizePlaces, overpassQuery, parseGeocode, placeSearchUrls } from "./churches";
+import { boundingBox, denominationLabel, directionsUrl, isProtestantOrCatholic, milesBetween, normalizeChurches, normalizePlaces, overpassQuery, parseGeocode, placeSearchUrls } from "./churches";
 
 // Around downtown Nashville.
 const LAT = 36.1627;
@@ -120,5 +120,33 @@ describe("normalizePlaces", () => {
     const list = normalizePlaces(json, LAT, LON, 10);
     expect(list).toHaveLength(1);
     expect(list[0]).toMatchObject({ name: "St. Mary's", denomination: "Catholic", website: "https://stmarys.example/", address: "Fifth Ave, Nashville" });
+  });
+});
+
+describe("isProtestantOrCatholic", () => {
+  it("keeps Protestant, Catholic and unlabeled churches", () => {
+    expect(isProtestantOrCatholic("St. Mary's", "roman_catholic")).toBe(true);
+    expect(isProtestantOrCatholic("St. Elias Byzantine Catholic Church", "byzantine_catholic")).toBe(true);
+    expect(isProtestantOrCatholic("First Baptist Church", "baptist")).toBe(true);
+    expect(isProtestantOrCatholic("Grace Fellowship", undefined)).toBe(true);
+    expect(isProtestantOrCatholic("Living Hope Orthodox Presbyterian Church", "presbyterian")).toBe(true);
+    expect(isProtestantOrCatholic("Unity Baptist Church", "baptist")).toBe(true);
+  });
+  it("leaves out other traditions by denomination or name", () => {
+    expect(isProtestantOrCatholic("Ward Meetinghouse", "mormon")).toBe(false);
+    expect(isProtestantOrCatholic("The Church of Jesus Christ of Latter-day Saints", undefined)).toBe(false);
+    expect(isProtestantOrCatholic("Kingdom Hall of Jehovah's Witnesses", undefined)).toBe(false);
+    expect(isProtestantOrCatholic("St. Nicholas", "greek_orthodox")).toBe(false);
+    expect(isProtestantOrCatholic("Holy Trinity Orthodox Church", undefined)).toBe(false);
+    expect(isProtestantOrCatholic("First Church of Christ, Scientist", undefined)).toBe(false);
+    expect(isProtestantOrCatholic("Unitarian Universalist Fellowship", "unitarian_universalist")).toBe(false);
+  });
+  it("is applied to search results", () => {
+    const json = { elements: [
+      { type: "node", id: 1, lat: 36.163, lon: -86.7817, tags: { name: "St. Mary's", denomination: "roman_catholic" } },
+      { type: "node", id: 2, lat: 36.164, lon: -86.7817, tags: { name: "Meetinghouse", denomination: "mormon" } },
+      { type: "node", id: 3, lat: 36.165, lon: -86.7817, tags: { name: "Kingdom Hall of Jehovah's Witnesses" } },
+    ] };
+    expect(normalizeChurches(json, LAT, LON, 10).map((c) => c.name)).toEqual(["St. Mary's"]);
   });
 });

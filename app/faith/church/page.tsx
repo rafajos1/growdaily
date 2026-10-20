@@ -6,7 +6,7 @@ import { ChurchApp } from "./ChurchApp";
 
 export const metadata: Metadata = pageMetadata({
   title: "Find a Church Near You, and What to Expect · GrowDaily",
-  description: "Find Christian churches near you, with directions and websites, and know what to expect on your first visit: how long it lasts, what to wear, kids and more. No pressure, no sign-up.",
+  description: "Find Protestant and Catholic churches near you, with directions and websites, and know what to expect on your first visit: how long it lasts, what to wear, kids and more. No pressure, no sign-up.",
   path: "/faith/church",
 });
 
