@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/faith/church", 0.7),
     page("/faith/questions", 0.7),
     ...STARTERS.map((s) => page(`/faith/questions/${slugFor(s.question)}`, 0.6)),
+    page("/apps/cafewise", 0.8),
     page("/learn", 0.9, "weekly"),
     ...GUIDES.map((g) => ({ url: `${SITE_URL}/learn/${g.slug}`, lastModified: g.updated, changeFrequency: "monthly" as const, priority: 0.8 })),
     page("/build", 0.8),

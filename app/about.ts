@@ -3,7 +3,7 @@ import type { AboutContent } from "./components/AppAbout";
 const PRIVATE = "Everything you enter is saved in your own browser on this device. If you tap Save my progress and sign in with your email, a private copy is kept in your GrowDaily account so it comes back on any device.";
 
 /** Search-friendly explainers for each app, shown under the app and used in structured data. */
-export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise", AboutContent> = {
+export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | "cafewise", AboutContent> = {
   habitwise: {
     name: "Habitwise",
     path: "/apps/habitwise",
@@ -58,6 +58,21 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise", A
       { q: "When do insights unlock?", a: "After seven check-ins, so there's enough to see real patterns." },
       { q: "Is Moodwise free?", a: "Yes. No account, sign-up or trial." },
       { q: "Is this a substitute for professional help?", a: "No. Moodwise can help you notice patterns, but it isn't medical advice. If you're struggling, talk to a doctor or counselor. In the US you can call or text 988 any time." },
+    ],
+  },
+  cafewise: {
+    name: "Cafewise",
+    path: "/apps/cafewise",
+    category: "BusinessApplication",
+    description: "Free coffee shop inventory app: quick stock counts, an order list from your par levels, cost per drink and margin, a waste log and an AI ordering review.",
+    heading: "A free coffee shop inventory app: count, order and know what each drink costs",
+    intro: "Cafewise is a simple stock and ordering helper for independent cafés. Count milk, pastries, beans and cups on your phone, and it builds an order list from your par levels, grouped by supplier and ready to text. Add your drinks to see what each one costs to make and your margin, log waste in a tap, and get an AI review that spots what you keep running out of or throwing away.",
+    faqs: [
+      { q: "Is Cafewise free?", a: "Yes. No account, sign-up or trial, and it works in any browser on your phone or computer." },
+      { q: "What is a par level?", a: "The amount of an item you want on hand right after a delivery. Cafewise orders the difference between par and what you counted, and suggests pars from your actual use: enough to last until the next delivery, plus a 25% buffer (10% for pastries, since leftovers are thrown away)." },
+      { q: "How do I work out the cost of a latte?", a: "Add up what goes in: espresso by the gram, milk by the ounce, plus the cup and lid. Cafewise does the math from what you pay for each item and shows the cost, your margin and the cost as a share of the price." },
+      { q: "Where is my data kept?", a: `${PRIVATE} For the AI review, only item names and numbers are sent.` },
+      { q: "Does it connect to Square or Toast?", a: "Not this free version. GrowDaily can build a custom version for your café that connects to your point of sale, supports several locations and gives staff their own logins." },
     ],
   },
 };
