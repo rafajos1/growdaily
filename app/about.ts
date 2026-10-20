@@ -3,7 +3,7 @@ import type { AboutContent } from "./components/AppAbout";
 const PRIVATE = "Everything you enter is saved in your own browser on this device. If you tap Save my progress and sign in with your email, a private copy is kept in your GrowDaily account so it comes back on any device.";
 
 /** Search-friendly explainers for each app, shown under the app and used in structured data. */
-export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | "cafewise", AboutContent> = {
+export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | "cafewise" | "quotewise", AboutContent> = {
   habitwise: {
     name: "Habitwise",
     path: "/apps/habitwise",
@@ -58,6 +58,21 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
       { q: "When do insights unlock?", a: "After seven check-ins, so there's enough to see real patterns." },
       { q: "Is Moodwise free?", a: "Yes. No account, sign-up or trial." },
       { q: "Is this a substitute for professional help?", a: "No. Moodwise can help you notice patterns, but it isn't medical advice. If you're struggling, talk to a doctor or counselor. In the US you can call or text 988 any time." },
+    ],
+  },
+  quotewise: {
+    name: "Quotewise",
+    path: "/apps/quotewise",
+    category: "BusinessApplication",
+    description: "Free quote and estimate maker with AI: describe the job and get itemized line items, then print, save as PDF or email it, and turn it into an invoice.",
+    heading: "A free quote, estimate and invoice maker that drafts the line items for you",
+    intro: "Quotewise helps contractors, handymen, cleaners, photographers, florists and other small businesses send professional quotes fast. Describe the job in plain words and AI drafts the line items, using your hourly rate for labor and estimating materials. Check the prices, add tax or a discount, then print it, save it as a PDF or email it. When the client says yes, turn the quote into an invoice in one tap.",
+    faqs: [
+      { q: "Is Quotewise free?", a: "Yes. No account, sign-up or trial, and it works in any browser on your phone or computer." },
+      { q: "What's the difference between a quote and an estimate?", a: "People use the words loosely. Usually an estimate is a best guess that can change, while a quote is a firm price for the work described, valid for a set time. Quotewise lets you set a valid-until date and notes that spell out what's included." },
+      { q: "Are the AI prices accurate?", a: "Labor uses your own hourly rate. Material prices are typical estimates, so always check them against your supplier before you send a quote." },
+      { q: "Can I save a quote as a PDF?", a: "Yes. Open the preview and choose Print or save as PDF. On a phone, use the share or print menu to save the PDF." },
+      { q: "Where is my data kept?", a: `${PRIVATE} When you use AI drafting, only the job description, what your business does and your hourly rate are sent.` },
     ],
   },
   cafewise: {

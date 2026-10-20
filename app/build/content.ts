@@ -85,6 +85,14 @@ export const CASES: CaseStudy[] = [
     forYou: "Recommenders that match your products, menu or services to what a customer has and needs.",
   },
   {
+    name: "Quotewise",
+    href: "/apps/quotewise",
+    color: "#8fb3ff",
+    problem: "Owners lose evenings typing up quotes, and slow quotes lose jobs.",
+    ai: "Turns a plain-English job description into itemized line items at the owner's own rate, ready to send and turn into an invoice.",
+    forYou: "Quoting tools with your price list, online acceptance and payments, connected to your accounting software.",
+  },
+  {
     name: "Cafewise",
     href: "/apps/cafewise",
     color: "#d9965b",

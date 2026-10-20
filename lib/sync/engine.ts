@@ -20,6 +20,8 @@ export const SYNC_KEYS = [
   "moodwise:examples",
   "cafewise:v1",
   "cafewise:examples",
+  "quotewise:v1",
+  "quotewise:examples",
   "expense-tracker:v1",
   "expense-tracker:examples-loaded",
 ] as const;
