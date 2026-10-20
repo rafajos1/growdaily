@@ -188,7 +188,7 @@ export const AUDIENCES: Audience[] = [
       { title: "Intake that sorts itself", text: "Messy emails and forms become organized requests with the next step, like Planwise does for a to-do list." },
       { title: "\"What's right for me?\" recommender", text: "Matches customers to the right product, menu item or service, like Mealwise matches meals to a fridge." },
     ],
-    demos: ["Cafewise", "Planwise", "Spendwise"],
+    demos: ["Quotewise", "Cafewise", "Roomwise"],
     faqs: [
       { q: "Will it make things up about my business?", a: "It answers from information you give it, says when it doesn't know, and hands off to you. We test it with real customer questions before launch." },
       { q: "Do I need to change my website?", a: "No. The app can live on its own page or as a small box on your current site." },

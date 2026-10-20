@@ -240,11 +240,16 @@ export function RoomwiseApp() {
         {ready && (
           <aside className={`${panel} flex flex-col gap-3 p-5 sm:flex-row sm:items-center`}>
             <p className="flex-1 text-sm text-soft">
-              <strong className="text-fg">Want this for your church or building?</strong> A custom version can take room requests online, send approvals and reminders, and sync with your calendar or church software.
+              <strong className="text-fg">Want this for your church, office or building?</strong> A custom version can take room requests online, send approvals and reminders, and sync with your calendar or church software.
             </p>
-            <Link href="/learn/church-room-booking-and-facility-scheduling" className={btn.secondary}>
-              How it works
-            </Link>
+            <div className="flex flex-wrap gap-2">
+              <Link href="/learn/church-room-booking-and-facility-scheduling" className={btn.secondary}>
+                For churches
+              </Link>
+              <Link href="/learn/meeting-room-booking-for-small-business" className={btn.secondary}>
+                For offices
+              </Link>
+            </div>
           </aside>
         )}
       </main>
