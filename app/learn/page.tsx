@@ -7,7 +7,7 @@ import { BuildFooter, BuildHeader, btnPrimary, eyebrow } from "../build/parts";
 import { JsonLd } from "../components/JsonLd";
 
 const DESCRIPTION =
-  "Free, plain-English guides to using AI at work: what AI agents are, real examples, MCP, prompts, AI policy templates, team training, and where small businesses, nonprofits and churches should start.";
+  "Free, plain-English guides to using AI at work: AI agents, prompts, AI policy templates, data privacy and AI security, team training, and where businesses, nonprofits and churches should start.";
 
 export const metadata: Metadata = pageMetadata({
   title: "Learn AI at Work: Free Guides to AI Agents, Policies & Training · GrowDaily",
