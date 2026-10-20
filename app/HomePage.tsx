@@ -31,6 +31,12 @@ const FAITH_NOTES: Record<string, string> = {
   moodwise: "With Faith: a short evening reflection with God.",
 };
 
+const BUSINESS_TOOLS = [
+  { name: "Quotewise", href: "/apps/quotewise", color: "#8fb3ff", who: "Trades & services", text: "Describe the job and AI drafts the quote. Print, PDF or email it, then turn it into an invoice." },
+  { name: "Cafewise", href: "/apps/cafewise", color: "#d9965b", who: "Coffee shops", text: "Count stock on your phone, get an order list from your par levels, and see what each drink costs you." },
+  { name: "Roomwise", href: "/apps/roomwise", color: "#4fc7b8", who: "Churches & buildings", text: "Book rooms on a map of your building, with no double bookings, weekly repeats and requests to confirm." },
+];
+
 function AppCard({ app, index, featured, faith }: { app: GrowApp; index: number; featured?: boolean; faith: boolean }) {
   const Art = ART[app.slug];
   const live = app.status === "live";
@@ -223,7 +229,7 @@ export function HomePage() {
         <section id="apps" className="scroll-mt-8 pb-20">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">The apps</p>
+              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">For everyday life</p>
               <h2 className="mt-2 text-3xl font-extrabold tracking-tight">One app for each part of your day</h2>
             </div>
             <p className="max-w-[40ch] text-sm text-muted">Each one does one job well, and they all work on your phone.</p>
@@ -233,6 +239,35 @@ export function HomePage() {
               <AppCard key={app.slug} app={app} index={i} featured={i === 0} faith={faith} />
             ))}
           </div>
+        </section>
+
+        <section id="business" aria-labelledby="business-heading" className="scroll-mt-8 pb-20">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">For your business</p>
+              <h2 id="business-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Free tools for small businesses and churches</h2>
+            </div>
+            <p className="max-w-[40ch] text-sm text-muted">Same idea: one job done well, free, no account. Want one built around your business? We do that too.</p>
+          </div>
+          <ul className="grid gap-4 md:grid-cols-3">
+            {BUSINESS_TOOLS.map((t) => (
+              <li key={t.name}>
+                <Link href={t.href} className="group flex h-full flex-col rounded-2xl border border-line bg-panel p-6 transition hover:border-[#35507a]">
+                  <span className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: t.color }}>
+                    {t.who}
+                  </span>
+                  <span className="mt-2 text-2xl font-extrabold tracking-tight">{t.name}</span>
+                  <span className="mt-2 flex-1 text-soft">{t.text}</span>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: t.color }}>
+                    Open {t.name} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link href="/build" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-soft hover:text-fg">
+            More coming. Want a tool built for your business? <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
         </section>
 
         <section id="why" className="scroll-mt-8 pb-20">
@@ -296,7 +331,6 @@ export function HomePage() {
             </div>
             <ul className="grid gap-2 text-sm font-semibold">
               <li><Link href="/learn" className="flex items-center justify-between rounded-xl border border-amber/40 bg-amber/[0.06] px-4 py-3 hover:border-amber/70">Free guides: learn AI at work <ArrowRight className="h-4 w-4 text-amber" aria-hidden /></Link></li>
-              <li><Link href="/apps/cafewise" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">New: Cafewise, free for coffee shops <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
               <li><Link href="/build/ai-training" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI training for your team <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
               <li><Link href="/build/ai-consulting" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI consulting and planning <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
               <li><Link href="/build/businesses" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI apps for businesses <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>

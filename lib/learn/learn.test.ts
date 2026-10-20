@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { AUDIENCES } from "../../app/build/content";
 import { GUIDES, guideBySlug, TOPICS } from "./index";
 
 describe("Learn guides", () => {
@@ -45,7 +46,9 @@ describe("Learn guides", () => {
         if (!href.startsWith("/")) continue;
         expect(href, g.slug).not.toBe(`/learn/${g.slug}`);
         const learn = href.match(/^\/learn\/([a-z0-9-]+)$/);
+        const audience = href.match(/^\/build\/([a-z-]+)$/);
         if (learn) expect(guideBySlug(learn[1]), `${g.slug} → ${href}`).toBeDefined();
+        else if (audience && AUDIENCES.some((x) => x.slug === audience[1])) continue;
         else expect(existsSync(join(process.cwd(), "app", href.split("#")[0], "page.tsx")), `${g.slug} → ${href}`).toBe(true);
       }
     }
