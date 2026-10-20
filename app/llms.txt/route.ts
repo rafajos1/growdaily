@@ -32,6 +32,7 @@ export function GET() {
     "",
     link("Cafewise: free coffee shop inventory app", "/apps/cafewise", "Quick stock counts, order lists from par levels, cost per drink and margin, a waste log and an AI ordering review."),
     link("Quotewise: free quote, estimate and invoice maker", "/apps/quotewise", "Describe a job and AI drafts the line items; print, save as PDF or email it, and turn it into an invoice."),
+    link("Roomwise: free church room booking and facility scheduling", "/apps/roomwise", "A floor-plan map of your building, conflict-free bookings with weekly repeats, requests to confirm, and AI room search."),
     "",
     "## Optional",
     "",

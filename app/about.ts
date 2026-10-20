@@ -3,7 +3,7 @@ import type { AboutContent } from "./components/AppAbout";
 const PRIVATE = "Everything you enter is saved in your own browser on this device. If you tap Save my progress and sign in with your email, a private copy is kept in your GrowDaily account so it comes back on any device.";
 
 /** Search-friendly explainers for each app, shown under the app and used in structured data. */
-export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | "cafewise" | "quotewise", AboutContent> = {
+export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | "cafewise" | "quotewise" | "roomwise", AboutContent> = {
   habitwise: {
     name: "Habitwise",
     path: "/apps/habitwise",
@@ -73,6 +73,21 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
       { q: "Are the AI prices accurate?", a: "Labor uses your own hourly rate. Material prices are typical estimates, so always check them against your supplier before you send a quote." },
       { q: "Can I save a quote as a PDF?", a: "Yes. Open the preview and choose Print or save as PDF. On a phone, use the share or print menu to save the PDF." },
       { q: "Where is my data kept?", a: `${PRIVATE} When you use AI drafting, only the job description, what your business does and your hourly rate are sent.` },
+    ],
+  },
+  roomwise: {
+    name: "Roomwise",
+    path: "/apps/roomwise",
+    category: "BusinessApplication",
+    description: "Free room booking and facility scheduling for churches and community buildings: a floor-plan map, conflict checks, weekly repeats, requests to confirm and AI room search.",
+    heading: "Free room booking for churches, with a map of your building",
+    intro: "Roomwise keeps one calendar for every room in your church or building. Draw your floor plan by dragging rooms into place, then see at a glance what's free and what's booked at any time. Book rooms once or every week, and Roomwise stops double bookings. Mark requests as pending until they're confirmed, print or copy the day's schedule, and ask for a room in plain words, like \"a room for 25 with a projector Tuesday evenings\".",
+    faqs: [
+      { q: "Is Roomwise free?", a: "Yes. No account, sign-up or trial, and it works in any browser on your phone or computer." },
+      { q: "Can members request rooms themselves?", a: "Not in this free version, which is for the person who manages the calendar. A custom version from GrowDaily can add an online request form with approvals and email confirmations." },
+      { q: "Does it stop double bookings?", a: "Yes. Roomwise checks every booking, including each week of a repeating one, and won't save a booking that overlaps another in the same room." },
+      { q: "Is it only for churches?", a: "No. It works for any building with shared rooms: schools, community centers, coworking spaces and offices." },
+      { q: "Where is my data kept?", a: `${PRIVATE} For AI room search, only your request, today's date and your rooms' feature names are sent.` },
     ],
   },
   cafewise: {

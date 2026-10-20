@@ -85,6 +85,14 @@ export const CASES: CaseStudy[] = [
     forYou: "Recommenders that match your products, menu or services to what a customer has and needs.",
   },
   {
+    name: "Roomwise",
+    href: "/apps/roomwise",
+    color: "#4fc7b8",
+    problem: "Church calendars live in someone's head or a paper sheet, so rooms get double-booked and requests slip through.",
+    ai: "Turns \"a room for 25 with a projector Tuesday evenings\" into a search across every room and every week, on a map of the building.",
+    forYou: "Online room requests with approvals, reminders and calendar sync, built around your building and your people.",
+  },
+  {
     name: "Quotewise",
     href: "/apps/quotewise",
     color: "#8fb3ff",
@@ -224,7 +232,7 @@ export const AUDIENCES: Audience[] = [
       { title: "Sermon to small-group guide", text: "Turns this week's sermon notes into discussion questions and a short devotional for groups." },
       { title: "Care and prayer follow-up", text: "Sorts prayer requests and care needs so the right person follows up, with privacy built in." },
     ],
-    demos: ["Ask", "Find a church", "Habitwise"],
+    demos: ["Roomwise", "Ask", "Find a church"],
     faqs: [
       { q: "Will an AI assistant say things that don't match our beliefs?", a: "We write its instructions from your statement of faith and with your pastors, test it with hard questions, and have it point people to your staff on anything pastoral or sensitive." },
       { q: "What happens if someone in crisis uses it?", a: "It stops and shows real help first, like the 988 Suicide & Crisis Lifeline and your church's contact, the same way GrowDaily's Ask does." },

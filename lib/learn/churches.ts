@@ -445,4 +445,93 @@ export const CHURCH_GUIDES: Guide[] = [
       { label: "Exponential: 5 questions pastors are asking about AI in ministry", url: "https://exponential.org/5-questions-pastors-are-really-asking-about-ai-in-ministry-and-the-honest-answers-to-each/" },
     ],
   },
+  {
+    slug: "church-room-booking-and-facility-scheduling",
+    topic: "churches",
+    title: "Church room booking and facility scheduling: a simple system that works",
+    seoTitle: "Church Room Booking & Facility Scheduling (Free Tool)",
+    description: "How to manage church room bookings without double-booking: one calendar, a clear request and approval step, a facility use policy for outside groups, and a free tool.",
+    shortAnswer:
+      "Keep every room in one calendar that one person or team manages, have ministries and outside groups request rooms instead of just showing up, check conflicts (including setup time), and put a short facility use policy in writing, with insurance requirements for outside groups.",
+    sections: [
+      {
+        heading: "Why room scheduling goes wrong",
+        blocks: [
+          "In many churches the room calendar lives in an administrator's head, a paper sign-up sheet or a shared spreadsheet. That works until two groups show up for the fellowship hall at the same time, a wedding needs the chapel the night of choir practice, or nobody remembers who approved the baby shower.",
+        ],
+      },
+      {
+        heading: "A simple system",
+        blocks: [
+          {
+            steps: [
+              { title: "One calendar for every room", text: "Every space people can book, from the sanctuary to the nursery, in one place, with how many it seats and what it has (projector, kitchen, piano)." },
+              { title: "One person or team approves", text: "Requests come to a named person or small team. Insurer guidance suggests a team rather than one individual for outside groups, so decisions are consistent." },
+              { title: "Requests, not surprises", text: "Ministries and members ask for a room; it's marked pending until it's confirmed. Weekly ministries are booked as repeating series." },
+              { title: "Check conflicts, including setup", text: "Book the time you need for setup and cleanup too, not just the event." },
+              { title: "Share the schedule", text: "Post the week's schedule for staff, custodians and greeters, by email or printed on the office door." },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Outside groups and your facility use policy",
+        blocks: [
+          "Community groups, weddings and rentals are a great way to serve your neighbors, and they need clear rules. Common elements of a church facility use policy:",
+          {
+            list: [
+              "Who has priority: usually church ministries first, then members, then outside groups.",
+              "What's allowed, and what isn't, consistent with your beliefs and your tax-exempt status.",
+              "Fees or donations, deposits, cleanup and who unlocks and locks up.",
+              "A signed facility use agreement and a certificate of liability insurance naming the church as an additional insured.",
+              "Childcare and safety requirements if children are involved.",
+            ],
+          },
+          { callout: "Have your insurer and an attorney review your policy and agreement. This guide isn't legal advice." },
+        ],
+      },
+      {
+        heading: "Choosing a tool",
+        blocks: [
+          "If your church already uses church management software, check whether it includes room booking. Planning Center Calendar, for example, has rooms and resources with approval groups. If you don't need a full system, a simple dedicated tool can be enough.",
+        ],
+      },
+      {
+        heading: "Try it free: Roomwise",
+        blocks: [
+          "We built [Roomwise](/apps/roomwise) for church offices and community buildings. Drag rooms into place to draw your floor plan, then see at a glance what's free and what's booked at any time. Book rooms once or every week, and it won't let you double-book. Mark requests pending until they're confirmed, copy or print the day's schedule, and ask for a room in plain words, like \"a room for 25 with a projector Tuesday evenings\". It's free with no account, and it opens with an example church so you can see how it works.",
+        ],
+      },
+      {
+        heading: "Want a room request system built for your church?",
+        blocks: [
+          "Roomwise is for the person who manages the calendar. GrowDaily can build a version around how your church works, for example:",
+          {
+            list: [
+              "An online request form for ministries, members and community groups, on your website.",
+              "Approvals by room, with email confirmations and reminders.",
+              "Sync with Google or Outlook calendars, or your church software.",
+              "Setup needs (tables, AV, kitchen) sent to your facilities team.",
+              "Outside group agreements and insurance certificates collected with the request.",
+            ],
+          },
+          "First versions are kept small, with a fixed price agreed after a free call, and you own what we build. [Ask for a quote](/build#idea), or see more [AI tools for churches](/build/churches).",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "How do churches manage room reservations?", a: "Most keep one calendar for all rooms, managed by an administrator or facilities team, with a request and approval step and a written facility use policy. Many use church management software or a simple dedicated booking tool." },
+      { q: "Should outside groups need insurance to use the church?", a: "Insurers commonly recommend a signed facility use agreement and a certificate of liability insurance that names the church as an additional insured. Check your own insurer's guidance." },
+      { q: "Is there a free church room booking app?", a: "Yes. Roomwise from GrowDaily is free with no account: a floor-plan map, conflict checks, weekly repeats, pending requests and AI room search." },
+    ],
+    related: ["how-to-use-ai-to-grow-your-church", "church-ai-policy-template", "ai-for-churches", "how-to-build-a-church-chatbot-with-claude"],
+    service: "build",
+    published: "2026-10-20",
+    updated: "2026-10-20",
+    sources: [
+      { label: "GuideOne: facility use by outside groups", url: "https://www.guideone.com/facility-use-outside-groups" },
+      { label: "GuideStone: outside facility use", url: "https://www.guidestone.org/Resources/Education/Articles/Property-and-Casualty/Outside-Facility-Use" },
+      { label: "Planning Center: request rooms and resources for an event", url: "https://help.planningcenter.com/en/request-rooms-and-resources-for-an-event.html" },
+    ],
+  },
 ];

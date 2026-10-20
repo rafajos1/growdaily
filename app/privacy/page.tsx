@@ -64,7 +64,7 @@ export default function PrivacyPage() {
 
         <Section title="What stays on your device">
           <p>
-            Spendwise, Habitwise, Planwise, Mealwise, Moodwise, Cafewise and Quotewise save what you enter (expenses, habits, plans, meals, check-ins, notes, café stock, quotes and invoices) in your browser&apos;s local storage. So do your settings, like the Faith toggle, and your recent questions in Ask. We can&apos;t see any of it. Clearing your browser&apos;s site data deletes it.
+            Spendwise, Habitwise, Planwise, Mealwise, Moodwise, Cafewise, Quotewise and Roomwise save what you enter (expenses, habits, plans, meals, check-ins, notes, café stock, quotes, invoices and room bookings) in your browser&apos;s local storage. So do your settings, like the Faith toggle, and your recent questions in Ask. We can&apos;t see any of it. Clearing your browser&apos;s site data deletes it.
           </p>
         </Section>
 
@@ -77,6 +77,7 @@ export default function PrivacyPage() {
             <li>Planwise: the to-do list you type and your day&apos;s start and end times.</li>
             <li>Mealwise: your ingredients, diet choices, time, servings and what you&apos;re in the mood for.</li>
             <li>Quotewise AI drafting: the job description you type, what your business does and your hourly rate. Client details aren&apos;t sent.</li>
+            <li>Roomwise AI search: your room request, today&apos;s date and the names of your rooms&apos; features. Bookings and contacts aren&apos;t sent.</li>
             <li>Cafewise ordering review: your item and drink names with their numbers (par levels, counts, use, waste and costs).</li>
             <li>Quote form: the idea you describe, if you ask for an AI sketch.</li>
           </ul>
