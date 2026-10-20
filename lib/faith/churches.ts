@@ -1,6 +1,6 @@
 /**
- * Finding churches near someone with OpenStreetMap data: places of worship
- * tagged as Christian, via the Overpass API. Free, no key, and community
+ * Finding churches near someone with OpenStreetMap data: Protestant and
+ * Catholic places of worship, via the Overpass API. Free, no key, and community
  * maintained, so listings can be incomplete; the page says so.
  */
 
@@ -36,11 +36,6 @@ const LABELS: Record<string, string> = {
   evangelical: "Evangelical",
   nondenominational: "Non-denominational",
   non_denominational: "Non-denominational",
-  orthodox: "Orthodox",
-  greek_orthodox: "Orthodox",
-  russian_orthodox: "Orthodox",
-  serbian_orthodox: "Orthodox",
-  coptic_orthodox: "Orthodox",
   church_of_christ: "Church of Christ",
   church_of_god: "Church of God",
   reformed: "Reformed",
@@ -58,6 +53,21 @@ const LABELS: Record<string, string> = {
   free_methodist: "Methodist",
   apostolic: "Apostolic",
 };
+
+// We list Protestant and Catholic churches only. These denomination tags (and
+// names, for listings without one) mark other traditions. Listings with no
+// denomination stay, since most churches don't record one.
+const OTHER_TRADITION_TAG = /orthodox|armenian|coptic|ethiopian|mormon|latter|lds|jehovah|christian_science|scientist|unitarian|universalist|iglesia_ni_cristo|christadelphian|swedenborg|new_apostolic|spiritualist|^unity$/;
+const OTHER_TRADITION_NAME = /latter[- ]day saints|\blds\b|kingdom hall|jehovah|christian science|church of christ,? scientist|unitarian|universalist|iglesia ni cristo|christadelphian|swedenborg|new apostolic/i;
+
+/** True for Protestant and Catholic churches, and for listings that don't say. */
+export function isProtestantOrCatholic(name: string, denominationTag: string | undefined): boolean {
+  const key = (denominationTag ?? "").trim().toLowerCase().replace(/[\s-]+/g, "_");
+  if (key && OTHER_TRADITION_TAG.test(key)) return false;
+  if (OTHER_TRADITION_NAME.test(name)) return false;
+  // "Orthodox Presbyterian" is Protestant; other Orthodox churches aren't.
+  return !(/\borthodox\b/i.test(name) && !/presbyterian/i.test(name));
+}
 
 /** Turns an OpenStreetMap denomination tag into a label people recognize. */
 export function denominationLabel(tag: string | undefined): string {
@@ -215,6 +225,7 @@ export function normalizeChurches(json: unknown, originLat: number, originLon: n
     const tags = el.tags ?? {};
     const name = (tags.name ?? "").trim().slice(0, 120);
     if (typeof lat !== "number" || typeof lon !== "number" || !name) continue;
+    if (!isProtestantOrCatholic(name, tags.denomination)) continue;
     const miles = milesBetween(originLat, originLon, lat, lon);
     if (miles > radiusMiles * 1.05) continue;
     // The same church is sometimes mapped twice (a building and a point).
