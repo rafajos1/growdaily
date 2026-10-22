@@ -53,6 +53,14 @@ export interface CaseStudy {
 
 export const CASES: CaseStudy[] = [
   {
+    name: "Pilotwise",
+    href: "/apps/pilotwise",
+    color: "#f2b54b",
+    problem: "Most AI pilots never reach production because the problem, data, success measures and path to production were never pinned down.",
+    ai: "Turns one AI use case into a pilot-to-production plan: readiness score, go/no-go exit criteria, agile phases, ROAM risks and a sponsor brief.",
+    forYou: "Hands-on help framing your AI use cases and running pilots to a clear go or no-go.",
+  },
+  {
     name: "Spendwise",
     href: "/apps/spendwise",
     color: "#f2b54b",
@@ -188,7 +196,7 @@ export const AUDIENCES: Audience[] = [
       { title: "Intake that sorts itself", text: "Messy emails and forms become organized requests with the next step, like Planwise does for a to-do list." },
       { title: "\"What's right for me?\" recommender", text: "Matches customers to the right product, menu item or service, like Mealwise matches meals to a fridge." },
     ],
-    demos: ["Quotewise", "Cafewise", "Roomwise"],
+    demos: ["Pilotwise", "Quotewise", "Roomwise"],
     faqs: [
       { q: "Will it make things up about my business?", a: "It answers from information you give it, says when it doesn't know, and hands off to you. We test it with real customer questions before launch." },
       { q: "Do I need to change my website?", a: "No. The app can live on its own page or as a small box on your current site." },

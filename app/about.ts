@@ -3,7 +3,7 @@ import type { AboutContent } from "./components/AppAbout";
 const PRIVATE = "Everything you enter is saved in your own browser on this device. If you tap Save my progress and sign in with your email, a private copy is kept in your GrowDaily account so it comes back on any device.";
 
 /** Search-friendly explainers for each app, shown under the app and used in structured data. */
-export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | "cafewise" | "quotewise" | "roomwise", AboutContent> = {
+export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | "cafewise" | "quotewise" | "roomwise" | "pilotwise", AboutContent> = {
   habitwise: {
     name: "Habitwise",
     path: "/apps/habitwise",
@@ -73,6 +73,21 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
       { q: "Are the AI prices accurate?", a: "Labor uses your own hourly rate. Material prices are typical estimates, so always check them against your supplier before you send a quote." },
       { q: "Can I save a quote as a PDF?", a: "Yes. Open the preview and choose Print or save as PDF. On a phone, use the share or print menu to save the PDF." },
       { q: "Where is my data kept?", a: `${PRIVATE} When you use AI drafting, only the job description, what your business does and your hourly rate are sent.` },
+    ],
+  },
+  pilotwise: {
+    name: "Pilotwise",
+    path: "/apps/pilotwise",
+    category: "BusinessApplication",
+    description: "Free AI pilot planner: turn an AI use case into a pilot-to-production plan with a readiness score, go/no-go exit criteria, an agile delivery plan, ROAM risks and an executive brief.",
+    heading: "A free AI pilot planner that gets AI projects from pilot to production",
+    intro: "Most AI pilots never deliver measurable value, and the reasons are rarely the model: no clear owner or metric, data that isn't ready, success never defined, no path into the systems people use. Pilotwise turns one AI use case into a plan that fixes those up front: a readiness check across six areas, go/no-go exit criteria agreed before the first sprint, phases with clear goals, an AI-specific risk register in ROAM terms, an evaluation plan, and a one-page brief for your sponsor. Track the pilot against the gate as you go, and export the backlog to Jira or Azure DevOps.",
+    faqs: [
+      { q: "Is Pilotwise free?", a: "Yes. No account, sign-up or trial. AI drafting has a free daily allowance, and the built-in template works without it." },
+      { q: "What are AI pilot exit criteria?", a: "The measurable conditions, agreed before building, that decide whether a pilot scales: quality on a fixed test set of real cases, cost per task, speed, safe failure when the AI is unsure, permissions and data handling, a named path to production, and adoption." },
+      { q: "Why do most AI pilots fail?", a: "Research points to leadership and problem framing more than technology: unclear goals and owners, data that isn't ready, no agreed measure of success, and no plan for getting into everyday workflows." },
+      { q: "Can I export the plan?", a: "Yes. Print or save the one-page brief as a PDF, copy the full plan as Markdown, or download the backlog as a CSV for Jira or Azure DevOps." },
+      { q: "Where is my data kept?", a: `${PRIVATE} When you use AI drafting, only the use case details you type in the form are sent.` },
     ],
   },
   roomwise: {

@@ -24,6 +24,8 @@ export const SYNC_KEYS = [
   "quotewise:examples",
   "roomwise:v1",
   "roomwise:examples",
+  "pilotwise:v1",
+  "pilotwise:examples",
   "expense-tracker:v1",
   "expense-tracker:examples-loaded",
 ] as const;
