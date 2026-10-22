@@ -42,7 +42,7 @@ export default function LearnPage() {
             Learn to use <span className="text-amber">AI at work</span>.
           </h1>
           <p className="mt-6 max-w-[58ch] text-lg text-soft">
-            Plain-English answers to what teams are asking right now: what AI agents really are, how to use AI safely, how to write a policy, and where to start. Written for businesses, nonprofits and churches, with no hype.
+            Plain-English answers to what teams are asking right now: what AI agents really are, how to use AI safely, how to write a policy, and where to start. Written for businesses, nonprofits and churches, with no hype. Plus simple, research-backed guides for <a href="#everyday" className="underline underline-offset-2 hover:text-fg">everyday life</a>.
           </p>
         </section>
 

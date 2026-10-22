@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Check, Church, Coffee, Info, Pause, Play, RotateCcw, Sparkles, Square, Sun, Target, Wand2 } from "lucide-react";
 import { HomeLink } from "../../components/HomeLink";
 import { markDone } from "../../../lib/journey";
@@ -81,7 +81,7 @@ function carryOver(saved: Saved): string[] {
   return [...undone, ...saved.plan.later.map((l) => l.title)];
 }
 
-export function PlanwiseApp() {
+export function PlanwiseApp({ intro }: { intro?: ReactNode } = {}) {
   const [date] = useState(todayISO);
   const [dump, setDump] = useState("");
   const [dayStart, setDayStart] = useState("09:00");
@@ -234,6 +234,7 @@ export function PlanwiseApp() {
       </header>
 
       <div className="mx-auto mb-5 max-w-6xl">
+        {intro}
         <SaveProgress />
       </div>
 

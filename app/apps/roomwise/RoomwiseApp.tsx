@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { Check, ChevronLeft, ChevronRight, ClipboardCopy, DoorOpen, Info, Pencil, Plus, Printer, Search, Sparkles, Trash2, X } from "lucide-react";
 import { HomeLink } from "../../components/HomeLink";
 import { SaveProgress } from "../../components/SaveProgress";
@@ -50,7 +50,7 @@ function nowSlot(): string {
   return TIMES.includes(t) ? t : "09:00";
 }
 
-export function RoomwiseApp() {
+export function RoomwiseApp({ intro }: { intro?: ReactNode } = {}) {
   const [data, setData] = useState<RoomData>(EMPTY);
   const [ready, setReady] = useState(false);
   const [storageError, setStorageError] = useState<string | null>(null);
@@ -182,6 +182,7 @@ export function RoomwiseApp() {
       </header>
 
       <div className="mx-auto mb-5 max-w-5xl">
+        {intro}
         <SaveProgress />
       </div>
 

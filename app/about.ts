@@ -6,6 +6,8 @@ const PRIVATE = "Everything you enter is saved in your own browser on this devic
 export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | "cafewise" | "quotewise" | "roomwise" | "pilotwise", AboutContent> = {
   habitwise: {
     name: "Habitwise",
+    problem: "Keep starting habits and dropping them? Start small, keep the streak, and see what makes them slip.",
+    guide: { href: "/learn/how-to-build-a-habit-that-sticks", title: "How to build a habit that sticks" },
     path: "/apps/habitwise",
     category: "LifestyleApplication",
     description: "Free habit tracker with streaks, a 15-week calendar and a weekly AI review. No sign-up.",
@@ -20,6 +22,8 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
   },
   planwise: {
     name: "Planwise",
+    problem: "Overwhelmed by your to-do list? Write it all down and get a realistic plan for today.",
+    guide: { href: "/learn/how-to-plan-your-day-when-overwhelmed", title: "How to plan your day when you're overwhelmed" },
     path: "/apps/planwise",
     category: "ProductivityApplication",
     description: "Free AI day planner: turn a messy to-do list into a realistic, time-blocked plan for today, with a focus timer.",
@@ -34,6 +38,8 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
   },
   mealwise: {
     name: "Mealwise",
+    problem: "Not sure what to make for dinner? Tell it what's in your fridge and get meals you can cook tonight.",
+    guide: { href: "/learn/what-to-cook-with-what-you-have", title: "What to cook with what you have" },
     path: "/apps/mealwise",
     category: "LifestyleApplication",
     description: "What can I cook with what I have? Free AI meal ideas from the food in your fridge, plus a grocery list for what's missing.",
@@ -48,6 +54,8 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
   },
   moodwise: {
     name: "Moodwise",
+    problem: "Wondering why some days feel heavier? A two-minute check-in shows what goes with your better days.",
+    guide: { href: "/learn/how-to-track-your-mood", title: "How to track your mood" },
     path: "/apps/moodwise",
     category: "HealthApplication",
     description: "Free private mood tracker: a two-minute daily check-in on mood, energy and sleep, and patterns behind your better days.",
@@ -62,6 +70,8 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
   },
   quotewise: {
     name: "Quotewise",
+    problem: "Losing jobs to slow quotes? Describe the job and send a professional quote in minutes.",
+    guide: { href: "/learn/how-to-write-a-quote-for-a-job", title: "How to write a quote for a job" },
     path: "/apps/quotewise",
     category: "BusinessApplication",
     description: "Free quote and estimate maker with AI: describe the job and get itemized line items, then print, save as PDF or email it, and turn it into an invoice.",
@@ -77,6 +87,8 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
   },
   pilotwise: {
     name: "Pilotwise",
+    problem: "Not sure your AI idea will work? See what to fix first and how you'll decide go or no-go.",
+    guide: { href: "/learn/why-ai-pilots-fail", title: "Why most AI pilots fail" },
     path: "/apps/pilotwise",
     category: "BusinessApplication",
     description: "Free AI pilot planner: turn an AI use case into a pilot-to-production plan with a readiness score, go/no-go exit criteria, phases, risks and a one-page brief for your sponsor.",
@@ -92,6 +104,8 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
   },
   roomwise: {
     name: "Roomwise",
+    problem: "Double bookings and room clashes? Book rooms on a map of your building, with requests to confirm.",
+    guide: { href: "/learn/church-room-booking-and-facility-scheduling", title: "Room booking and facility scheduling" },
     path: "/apps/roomwise",
     category: "BusinessApplication",
     description: "Free room booking for churches, offices and shared spaces: a floor-plan map of your building, conflict checks, weekly repeats, requests to confirm and AI room search.",
@@ -107,6 +121,8 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
   },
   cafewise: {
     name: "Cafewise",
+    problem: "Running out of milk or over-ordering pastries? Count stock on your phone and get the order list.",
+    guide: { href: "/learn/coffee-shop-inventory-management", title: "Coffee shop inventory, step by step" },
     path: "/apps/cafewise",
     category: "BusinessApplication",
     description: "Free coffee shop inventory app: quick stock counts, an order list from your par levels, cost per drink and margin, a waste log and an AI ordering review.",

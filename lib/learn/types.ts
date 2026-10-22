@@ -8,7 +8,7 @@ export type Block =
   | { code: { title: string; text: string } }
   | { callout: string };
 
-export type TopicId = "delivery" | "agents" | "workplace" | "security" | "churches" | "organizations";
+export type TopicId = "delivery" | "agents" | "workplace" | "security" | "churches" | "organizations" | "everyday";
 
 export type Service = "ai-training" | "ai-consulting" | "build";
 
@@ -27,6 +27,8 @@ export interface Guide {
   related: string[];
   /** The service this guide naturally leads to. */
   service: Service;
+  /** A free GrowDaily app that solves the problem; shown instead of the service pitch. */
+  tool?: { name: string; href: string; pitch: string };
   published: string;
   updated: string;
   sources?: { label: string; url: string }[];

@@ -120,7 +120,9 @@ const about = `<section aria-labelledby="about-heading" style="max-width:72rem;m
 <dl style="margin:24px 0 0;display:grid;gap:20px 32px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
 ${FAQS.map(({ q, a }) => `<div><dt style="font-weight:600">${esc(q)}</dt><dd style="margin:4px 0 0;font-size:14px;line-height:1.6;color:#8a9bb2">${esc(a)}</dd></div>`).join("\n")}
 </dl>
-<p style="margin:32px 0 0;font-size:14px"><a href="/" style="color:#f2b54b;font-weight:600">More free apps from GrowDaily</a></p>
+<p style="margin:32px 0 0;font-size:14px"><a href="/learn/how-to-track-your-spending" style="color:#f2b54b;font-weight:600">Read the guide: How to track your spending →</a></p>
+<p style="margin:12px 0 0;font-size:14px"><a href="/learn/how-to-budget-with-irregular-income" style="color:#f2b54b;font-weight:600">Read the guide: How to budget with irregular income →</a></p>
+<p style="margin:24px 0 0;font-size:14px"><a href="/" style="color:#f2b54b;font-weight:600">More free apps from GrowDaily</a></p>
 <p style="margin:12px 0 0;font-size:14px;color:#8a9bb2">Spendwise is built by GrowDaily. <a href="/build" style="color:#cdd8e5;font-weight:600">Want an AI app like this for your business or nonprofit? →</a></p>
 </div>
 </section>`;

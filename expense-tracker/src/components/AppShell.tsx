@@ -78,6 +78,16 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
         <StorageErrorBanner />
+        {pathname === "/" && (
+          <p className="mb-4 text-sm text-muted">
+            Want to know where your money goes, without another account? Log spending in seconds and see your pace for the month.{" "}
+            {/* A plain link: guides live on the GrowDaily site, outside this app's routes. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/learn/how-to-track-your-spending" className="font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
+              How to track your spending →
+            </a>
+          </p>
+        )}
         {children}
       </main>
 

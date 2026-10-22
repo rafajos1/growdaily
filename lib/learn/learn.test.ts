@@ -27,6 +27,14 @@ describe("Learn guides", () => {
     }
   });
 
+  it("point tool links at real app pages", () => {
+    for (const g of GUIDES) {
+      if (!g.tool) continue;
+      const page = existsSync(join(process.cwd(), "app", g.tool.href, "page.tsx")) || existsSync(join(process.cwd(), "public", g.tool.href, "index.html"));
+      expect(page, `${g.slug} → ${g.tool.href}`).toBe(true);
+    }
+  });
+
   it("answer up front and have FAQs, sections and a known topic", () => {
     const topics = new Set(TOPICS.map((t) => t.id));
     for (const g of GUIDES) {
@@ -49,7 +57,11 @@ describe("Learn guides", () => {
         const audience = href.match(/^\/build\/([a-z-]+)$/);
         if (learn) expect(guideBySlug(learn[1]), `${g.slug} → ${href}`).toBeDefined();
         else if (audience && AUDIENCES.some((x) => x.slug === audience[1])) continue;
-        else expect(existsSync(join(process.cwd(), "app", href.split("#")[0], "page.tsx")), `${g.slug} → ${href}`).toBe(true);
+        else {
+          const path = href.split("#")[0];
+          const page = existsSync(join(process.cwd(), "app", path, "page.tsx")) || existsSync(join(process.cwd(), "public", path, "index.html"));
+          expect(page, `${g.slug} → ${href}`).toBe(true);
+        }
       }
     }
   });

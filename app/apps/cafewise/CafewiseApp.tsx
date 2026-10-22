@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { Check, ClipboardCopy, Coffee, Info, MessageSquare, Minus, Pencil, Plus, Sparkles, Trash2, Truck } from "lucide-react";
 import { HomeLink } from "../../components/HomeLink";
 import { SaveProgress } from "../../components/SaveProgress";
@@ -59,7 +59,7 @@ function setOnHand(data: CafeData, itemId: string, value: number, today: string)
   return { ...data, items: data.items.map((i) => (i.id === itemId ? { ...i, onHand: v } : i)), counts: counts.filter((c) => c.date >= cutoff) };
 }
 
-export function CafewiseApp() {
+export function CafewiseApp({ intro }: { intro?: ReactNode } = {}) {
   const [data, setData] = useState<CafeData>(EMPTY);
   const [ready, setReady] = useState(false);
   const [storageError, setStorageError] = useState<string | null>(null);
@@ -212,6 +212,7 @@ export function CafewiseApp() {
       </header>
 
       <div className="mx-auto mb-5 max-w-5xl">
+        {intro}
         <SaveProgress />
       </div>
 

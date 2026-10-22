@@ -10,6 +10,10 @@ export interface AboutContent {
   heading: string;
   intro: string;
   faqs: { q: string; a: string }[];
+  /** The problem the app solves, in the words people use; shown under the app's header. */
+  problem?: string;
+  /** A Learn guide on the same problem. */
+  guide?: { href: string; title: string };
 }
 
 /**
@@ -37,6 +41,13 @@ export function AppAbout({ content, accent }: { content: AboutContent; accent: s
             </div>
           ))}
         </dl>
+        {content.guide && (
+          <p className="mt-8 text-sm">
+            <Link href={content.guide.href} className="font-semibold text-amber underline-offset-4 hover:underline">
+              Read the guide: {content.guide.title} →
+            </Link>
+          </p>
+        )}
         <p className="mt-10 text-sm text-muted">
           {content.name} is built by GrowDaily.{" "}
           <Link href="/build" className="font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
