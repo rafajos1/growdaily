@@ -16,7 +16,7 @@ export const metadata: Metadata = pageMetadata({
   image: ogImage("Learn AI at work", "Free plain-English guides: agents, policies, training"),
 });
 
-const START_HERE = ["what-is-an-ai-agent", "how-to-use-ai-at-work", "ai-policy-template"];
+const START_HERE = ["why-ai-pilots-fail", "what-is-an-ai-agent", "ai-policy-template"];
 
 export default function LearnPage() {
   const collection = {
