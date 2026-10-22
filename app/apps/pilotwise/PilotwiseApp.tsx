@@ -172,7 +172,7 @@ export function PilotwiseApp() {
               <p className="mt-2 max-w-[24ch] text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] [text-wrap:balance] sm:text-5xl">
                 Get your AI pilot <span className="text-amber">into production</span>.
               </p>
-              <p className="mt-4 max-w-[60ch] text-lg text-soft">Most AI pilots never deliver measurable value, usually because the problem, data, success measures or path to production were never pinned down. Pilotwise pins them down before you build.</p>
+              <p className="mt-4 max-w-[60ch] text-lg text-soft">Most AI pilots never deliver measurable value. Describe yours in a sentence and see what to fix before you build.</p>
             </section>
             <NewPlan busy={busy} error={error} onAi={buildWithAi} onTemplate={(inputs) => add(inputs, templatePlan(inputs, newId), "template")} />
           </>

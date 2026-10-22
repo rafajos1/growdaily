@@ -27,11 +27,11 @@ export function sampleData(now: string): PilotData {
     ],
     exitCriteria: [
       { name: "Draft quality", target: "≥ 85% of drafts sent with light or no edits", measure: "Agents rate each draft on 150 test emails, then in live use", status: "on-track" },
-      { name: "Accuracy on policy", target: "0 drafts that promise refunds or terms we don't offer", measure: "Policy test cases in the test set", status: "on-track" },
       { name: "Time to first reply", target: "Median under 2 hours", measure: "Help desk reporting, pilot group vs. baseline", status: "not-measured" },
+      { name: "Agent adoption", target: "4 of 5 agents use drafts daily", measure: "Usage data and a short survey", status: "met" },
+      { name: "Accuracy on policy", target: "0 drafts that promise refunds or terms we don't offer", measure: "Policy test cases in the test set", status: "on-track" },
       { name: "Cost per draft", target: "Under $0.10", measure: "Vendor usage bill ÷ drafts created", status: "met" },
       { name: "Privacy", target: "Approved data use; no payment details sent", measure: "Privacy review signed off", status: "not-measured" },
-      { name: "Agent adoption", target: "4 of 5 agents use drafts daily", measure: "Usage data and a short survey", status: "met" },
     ],
     phases: [
       { name: "Discover & frame", weeks: 2, goal: "Baseline, test set and privacy rules agreed.", features: [
