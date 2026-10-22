@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { Info, Plus, Rocket } from "lucide-react";
 import { HomeLink } from "../../components/HomeLink";
 import { SaveProgress } from "../../components/SaveProgress";
@@ -34,7 +34,7 @@ function safeSet(key: string, value: string | null) {
   }
 }
 
-export function PilotwiseApp() {
+export function PilotwiseApp({ intro }: { intro?: ReactNode } = {}) {
   const [data, setData] = useState<PilotData>(EMPTY);
   const [ready, setReady] = useState(false);
   const [storageError, setStorageError] = useState<string | null>(null);
@@ -141,6 +141,7 @@ export function PilotwiseApp() {
       </header>
 
       <div className="mx-auto mb-5 max-w-5xl">
+        {intro}
         <SaveProgress />
       </div>
 

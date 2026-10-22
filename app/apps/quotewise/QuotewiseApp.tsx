@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { ArrowLeft, Copy, FileText, Info, Mail, Plus, Printer, Receipt, Sparkles, Trash2, X } from "lucide-react";
 import { HomeLink } from "../../components/HomeLink";
 import { SaveProgress } from "../../components/SaveProgress";
@@ -45,7 +45,7 @@ function safeSet(key: string, value: string | null) {
 
 const longDate = (iso: string) => new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
-export function QuotewiseApp() {
+export function QuotewiseApp({ intro }: { intro?: ReactNode } = {}) {
   const [data, setData] = useState<QuoteData>(EMPTY);
   const [ready, setReady] = useState(false);
   const [storageError, setStorageError] = useState<string | null>(null);
@@ -160,6 +160,7 @@ export function QuotewiseApp() {
       </header>
 
       <div className="mx-auto mb-5 max-w-5xl">
+        {intro}
         <SaveProgress />
       </div>
 

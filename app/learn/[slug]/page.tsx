@@ -46,6 +46,14 @@ function Rich({ text }: { text: string }) {
         if (!m) return part;
         const [, label, href] = m;
         const cls = "font-semibold text-amber underline-offset-2 hover:underline";
+        // App pages get plain links: some apps are static pages outside the Next router.
+        if (href.startsWith("/apps/")) {
+          return (
+            <a key={i} href={href} className={cls}>
+              {label}
+            </a>
+          );
+        }
         return href.startsWith("/") ? (
           <Link key={i} href={href} className={cls}>
             {label}
@@ -233,13 +241,24 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           </section>
         </article>
 
-        <aside className="mt-12 rounded-2xl border border-line bg-panel p-6">
-          <p className="text-lg font-extrabold">{cta.title}</p>
-          <p className="mt-1 text-soft">{cta.text}</p>
-          <Link href={cta.href} className={`${btnPrimary} mt-4`}>
-            {cta.label} <ArrowRight className="h-4 w-4" aria-hidden />
-          </Link>
-        </aside>
+        {g.tool ? (
+          <aside className="mt-12 rounded-2xl border border-amber/30 bg-amber/[0.05] p-6">
+            <p className="text-lg font-extrabold">Try {g.tool.name}, free</p>
+            <p className="mt-1 text-soft">{g.tool.pitch}</p>
+            {/* A plain link: some apps are static pages outside the Next router. */}
+            <a href={g.tool.href} className={`${btnPrimary} mt-4`}>
+              Open {g.tool.name} <ArrowRight className="h-4 w-4" aria-hidden />
+            </a>
+          </aside>
+        ) : (
+          <aside className="mt-12 rounded-2xl border border-line bg-panel p-6">
+            <p className="text-lg font-extrabold">{cta.title}</p>
+            <p className="mt-1 text-soft">{cta.text}</p>
+            <Link href={cta.href} className={`${btnPrimary} mt-4`}>
+              {cta.label} <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </aside>
+        )}
 
         <section className="mt-12" aria-labelledby="related-heading">
           <h2 id="related-heading" className="text-lg font-bold">

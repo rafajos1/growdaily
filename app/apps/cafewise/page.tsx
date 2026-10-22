@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ogImage, pageMetadata } from "../../../lib/seo";
 import { ABOUT } from "../../about";
 import { AppAbout } from "../../components/AppAbout";
+import { ProblemLine } from "../../components/ProblemLine";
 import { CafewiseApp } from "./CafewiseApp";
 import { ACCENT } from "./ui";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = pageMetadata({
 export default function Page() {
   return (
     <>
-      <CafewiseApp />
+      <CafewiseApp intro={<ProblemLine content={about} />} />
       <AppAbout content={about} accent={ACCENT} />
     </>
   );

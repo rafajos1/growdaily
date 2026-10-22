@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Annoyed, BookOpen, Church, Frown, HeartHandshake, Info, Laugh, Meh, Minus, Moon, Pencil, Plus, Smile, Sparkles, type LucideIcon } from "lucide-react";
 import { HomeLink } from "../../components/HomeLink";
 import { addDays, fromISO, todayISO, weekday } from "../../../lib/habitwise/dates";
@@ -54,7 +54,7 @@ function safeSet(k: string, v: string | null) {
 
 type Tab = "today" | "insights";
 
-export function MoodwiseApp() {
+export function MoodwiseApp({ intro }: { intro?: ReactNode } = {}) {
   const today = todayISO();
   const [entries, setEntries] = useState<Entry[]>([]);
   const [ready, setReady] = useState(false);
@@ -133,6 +133,7 @@ export function MoodwiseApp() {
       </header>
 
       <div className="mx-auto mb-5 max-w-5xl">
+        {intro}
         <SaveProgress />
       </div>
 

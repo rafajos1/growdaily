@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { Check, ChefHat, ChevronDown, Church, Clock, Copy, Heart, Info, Plus, ShoppingBasket, Sparkles, UserPlus, Users, X } from "lucide-react";
 import { HomeLink } from "../../components/HomeLink";
 import { localISO, markDone } from "../../../lib/journey";
@@ -44,7 +44,7 @@ interface Saved {
   favorites: Meal[];
 }
 
-export function MealwiseApp() {
+export function MealwiseApp({ intro }: { intro?: ReactNode } = {}) {
   const [tab, setTab] = useState<Tab>("ideas");
   const [pantry, setPantry] = useState<string[]>([]);
   const [entry, setEntry] = useState("");
@@ -218,6 +218,7 @@ export function MealwiseApp() {
       </header>
 
       <div className="mx-auto mb-5 max-w-6xl">
+        {intro}
         <SaveProgress />
       </div>
 

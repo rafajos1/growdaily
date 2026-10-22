@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { BookOpen, Check, Church, Flame, Info, Pencil, Plus, Sparkles, Trash2 } from "lucide-react";
 import { HomeLink } from "../../components/HomeLink";
 import { addDays, fromISO, todayISO, weekday } from "../../../lib/habitwise/dates";
@@ -56,7 +56,7 @@ function safeSet(key: string, value: string | null) {
 
 const longDate = (iso: string) => fromISO(iso).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
 
-export function HabitwiseApp() {
+export function HabitwiseApp({ intro }: { intro?: ReactNode } = {}) {
   const [data, setData] = useState<HabitData>({ habits: [], checks: {} });
   const [ready, setReady] = useState(false);
   const [storageError, setStorageError] = useState<string | null>(null);
@@ -191,6 +191,7 @@ export function HabitwiseApp() {
       </header>
 
       <div className="mx-auto mb-5 max-w-5xl">
+        {intro}
         <SaveProgress />
       </div>
 
