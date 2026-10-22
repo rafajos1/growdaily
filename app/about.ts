@@ -79,9 +79,9 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
     name: "Pilotwise",
     path: "/apps/pilotwise",
     category: "BusinessApplication",
-    description: "Free AI pilot planner: turn an AI use case into a pilot-to-production plan with a readiness score, go/no-go exit criteria, an agile delivery plan, ROAM risks and an executive brief.",
+    description: "Free AI pilot planner: turn an AI use case into a pilot-to-production plan with a readiness score, go/no-go exit criteria, phases, risks and a one-page brief for your sponsor.",
     heading: "A free AI pilot planner that gets AI projects from pilot to production",
-    intro: "Most AI pilots never deliver measurable value, and the reasons are rarely the model: no clear owner or metric, data that isn't ready, success never defined, no path into the systems people use. Pilotwise turns one AI use case into a plan that fixes those up front: a readiness check across six areas, go/no-go exit criteria agreed before the first sprint, phases with clear goals, an AI-specific risk register in ROAM terms, an evaluation plan, and a one-page brief for your sponsor. Track the pilot against the gate as you go, and export the backlog to Jira or Azure DevOps.",
+    intro: "Most AI pilots never deliver measurable value, and the reasons are rarely the model: no clear owner or metric, data that isn't ready, success never defined, no path into the systems people use. Describe one AI use case in a sentence and Pilotwise shows you a readiness verdict, the gaps to fix first, a go/no-go test and this week's first steps, with the full plan (phases, risks, how you'll test it) a click away. Print a one-page brief for your sponsor, track the pilot against the gate, and export the backlog to Jira or Azure DevOps.",
     faqs: [
       { q: "Is Pilotwise free?", a: "Yes. No account, sign-up or trial. AI drafting has a free daily allowance, and the built-in template works without it." },
       { q: "What are AI pilot exit criteria?", a: "The measurable conditions, agreed before building, that decide whether a pilot scales: quality on a fixed test set of real cases, cost per task, speed, safe failure when the AI is unsure, permissions and data handling, a named path to production, and adoption." },

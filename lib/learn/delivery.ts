@@ -92,7 +92,7 @@ export const DELIVERY_GUIDES: Guide[] = [
               { title: "Hold a real gate", text: "Go, adjust or stop, based on the criteria. Stopping a pilot that doesn't meet them is a success, not a failure." },
             ],
           },
-          { callout: "Plan your pilot in minutes with [Pilotwise](/apps/pilotwise), our free AI pilot planner: readiness score, exit criteria, phases, ROAM risks and a one-page brief for your sponsor." },
+          { callout: "Plan your pilot in minutes with [Pilotwise](/apps/pilotwise), our free AI pilot planner: a readiness verdict, what to fix first, a go/no-go test and a one-page brief for your sponsor." },
         ],
       },
       {

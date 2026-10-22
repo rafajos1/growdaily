@@ -19,12 +19,10 @@ export function templatePlan(inputs: Inputs, id: IdFn): Plan {
     readiness: AREAS.map((a) => ({ area: a.id, score: 3, note: a.hint, gap: "" })),
     exitCriteria: [
       { id: id(), name: "Quality on a fixed test set", target: "≥ 90% of answers rated acceptable on 100+ real cases", measure: "Same test set every sprint, rated by the people who do the work", status: "not-measured" },
-      { id: id(), name: "Cost per task", target: "Below the cost of doing it by hand today", measure: "From actual usage and bills, not list prices", status: "not-measured" },
-      { id: id(), name: "Speed", target: "Fast enough for the workflow (agree a number)", measure: "Typical and slowest response times under real use", status: "not-measured" },
-      { id: id(), name: "Safe failure", target: "When unsure, it says so and hands off to a person", measure: "Test with tricky, out-of-scope and adversarial cases", status: "not-measured" },
-      { id: id(), name: "Permissions and data", target: "People only see data they're allowed to; sensitive data handled per policy", measure: "Security and privacy review signed off", status: "not-measured" },
       { id: id(), name: "Path to production", target: "A named system and owner for running it after the pilot", measure: "Integration and support plan agreed", status: "not-measured" },
       { id: id(), name: "Adoption", target: "Most pilot users choose to use it weekly", measure: "Usage data plus a short survey", status: "not-measured" },
+      { id: id(), name: "Cost per task", target: "Below the cost of doing it by hand today", measure: "From actual usage and bills, not list prices", status: "not-measured" },
+      { id: id(), name: "Safe failure", target: "When unsure, it hands off to a person; people only see data they're allowed to", measure: "Tricky and out-of-scope test cases, plus a privacy and security sign-off", status: "not-measured" },
     ],
     phases: [
       {

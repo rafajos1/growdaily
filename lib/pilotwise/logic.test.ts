@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { backlogCsv, gaps, gateStatus, planMarkdown, readinessScore, totalWeeks, verdict } from "./logic";
+import { backlogCsv, gaps, gateStatus, planMarkdown, readinessScore, topGaps, totalWeeks, verdict } from "./logic";
 import { sampleData } from "./sample";
 import { parseData } from "./storage";
 import { cleanPlan, templatePlan } from "./template";
@@ -29,6 +29,18 @@ describe("readiness", () => {
     const plan = sampleData("2026-10-22").pilots[0].plan;
     expect(gaps(plan).map((g) => g.area)).toEqual(["governance", "measurement"]);
   });
+
+  it("picks up to three things to fix first, with an action for each", () => {
+    const sample = sampleData("2026-10-22").pilots[0].plan;
+    const top = topGaps(sample);
+    expect(top.map((g) => g.area)).toEqual(["governance", "measurement", "data"]);
+    expect(top[1].action).toMatch(/test set/);
+    const template = templatePlan(inputs, id); // all 3s, no gap text: falls back to the area hint
+    expect(topGaps(template)).toHaveLength(3);
+    expect(topGaps(template)[0].action).toBe("A specific job, an owner, and a number that should move.");
+    template.readiness.forEach((r) => (r.score = 4));
+    expect(topGaps(template)).toEqual([]);
+  });
 });
 
 describe("the gate", () => {
@@ -47,7 +59,7 @@ describe("the template", () => {
     const plan = templatePlan(inputs, id);
     expect(plan.phases.slice(0, 3).reduce((s, p) => s + p.weeks, 0)).toBe(10);
     expect(totalWeeks(plan)).toBe(14);
-    expect(plan.exitCriteria.length).toBeGreaterThanOrEqual(6);
+    expect(plan.exitCriteria.length).toBe(5);
   });
 });
 
@@ -57,7 +69,7 @@ describe("cleaning AI drafts", () => {
     expect(plan.title).toHaveLength(90);
     expect(plan.readiness).toHaveLength(6);
     expect(plan.readiness.find((r) => r.area === "data")!.score).toBe(5);
-    expect(plan.exitCriteria.length).toBeGreaterThanOrEqual(6); // one isn't enough: template used
+    expect(plan.exitCriteria.length).toBe(5); // one isn't enough: template used
     expect(plan.risks.length).toBeGreaterThan(0);
     expect(plan.evalPlan.size).toBe(10);
   });
