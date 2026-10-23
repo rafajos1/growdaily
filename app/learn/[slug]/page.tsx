@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const CTA: Record<Service, { title: string; text: string; href: string; label: string }> = {
   "ai-training": { title: "Want your team trained on this?", text: "Hands-on AI training for your staff or volunteers, live or on Zoom, using your own real work.", href: "/build/ai-training", label: "About AI training" },
   "ai-consulting": { title: "Want help choosing where to start?", text: "We'll find where AI saves your team the most time and give you a clear, one-page plan.", href: "/build/ai-consulting", label: "About AI consulting" },
+  "guided-build": { title: "Want a guide while you build?", text: "Book a free 20-minute call. We'll shape your idea together, and you can add paid working sessions if you'd like help along the way.", href: "/build#idea", label: "Book a free call" },
   build: { title: "Want this built for you?", text: "We build focused AI assistants and agents for your organization, quoted up front, and you own them.", href: "/build#idea", label: "Ask for a quote" },
 };
 

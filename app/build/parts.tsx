@@ -29,7 +29,7 @@ export function BuildHeader() {
           Our work
         </Link>
         <Link href="/build#idea" className="rounded-lg bg-amber/15 px-3 py-2 text-amber hover:bg-amber/25">
-          Get a quote
+          Free call
         </Link>
       </nav>
     </header>
