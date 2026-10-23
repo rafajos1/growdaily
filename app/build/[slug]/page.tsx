@@ -25,7 +25,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const a = audienceBySlug((await params).slug);
   if (!a) return {};
-  return pageMetadata({ title: a.title, description: a.description, path: `/build/${a.slug}`, image: ogImage(a.h1, "Try our work live · Free first call") });
+  return pageMetadata({ title: a.title, description: a.description, path: `/build/${a.slug}`, image: ogImage(a.h1, "Build it yourself, with a guide · Free first call") });
 }
 
 const ORG: Record<AudienceSlug, OrgType> = { churches: "Church or ministry", businesses: "Business", nonprofits: "Nonprofit" };
@@ -38,7 +38,7 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
     "@context": "https://schema.org",
     "@type": "Service",
     name: a.h1,
-    serviceType: "AI app development",
+    serviceType: "Guided AI app building",
     description: a.description,
     url: `${SITE_URL}${path}`,
     audience: { "@type": "Audience", audienceType: a.label },
@@ -48,7 +48,7 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "AI app development", item: `${SITE_URL}/build` },
+      { "@type": "ListItem", position: 1, name: "Build with a guide", item: `${SITE_URL}/build` },
       { "@type": "ListItem", position: 2, name: a.label, item: `${SITE_URL}${path}` },
     ],
   };
@@ -61,21 +61,21 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
       <BuildHeader />
       <main className="mx-auto max-w-6xl">
         <section className="pb-20 pt-10 lg:pt-16">
-          <p className={eyebrow}>AI app development · {a.label}</p>
+          <p className={eyebrow}>Build with a guide · {a.label}</p>
           <h1 className="mt-4 max-w-[22ch] text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">{a.h1}</h1>
           <p className="mt-6 max-w-[56ch] text-lg text-soft">{a.intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#idea" className={btnPrimary}>
-              Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
+              Start your build <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
             <a href="#work" className={btnSecondary}>
-              Try our work
+              See what&apos;s possible
             </a>
           </div>
         </section>
 
         <section aria-labelledby="ideas-heading" className="pb-20">
-          <p className={eyebrow}>What we could build for you</p>
+          <p className={eyebrow}>What you could build</p>
           <h2 id="ideas-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
             Ideas for {a.label.toLowerCase()}
           </h2>
@@ -92,7 +92,7 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
         <section id="work" aria-labelledby="work-heading" className="scroll-mt-8 pb-20">
           <p className={eyebrow}>See it working</p>
           <h2 id="work-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
-            Try apps we&apos;ve already built
+            Real apps, built with Claude
           </h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {a.demos.map((name) => (
@@ -121,7 +121,7 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
           </ul>
         </section>
 
-        <ServicesSection heading={`How we help ${a.label.toLowerCase()}`} />
+        <ServicesSection heading={`Ways we guide ${a.label.toLowerCase()}`} />
         <HowItWorks />
         <Faqs faqs={a.faqs} />
         <IdeaSection defaultOrg={ORG[a.slug]} page={path} />

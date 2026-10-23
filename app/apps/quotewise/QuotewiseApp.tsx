@@ -292,10 +292,13 @@ export function QuotewiseApp({ intro }: { intro?: ReactNode } = {}) {
         {ready && !open && (
           <aside className={`${panel} flex flex-col gap-3 p-5 sm:flex-row sm:items-center`}>
             <p className="flex-1 text-sm text-soft">
-              <strong className="text-fg">Want this built for your business?</strong> A custom version can use your price list, take online payments, and connect to your accounting software.
+              <strong className="text-fg">Want a version built around your business?</strong> You could build one that uses your price list, takes online payments, and connects to your accounting software. We&apos;ll guide you.
             </p>
             <Link href="/learn/how-to-write-a-quote-for-a-job" className={btn.secondary}>
               How it works
+            </Link>
+            <Link href="/build" className={btn.secondary}>
+              Build your own
             </Link>
           </aside>
         )}

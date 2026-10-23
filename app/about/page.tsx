@@ -7,13 +7,13 @@ import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, eyebrow } from "../
 import { JsonLd } from "../components/JsonLd";
 
 const DESCRIPTION =
-  "GrowDaily is run by Rafael, who has 25+ years of experience leading enterprise data, analytics and AI transformation, and a passion for technology that helps people and serves faith communities.";
+  "GrowDaily is run by Rafael, a guide for non-technical builders. He brings 25+ years leading enterprise data, analytics and AI transformation to people who want to build their own AI tools.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About GrowDaily · Rafael, AI & Data Transformation Leader",
+  title: "About GrowDaily · Rafael, Your Guide to Building with AI",
   description: DESCRIPTION,
   path: "/about",
-  image: ogImage("About GrowDaily", "Technology that helps people grow"),
+  image: ogImage("About GrowDaily", "You're the builder. I'm the guide."),
 });
 
 const EXPERIENCE = [
@@ -24,7 +24,7 @@ const EXPERIENCE = [
 ];
 
 const PRINCIPLES = [
-  { title: "Value first", text: "Start with the outcome that matters to you, and build the smallest thing that delivers it." },
+  { title: "Your goal first", text: "We start with the outcome that matters to you, and you build the smallest thing that delivers it." },
   { title: "Governance and quality", text: "Clear guardrails, careful testing and honest limits, so AI earns trust instead of creating risk." },
   { title: "People over tools", text: "Technology should give people time back for each other, not replace the human parts of the work." },
 ];
@@ -49,7 +49,7 @@ export default function AboutPage() {
           Hi, I&apos;m <span className="text-amber">Rafael</span>.
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-soft">
-          I started GrowDaily because I have a passion for equipping people with technology that makes their lives better. I&apos;m especially drawn to where technology and faith meet: helping churches, ministries and people exploring faith use new tools wisely, without losing what matters most.
+          I started GrowDaily because I keep meeting capable people with a clear idea for a tool that would make their work easier, who stop because they don&apos;t think of themselves as technical. You don&apos;t need to be a developer to build it. You need someone who&apos;s been there to show you the way. You&apos;re the builder; I want to be your guide. I&apos;m especially drawn to where technology and faith meet: helping churches, ministries and people exploring faith use new tools wisely, without losing what matters most.
         </p>
 
         <section className="mt-12" aria-labelledby="experience-heading">
@@ -72,20 +72,20 @@ export default function AboutPage() {
           </h2>
           <div className="mt-4 space-y-4 leading-relaxed text-soft">
             <p>
-              Big companies have teams to figure out AI. Most people, small businesses, nonprofits and churches don&apos;t. GrowDaily brings the same practices I use at enterprise scale to everyday life and to organizations of every size.
+              Big companies have whole teams to figure out AI. Most small businesses, nonprofits and churches don&apos;t. GrowDaily brings the same practices I use at enterprise scale to you, so you can build the tools you need yourself instead of waiting on a developer.
             </p>
             <ul className="list-disc space-y-2 pl-5 marker:text-amber">
               <li>
                 <Link href="/" className="font-semibold text-amber underline-offset-2 hover:underline">
-                  Free apps
+                  Example apps
                 </Link>{" "}
-                for money, habits, time, meals and mood, private by default.
+                built with Claude, free to try, so you can see what&apos;s possible.
               </li>
               <li>
                 <Link href="/learn" className="font-semibold text-amber underline-offset-2 hover:underline">
                   Plain-English guides
                 </Link>{" "}
-                to using AI at work, grounded in facts, with no hype.
+                to using and building with AI, grounded in facts, with no hype.
               </li>
               <li>
                 <Link href="/faith" className="font-semibold text-amber underline-offset-2 hover:underline">
@@ -95,7 +95,7 @@ export default function AboutPage() {
               </li>
               <li>
                 <Link href="/build" className="font-semibold text-amber underline-offset-2 hover:underline">
-                  Training, consulting and custom AI apps
+                  Guided builds, training and custom apps
                 </Link>{" "}
                 for businesses, nonprofits and churches.
               </li>
@@ -105,7 +105,7 @@ export default function AboutPage() {
 
         <section className="mt-12" aria-labelledby="how-heading">
           <h2 id="how-heading" className="text-2xl font-extrabold tracking-tight">
-            How I work
+            How I guide
           </h2>
           <ul className="mt-5 grid gap-3 sm:grid-cols-3">
             {PRINCIPLES.map((p) => (
@@ -118,9 +118,9 @@ export default function AboutPage() {
         </section>
 
         <section className="mt-12 rounded-2xl border border-line bg-panel p-6 sm:p-8">
-          <h2 className="text-2xl font-extrabold tracking-tight">Let&apos;s talk</h2>
+          <h2 className="text-2xl font-extrabold tracking-tight">What do you want to build?</h2>
           <p className="mt-2 max-w-[56ch] text-muted">
-            Have an idea for an AI app, or want your team trained? Ask for a free quote, or email{" "}
+            Tell me your idea and we&apos;ll set up a free 20-minute call. Or email{" "}
             <a href="mailto:hello@growdaily.ai" className="font-semibold text-amber underline-offset-2 hover:underline">
               hello@growdaily.ai
             </a>
@@ -128,7 +128,7 @@ export default function AboutPage() {
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link href="/build#idea" className={btnPrimary}>
-              Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
+              Start your build <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link href="/learn" className={btnSecondary}>
               Read the free guides

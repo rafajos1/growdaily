@@ -18,14 +18,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const g = guideBySlug((await params).slug);
   if (!g) return {};
-  const meta = pageMetadata({ title: `${g.seoTitle} · GrowDaily`, description: g.description, path: `/learn/${g.slug}`, image: ogImage(g.title, "A plain-English guide from GrowDaily") });
+  const meta = pageMetadata({ title: `${g.seoTitle} · GrowDaily`, description: g.description, path: `/learn/${g.slug}`, image: ogImage(g.title, "A plain-English guide for non-technical builders") });
   return { ...meta, openGraph: { ...meta.openGraph, type: "article", publishedTime: g.published, modifiedTime: g.updated } };
 }
 
 const CTA: Record<Service, { title: string; text: string; href: string; label: string }> = {
-  "ai-training": { title: "Want your team trained on this?", text: "Hands-on AI training for your staff or volunteers, live or on Zoom, using your own real work.", href: "/build/ai-training", label: "About AI training" },
-  "ai-consulting": { title: "Want help choosing where to start?", text: "We'll find where AI saves your team the most time and give you a clear, one-page plan.", href: "/build/ai-consulting", label: "About AI consulting" },
-  build: { title: "Want this built for you?", text: "We build focused AI assistants and agents for your organization, quoted up front, and you own them.", href: "/build#idea", label: "Ask for a quote" },
+  "ai-training": { title: "Want your team confident with this?", text: "Hands-on AI training for your staff or volunteers, live or on Zoom, practiced on your own real work.", href: "/build/ai-training", label: "About AI training" },
+  "ai-consulting": { title: "Want help choosing where to start?", text: "We'll help you find where AI saves your team the most time, and you'll leave with a clear, one-page plan.", href: "/build/ai-consulting", label: "About AI consulting" },
+  build: { title: "Ready to build this yourself?", text: "We'll guide you through building it with Claude, step by step, or build it with you. Quoted up front, and you own it.", href: "/build#idea", label: "Start your build" },
 };
 
 const anchor = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -149,7 +149,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     datePublished: g.published,
     dateModified: g.updated,
     mainEntityOfPage: `${SITE_URL}${path}`,
-    image: `${SITE_URL}${ogImage(g.title, "A plain-English guide from GrowDaily")}`,
+    image: `${SITE_URL}${ogImage(g.title, "A plain-English guide for non-technical builders")}`,
     author: AUTHOR.schema,
     publisher: { "@type": "Organization", name: "GrowDaily", url: SITE_URL },
     about: topic.title,

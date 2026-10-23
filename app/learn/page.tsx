@@ -7,7 +7,7 @@ import { BuildFooter, BuildHeader, btnPrimary, eyebrow } from "../build/parts";
 import { JsonLd } from "../components/JsonLd";
 
 const DESCRIPTION =
-  "Free, plain-English guides to using AI at work: AI agents, prompts, AI policy templates, data privacy and AI security, team training, and where businesses, nonprofits and churches should start.";
+  "Free, plain-English guides to using and building with AI at work: AI agents, prompts, AI policy templates, data privacy and AI security, team training, and where businesses, nonprofits and churches should start.";
 
 export const metadata: Metadata = pageMetadata({
   title: "Learn AI at Work: Free Guides to AI Agents, Policies & Training · GrowDaily",
@@ -39,10 +39,10 @@ export default function LearnPage() {
         <section className="pb-14 pt-10 lg:pt-16">
           <p className={eyebrow}>Free guides</p>
           <h1 className="mt-4 max-w-[18ch] text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
-            Learn to use <span className="text-amber">AI at work</span>.
+            Learn to use and build with <span className="text-amber">AI</span>.
           </h1>
           <p className="mt-6 max-w-[58ch] text-lg text-soft">
-            Plain-English answers to what teams are asking right now: what AI agents really are, how to use AI safely, how to write a policy, and where to start. Written for businesses, nonprofits and churches, with no hype. Plus simple, research-backed guides for <a href="#everyday" className="underline underline-offset-2 hover:text-fg">everyday life</a>.
+            Plain-English answers to what you&apos;re asking right now: what AI agents really are, how to use AI safely, how to write a policy, and where to start building. Written for non-technical people in businesses, nonprofits and churches, with no hype. Plus simple, research-backed guides for <a href="#everyday" className="underline underline-offset-2 hover:text-fg">everyday life</a>.
           </p>
         </section>
 
@@ -90,14 +90,14 @@ export default function LearnPage() {
 
         <section className="pb-24">
           <div className="rounded-2xl border border-line bg-panel p-6 sm:p-10">
-            <h2 className="text-2xl font-extrabold tracking-tight">Rather have someone walk your team through it?</h2>
-            <p className="mt-2 max-w-[60ch] text-muted">We run hands-on AI training, build simple AI plans, and set up AI agents for businesses, nonprofits and churches.</p>
+            <h2 className="text-2xl font-extrabold tracking-tight">Ready to build something? You don&apos;t have to do it alone.</h2>
+            <p className="mt-2 max-w-[60ch] text-muted">We guide you through building your own AI tools with Claude, train your team, and help you plan where to start, for businesses, nonprofits and churches.</p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <Link href="/build/ai-training" className={btnPrimary}>
-                AI training <ArrowRight className="h-4 w-4" aria-hidden />
+              <Link href="/build" className={btnPrimary}>
+                Start your build <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
               <Link href="/build#services" className="inline-flex min-h-12 items-center rounded-[10px] border border-line bg-raised px-5 font-semibold hover:bg-[#24364f]">
-                All services
+                Ways we guide
               </Link>
             </div>
           </div>

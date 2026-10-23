@@ -271,10 +271,13 @@ export function CafewiseApp({ intro }: { intro?: ReactNode } = {}) {
         {ready && (
           <aside className={`${panel} flex flex-col gap-3 p-5 sm:flex-row sm:items-center`}>
             <p className="flex-1 text-sm text-soft">
-              <strong className="text-fg">Want this built for your café?</strong> A custom version can connect to your point of sale, handle more than one location, and give each staff member their own login.
+              <strong className="text-fg">Want a version built around your café?</strong> You could build one that connects to your point of sale, handles more than one location, and gives each staff member their own login. We&apos;ll guide you.
             </p>
             <Link href="/learn/coffee-shop-inventory-management" className={btn.secondary}>
               How it works
+            </Link>
+            <Link href="/build" className={btn.secondary}>
+              Build your own
             </Link>
           </aside>
         )}

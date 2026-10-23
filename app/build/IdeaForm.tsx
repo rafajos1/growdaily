@@ -164,7 +164,7 @@ export function IdeaForm({ defaultOrg = "Business", defaultInterest = "Build it 
       )}
       <button type="submit" disabled={busy} className={`inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-amber px-5 text-base font-bold text-[#2a1c05] transition hover:brightness-110 disabled:opacity-60 sm:w-auto ${focus}`}>
         {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : wantsSketch(interest) ? <Sparkles className="h-4 w-4" aria-hidden /> : null}
-        {busy ? (wantsSketch(interest) ? "Sketching your idea…" : "Sending…") : wantsSketch(interest) ? "Ask for a quote and see a sketch" : "Ask for a quote"}
+        {busy ? (wantsSketch(interest) ? "Sketching your idea…" : "Sending…") : wantsSketch(interest) ? "Send and see a sketch" : "Send"}
       </button>
       <p className="text-xs text-dim">
         Free, no obligation. We only use your details to reply to you.{" "}

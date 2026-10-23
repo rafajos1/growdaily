@@ -49,9 +49,9 @@ export function AppAbout({ content, accent }: { content: AboutContent; accent: s
           </p>
         )}
         <p className="mt-10 text-sm text-muted">
-          {content.name} is built by GrowDaily.{" "}
+          {content.name} was built with Claude.{" "}
           <Link href="/build" className="font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
-            Want an AI app like this for your business or nonprofit? →
+            You could build a tool like this for your business or nonprofit, and we&apos;ll guide you →
           </Link>
         </p>
       </div>

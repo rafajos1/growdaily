@@ -26,10 +26,10 @@ export function BuildHeader() {
           Services
         </Link>
         <Link href="/build#work" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">
-          Our work
+          Examples
         </Link>
         <Link href="/build#idea" className="rounded-lg bg-amber/15 px-3 py-2 text-amber hover:bg-amber/25">
-          Get a quote
+          Start building
         </Link>
       </nav>
     </header>
@@ -41,7 +41,7 @@ export function BuildFooter() {
     <footer className="mx-auto max-w-6xl border-t border-hairline py-8 text-sm text-muted">
       <div className="flex flex-wrap gap-x-6 gap-y-2">
         <Link href="/learn" className="hover:text-fg">
-          Learn AI at work
+          Learn to build with AI
         </Link>
         <Link href="/learn/what-is-an-ai-agent" className="hover:text-fg">
           What is an AI agent?
@@ -50,7 +50,7 @@ export function BuildFooter() {
           AI policy template
         </Link>
         <Link href="/build" className="hover:text-fg">
-          AI app development
+          Build with a guide
         </Link>
         {SERVICE_PAGES.map((p) => (
           <Link key={p.slug} href={`/build/${p.slug}`} className="hover:text-fg">
@@ -63,7 +63,7 @@ export function BuildFooter() {
           </Link>
         ))}
         <Link href="/" className="hover:text-fg">
-          Try the free apps
+          Try the example apps
         </Link>
         <Link href="/about" className="hover:text-fg">
           About
@@ -94,7 +94,7 @@ export function CaseCard({ c }: { c: CaseStudy }) {
           <dd className="mt-0.5 text-muted">{c.ai}</dd>
         </div>
         <div>
-          <dt className="font-semibold text-soft">Built for you, it could be</dt>
+          <dt className="font-semibold text-soft">What you could build</dt>
           <dd className="mt-0.5 text-muted">{c.forYou}</dd>
         </div>
       </dl>

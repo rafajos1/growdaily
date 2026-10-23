@@ -59,7 +59,7 @@ export default function BuildPage() {
         <ServicesSection />
 
         <section aria-labelledby="who-heading" className="pb-20">
-          <p className={eyebrow}>Who we build for</p>
+          <p className={eyebrow}>Who we guide</p>
           <h2 id="who-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
             Teams of any size, one clear job at a time
           </h2>
@@ -77,7 +77,7 @@ export default function BuildPage() {
         </section>
 
         <section id="work" aria-labelledby="work-heading" className="scroll-mt-8 pb-20">
-          <p className={eyebrow}>Our work</p>
+          <p className={eyebrow}>Examples</p>
           <h2 id="work-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
             Real apps, built with Claude
           </h2>

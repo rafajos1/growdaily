@@ -113,7 +113,7 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
     intro: "Roomwise keeps one calendar for every room in your church, office or building. Draw your floor plan by dragging rooms into place, then see at a glance what's free and what's booked at any time. Book rooms once or every week, and Roomwise stops double bookings. Mark requests as pending until they're confirmed, print or copy the day's schedule, and ask for a room in plain words, like \"a room for 25 with a projector Tuesday evenings\".",
     faqs: [
       { q: "Is Roomwise free?", a: "Yes. No account, sign-up or trial, and it works in any browser on your phone or computer." },
-      { q: "Can members request rooms themselves?", a: "Not in this free version, which is for the person who manages the calendar. A custom version from GrowDaily can add an online request form with approvals and email confirmations." },
+      { q: "Can members request rooms themselves?", a: "Not in this free version, which is for the person who manages the calendar. You could build your own version with an online request form, approvals and email confirmations, and GrowDaily can guide you through it." },
       { q: "Does it stop double bookings?", a: "Yes. Roomwise checks every booking, including each week of a repeating one, and won't save a booking that overlaps another in the same room." },
       { q: "Is it only for churches?", a: "No. It works for any building with shared rooms: offices and meeting rooms, coworking spaces, studios, schools and community centers." },
       { q: "Where is my data kept?", a: `${PRIVATE} For AI room search, only your request, today's date and your rooms' feature names are sent.` },
@@ -133,7 +133,7 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
       { q: "What is a par level?", a: "The amount of an item you want on hand right after a delivery. Cafewise orders the difference between par and what you counted, and suggests pars from your actual use: enough to last until the next delivery, plus a 25% buffer (10% for pastries, since leftovers are thrown away)." },
       { q: "How do I work out the cost of a latte?", a: "Add up what goes in: espresso by the gram, milk by the ounce, plus the cup and lid. Cafewise does the math from what you pay for each item and shows the cost, your margin and the cost as a share of the price." },
       { q: "Where is my data kept?", a: `${PRIVATE} For the AI review, only item names and numbers are sent.` },
-      { q: "Does it connect to Square or Toast?", a: "Not this free version. GrowDaily can build a custom version for your café that connects to your point of sale, supports several locations and gives staff their own logins." },
+      { q: "Does it connect to Square or Toast?", a: "Not this free version. You could build your own version that connects to your point of sale, supports several locations and gives staff their own logins, and GrowDaily can guide you through it or build it with you." },
     ],
   },
 };

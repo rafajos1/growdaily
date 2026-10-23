@@ -504,9 +504,9 @@ export const CHURCH_GUIDES: Guide[] = [
         ],
       },
       {
-        heading: "Want a room request system built for your church?",
+        heading: "Want a room request system built around your church?",
         blocks: [
-          "Roomwise is for the person who manages the calendar. GrowDaily can build a version around how your church works, for example:",
+          "Roomwise is for the person who manages the calendar. Your team could build its own version around how your church works, and GrowDaily can guide you through it. For example:",
           {
             list: [
               "An online request form for ministries, members and community groups, on your website.",
@@ -516,7 +516,7 @@ export const CHURCH_GUIDES: Guide[] = [
               "Outside group agreements and insurance certificates collected with the request.",
             ],
           },
-          "First versions are kept small, with a fixed price agreed after a free call, and you own what we build. [Ask for a quote](/build#idea), or see more [AI tools for churches](/build/churches).",
+          "First versions are kept small, and our help is quoted up front after a free call. You own what you build. [Start your build](/build#idea), or see more [AI tools for churches](/build/churches).",
         ],
       },
     ],

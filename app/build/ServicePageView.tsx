@@ -8,7 +8,7 @@ import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, 
 export const servicePage = (slug: ServicePage["slug"]) => SERVICE_PAGES.find((p) => p.slug === slug)!;
 
 export function serviceMetadata(p: ServicePage): Metadata {
-  return pageMetadata({ title: p.title, description: p.description, path: `/build/${p.slug}`, image: ogImage(p.h1, "Businesses & nonprofits · Ask for a quote") });
+  return pageMetadata({ title: p.title, description: p.description, path: `/build/${p.slug}`, image: ogImage(p.h1, "Businesses & nonprofits · Free first call") });
 }
 
 /** /build/ai-training and /build/ai-consulting. */
@@ -28,7 +28,7 @@ export function ServicePageView({ page: p }: { page: ServicePage }) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "AI services", item: `${SITE_URL}/build` },
+      { "@type": "ListItem", position: 1, name: "Build with a guide", item: `${SITE_URL}/build` },
       { "@type": "ListItem", position: 2, name: p.label, item: `${SITE_URL}${path}` },
     ],
   };
@@ -45,10 +45,10 @@ export function ServicePageView({ page: p }: { page: ServicePage }) {
           <p className="mt-6 max-w-[56ch] text-lg text-soft">{p.intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#idea" className={btnPrimary}>
-              Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
+              Get started <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
             <a href="#work" className={btnSecondary}>
-              See what we&apos;ve built
+              See what&apos;s possible
             </a>
           </div>
         </section>
@@ -72,11 +72,11 @@ export function ServicePageView({ page: p }: { page: ServicePage }) {
         </section>
 
         <section id="work" aria-labelledby="work-heading" className="scroll-mt-8 pb-20">
-          <p className={eyebrow}>Our work</p>
+          <p className={eyebrow}>Examples</p>
           <h2 id="work-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
-            We build with AI every day
+            We build with Claude every day, so you can too
           </h2>
-          <p className="mt-2 max-w-[60ch] text-muted">Every app on GrowDaily is ours, so what we teach and recommend comes from real use. Try a few.</p>
+          <p className="mt-2 max-w-[60ch] text-muted">Every app on GrowDaily was built with Claude, so what we teach comes from real use. Try a few, then picture yours.</p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {CASES.slice(0, 3).map((c) => (
               <CaseCard key={c.name} c={c} />

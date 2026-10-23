@@ -241,7 +241,7 @@ export function PilotwiseApp({ intro }: { intro?: ReactNode } = {}) {
         {ready && view.kind !== "plan" && (
           <aside className={`${panel} flex flex-col gap-3 p-5 sm:flex-row sm:items-center`}>
             <p className="flex-1 text-sm text-soft">
-              <strong className="text-fg">Want an experienced hand on your pilot?</strong> We help teams frame AI use cases, set exit criteria, and run the pilot to a clear go or no-go.
+              <strong className="text-fg">Want an experienced guide on your pilot?</strong> You run it; we help you frame the use case, set exit criteria, and get to a clear go or no-go.
             </p>
             <div className="flex flex-wrap gap-2">
               <Link href="/learn/why-ai-pilots-fail" className={btn.secondary}>

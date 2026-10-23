@@ -238,19 +238,19 @@ export const ORGANIZATION_GUIDES: Guide[] = [
         ],
       },
       {
-        heading: "Want a version built for your café?",
+        heading: "Want a version built around your café?",
         blocks: [
-          "Cafewise covers the basics for one location. GrowDaily can build a custom version around how your café works, for example:",
+          "Cafewise covers the basics for one location. You could build your own version around how your café works, and GrowDaily can guide you through it. For example:",
           {
             list: [
               "Connected to your point of sale, so drink sales update stock on their own.",
               "Several locations, with a combined order list and each shop's own pars.",
               "Staff logins, so whoever closes can count and the owner sees it.",
               "Supplier ordering by email, and reading prices from a photo of an invoice.",
-              "Your menu, recipes and suppliers set up for you, with training for your team.",
+              "Your menu, recipes and suppliers set up, with your team trained to use it.",
             ],
           },
-          "First versions are kept small, with a fixed price agreed after a free call, and you own what we build. [Ask for a quote](/build#idea) and tell us how you order today.",
+          "First versions are kept small, and our help is quoted up front after a free call. You own what you build. [Start your build](/build#idea) and tell us how you order today.",
         ],
       },
     ],
@@ -331,9 +331,9 @@ export const ORGANIZATION_GUIDES: Guide[] = [
         ],
       },
       {
-        heading: "Want quoting built for your business?",
+        heading: "Want quoting built around your business?",
         blocks: [
-          "Quotewise covers the basics. GrowDaily can build a version around how your business works, for example:",
+          "Quotewise covers the basics. You could build your own version around how your business works, and GrowDaily can guide you through it. For example:",
           {
             list: [
               "Your own price list and packages, so quotes use your real prices every time.",
@@ -343,7 +343,7 @@ export const ORGANIZATION_GUIDES: Guide[] = [
               "Photos of the job turned into a first draft of the quote.",
             ],
           },
-          "First versions are kept small, with a fixed price agreed after a free call, and you own what we build. [Ask for a quote](/build#idea) and tell us how you quote today.",
+          "First versions are kept small, and our help is quoted up front after a free call. You own what you build. [Start your build](/build#idea) and tell us how you quote today.",
         ],
       },
     ],
@@ -406,9 +406,9 @@ export const ORGANIZATION_GUIDES: Guide[] = [
         ],
       },
       {
-        heading: "Want a booking system built for your space?",
+        heading: "Want a booking system built around your space?",
         blocks: [
-          "Roomwise is for the person who manages the calendar. GrowDaily can build a version around how your business works, for example:",
+          "Roomwise is for the person who manages the calendar. You could build your own version around how your business works, and GrowDaily can guide you through it. For example:",
           {
             list: [
               "Staff book from Slack, Teams or their calendar, and get reminders.",
@@ -417,7 +417,7 @@ export const ORGANIZATION_GUIDES: Guide[] = [
               "Reports on how rooms are used, so you know whether you need more space or less.",
             ],
           },
-          "First versions are kept small, with a fixed price agreed after a free call, and you own what we build. [Ask for a quote](/build#idea).",
+          "First versions are kept small, and our help is quoted up front after a free call. You own what you build. [Start your build](/build#idea).",
         ],
       },
     ],

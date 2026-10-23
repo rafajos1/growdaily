@@ -11,10 +11,10 @@ const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "
 export const metadata = {
   metadataBase: new URL("https://www.growdaily.ai"),
   // Fallbacks; each page sets its own title, description, canonical and preview (lib/seo.ts).
-  title: "GrowDaily · Free AI apps to run your life better",
-  description: "Small, free apps for your money, habits, time, food and mood. No account needed, and your data stays on your device.",
+  title: "GrowDaily · Build your own AI apps, with a guide",
+  description: "GrowDaily guides non-technical business owners and nonprofit leaders to build their own AI apps with Claude. See real examples and try them free.",
   applicationName: "GrowDaily",
-  openGraph: { siteName: "GrowDaily", type: "website", locale: "en_US", images: ["/og?title=GrowDaily&subtitle=Free+AI+apps+to+run+your+life+better"] },
+  openGraph: { siteName: "GrowDaily", type: "website", locale: "en_US", images: ["/og?title=GrowDaily&subtitle=Build+your+own+AI+apps%2C+with+a+guide"] },
   twitter: { card: "summary_large_image" },
 };
 
