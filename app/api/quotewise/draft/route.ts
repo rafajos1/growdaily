@@ -48,7 +48,7 @@ interface Draft {
 
 export async function POST(req: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json({ error: "AI drafting is coming soon. GrowDaily is in beta." }, { status: 503 });
+    return NextResponse.json({ error: "AI drafting isn't available right now." }, { status: 503 });
   }
   if (!allowDaily(`quotewise:${clientIp(req)}`, 10)) {
     return NextResponse.json({ error: "You've used today's free AI drafts. You can still add lines yourself." }, { status: 429 });

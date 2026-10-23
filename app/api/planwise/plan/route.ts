@@ -27,7 +27,7 @@ interface Body {
 
 export async function POST(req: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json({ error: "AI planning is coming soon while GrowDaily is in beta." }, { status: 503 });
+    return NextResponse.json({ error: "AI planning isn't available right now. Please try again later." }, { status: 503 });
   }
 
   let body: Body;

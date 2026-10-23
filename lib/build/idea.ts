@@ -3,11 +3,11 @@
 export const ORG_TYPES = ["Business", "Nonprofit", "Church or ministry", "Something else"] as const;
 export type OrgType = (typeof ORG_TYPES)[number];
 
-export const INTERESTS = ["Build an app", "AI training", "AI plan", "Care plan", "Not sure yet"] as const;
+export const INTERESTS = ["Guided build", "Build an app", "AI training", "AI plan", "Care plan", "Not sure yet"] as const;
 export type Interest = (typeof INTERESTS)[number];
 
 /** An instant app sketch only makes sense when someone is thinking about an app. */
-export const wantsSketch = (interest: Interest) => interest === "Build an app" || interest === "AI plan" || interest === "Not sure yet";
+export const wantsSketch = (interest: Interest) => interest === "Guided build" || interest === "Build an app" || interest === "AI plan" || interest === "Not sure yet";
 
 export interface IdeaSketch {
   name: string;

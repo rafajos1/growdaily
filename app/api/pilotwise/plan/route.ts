@@ -85,7 +85,7 @@ const SCHEMA = {
 
 export async function POST(req: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json({ error: "AI plans are coming soon. GrowDaily is in beta. You can start from the template instead." }, { status: 503 });
+    return NextResponse.json({ error: "AI plans aren't available right now. You can start from the template instead." }, { status: 503 });
   }
   if (!allowDaily(`pilotwise:${clientIp(req)}`, 5)) {
     return NextResponse.json({ error: "You've used today's free AI plans. You can still start from the template." }, { status: 429 });

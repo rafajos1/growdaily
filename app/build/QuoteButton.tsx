@@ -15,7 +15,7 @@ export function QuoteButton({ interest, className }: { interest: Interest; class
       }}
       className={className}
     >
-      Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
+      {interest === "Guided build" ? "Book a free call" : "Ask for a quote"} <ArrowRight className="h-4 w-4" aria-hidden />
     </a>
   );
 }

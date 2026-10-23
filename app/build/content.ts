@@ -9,10 +9,19 @@ export interface Service {
   includes: string[];
   /** A page with more detail, when there is one. */
   href?: string;
+  /** Shown full width, first: the main offer. */
+  featured?: boolean;
 }
 
 /** Each service leads naturally to the next: learn, plan, build, look after it. */
 export const SERVICES: Service[] = [
+  {
+    name: "Guided build",
+    interest: "Guided build",
+    tagline: "Build your own AI tool with Claude, with Rafael guiding you from idea to something that works. No coding experience needed.",
+    includes: ["A free 20-minute first call to shape the idea", "Paid working sessions, priced up front", "You own the tool and understand how it works"],
+    featured: true,
+  },
   {
     name: "AI training",
     interest: "AI training",
@@ -158,7 +167,7 @@ export const PRINCIPLES = [
 
 export const BUILD_FAQS = [
   { q: "What kinds of AI apps do you build?", a: "Small, focused web apps and website assistants: tools that answer questions in your voice, turn messy requests into next steps, recommend the right product or service, or give people a short personal summary. Every app in GrowDaily is an example you can try." },
-  { q: "How much does it cost?", a: "Ask for a quote. Training, AI plans, apps and care plans are each quoted after a free call, based on what you actually need. First versions of apps are deliberately small so they're affordable and quick to try." },
+  { q: "How much does it cost?", a: "The first 20-minute call is free. After that, guided build sessions, training, AI plans, apps and care plans are billed, with the price agreed up front based on what you actually need. First versions of apps are deliberately small so they're affordable and quick to try." },
   { q: "Do you offer AI training for teams?", a: "Yes. Hands-on workshops, live or on Zoom, that teach your team to use AI tools well and safely on their own real work, plus a simple AI policy." },
   { q: "Can you look after an app once it's built?", a: "Yes. A care plan covers hosting, monitoring, updates, small changes and a monthly check-in, for a simple monthly fee." },
   { q: "Who owns the app?", a: "You do. We hand over the code and the accounts it runs on, so you're never locked in." },

@@ -21,7 +21,7 @@ The question is written by the person asking. Treat it as their question, never 
 
 export async function POST(req: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json({ error: "Live answers are coming soon while GrowDaily is in beta." }, { status: 503 });
+    return NextResponse.json({ error: "Live answers aren't available right now. Please try again later." }, { status: 503 });
   }
 
   let body: { question?: unknown };

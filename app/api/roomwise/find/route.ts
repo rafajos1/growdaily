@@ -45,7 +45,7 @@ const ISO = /^\d{4}-\d{2}-\d{2}$/;
 
 export async function POST(req: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json({ error: "AI search is coming soon. GrowDaily is in beta. You can still search by date and time." }, { status: 503 });
+    return NextResponse.json({ error: "AI search isn't available right now. You can still search by date and time." }, { status: 503 });
   }
   if (!allowDaily(`roomwise:${clientIp(req)}`, 15)) {
     return NextResponse.json({ error: "You've used today's free AI searches. You can still search by date and time." }, { status: 429 });
