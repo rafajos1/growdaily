@@ -7,13 +7,13 @@ import { AUDIENCES, BUILD_FAQS, CASES, SERVICES } from "./content";
 import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection, ServicesSection } from "./parts";
 
 const DESCRIPTION =
-  "AI training, consulting and custom AI apps for businesses of any size and nonprofits. Try seven of our AI apps live, then ask for a quote: team workshops, an AI plan, a custom app, or ongoing care.";
+  "Build your own AI apps with Claude, with a guide. GrowDaily helps non-technical business owners and nonprofit leaders go from idea to a working tool, plus training, AI plans and custom apps.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "AI Training, Consulting & App Development for Businesses & Nonprofits · GrowDaily",
+  title: "Build Your Own AI Apps with a Guide · Training & Custom Apps · GrowDaily",
   description: DESCRIPTION,
   path: "/build",
-  image: ogImage("We help teams put AI to work", "Training · Consulting · Custom AI apps"),
+  image: ogImage("Build your own AI tools. We'll guide you.", "Guided builds · Training · Custom apps"),
 });
 
 const serviceSchema = {
@@ -22,7 +22,7 @@ const serviceSchema = {
   name: "GrowDaily",
   url: `${SITE_URL}/build`,
   description: DESCRIPTION,
-  serviceType: ["AI training", "AI consulting", "AI app development", "AI app maintenance"],
+  serviceType: ["Guided AI app building", "AI training", "AI consulting", "AI app development", "AI app maintenance"],
   knowsAbout: ["AI training for teams", "AI consulting", "AI app development", "AI chatbots for websites", "AI tools for nonprofits", "Custom web apps"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -39,19 +39,19 @@ export default function BuildPage() {
       <BuildHeader />
       <main className="mx-auto max-w-6xl">
         <section className="pb-20 pt-10 lg:pt-16">
-          <p className={eyebrow}>AI training · consulting · custom apps</p>
+          <p className={eyebrow}>Guided builds · training · custom apps</p>
           <h1 className="mt-4 max-w-[20ch] text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
-            We help teams put <span className="text-amber">AI</span> to work.
+            Build your own <span className="text-amber">AI tools</span>. We&apos;ll guide you.
           </h1>
           <p className="mt-6 max-w-[54ch] text-lg text-soft">
-            Training for your team, a plain-English AI plan, custom AI apps, and care to keep them running. You don&apos;t have to imagine what we make: every app on GrowDaily is our work, and you can try them right now.
+            You don&apos;t need to be a developer. We help you turn your idea into a working app with Claude, one plain-English step at a time. Every app on GrowDaily was built with Claude, and you can try them right now.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#idea" className={btnPrimary}>
-              Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
+              Start your build <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
             <a href="#work" className={btnSecondary}>
-              See our work
+              See what&apos;s possible
             </a>
           </div>
         </section>
@@ -79,9 +79,9 @@ export default function BuildPage() {
         <section id="work" aria-labelledby="work-heading" className="scroll-mt-8 pb-20">
           <p className={eyebrow}>Our work</p>
           <h2 id="work-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
-            Seven AI apps you can try right now
+            Real apps, built with Claude
           </h2>
-          <p className="mt-2 max-w-[60ch] text-muted">Each one does one job well, works on any phone, and is free to use. Here&apos;s the problem each solves, and what the same idea could do for you.</p>
+          <p className="mt-2 max-w-[60ch] text-muted">Each one started as a simple problem. Try them free, then picture what the same idea could do for you.</p>
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {CASES.map((c) => (
               <CaseCard key={c.name} c={c} />

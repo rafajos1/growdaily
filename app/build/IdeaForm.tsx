@@ -11,6 +11,7 @@ const input = `block min-h-12 w-full rounded-[10px] border border-line bg-sunken
 export const INTEREST_EVENT = "growdaily:build-interest";
 
 const PROMPTS: Record<Interest, { label: string; placeholder: string }> = {
+  "Build it with a guide": { label: "What tool do you want to build?", placeholder: "e.g. A simple app that turns my customer calls into quotes. I've tried Claude but got stuck." },
   "Build an app": { label: "What do you wish an app did for you?", placeholder: "e.g. Answer customer questions on our website and send me the ones that need a person." },
   "AI training": { label: "Tell us about your team and what you'd like to learn", placeholder: "e.g. 12 staff, a few use ChatGPT. We'd like to save time on emails and meeting notes, safely." },
   "AI plan": { label: "Where does your team lose the most time?", placeholder: "e.g. Answering the same questions, writing reports, and copying information between systems." },
@@ -19,7 +20,7 @@ const PROMPTS: Record<Interest, { label: string; placeholder: string }> = {
 };
 
 /** "Ask for a quote": sends an inquiry, and for app ideas shows an AI sketch of a small first version. */
-export function IdeaForm({ defaultOrg = "Business", defaultInterest = "Build an app", page }: { defaultOrg?: OrgType; defaultInterest?: Interest; page: string }) {
+export function IdeaForm({ defaultOrg = "Business", defaultInterest = "Build it with a guide", page }: { defaultOrg?: OrgType; defaultInterest?: Interest; page: string }) {
   const [orgType, setOrgType] = useState<OrgType>(defaultOrg);
   const [interest, setInterest] = useState<Interest>(defaultInterest);
   const [idea, setIdea] = useState("");

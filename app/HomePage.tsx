@@ -81,11 +81,10 @@ function AppCard({ app, index, featured, faith }: { app: GrowApp; index: number;
 }
 
 const INTERESTS = [
-  { value: "money", label: "Money" },
-  { value: "habits", label: "Habits" },
-  { value: "time", label: "Time" },
-  { value: "food", label: "Food" },
-  { value: "mood", label: "Mood" },
+  { value: "business", label: "A tool for my business" },
+  { value: "nonprofit", label: "A tool for my nonprofit" },
+  { value: "personal", label: "Something for my own life" },
+  { value: "learning", label: "Just learning for now" },
 ];
 
 function Updates() {
@@ -97,13 +96,13 @@ function Updates() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!email || !interest) {
-      setResult({ ok: false, text: "Enter your email and pick what you want to improve first." });
+      setResult({ ok: false, text: "Enter your email and pick what you want to build." });
       return;
     }
     setLoading(true);
     setResult(null);
     try {
-      // The users table's `niche` column holds the area the person wants to improve first.
+      // The users table's `niche` column holds what the person wants to build.
       const { error } = await getSupabase()
         .from("users")
         .insert([{ email, niche: interest, created_at: new Date().toISOString() }])
@@ -111,7 +110,7 @@ function Updates() {
       if (error) {
         setResult({ ok: false, text: `Couldn't sign you up: ${error.message}` });
       } else {
-        setResult({ ok: true, text: "You're on the list. We'll email you when the next app launches." });
+        setResult({ ok: true, text: "You're on the list. We'll email you when we publish a new example or build guide." });
         setEmail("");
         setInterest("");
         try {
@@ -140,14 +139,14 @@ function Updates() {
         onChange={(e) => setEmail(e.target.value)}
         className="min-w-0 flex-1 rounded-[10px] border border-line bg-sunken px-4 py-3 text-sm text-fg placeholder:text-dim focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/30"
       />
-      <label htmlFor="interest" className="sr-only">What do you want to improve first?</label>
+      <label htmlFor="interest" className="sr-only">What do you want to build?</label>
       <select
         id="interest"
         value={interest}
         onChange={(e) => setInterest(e.target.value)}
         className="rounded-[10px] border border-line bg-sunken px-4 py-3 text-sm text-fg focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/30"
       >
-        <option value="">Improve first…</option>
+        <option value="">I want to build…</option>
         {INTERESTS.map((i) => (
           <option key={i.value} value={i.value}>
             {i.label}

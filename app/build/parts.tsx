@@ -110,7 +110,7 @@ export function HowItWorks() {
     <section aria-labelledby="how-heading" className="pb-20">
       <p className={eyebrow}>How it works</p>
       <h2 id="how-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
-        Small first, then better together
+        From idea to a tool you own
       </h2>
       <ol className="mt-8 grid gap-4 md:grid-cols-3">
         {PROCESS.map((p, i) => (
@@ -152,7 +152,7 @@ export function Faqs({ faqs, heading = "Questions people ask" }: { faqs: { q: st
   );
 }
 
-export function ServicesSection({ heading = "Learn it, plan it, build it, keep it running" }: { heading?: string }) {
+export function ServicesSection({ heading = "Build it yourself, with a guide, or let us build it" }: { heading?: string }) {
   return (
     <section id="services" aria-labelledby="services-heading" className="scroll-mt-8 pb-20">
       <p className={eyebrow}>Services</p>
@@ -160,7 +160,7 @@ export function ServicesSection({ heading = "Learn it, plan it, build it, keep i
         {heading}
       </h2>
       <p className="mt-2 max-w-[60ch] text-muted">Start wherever you are. Every service is quoted up front for what you actually need.</p>
-      <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {SERVICES.map((sv) => (
           <article key={sv.name} className="flex flex-col rounded-2xl border border-line bg-panel p-6">
             <h3 className="text-lg font-extrabold">{sv.name}</h3>
@@ -195,9 +195,9 @@ export function IdeaSection({ defaultOrg, defaultInterest, page }: { defaultOrg?
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-amber">Get started</p>
           <h2 id="idea-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
-            Ask for a quote
+            Start your build
           </h2>
-          <p className="mt-3 text-muted">Tell us what you need in your own words, and we&apos;ll email you to set up a free 20-minute call and a quote. Thinking about an app? You&apos;ll also see an instant AI sketch of a first version.</p>
+          <p className="mt-3 text-muted">Tell us what you want to build in your own words, and we&apos;ll email you to set up a free 20-minute call. You&apos;ll also see an instant AI sketch of a small first version.</p>
         </div>
         <IdeaForm defaultOrg={defaultOrg} defaultInterest={defaultInterest} page={page} />
       </div>

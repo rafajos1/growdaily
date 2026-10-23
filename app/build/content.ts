@@ -14,6 +14,12 @@ export interface Service {
 /** Each service leads naturally to the next: learn, plan, build, look after it. */
 export const SERVICES: Service[] = [
   {
+    name: "Guided build",
+    interest: "Build it with a guide",
+    tagline: "You build your own app with Claude, with us beside you. You leave with a working tool and the know-how to build the next one.",
+    includes: ["Working sessions, live or on Zoom", "A simple plan for a small first version", "Plain-English help when you get stuck"],
+  },
+  {
     name: "AI training",
     interest: "AI training",
     tagline: "A hands-on workshop so your team uses AI well and safely, starting the next morning.",
@@ -30,7 +36,7 @@ export const SERVICES: Service[] = [
   {
     name: "Custom AI app",
     interest: "Build an app",
-    tagline: "A small, focused app or website assistant built around how you work. You own it.",
+    tagline: "Rather not build it yourself? We build a small, focused app around how you work. You own it.",
     includes: ["A fixed quote before work starts", "A small first version to try with real people", "Guardrails written with you"],
   },
   {
@@ -143,9 +149,9 @@ export const CASES: CaseStudy[] = [
 ];
 
 export const PROCESS = [
-  { title: "A free 20-minute call", text: "Tell us what you need. We'll say honestly whether AI is a good fit, and if it isn't, we'll tell you." },
-  { title: "A clear quote", text: "Every service is quoted up front for what you actually need. No hourly surprises." },
-  { title: "Launch, learn, improve", text: "You try it with real people, we improve it together, and you own what we build." },
+  { title: "Bring your idea", text: "Tell us the job you want done on a free 20-minute call. We'll say honestly whether AI is a good fit, and if it isn't, we'll tell you." },
+  { title: "Build it together", text: "We shape it into a small first version and guide you through building it with Claude, quoted up front. No hourly surprises." },
+  { title: "Own it", text: "You try it with real people, improve it, and keep everything you made, plus the confidence to build the next one." },
 ];
 
 export const PRINCIPLES = [
@@ -156,14 +162,16 @@ export const PRINCIPLES = [
 ];
 
 export const BUILD_FAQS = [
-  { q: "What kinds of AI apps do you build?", a: "Small, focused web apps and website assistants: tools that answer questions in your voice, turn messy requests into next steps, recommend the right product or service, or give people a short personal summary. Every app in GrowDaily is an example you can try." },
-  { q: "How much does it cost?", a: "Ask for a quote. Training, AI plans, apps and care plans are each quoted after a free call, based on what you actually need. First versions of apps are deliberately small so they're affordable and quick to try." },
+  { q: "I'm not technical. Can I really build my own app?", a: "Yes. If you can describe the problem in plain words, you can build a small app with Claude. We guide you step by step: what to ask, how to check the work, and what to do when something breaks." },
+  { q: "What's the difference between a guided build and a custom app?", a: "In a guided build, you build it with us beside you and learn as you go. With a custom app, we build it for you. Either way, you own the result." },
+  { q: "What kinds of apps can I build?", a: "Small, focused web apps and website assistants: tools that answer questions in your voice, turn messy requests into next steps, recommend the right product or service, or give people a short personal summary. Every app in GrowDaily is an example you can try." },
+  { q: "How much does it cost?", a: "Ask for a quote. Guided builds, training, AI plans, apps and care plans are each quoted after a free call, based on what you actually need. First versions of apps are deliberately small so they're affordable and quick to try." },
   { q: "Do you offer AI training for teams?", a: "Yes. Hands-on workshops, live or on Zoom, that teach your team to use AI tools well and safely on their own real work, plus a simple AI policy." },
   { q: "Can you look after an app once it's built?", a: "Yes. A care plan covers hosting, monitoring, updates, small changes and a monthly check-in, for a simple monthly fee." },
   { q: "Who owns the app?", a: "You do. We hand over the code and the accounts it runs on, so you're never locked in." },
   { q: "What does the AI cost to run?", a: "Usually a small monthly amount that depends on how many people use it. We design apps to keep it low, and we'll estimate it before you decide." },
   { q: "Will the AI say things we don't agree with?", a: "We write clear instructions and guardrails with you, test them with tricky questions, and design the app so people are pointed to a real person when it matters." },
-  { q: "Do we need technical staff?", a: "No. The apps run in a web browser and on phones with nothing to install, and we handle the setup." },
+  { q: "Do we need technical staff?", a: "No. In a guided build we teach you as you go, and the apps run in a web browser and on phones with nothing to install. If we build it for you, we handle the setup." },
 ];
 
 export type AudienceSlug = "churches" | "businesses" | "nonprofits";
