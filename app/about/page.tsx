@@ -7,38 +7,26 @@ import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, eyebrow } from "../
 import { JsonLd } from "../components/JsonLd";
 
 const DESCRIPTION =
-  "GrowDaily is run by Rafael, a guide for non-technical builders. He brings 25+ years leading enterprise data, analytics and AI transformation to people who want to build their own AI tools.";
+  "GrowDaily is run by Rafael, who has 25+ years of experience leading enterprise data, analytics and AI transformation, and a passion for technology that helps people and serves faith communities.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About GrowDaily · Rafael, Your Guide to Building with AI",
+  title: "About GrowDaily · Rafael, AI & Data Transformation Leader",
   description: DESCRIPTION,
   path: "/about",
-  image: ogImage("About GrowDaily", "You're the builder. I'm the guide."),
+  image: ogImage("About GrowDaily", "Technology that helps people grow"),
 });
 
 const EXPERIENCE = [
   "25+ years of professional experience, leading enterprise-scale data, analytics and AI transformation.",
-  "In consulting, led teams of engineers, architects, and product and project managers to take complex data modernization and AI projects from requirements (PRD) to live in production, for small and large well-known organizations across the US.",
+  "Guiding cross-functional engineering and delivery teams to modernize data platforms and put AI solutions into real use.",
   "Scaled agile delivery, cloud data platforms and generative AI enablement.",
-];
-
-const CREDENTIALS = [
-  "IBM AI Product Manager Specialization",
-  "Databricks Certified Generative AI Engineer Associate",
-  "Databricks Certified Data Engineer Associate",
-  "Azure Databricks Platform Architect (Databricks Academy)",
-  "Google Cloud Gemini for Application Developers",
-  "Google Cloud Digital Leader",
-  "Google Cloud Cybersecurity Certificate",
-  "Certified SAFe® 6 Agilist",
-  "Professional Scrum Master™ I (PSM I)",
-  "EQ-i 2.0 / EQ 360 Certified Coach",
-  "AI governance and AI security (LinkedIn Learning)",
+  "Building governance, security and quality into AI work from day one, not bolting it on after something goes wrong.",
 ];
 
 const PRINCIPLES = [
-  { title: "Your goal first", text: "We start with the outcome that matters to you, and you build the smallest thing that delivers it." },
-  { title: "Safe by design", text: "Clear guardrails, private data kept out of AI, a person in charge and careful testing, so AI earns trust instead of creating risk." },
+  { title: "Value first", text: "Start with the outcome that matters to you, and build the smallest thing that delivers it." },
+  { title: "Built right from day one", text: "Before anything is built, we decide what stays private, what the AI should never do, and where a person stays in charge." },
+  { title: "Honest limits", text: "AI makes mistakes. We test on real examples, say plainly what it can't do, and keep a way to reach a real person." },
   { title: "People over tools", text: "Technology should give people time back for each other, not replace the human parts of the work." },
 ];
 
@@ -59,15 +47,15 @@ export default function AboutPage() {
       <main className="mx-auto max-w-3xl pb-20">
         <p className={`${eyebrow} pt-8`}>About</p>
         <h1 className="mt-3 text-4xl font-extrabold leading-[1.08] tracking-[-0.03em] [text-wrap:balance] sm:text-5xl">
-          Hi, I&apos;m <span className="text-amber">Rafael</span>. I help people build their own AI apps.
+          Hi, I&apos;m <span className="text-amber">Rafael</span>.
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-soft">
-          I started GrowDaily because I keep meeting capable people with a clear idea for a tool that would make their work easier, who stop because they don&apos;t think of themselves as technical. You don&apos;t need to be a developer to build it. You need someone who&apos;s been there to show you the way. You&apos;re the builder; I want to be your guide. I&apos;m especially drawn to where technology and faith meet: helping churches, ministries and people exploring faith use new tools wisely, without losing what matters most.
+          I started GrowDaily because I have a passion for equipping people with technology that makes their lives better. I&apos;m especially drawn to where technology and faith meet: helping churches, ministries and people exploring faith use new tools wisely, without losing what matters most. Today that means helping people build their own AI tools, and build them right from the start.
         </p>
 
         <section className="mt-12" aria-labelledby="experience-heading">
           <h2 id="experience-heading" className="text-2xl font-extrabold tracking-tight">
-            Why you can trust your guide
+            My background
           </h2>
           <p className="mt-4 leading-relaxed text-soft">
             By day, I lead enterprise data and AI transformation at an energy company, working alongside executives, architects and product leaders to build high-performing teams and deliver measurable results.
@@ -75,20 +63,6 @@ export default function AboutPage() {
           <ul className="mt-4 list-disc space-y-2 pl-5 leading-relaxed text-soft marker:text-amber">
             {EXPERIENCE.map((e) => (
               <li key={e}>{e}</li>
-            ))}
-          </ul>
-          <p className="mt-6 leading-relaxed text-soft">
-            Now I bring that same discipline to you, sized for one person or a small team: a clear first version, careful testing, and a path from idea to something you actually use.
-          </p>
-          <p className="mt-4 leading-relaxed text-soft">
-            <strong className="text-fg">Safety is built in, not bolted on.</strong> Every build follows the AI governance practices I use at enterprise scale: keeping private data out of AI, clear guardrails, a person in charge of anything important, and testing before launch. I&apos;m currently completing an enterprise AI governance program from Microsoft on Coursera.
-          </p>
-          <h3 className="mt-6 font-mono text-xs uppercase tracking-[0.14em] text-muted">Credentials</h3>
-          <ul className="mt-3 flex flex-wrap gap-2">
-            {CREDENTIALS.map((c) => (
-              <li key={c} className="rounded-full border border-line bg-panel px-3 py-1.5 text-sm font-semibold text-soft">
-                {c}
-              </li>
             ))}
           </ul>
         </section>
@@ -99,20 +73,20 @@ export default function AboutPage() {
           </h2>
           <div className="mt-4 space-y-4 leading-relaxed text-soft">
             <p>
-              Big companies have whole teams to figure out AI. Most small businesses, nonprofits and churches don&apos;t. GrowDaily brings the same practices I use at enterprise scale to you, so you can build the tools you need yourself instead of waiting on a developer.
+              Big companies have teams to figure out AI. Most people, small businesses, nonprofits and churches don&apos;t. GrowDaily brings the same practices I use at enterprise scale to everyday life and to organizations of every size, including the guardrails large organizations rely on to use AI responsibly, sized for your team.
             </p>
             <ul className="list-disc space-y-2 pl-5 marker:text-amber">
               <li>
                 <Link href="/" className="font-semibold text-amber underline-offset-2 hover:underline">
-                  Example apps
+                  Free apps
                 </Link>{" "}
-                built with Claude, free to try, so you can see what&apos;s possible.
+                for money, habits, time, meals and mood, private by default.
               </li>
               <li>
                 <Link href="/learn" className="font-semibold text-amber underline-offset-2 hover:underline">
                   Plain-English guides
                 </Link>{" "}
-                to using and building with AI, grounded in facts, with no hype.
+                to using AI at work, grounded in facts, with no hype.
               </li>
               <li>
                 <Link href="/faith" className="font-semibold text-amber underline-offset-2 hover:underline">
@@ -122,7 +96,7 @@ export default function AboutPage() {
               </li>
               <li>
                 <Link href="/build" className="font-semibold text-amber underline-offset-2 hover:underline">
-                  Guided builds, training and custom apps
+                  Training, consulting and custom AI apps
                 </Link>{" "}
                 for businesses, nonprofits and churches.
               </li>
@@ -132,9 +106,9 @@ export default function AboutPage() {
 
         <section className="mt-12" aria-labelledby="how-heading">
           <h2 id="how-heading" className="text-2xl font-extrabold tracking-tight">
-            How I guide
+            How I work
           </h2>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-3">
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
             {PRINCIPLES.map((p) => (
               <li key={p.title} className="rounded-2xl border border-line bg-panel p-5">
                 <p className="font-bold text-fg">{p.title}</p>
@@ -145,9 +119,9 @@ export default function AboutPage() {
         </section>
 
         <section className="mt-12 rounded-2xl border border-line bg-panel p-6 sm:p-8">
-          <h2 className="text-2xl font-extrabold tracking-tight">What do you want to build?</h2>
+          <h2 className="text-2xl font-extrabold tracking-tight">Let&apos;s talk</h2>
           <p className="mt-2 max-w-[56ch] text-muted">
-            Tell me your idea and we&apos;ll set up a free 20-minute call. Or email{" "}
+            Have an idea for an AI app, or want your team trained? Thinking about AI but worried about doing it safely? That&apos;s a great place to start. Ask for a free quote, or email{" "}
             <a href="mailto:hello@growdaily.ai" className="font-semibold text-amber underline-offset-2 hover:underline">
               hello@growdaily.ai
             </a>
@@ -155,7 +129,7 @@ export default function AboutPage() {
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link href="/build#idea" className={btnPrimary}>
-              Start your build <ArrowRight className="h-4 w-4" aria-hidden />
+              Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link href="/learn" className={btnSecondary}>
               Read the free guides
