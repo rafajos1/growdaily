@@ -18,9 +18,17 @@ export const metadata: Metadata = pageMetadata({
 
 const EXPERIENCE = [
   "25+ years of professional experience, leading enterprise-scale data, analytics and AI transformation.",
-  "Guiding cross-functional engineering and delivery teams to modernize data platforms and put AI solutions into real use.",
+  "In consulting, led teams of engineers, architects, and product and project managers to take complex data modernization and AI projects from requirements (PRD) to live in production, for small and large well-known organizations across the US.",
   "Scaled agile delivery, cloud data platforms and generative AI enablement.",
-  "Certifications from Databricks, Google and SAFe, among others.",
+];
+
+const CREDENTIALS = [
+  "IBM AI Product Manager",
+  "Databricks Generative AI Engineer",
+  "Databricks Data Engineer",
+  "SAFe 6",
+  "Google Cybersecurity",
+  "AI governance credentials",
 ];
 
 const PRINCIPLES = [
@@ -46,7 +54,7 @@ export default function AboutPage() {
       <main className="mx-auto max-w-3xl pb-20">
         <p className={`${eyebrow} pt-8`}>About</p>
         <h1 className="mt-3 text-4xl font-extrabold leading-[1.08] tracking-[-0.03em] [text-wrap:balance] sm:text-5xl">
-          Hi, I&apos;m <span className="text-amber">Rafael</span>.
+          Hi, I&apos;m <span className="text-amber">Rafael</span>. I help people build their own AI apps.
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-soft">
           I started GrowDaily because I keep meeting capable people with a clear idea for a tool that would make their work easier, who stop because they don&apos;t think of themselves as technical. You don&apos;t need to be a developer to build it. You need someone who&apos;s been there to show you the way. You&apos;re the builder; I want to be your guide. I&apos;m especially drawn to where technology and faith meet: helping churches, ministries and people exploring faith use new tools wisely, without losing what matters most.
@@ -54,7 +62,7 @@ export default function AboutPage() {
 
         <section className="mt-12" aria-labelledby="experience-heading">
           <h2 id="experience-heading" className="text-2xl font-extrabold tracking-tight">
-            My background
+            Why you can trust your guide
           </h2>
           <p className="mt-4 leading-relaxed text-soft">
             By day, I lead enterprise data and AI transformation at an energy company, working alongside executives, architects and product leaders to build high-performing teams and deliver measurable results.
@@ -62,6 +70,17 @@ export default function AboutPage() {
           <ul className="mt-4 list-disc space-y-2 pl-5 leading-relaxed text-soft marker:text-amber">
             {EXPERIENCE.map((e) => (
               <li key={e}>{e}</li>
+            ))}
+          </ul>
+          <p className="mt-6 leading-relaxed text-soft">
+            Now I bring that same discipline to you, sized for one person or a small team: a clear first version, careful testing, and a path from idea to something you actually use.
+          </p>
+          <h3 className="mt-6 font-mono text-xs uppercase tracking-[0.14em] text-muted">Credentials</h3>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {CREDENTIALS.map((c) => (
+              <li key={c} className="rounded-full border border-line bg-panel px-3 py-1.5 text-sm font-semibold text-soft">
+                {c}
+              </li>
             ))}
           </ul>
         </section>
