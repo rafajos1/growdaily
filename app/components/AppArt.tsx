@@ -65,3 +65,69 @@ export function MoodArt({ color }: { color: string }) {
     </svg>
   );
 }
+
+export function QuoteArt({ color }: { color: string }) {
+  const rows = [52, 40, 60];
+  return (
+    <svg viewBox="0 0 220 64" preserveAspectRatio="xMinYMid meet" className="h-16 w-full" aria-hidden>
+      <rect x="1" y="1" width="104" height="62" rx="7" fill="#131e2c" stroke="#4c6584" strokeWidth="1.5" />
+      {rows.map((w, i) => (
+        <g key={i}>
+          <rect x="10" y={9 + i * 11} width={w} height="5" rx="2.5" fill="#4c6584" opacity=".8" />
+          <rect x="80" y={9 + i * 11} width="16" height="5" rx="2.5" fill={color} opacity=".55" />
+        </g>
+      ))}
+      <rect x="10" y="46" width="86" height="9" rx="4.5" fill={color} />
+      <path d="M116 32 H140" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M134 25 L142 32 L134 39" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="152" y="7" width="66" height="50" rx="7" fill="none" stroke={color} strokeWidth="2" opacity=".6" />
+      <circle cx="185" cy="32" r="13" fill={color} opacity=".9" />
+      <path d="M179 32 L184 37 L192 27" fill="none" stroke="#131e2c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function CafeArt({ color }: { color: string }) {
+  const stock = [44, 18, 50, 30, 12, 40, 24];
+  const par = 30;
+  return (
+    <svg viewBox="0 0 220 64" preserveAspectRatio="xMinYMid meet" className="h-16 w-full" aria-hidden>
+      {stock.map((h, i) => {
+        const low = h < par;
+        return <rect key={i} x={i * 31 + 4} y={60 - h} width="22" height={h} rx="5" fill={low ? color : "#4c6584"} opacity={low ? 1 : 0.55} />;
+      })}
+      <line x1="0" x2="220" y1={60 - par} y2={60 - par} stroke={color} strokeWidth="1.5" strokeDasharray="3 5" strokeLinecap="round" />
+      <line x1="0" x2="220" y1="61" y2="61" stroke="#22324a" />
+    </svg>
+  );
+}
+
+export function RoomArt({ color }: { color: string }) {
+  return (
+    <svg viewBox="0 0 220 64" preserveAspectRatio="xMinYMid meet" className="h-16 w-full" aria-hidden>
+      <rect x="1" y="1" width="218" height="62" rx="7" fill="none" stroke="#4c6584" strokeWidth="1.5" />
+      <path d="M78 1 V40 M78 52 V63 M150 1 V63 M78 32 H150 M1 30 H44 M58 30 H78" stroke="#4c6584" strokeWidth="1.5" />
+      <rect x="84" y="6" width="60" height="21" rx="4" fill={color} opacity=".9" />
+      <rect x="156" y="6" width="57" height="52" rx="4" fill={color} opacity=".3" />
+      <rect x="7" y="36" width="65" height="21" rx="4" fill={color} opacity=".55" />
+      {[0, 1, 2].map((i) => (
+        <circle key={i} cx={170 + i * 14} cy="50" r="3.5" fill={color} />
+      ))}
+    </svg>
+  );
+}
+
+export function PilotArt({ color }: { color: string }) {
+  const pts: [number, number][] = [[10, 54], [62, 44], [114, 34], [166, 20]];
+  return (
+    <svg viewBox="0 0 220 64" preserveAspectRatio="xMinYMid meet" className="h-16 w-full" aria-hidden>
+      <path d={`M${pts.map((p) => p.join(" ")).join(" L")}`} fill="none" stroke={color} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M166 20 L206 10" fill="none" stroke={color} strokeWidth="2" strokeDasharray="2 6" strokeLinecap="round" />
+      {pts.map(([x, y], i) => (
+        <circle key={x} cx={x} cy={y} r="5" fill={i < 3 ? color : "#131e2c"} stroke={color} strokeWidth="2.5" opacity={i < 3 ? 0.45 + i * 0.25 : 1} />
+      ))}
+      <path d="M206 30 V4" stroke={color} strokeWidth="2" strokeLinecap="round" />
+      <path d="M206 4 L218 8 L206 13 Z" fill={color} />
+    </svg>
+  );
+}

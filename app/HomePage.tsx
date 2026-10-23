@@ -5,7 +5,7 @@ import { useState, type FormEvent } from "react";
 import { ArrowRight, Bell, Check, Church, Compass, ShieldCheck, Sparkles, Wrench, X } from "lucide-react";
 import { getSupabase } from "../lib/supabase";
 import { APPS, type GrowApp } from "./apps";
-import { HabitArt, MealArt, MoodArt, PlanArt, SpendArt } from "./components/AppArt";
+import { CafeArt, HabitArt, MealArt, MoodArt, PilotArt, PlanArt, QuoteArt, RoomArt, SpendArt } from "./components/AppArt";
 import { FaithSwitch } from "./components/FaithSwitch";
 import { YourDay } from "./components/NextUp";
 import { useFaith } from "./components/useFaith";
@@ -32,10 +32,10 @@ const FAITH_NOTES: Record<string, string> = {
 };
 
 const BUSINESS_TOOLS = [
-  { name: "Quotewise", href: "/apps/quotewise", color: "#8fb3ff", who: "Trades & services", problem: "Writing quotes by hand after a long day.", text: "Describe the job and AI drafts the quote. Print, PDF or email it, then turn it into an invoice." },
-  { name: "Cafewise", href: "/apps/cafewise", color: "#d9965b", who: "Coffee shops", problem: "Counting stock and guessing what to order.", text: "Count stock on your phone, get an order list from your par levels, and see what each drink costs you." },
-  { name: "Roomwise", href: "/apps/roomwise", color: "#4fc7b8", who: "Churches, offices & spaces", problem: "Double-booked rooms and a messy shared calendar.", text: "Book rooms on a map of your building, with no double bookings, weekly repeats and requests to confirm." },
-  { name: "Pilotwise", href: "/apps/pilotwise", color: "#f2b54b", who: "Teams starting with AI", problem: "An AI idea with no clear first step.", text: "Describe an AI idea and get what to fix first, a go/no-go test and a one-page brief for your sponsor." },
+  { name: "Quotewise", Art: QuoteArt, href: "/apps/quotewise", color: "#8fb3ff", who: "Trades & services", problem: "Writing quotes by hand after a long day.", text: "Describe the job and AI drafts the quote. Print, PDF or email it, then turn it into an invoice." },
+  { name: "Cafewise", Art: CafeArt, href: "/apps/cafewise", color: "#d9965b", who: "Coffee shops", problem: "Counting stock and guessing what to order.", text: "Count stock on your phone, get an order list from your par levels, and see what each drink costs you." },
+  { name: "Roomwise", Art: RoomArt, href: "/apps/roomwise", color: "#4fc7b8", who: "Churches, offices & spaces", problem: "Double-booked rooms and a messy shared calendar.", text: "Book rooms on a map of your building, with no double bookings, weekly repeats and requests to confirm." },
+  { name: "Pilotwise", Art: PilotArt, href: "/apps/pilotwise", color: "#f2b54b", who: "Teams starting with AI", problem: "An AI idea with no clear first step.", text: "Describe an AI idea and get what to fix first, a go/no-go test and a one-page brief for your sponsor." },
 ];
 
 function AppCard({ app, index, featured, faith }: { app: GrowApp; index: number; featured?: boolean; faith: boolean }) {
@@ -263,19 +263,12 @@ export function HomePage() {
           </div>
         </section>
 
-        <section id="guide" aria-labelledby="guide-heading" className="scroll-mt-8 pb-20">
-          <div className="rounded-2xl border border-amber/30 bg-amber/[0.05] p-6 sm:p-10">
-            <p className="font-mono text-xs uppercase tracking-[0.14em] text-amber">Your guide</p>
-            <h2 id="guide-heading" className="mt-2 text-3xl font-extrabold tracking-tight">You&apos;re the builder. We&apos;re the guide.</h2>
-            <p className="mt-3 max-w-[62ch] text-soft">
-              You know your business, your people and your problem better than anyone. We bring the part you&apos;re missing: experience leading AI products from idea to launch, explained in plain English. We&apos;ll show you what to ask Claude, check the work with you, and help you avoid the mistakes that stall most first builds.
-            </p>
-          </div>
-        </section>
-
         <section id="how" aria-labelledby="how-heading" className="scroll-mt-8 pb-20">
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">How it works</p>
-          <h2 id="how-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Three steps from idea to working tool</h2>
+          <h2 id="how-heading" className="mt-2 text-3xl font-extrabold tracking-tight">You&apos;re the builder. We&apos;re the guide.</h2>
+          <p className="mt-3 max-w-[62ch] text-soft">
+            You know your business and your problem better than anyone. We bring experience leading AI products from idea to launch, in plain English: what to ask Claude, how to check the work, and how to avoid the mistakes that stall most first builds.
+          </p>
           <ol className="mt-8 grid gap-4 md:grid-cols-3">
             {STEPS.map((s, i) => (
               <li key={s.title} className="rounded-2xl border border-line bg-panel p-6">
@@ -307,6 +300,9 @@ export function HomePage() {
                     {t.who}
                   </span>
                   <span className="mt-2 text-2xl font-extrabold tracking-tight">{t.name}</span>
+                  <span className="my-4 block">
+                    <t.Art color={t.color} />
+                  </span>
                   <span className="mt-2 text-sm text-muted">
                     <span className="font-semibold text-soft">The problem:</span> {t.problem}
                   </span>
