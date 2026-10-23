@@ -4,10 +4,10 @@ import { JsonLd } from "./components/JsonLd";
 import { HomePage } from "./HomePage";
 
 export const metadata: Metadata = pageMetadata({
-  title: "GrowDaily: Free AI Apps for Money, Habits, Time, Food & Mood",
-  description: "Free, private apps to run your life better: an expense tracker, habit tracker, AI day planner, meal ideas from your fridge and a mood tracker. No sign-up, and your data stays on your device.",
+  title: "GrowDaily: Build Your Own AI Apps with Claude, With a Guide",
+  description: "You don't have to be a developer to build your own apps with Claude. GrowDaily guides business owners and nonprofit leaders from idea to a working tool, in plain English. See real examples and try them free.",
   path: "/",
-  image: ogImage("Free AI apps to run your life better", "Money, habits, time, food and mood. No sign-up."),
+  image: ogImage("You know the tool you need. Let's build it together.", "Guided AI app building for non-technical builders"),
 });
 
 export default function Page() {
