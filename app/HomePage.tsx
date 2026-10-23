@@ -202,8 +202,8 @@ export function HomePage() {
           <span className="rounded-full border border-amber/40 bg-amber/10 px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-amber">Beta</span>
         </Link>
         <nav className="flex items-center gap-1 text-sm font-semibold text-muted">
-          <a href="#how" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">How it works</a>
           <a href="#examples" className="rounded-lg px-3 py-2 hover:text-fg">Examples</a>
+          <a href="#how" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">How it works</a>
           <Link href="/learn" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">Learn AI</Link>
           <Link href="/build" className="rounded-lg px-3 py-2 text-amber hover:text-fg">Start building</Link>
         </nav>
@@ -249,40 +249,6 @@ export function HomePage() {
           </a>
         </section>
 
-        <section id="stuck" aria-labelledby="stuck-heading" className="scroll-mt-8 pb-20">
-          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Sound familiar?</p>
-          <h2 id="stuck-heading" className="mt-2 max-w-[26ch] text-3xl font-extrabold tracking-tight">Most good ideas stall before they&apos;re built</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {PAINS.map(({ icon: Icon, title, text }) => (
-              <div key={title} className="rounded-2xl border border-line bg-panel p-6">
-                <Icon className="h-5 w-5 text-amber" aria-hidden />
-                <h3 className="mt-4 text-lg font-bold">{title}</h3>
-                <p className="mt-1.5 text-sm text-muted">{text}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="how" aria-labelledby="how-heading" className="scroll-mt-8 pb-20">
-          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">How it works</p>
-          <h2 id="how-heading" className="mt-2 text-3xl font-extrabold tracking-tight">You&apos;re the builder. We&apos;re the guide.</h2>
-          <p className="mt-3 max-w-[62ch] text-soft">
-            You know your business and your problem better than anyone. We bring experience leading AI products from idea to launch, in plain English: what to ask Claude, how to check the work, and how to avoid the mistakes that stall most first builds.
-          </p>
-          <ol className="mt-8 grid gap-4 md:grid-cols-3">
-            {STEPS.map((s, i) => (
-              <li key={s.title} className="rounded-2xl border border-line bg-panel p-6">
-                <span className="font-mono text-xs uppercase tracking-[0.14em] text-amber">Step {i + 1}</span>
-                <h3 className="mt-2 text-lg font-bold">{s.title}</h3>
-                <p className="mt-1.5 text-sm text-muted">{s.text}</p>
-              </li>
-            ))}
-          </ol>
-          <Link href="/build" className={`${btnPrimary} mt-6`}>
-            Start your build <ArrowRight className="h-4 w-4" aria-hidden />
-          </Link>
-        </section>
-
         <section id="examples" aria-labelledby="examples-heading" className="scroll-mt-8 pb-12">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -324,6 +290,40 @@ export function HomePage() {
               <AppCard key={app.slug} app={app} index={i} featured={i === 0} faith={faith} />
             ))}
           </div>
+        </section>
+
+        <section id="stuck" aria-labelledby="stuck-heading" className="scroll-mt-8 pb-20">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Sound familiar?</p>
+          <h2 id="stuck-heading" className="mt-2 max-w-[26ch] text-3xl font-extrabold tracking-tight">Most good ideas stall before they&apos;re built</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {PAINS.map(({ icon: Icon, title, text }) => (
+              <div key={title} className="rounded-2xl border border-line bg-panel p-6">
+                <Icon className="h-5 w-5 text-amber" aria-hidden />
+                <h3 className="mt-4 text-lg font-bold">{title}</h3>
+                <p className="mt-1.5 text-sm text-muted">{text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="how" aria-labelledby="how-heading" className="scroll-mt-8 pb-20">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">How it works</p>
+          <h2 id="how-heading" className="mt-2 text-3xl font-extrabold tracking-tight">You&apos;re the builder. We&apos;re the guide.</h2>
+          <p className="mt-3 max-w-[62ch] text-soft">
+            You know your business and your problem better than anyone. We bring experience leading AI products from idea to launch, in plain English: what to ask Claude, how to check the work, and how to avoid the mistakes that stall most first builds.
+          </p>
+          <ol className="mt-8 grid gap-4 md:grid-cols-3">
+            {STEPS.map((s, i) => (
+              <li key={s.title} className="rounded-2xl border border-line bg-panel p-6">
+                <span className="font-mono text-xs uppercase tracking-[0.14em] text-amber">Step {i + 1}</span>
+                <h3 className="mt-2 text-lg font-bold">{s.title}</h3>
+                <p className="mt-1.5 text-sm text-muted">{s.text}</p>
+              </li>
+            ))}
+          </ol>
+          <Link href="/build" className={`${btnPrimary} mt-6`}>
+            Start your build <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
         </section>
 
         <section id="stakes" aria-labelledby="stakes-heading" className="scroll-mt-8 pb-20">
