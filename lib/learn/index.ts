@@ -17,7 +17,7 @@ export const TOPICS: { id: TopicId; title: string; blurb: string }[] = [
   { id: "workplace", title: "Using AI at work", blurb: "Everyday uses, prompts, policies and team training." },
   { id: "security", title: "AI security & privacy", blurb: "Keeping your data safe: shadow AI, training settings, private AI and AI-powered scams." },
   { id: "churches", title: "Churches & ministries", blurb: "Reaching and welcoming new people, church AI policies, sermon prep, and a chatbot for your website." },
-  { id: "organizations", title: "For your organization", blurb: "Where to start as a small business or nonprofit." },
+  { id: "organizations", title: "For your organization", blurb: "Where to start as a business or nonprofit of any size." },
   { id: "everyday", title: "Everyday life", blurb: "Simple, research-backed answers for money, meals, planning your day, habits and mood." },
 ];
 

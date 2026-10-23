@@ -247,7 +247,7 @@ export function RoomwiseApp({ intro }: { intro?: ReactNode } = {}) {
               <Link href="/learn/church-room-booking-and-facility-scheduling" className={btn.secondary}>
                 For churches
               </Link>
-              <Link href="/learn/meeting-room-booking-for-small-business" className={btn.secondary}>
+              <Link href="/learn/meeting-room-booking-for-business" className={btn.secondary}>
                 For offices
               </Link>
             </div>

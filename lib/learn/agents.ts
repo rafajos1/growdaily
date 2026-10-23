@@ -50,7 +50,7 @@ export const AGENT_GUIDES: Guide[] = [
               "Working across tools that don't talk to each other, so people stop copying and pasting between them.",
             ],
           },
-          { callout: "Agents are still early for most small teams. Surveys in 2026 show larger organizations scaling agents faster than smaller ones, so if you're just starting, you're not behind." },
+          { callout: "Agents are still early for most teams. Surveys in 2026 show larger organizations scaling agents faster than smaller ones, so if you're just starting, you're not behind." },
         ],
       },
       {
@@ -71,7 +71,7 @@ export const AGENT_GUIDES: Guide[] = [
         blocks: [
           {
             list: [
-              "A small business: an agent answers website questions from your own policies and books appointments into your calendar.",
+              "A business: an agent answers website questions from your own policies and books appointments into your calendar.",
               "A nonprofit: an agent sorts volunteer sign-ups, answers common questions, and sends shift reminders.",
               "A church: an agent drafts the weekly newsletter from staff notes and the calendar, for a person to edit and send.",
             ],
@@ -82,7 +82,7 @@ export const AGENT_GUIDES: Guide[] = [
     faqs: [
       { q: "Is ChatGPT or Claude an AI agent?", a: "They're chat assistants first, but both can now act as agents when you give them tools and permission to take steps, such as browsing, working with files, or connecting to your apps." },
       { q: "Do I need to code to use an AI agent?", a: "Not to start. Many agent features are built into tools you may already use. Custom agents connected to your own systems usually need someone technical to set them up safely." },
-      { q: "Will AI agents replace employees?", a: "For most small teams, agents take over repetitive steps so people can spend time on work that needs judgment and relationships. Surveys of small businesses using AI mostly describe it as helping staff rather than replacing them." },
+      { q: "Will AI agents replace employees?", a: "For most teams, agents take over repetitive steps so people can spend time on work that needs judgment and relationships. Surveys of small businesses using AI mostly describe it as helping staff rather than replacing them." },
       { q: "Are AI agents safe?", a: "They can be, with limits: give an agent only the access it needs, require approval for important actions, keep a log of what it did, and keep sensitive data out unless the tool is approved for it." },
     ],
     related: ["ai-agent-examples", "how-to-start-with-ai-agents", "what-is-mcp", "ai-agents-vs-automation"],
@@ -97,8 +97,8 @@ export const AGENT_GUIDES: Guide[] = [
     slug: "ai-agent-examples",
     topic: "agents",
     title: "AI agent examples for businesses, nonprofits and churches",
-    seoTitle: "12 Practical AI Agent Examples for Small Teams",
-    description: "Twelve practical AI agent examples for small businesses, nonprofits and churches, from inbox triage to follow-ups, with what each needs and where a person should stay in the loop.",
+    seoTitle: "12 Practical AI Agent Examples for Real Teams",
+    description: "Twelve practical AI agent examples for businesses, nonprofits and churches, from inbox triage to follow-ups, with what each needs and where a person should stay in the loop.",
     shortAnswer:
       "The best first agents take over repetitive, rule-based work: sorting an inbox, answering common questions from your own information, following up with leads or volunteers, and turning notes into reports. Start with one where a mistake is easy to catch and fix.",
     sections: [

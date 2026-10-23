@@ -500,7 +500,7 @@ export const CHURCH_GUIDES: Guide[] = [
         heading: "Try it free: Roomwise",
         blocks: [
           "We built [Roomwise](/apps/roomwise) for church offices and community buildings. Drag rooms into place to draw your floor plan, then see at a glance what's free and what's booked at any time. Book rooms once or every week, and it won't let you double-book. Mark requests pending until they're confirmed, copy or print the day's schedule, and ask for a room in plain words, like \"a room for 25 with a projector Tuesday evenings\". It's free with no account, and it opens with an example church so you can see how it works.",
-          "Not a church? Roomwise works the same way for offices, coworking spaces, studios, schools and community centers. See our guide to [meeting room booking for small businesses](/learn/meeting-room-booking-for-small-business).",
+          "Not a church? Roomwise works the same way for offices, coworking spaces, studios, schools and community centers. See our guide to [meeting room booking for businesses](/learn/meeting-room-booking-for-business).",
         ],
       },
       {
@@ -525,7 +525,7 @@ export const CHURCH_GUIDES: Guide[] = [
       { q: "Should outside groups need insurance to use the church?", a: "Insurers commonly recommend a signed facility use agreement and a certificate of liability insurance that names the church as an additional insured. Check your own insurer's guidance." },
       { q: "Is there a free church room booking app?", a: "Yes. Roomwise from GrowDaily is free with no account: a floor-plan map, conflict checks, weekly repeats, pending requests and AI room search." },
     ],
-    related: ["how-to-use-ai-to-grow-your-church", "meeting-room-booking-for-small-business", "church-ai-policy-template", "ai-for-churches"],
+    related: ["how-to-use-ai-to-grow-your-church", "meeting-room-booking-for-business", "church-ai-policy-template", "ai-for-churches"],
     service: "build",
     published: "2026-10-20",
     updated: "2026-10-20",

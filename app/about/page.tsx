@@ -72,7 +72,14 @@ export default function AboutPage() {
           </h2>
           <div className="mt-4 space-y-4 leading-relaxed text-soft">
             <p>
-              Big companies have teams to figure out AI. Most people, small businesses, nonprofits and churches don&apos;t. GrowDaily brings the same practices I use at enterprise scale to everyday life and to organizations of every size.
+              Big companies have whole teams to figure out AI. Most people and organizations don&apos;t. GrowDaily brings the same practices I use at enterprise scale to everyday life and to organizations of every size.
+            </p>
+            <p>
+              One lesson from 25 years of data and analytics work: AI is only as good as your data. Before anything gets built, we look at what you have, and we&apos;ll tell you honestly if it isn&apos;t ready yet. Our{" "}
+              <Link href="/learn/is-your-data-ready-for-ai" className="font-semibold text-amber underline-offset-2 hover:underline">
+                data readiness checklist
+              </Link>{" "}
+              is a good place to start.
             </p>
             <ul className="list-disc space-y-2 pl-5 marker:text-amber">
               <li>
