@@ -7,13 +7,13 @@ import { AUDIENCES, BUILD_FAQS, CASES, SERVICES } from "./content";
 import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection, ServicesSection } from "./parts";
 
 const DESCRIPTION =
-  "AI training, consulting and custom AI apps for businesses of any size and nonprofits. Try seven of our AI apps live, then ask for a quote: team workshops, an AI plan, a custom app, or ongoing care.";
+  "Build your own AI tool with Claude, with a guide, or have us build it. Guided builds, AI training, consulting and custom apps for businesses and nonprofits of any size. The first 20-minute call is free.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "AI Training, Consulting & App Development for Businesses & Nonprofits · GrowDaily",
+  title: "Guided AI App Building, Training & Consulting · GrowDaily",
   description: DESCRIPTION,
   path: "/build",
-  image: ogImage("We help teams put AI to work", "Training · Consulting · Custom AI apps"),
+  image: ogImage("Build the tool you need, with a guide", "Guided builds · Training · Consulting · Custom apps"),
 });
 
 const serviceSchema = {
@@ -22,7 +22,7 @@ const serviceSchema = {
   name: "GrowDaily",
   url: `${SITE_URL}/build`,
   description: DESCRIPTION,
-  serviceType: ["AI training", "AI consulting", "AI app development", "AI app maintenance"],
+  serviceType: ["Guided AI app building", "AI training", "AI consulting", "AI app development", "AI app maintenance"],
   knowsAbout: ["AI training for teams", "AI consulting", "AI app development", "AI chatbots for websites", "AI tools for nonprofits", "Custom web apps"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -39,16 +39,16 @@ export default function BuildPage() {
       <BuildHeader />
       <main className="mx-auto max-w-6xl">
         <section className="pb-20 pt-10 lg:pt-16">
-          <p className={eyebrow}>AI training · consulting · custom apps</p>
+          <p className={eyebrow}>Guided builds · training · consulting · custom apps</p>
           <h1 className="mt-4 max-w-[20ch] text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
-            We help teams put <span className="text-amber">AI</span> to work.
+            Build the tool you need, <span className="text-amber">with a guide</span>.
           </h1>
           <p className="mt-6 max-w-[54ch] text-lg text-soft">
-            Training for your team, a plain-English AI plan, custom AI apps, and care to keep them running. You don&apos;t have to imagine what we make: every app on GrowDaily is our work, and you can try them right now.
+            Bring the idea. We&apos;ll guide you to build it yourself with Claude, in plain English, or build it for you. We also train teams and write plain-English AI plans. Every app on GrowDaily was built this way, and you can try them right now.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#idea" className={btnPrimary}>
-              Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
+              Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
             <a href="#work" className={btnSecondary}>
               See our work
@@ -79,7 +79,7 @@ export default function BuildPage() {
         <section id="work" aria-labelledby="work-heading" className="scroll-mt-8 pb-20">
           <p className={eyebrow}>Our work</p>
           <h2 id="work-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
-            Seven AI apps you can try right now
+            AI apps you can try right now
           </h2>
           <p className="mt-2 max-w-[60ch] text-muted">Each one does one job well, works on any phone, and is free to use. Here&apos;s the problem each solves, and what the same idea could do for you.</p>
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

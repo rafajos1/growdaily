@@ -199,7 +199,6 @@ export function HomePage() {
         <Link href="/" className="flex items-center gap-2.5 text-xl font-extrabold tracking-tight">
           <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
           GrowDaily
-          <span className="rounded-full border border-amber/40 bg-amber/10 px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-amber">Beta</span>
         </Link>
         <nav className="flex items-center gap-1 text-sm font-semibold text-muted">
           <a href="#examples" className="rounded-lg px-3 py-2 hover:text-fg">Examples</a>
@@ -414,7 +413,7 @@ export function HomePage() {
 
       <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 border-t border-hairline py-8 font-mono text-xs text-dim">
         <span>© {new Date().getFullYear()} GrowDaily</span>
-        <span>Public beta · Guided AI app building · <Link href="/build" className="hover:text-fg">Start building</Link> · <Link href="/about" className="hover:text-fg">About</Link> · <Link href="/privacy" className="hover:text-fg">Privacy</Link></span>
+        <span>Guided AI app building · <Link href="/build" className="hover:text-fg">Start building</Link> · <Link href="/about" className="hover:text-fg">About</Link> · <Link href="/privacy" className="hover:text-fg">Privacy</Link></span>
       </footer>
     </div>
   );

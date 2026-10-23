@@ -159,13 +159,13 @@ export function ServicesSection({ heading = "Learn it, plan it, build it, keep i
       <h2 id="services-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
         {heading}
       </h2>
-      <p className="mt-2 max-w-[60ch] text-muted">Start wherever you are. Every service is quoted up front for what you actually need.</p>
+      <p className="mt-2 max-w-[60ch] text-muted">Start with a free 20-minute call. Everything after that is priced up front for what you actually need.</p>
       <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {SERVICES.map((sv) => (
-          <article key={sv.name} className="flex flex-col rounded-2xl border border-line bg-panel p-6">
+          <article key={sv.name} className={`flex flex-col rounded-2xl border p-6 ${sv.featured ? "border-amber/40 bg-amber/[0.05] md:col-span-2 lg:col-span-4" : "border-line bg-panel"}`}>
             <h3 className="text-lg font-extrabold">{sv.name}</h3>
             <p className="mt-1.5 text-sm text-soft">{sv.tagline}</p>
-            <ul className="mt-4 flex-1 space-y-2 text-sm text-muted">
+            <ul className={`mt-4 flex-1 gap-2 text-sm text-muted ${sv.featured ? "grid sm:grid-cols-3" : "space-y-2"}`}>
               {sv.includes.map((i) => (
                 <li key={i} className="flex gap-2">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-amber" aria-hidden />
@@ -195,9 +195,9 @@ export function IdeaSection({ defaultOrg, defaultInterest, page }: { defaultOrg?
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-amber">Get started</p>
           <h2 id="idea-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
-            Ask for a quote
+            Book your free 20-minute call
           </h2>
-          <p className="mt-3 text-muted">Tell us what you need in your own words, and we&apos;ll email you to set up a free 20-minute call and a quote. Thinking about an app? You&apos;ll also see an instant AI sketch of a first version.</p>
+          <p className="mt-3 text-muted">Tell us what you&apos;d like to build or improve, in your own words. We&apos;ll email you to set up a free 20-minute call. After that, paid sessions and projects are priced up front, so there are no surprises. Thinking about an app? You&apos;ll also see an instant AI sketch of a first version.</p>
         </div>
         <IdeaForm defaultOrg={defaultOrg} defaultInterest={defaultInterest} page={page} />
       </div>

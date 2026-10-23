@@ -11,6 +11,7 @@ const input = `block min-h-12 w-full rounded-[10px] border border-line bg-sunken
 export const INTEREST_EVENT = "growdaily:build-interest";
 
 const PROMPTS: Record<Interest, { label: string; placeholder: string }> = {
+  "Guided build": { label: "What tool would you like to build?", placeholder: "e.g. A simple way for customers to book appointments and get reminders, that I can change myself." },
   "Build an app": { label: "What do you wish an app did for you?", placeholder: "e.g. Answer customer questions on our website and send me the ones that need a person." },
   "AI training": { label: "Tell us about your team and what you'd like to learn", placeholder: "e.g. 12 staff, a few use ChatGPT. We'd like to save time on emails and meeting notes, safely." },
   "AI plan": { label: "Where does your team lose the most time?", placeholder: "e.g. Answering the same questions, writing reports, and copying information between systems." },
@@ -18,8 +19,8 @@ const PROMPTS: Record<Interest, { label: string; placeholder: string }> = {
   "Not sure yet": { label: "What would you like help with?", placeholder: "e.g. We keep hearing about AI and want to know where it could actually help us." },
 };
 
-/** "Ask for a quote": sends an inquiry, and for app ideas shows an AI sketch of a small first version. */
-export function IdeaForm({ defaultOrg = "Business", defaultInterest = "Build an app", page }: { defaultOrg?: OrgType; defaultInterest?: Interest; page: string }) {
+/** "Book a free call": sends an inquiry, and for app ideas shows an AI sketch of a small first version. */
+export function IdeaForm({ defaultOrg = "Business", defaultInterest = "Guided build", page }: { defaultOrg?: OrgType; defaultInterest?: Interest; page: string }) {
   const [orgType, setOrgType] = useState<OrgType>(defaultOrg);
   const [interest, setInterest] = useState<Interest>(defaultInterest);
   const [idea, setIdea] = useState("");
@@ -163,10 +164,10 @@ export function IdeaForm({ defaultOrg = "Business", defaultInterest = "Build an 
       )}
       <button type="submit" disabled={busy} className={`inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-amber px-5 text-base font-bold text-[#2a1c05] transition hover:brightness-110 disabled:opacity-60 sm:w-auto ${focus}`}>
         {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : wantsSketch(interest) ? <Sparkles className="h-4 w-4" aria-hidden /> : null}
-        {busy ? (wantsSketch(interest) ? "Sketching your idea…" : "Sending…") : wantsSketch(interest) ? "Ask for a quote and see a sketch" : "Ask for a quote"}
+        {busy ? (wantsSketch(interest) ? "Sketching your idea…" : "Sending…") : wantsSketch(interest) ? "Request my free call and see a sketch" : "Request my free call"}
       </button>
       <p className="text-xs text-dim">
-        Free, no obligation. We only use your details to reply to you.{" "}
+        The first 20-minute call is free, with no obligation. We only use your details to reply to you.{" "}
         <Link href="/privacy" className="underline underline-offset-2 hover:text-fg">
           Privacy
         </Link>

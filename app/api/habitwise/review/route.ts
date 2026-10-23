@@ -34,7 +34,7 @@ function isReviewInput(v: unknown): v is ReviewInput & { faith?: boolean } {
 
 export async function POST(req: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json({ error: "AI reviews are coming soon. GrowDaily is in beta." }, { status: 503 });
+    return NextResponse.json({ error: "AI reviews aren't available right now." }, { status: 503 });
   }
   if (!allowDaily(`habitwise:${clientIp(req)}`, 5)) {
     return NextResponse.json({ error: "You've used today's free reviews. Try again tomorrow." }, { status: 429 });
