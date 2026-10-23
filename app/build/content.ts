@@ -158,7 +158,7 @@ export const PRINCIPLES = [
   { title: "Private by default", text: "Store only what's needed, and keep personal notes away from AI." },
   { title: "AI for one clear job", text: "Each app uses AI where it genuinely helps, and still works without it." },
   { title: "Guardrails first", text: "Clear limits on what the AI will and won't say, written with you." },
-  { title: "Plain words", text: "Built for real people on their phones, not for a demo." },
+  { title: "A person stays in charge", text: "Anything important gets a human review, and the AI is tested on real examples before launch." },
 ];
 
 export const BUILD_FAQS = [

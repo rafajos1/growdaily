@@ -38,7 +38,7 @@ const CREDENTIALS = [
 
 const PRINCIPLES = [
   { title: "Your goal first", text: "We start with the outcome that matters to you, and you build the smallest thing that delivers it." },
-  { title: "Governance and quality", text: "Clear guardrails, careful testing and honest limits, so AI earns trust instead of creating risk." },
+  { title: "Safe by design", text: "Clear guardrails, private data kept out of AI, a person in charge and careful testing, so AI earns trust instead of creating risk." },
   { title: "People over tools", text: "Technology should give people time back for each other, not replace the human parts of the work." },
 ];
 
@@ -79,6 +79,9 @@ export default function AboutPage() {
           </ul>
           <p className="mt-6 leading-relaxed text-soft">
             Now I bring that same discipline to you, sized for one person or a small team: a clear first version, careful testing, and a path from idea to something you actually use.
+          </p>
+          <p className="mt-4 leading-relaxed text-soft">
+            <strong className="text-fg">Safety is built in, not bolted on.</strong> Every build follows the AI governance practices I use at enterprise scale: keeping private data out of AI, clear guardrails, a person in charge of anything important, and testing before launch. I&apos;m currently completing an enterprise AI governance program from Microsoft on Coursera.
           </p>
           <h3 className="mt-6 font-mono text-xs uppercase tracking-[0.14em] text-muted">Credentials</h3>
           <ul className="mt-3 flex flex-wrap gap-2">

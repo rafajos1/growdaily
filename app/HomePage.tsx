@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
-import { ArrowRight, Bell, Check, Church, Compass, ShieldCheck, Sparkles, Wrench, X } from "lucide-react";
+import { ArrowRight, Bell, Check, Church, Compass, Eye, Lock, ShieldCheck, Sparkles, UserCheck, Wrench, X } from "lucide-react";
 import { getSupabase } from "../lib/supabase";
 import { APPS, type GrowApp } from "./apps";
 import { CafeArt, HabitArt, MealArt, MoodArt, PilotArt, PlanArt, QuoteArt, RoomArt, SpendArt } from "./components/AppArt";
@@ -172,6 +172,13 @@ const PAINS = [
   { icon: ShieldCheck, title: "Not sure it's safe", text: "Customer data, accuracy, cost. You don't want to guess on the things that matter." },
 ];
 
+const SAFETY = [
+  { icon: Lock, title: "Private by default", text: "You'll know what's okay to give AI and what isn't, and your app keeps sensitive details out of it." },
+  { icon: ShieldCheck, title: "Clear guardrails", text: "You decide what your app will and won't say, written in plain words and tested with tricky questions." },
+  { icon: UserCheck, title: "A person stays in charge", text: "Anything important gets a human review before it goes out, and people can always reach you." },
+  { icon: Eye, title: "Checked before launch", text: "You test it on real examples before real people use it, and keep an eye on it after." },
+];
+
 const STEPS = [
   { title: "Bring your idea", text: "Tell us the job you want done, in your own words. A free 20-minute call is enough to start." },
   { title: "Build it together", text: "We turn the idea into a simple plan, then walk you through building it with Claude, step by step, until it works." },
@@ -323,6 +330,31 @@ export function HomePage() {
           <Link href="/build" className={`${btnPrimary} mt-6`}>
             Start your build <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
+        </section>
+
+        <section id="safe" aria-labelledby="safe-heading" className="scroll-mt-8 pb-20">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Safe by design</p>
+          <h2 id="safe-heading" className="mt-2 max-w-[28ch] text-3xl font-extrabold tracking-tight">Build it the safe way from day one</h2>
+          <p className="mt-3 max-w-[62ch] text-soft">
+            Every build follows the same AI governance practices used in large enterprises, sized for you. You don&apos;t need to become a compliance expert. You just need a guide who builds these in from the start.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {SAFETY.map(({ icon: Icon, title, text }) => (
+              <div key={title} className="rounded-2xl border border-line bg-panel p-6">
+                <Icon className="h-5 w-5 text-amber" aria-hidden />
+                <h3 className="mt-4 text-lg font-bold">{title}</h3>
+                <p className="mt-1.5 text-sm text-muted">{text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
+            <Link href="/learn/is-it-safe-to-put-business-data-in-ai" className="inline-flex items-center gap-1.5 text-amber hover:underline">
+              Is it safe to put business data in AI? <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+            <Link href="/learn/ai-policy-template" className="inline-flex items-center gap-1.5 text-soft hover:text-fg hover:underline">
+              Free AI policy template
+            </Link>
+          </div>
         </section>
 
         <section id="stakes" aria-labelledby="stakes-heading" className="scroll-mt-8 pb-20">

@@ -121,7 +121,9 @@ export function HowItWorks() {
           </li>
         ))}
       </ol>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <h3 className="mt-10 text-xl font-extrabold tracking-tight">Safe by design</h3>
+      <p className="mt-1.5 max-w-[62ch] text-sm text-muted">Every build follows enterprise AI governance practices, sized for you: privacy, guardrails, human review and testing, built in from the start.</p>
+      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {PRINCIPLES.map((p) => (
           <div key={p.title} className="rounded-xl border border-hairline p-4">
             <p className="font-semibold">{p.title}</p>
