@@ -111,7 +111,7 @@ export const SECURITY_GUIDES: Guide[] = [
     faqs: [
       { q: "Is using ChatGPT at work shadow AI?", a: "Only if your organization hasn't approved it. Using an approved business account within your organization's rules isn't shadow AI; using a personal account for work information usually is." },
       { q: "How do I find out what AI tools my team uses?", a: "Ask. An anonymous, no-blame survey is the fastest and most honest way. Technical monitoring can help larger organizations, but it works best alongside open conversation and approved alternatives." },
-      { q: "Should small businesses and churches worry about shadow AI?", a: "Yes, in proportion. Small teams handle sensitive information too, like customer details, donor records and prayer requests. A short policy and one approved tool cover most of the risk." },
+      { q: "Should every business and church worry about shadow AI?", a: "Yes, in proportion. Teams of every size handle sensitive information, like customer details, donor records and prayer requests. A short policy and one approved tool cover most of the risk." },
     ],
     related: ["is-it-safe-to-put-business-data-in-ai", "how-to-stop-ai-training-on-your-data", "ai-policy-template", "how-to-train-your-team-on-ai"],
     service: "ai-consulting",
@@ -335,7 +335,7 @@ export const SECURITY_GUIDES: Guide[] = [
           {
             steps: [
               { title: "Call back on a known number", text: "Verify any request for money or data by calling the person on a number you already have, never one from the message. This is the FTC's core advice." },
-              { title: "Agree a code word", text: "The FBI recommends families agree on a secret word or phrase to confirm identity. Small teams and church leadership can do the same." },
+              { title: "Agree a code word", text: "The FBI recommends families agree on a secret word or phrase to confirm identity. Business teams and church leadership can do the same." },
               { title: "Two people for payments", text: "Require two approvals for payments and for any change to bank details." },
               { title: "Say it publicly", text: "Put \"we will never ask you for gift cards or money by text or email\" in your newsletter, website and staff onboarding." },
               { title: "Report it", text: "Report scams to the FTC at ReportFraud.ftc.gov and to the FBI at ic3.gov, and warn your people quickly." },

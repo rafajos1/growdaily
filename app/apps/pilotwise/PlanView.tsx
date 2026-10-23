@@ -159,6 +159,7 @@ export function PlanView({ pilot, onChange, onBack, onDelete, onToast }: { pilot
                   <li key={g.area}>
                     <span className="font-semibold text-fg">{g.label}</span> <span className="text-muted">({g.score}/5)</span>
                     <span className="block text-soft">{g.action}</span>
+                    {g.area === "data" && <span className="mt-0.5 block text-xs text-muted">AI is only as good as the data behind it, so let&apos;s fix that first.</span>}
                   </li>
                 ))}
               </ul>
@@ -257,6 +258,7 @@ export function PlanView({ pilot, onChange, onBack, onDelete, onToast }: { pilot
                   <span className="text-sm text-soft">
                     {r.note}
                     {r.gap && <span className="block text-up">Gap: {r.gap}</span>}
+                    {a.id === "data" && <span className="mt-1 block text-muted">AI is only as good as the data behind it. If the data isn&apos;t ready, let&apos;s fix that first.</span>}
                   </span>
                 </li>
               );

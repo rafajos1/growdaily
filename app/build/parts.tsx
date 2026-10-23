@@ -121,7 +121,7 @@ export function HowItWorks() {
           </li>
         ))}
       </ol>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {PRINCIPLES.map((p) => (
           <div key={p.title} className="rounded-xl border border-hairline p-4">
             <p className="font-semibold">{p.title}</p>

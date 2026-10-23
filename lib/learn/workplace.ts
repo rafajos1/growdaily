@@ -111,8 +111,8 @@ export const WORKPLACE_GUIDES: Guide[] = [
     slug: "ai-policy-template",
     topic: "workplace",
     title: "How to write an AI policy for your team (free template)",
-    seoTitle: "AI Policy Template for Small Businesses & Nonprofits (Free)",
-    description: "A free, plain-English AI use policy template for small businesses, nonprofits and churches: approved tools, data rules, human review, AI agents, and how to roll it out.",
+    seoTitle: "AI Policy Template for Businesses & Nonprofits (Free)",
+    description: "A free, plain-English AI use policy template for businesses, nonprofits and churches of any size: approved tools, data rules, human review, AI agents, and how to roll it out.",
     shortAnswer:
       "A good AI policy fits on one or two pages and answers five things: which tools are approved, what information must never go into them, when a person must review AI work, who approves AI tools that take actions, and who to ask. Copy the template below and fill in the brackets.",
     sections: [
@@ -143,7 +143,7 @@ export const WORKPLACE_GUIDES: Guide[] = [
       },
     ],
     faqs: [
-      { q: "Does a small business really need an AI policy?", a: "Yes, if anyone on the team uses AI. A one-page policy prevents the biggest risk, which is private information pasted into unapproved tools, and gives people confidence to use AI well." },
+      { q: "Does every business really need an AI policy?", a: "Yes, if anyone on the team uses AI. A one-page policy prevents the biggest risk, which is private information pasted into unapproved tools, and gives people confidence to use AI well." },
       { q: "Should we ban ChatGPT at work?", a: "Bans tend to push AI use underground. Approving specific tools, with clear rules about data and review, is usually safer than a ban." },
       { q: "What should an AI policy for a church include?", a: "The same basics, plus clear lines on pastoral care information, prayer requests, and how AI may or may not be used in preaching and teaching." },
     ],
@@ -316,9 +316,9 @@ export const WORKPLACE_GUIDES: Guide[] = [
   {
     slug: "ai-for-customer-service",
     topic: "workplace",
-    title: "AI for customer service: a guide for small businesses",
-    seoTitle: "AI for Customer Service in a Small Business: Where to Start",
-    description: "How a small business can use AI for customer service: answering common questions, drafting replies, a website assistant, and the guardrails that keep customers happy.",
+    title: "AI for customer service: a practical guide for businesses",
+    seoTitle: "AI for Customer Service: Where to Start (Practical Guide)",
+    description: "How any business can use AI for customer service: answering common questions, drafting replies, a website assistant, and the guardrails that keep customers happy.",
     shortAnswer:
       "Start with AI that drafts replies to common questions for a person to approve, then consider a website assistant that answers only from your own information and hands off to a person when it's unsure. Speed matters to customers, but so does a human when things go wrong.",
     sections: [
@@ -362,7 +362,7 @@ export const WORKPLACE_GUIDES: Guide[] = [
     topic: "workplace",
     title: "How to implement AI in your organization: a 30-day plan",
     seoTitle: "How to Implement AI in Your Business: A 30-Day Plan",
-    description: "A practical 30-day plan to implement AI in a small business, nonprofit or church: find the right tasks, set rules, train people, run one pilot and measure results.",
+    description: "A practical 30-day plan to implement AI in a business, nonprofit or church of any size: find the right tasks, set rules, train people, run one pilot and measure results.",
     shortAnswer:
       "Week 1, find out how people already use AI and pick three time-consuming tasks. Week 2, choose approved tools and write a short policy. Week 3, train your team. Week 4, run one pilot and measure the time saved. Then expand from what worked.",
     sections: [
@@ -395,7 +395,7 @@ export const WORKPLACE_GUIDES: Guide[] = [
       },
     ],
     faqs: [
-      { q: "Where should a small business start with AI?", a: "With the repetitive writing and admin work that eats the most time, like emails, summaries, scheduling and customer replies, plus a short policy so people use it safely." },
+      { q: "Where should a business start with AI?", a: "With the repetitive writing and admin work that eats the most time, like emails, summaries, scheduling and customer replies, plus a short policy so people use it safely." },
       { q: "How do I measure if AI is working?", a: "Time a task before and after, and check quality, like errors and customer replies. If it doesn't save time or improve quality, change the approach." },
     ],
     related: ["why-ai-pilots-fail", "ai-pilot-exit-criteria", "how-to-start-with-ai-agents", "ai-policy-template"],

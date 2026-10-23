@@ -4,11 +4,11 @@ const D = "2026-10-19";
 
 export const ORGANIZATION_GUIDES: Guide[] = [
   {
-    slug: "ai-for-small-business",
+    slug: "ai-for-business",
     topic: "organizations",
-    title: "AI for small business: where to start",
-    seoTitle: "AI for Small Business: Where to Start (Practical Guide)",
-    description: "A practical guide to AI for small businesses: the best first uses, tools to consider, costs, risks, and how to go from trying ChatGPT to AI that saves real hours every week.",
+    title: "AI for business: where to start",
+    seoTitle: "AI for Business: Where to Start (Practical Guide)",
+    description: "A practical guide to AI for businesses of any size: the best first uses, tools to consider, costs, risks, and how to go from trying ChatGPT to AI that saves real hours every week.",
     shortAnswer:
       "Start where your time goes: customer messages, marketing content and admin. Use an approved AI tool for drafts and summaries, write a one-page AI policy, then automate one repetitive workflow with an AI agent once your team is comfortable.",
     sections: [
@@ -39,6 +39,12 @@ export const ORGANIZATION_GUIDES: Guide[] = [
         ],
       },
       {
+        heading: "Start with your data",
+        blocks: [
+          "AI is only as good as your data. An assistant that answers from an old price list or an out-of-date policy will give confident, wrong answers. Before you automate anything, make sure the information it relies on is current, in one place and owned by someone. Our [data readiness checklist](/learn/is-your-data-ready-for-ai) takes ten minutes.",
+        ],
+      },
+      {
         heading: "What it costs",
         blocks: [
           "Business plans for AI assistants are usually priced per person per month. Custom tools and agents add setup plus small usage-based AI costs. Start with what you need and measure time saved before spending more.",
@@ -46,13 +52,87 @@ export const ORGANIZATION_GUIDES: Guide[] = [
       },
     ],
     faqs: [
-      { q: "What is the best AI tool for a small business?", a: "The one your team will actually use well. A business plan from a major AI assistant covers most needs. Add specialized or custom tools only for specific workflows." },
-      { q: "Is AI worth it for a very small business?", a: "Often, yes, for writing and admin that eat your evenings. Measure time saved on a few tasks to be sure." },
+      { q: "What is the best AI tool for a business?", a: "The one your team will actually use well. A business plan from a major AI assistant covers most needs. Add specialized or custom tools only for specific workflows." },
+      { q: "Is AI worth it for a one- or two-person business?", a: "Often, yes, for writing and admin that eat your evenings. Measure time saved on a few tasks to be sure." },
     ],
-    related: ["ai-implementation-plan", "ai-for-customer-service", "ai-policy-template", "ai-agent-examples"],
+    related: ["ai-implementation-plan", "is-your-data-ready-for-ai", "ai-for-customer-service", "ai-policy-template"],
     service: "ai-consulting",
     published: D,
     updated: D,
+  },
+  {
+    slug: "is-your-data-ready-for-ai",
+    topic: "organizations",
+    title: "Is your data ready for AI? A simple checklist",
+    seoTitle: "Is Your Data Ready for AI? A Simple Checklist",
+    description: "AI is only as good as your data. Five questions to check before you build anything with AI, a free checklist, and the quick fixes that make the biggest difference.",
+    shortAnswer:
+      "AI is only as good as the data behind it. Before you build, check five things: the data exists, it's accurate and current, it's somewhere you can reach, you're allowed to use it, and someone owns keeping it right. If any answer is no, fix that first. It's quicker than fixing an AI project that gives confident wrong answers.",
+    sections: [
+      {
+        heading: "Why data comes first",
+        blocks: [
+          "AI doesn't know your business. It works from what you give it: your documents, records, price lists and past examples. If those are out of date, scattered or wrong, the AI will be confidently out of date, scattered or wrong too.",
+          "In February 2025, Gartner predicted that through 2026, organizations will abandon 60% of AI projects that aren't supported by AI-ready data. In its survey of 1,203 data management leaders, 63% said their organization either didn't have the right data management practices for AI or wasn't sure.",
+          { callout: "A simple example: an AI assistant that answers customer questions from last year's price list will quote last year's prices, politely and confidently. The fix isn't a better AI. It's an up-to-date price list." },
+        ],
+      },
+      {
+        heading: "The five-question check",
+        blocks: [
+          {
+            steps: [
+              { title: "Does the data exist?", text: "Is the information the AI needs written down anywhere, or does it live in people's heads?" },
+              { title: "Is it accurate and current?", text: "Would you hand it to a new employee as the truth today? Check a sample of 20 records or documents." },
+              { title: "Can you reach it?", text: "Is it in one place, or spread across inboxes, spreadsheets and old folders? AI works best from one trusted source." },
+              { title: "Are you allowed to use it?", text: "Does it include personal, confidential or customer data? Check your policy and contracts before it goes near an AI tool." },
+              { title: "Does someone own it?", text: "Who keeps it right when things change? Without an owner, good data goes stale within months." },
+            ],
+          },
+          { template: { title: "AI data readiness checklist", text: `AI data readiness check
+
+What will the AI do? ______
+What information does it need? ______
+
+1. It exists, written down:                  Yes / Partly / No
+2. It's accurate and current (20 checked):   Yes / Partly / No
+3. It's in one place we can reach:           Yes / Partly / No
+4. We're allowed to use it with AI:          Yes / Partly / No
+5. Someone owns keeping it right:            Yes / Partly / No   Owner: ______
+
+Any "No"? Fix that before building.
+Any "Partly"? Fix it during the first weeks of the pilot.
+
+Biggest gap: ______   Fix by: ______` } },
+        ],
+      },
+      {
+        heading: "Quick fixes that make the biggest difference",
+        blocks: [
+          {
+            list: [
+              "Pick one source of truth for each kind of information, and retire the copies.",
+              "Clean the most-used records first. Fixing the top 100 often matters more than the next 10,000.",
+              "Remove duplicates and archive outdated documents so the AI can't find them.",
+              "Write down who updates what, and when.",
+              "Take personal details out of anything you use for testing.",
+            ],
+          },
+          "Your data doesn't have to be perfect. It has to be good enough for one clear job. Test that with a set of real examples before you scale, as in our guide to [AI pilot exit criteria](/learn/ai-pilot-exit-criteria), and check data readiness alongside the other five areas in [Pilotwise](/apps/pilotwise).",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "What does AI-ready data mean?", a: "Data that exists, is accurate and current, can be reached in one place, is allowed to be used with AI, and has an owner who keeps it right, for the specific job you want AI to do." },
+      { q: "Does my data need to be perfect before I use AI?", a: "No. It needs to be good enough for one clear job. Start with the information that job needs, fix the biggest gaps, and test with real examples." },
+      { q: "Can AI clean up my data for me?", a: "It can help, for example by spotting duplicates or tidying formats, but a person who knows the business has to decide what's correct. Check its work." },
+    ],
+    related: ["why-ai-pilots-fail", "ai-pilot-exit-criteria", "is-it-safe-to-put-business-data-in-ai", "ai-implementation-plan"],
+    service: "ai-consulting",
+    tool: { name: "Pilotwise", href: "/apps/pilotwise", pitch: "Check your AI idea's readiness across six areas, including data, and see what to fix first. Free, no sign-up." },
+    published: "2026-10-23",
+    updated: "2026-10-23",
+    sources: [{ label: "Gartner: Lack of AI-ready data puts AI projects at risk (Feb 2025)", url: "https://www.gartner.com/en/newsroom/press-releases/2025-02-26-lack-of-ai-ready-data-puts-ai-projects-at-risk" }],
   },
   {
     slug: "ai-for-nonprofits",
@@ -84,6 +164,12 @@ export const ORGANIZATION_GUIDES: Guide[] = [
         ],
       },
       {
+        heading: "Start with your data",
+        blocks: [
+          "AI is only as good as your data. If program records, donor lists or volunteer details are scattered or out of date, AI will repeat those mistakes in every report and thank-you. Pick one source of truth for the work you want help with and tidy it first. Our [data readiness checklist](/learn/is-your-data-ready-for-ai) walks through it.",
+        ],
+      },
+      {
         heading: "Bring your team along",
         blocks: [
           "2026 research found nonprofit executives far more optimistic about AI than their staff, and most groups lacking a written policy or rollout plan. Ask staff what would genuinely help, train together, and frame AI as taking busywork off their plates.",
@@ -94,7 +180,7 @@ export const ORGANIZATION_GUIDES: Guide[] = [
       { q: "Can AI write a grant proposal?", a: "It can help outline, draft and tailor sections, but funders expect accurate facts and your organization's voice. A person should own the content and check every claim." },
       { q: "Are there discounts on AI tools for nonprofits?", a: "Several major technology providers offer nonprofit pricing or programs. Check each provider's current nonprofit offers." },
     ],
-    related: ["ai-policy-template", "how-to-train-your-team-on-ai", "ai-agent-examples", "is-it-safe-to-put-business-data-in-ai"],
+    related: ["ai-policy-template", "is-your-data-ready-for-ai", "how-to-train-your-team-on-ai", "is-it-safe-to-put-business-data-in-ai"],
     service: "ai-training",
     published: D,
     updated: D,
@@ -260,7 +346,7 @@ export const ORGANIZATION_GUIDES: Guide[] = [
       { q: "Can I just use Square or Toast for inventory?", a: "Point-of-sale systems include some inventory features, and some offer more detailed add-ons. Many small cafés still find a simple count-and-order routine is what they actually need. Use whichever you'll keep up with." },
       { q: "Is there a free coffee shop inventory app?", a: "Yes. Cafewise from GrowDaily is free with no account: stock counts, order lists from par levels, cost per drink, a waste log and an AI ordering review." },
     ],
-    related: ["ai-for-small-business", "ai-agent-examples", "ai-implementation-plan", "how-to-write-ai-prompts"],
+    related: ["ai-for-business", "ai-agent-examples", "ai-implementation-plan", "how-to-write-ai-prompts"],
     service: "build",
     published: "2026-10-20",
     updated: "2026-10-20",
@@ -353,7 +439,7 @@ export const ORGANIZATION_GUIDES: Guide[] = [
       { q: "Should I show labor and materials separately?", a: "Usually yes. Itemized quotes are easier for clients to trust and compare, and they make changes easier to price." },
       { q: "Is there a free quote and estimate app?", a: "Yes. Quotewise from GrowDaily is free with no account: AI-drafted line items, tax and discounts, print or PDF, email, and one-tap invoices." },
     ],
-    related: ["ai-for-small-business", "coffee-shop-inventory-management", "how-to-write-ai-prompts", "ai-implementation-plan"],
+    related: ["ai-for-business", "coffee-shop-inventory-management", "how-to-write-ai-prompts", "ai-implementation-plan"],
     service: "build",
     published: "2026-10-20",
     updated: "2026-10-20",
@@ -365,11 +451,11 @@ export const ORGANIZATION_GUIDES: Guide[] = [
     ],
   },
   {
-    slug: "meeting-room-booking-for-small-business",
+    slug: "meeting-room-booking-for-business",
     topic: "organizations",
-    title: "Meeting room booking for small businesses: stop double-booked rooms",
-    seoTitle: "Free Meeting Room Booking for Small Businesses & Offices",
-    description: "How small businesses can book meeting rooms and shared spaces without double-booking: one calendar, a few simple rules, your existing tools, and a free room booking app.",
+    title: "Meeting room booking for businesses: stop double-booked rooms",
+    seoTitle: "Free Meeting Room Booking for Businesses & Offices",
+    description: "How businesses can book meeting rooms and shared spaces without double-booking: one calendar, a few simple rules, your existing tools, and a free room booking app.",
     shortAnswer:
       "Put every bookable room in one shared calendar, set a few simple rules (book the setup time, release rooms you don't need, keep long bookings for big groups), and check for clashes before you confirm. Google Workspace and Microsoft 365 can handle basic room calendars; a simple room booking tool with a floor plan can be easier for small teams and shared spaces.",
     sections: [
@@ -426,7 +512,7 @@ export const ORGANIZATION_GUIDES: Guide[] = [
       { q: "How do I stop meeting rooms being double-booked?", a: "Use one calendar that checks for overlaps, including each week of recurring meetings, and make it the only place rooms get booked." },
       { q: "Is there a free meeting room booking app?", a: "Yes. Roomwise from GrowDaily is free with no account: a floor-plan map, conflict checks, weekly repeats, pending requests and AI room search." },
     ],
-    related: ["church-room-booking-and-facility-scheduling", "ai-for-small-business", "how-to-write-a-quote-for-a-job", "ai-implementation-plan"],
+    related: ["church-room-booking-and-facility-scheduling", "ai-for-business", "how-to-write-a-quote-for-a-job", "ai-implementation-plan"],
     service: "build",
     published: "2026-10-20",
     updated: "2026-10-20",

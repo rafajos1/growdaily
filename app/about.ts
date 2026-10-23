@@ -76,7 +76,7 @@ export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | 
     category: "BusinessApplication",
     description: "Free quote and estimate maker with AI: describe the job and get itemized line items, then print, save as PDF or email it, and turn it into an invoice.",
     heading: "A free quote, estimate and invoice maker that drafts the line items for you",
-    intro: "Quotewise helps contractors, handymen, cleaners, photographers, florists and other small businesses send professional quotes fast. Describe the job in plain words and AI drafts the line items, using your hourly rate for labor and estimating materials. Check the prices, add tax or a discount, then print it, save it as a PDF or email it. When the client says yes, turn the quote into an invoice in one tap.",
+    intro: "Quotewise helps contractors, handymen, cleaners, photographers, florists and other businesses send professional quotes fast. Describe the job in plain words and AI drafts the line items, using your hourly rate for labor and estimating materials. Check the prices, add tax or a discount, then print it, save it as a PDF or email it. When the client says yes, turn the quote into an invoice in one tap.",
     faqs: [
       { q: "Is Quotewise free?", a: "Yes. No account, sign-up or trial, and it works in any browser on your phone or computer." },
       { q: "What's the difference between a quote and an estimate?", a: "People use the words loosely. Usually an estimate is a best guess that can change, while a quote is a firm price for the work described, valid for a set time. Quotewise lets you set a valid-until date and notes that spell out what's included." },

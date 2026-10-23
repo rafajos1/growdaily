@@ -149,6 +149,7 @@ export const PROCESS = [
 ];
 
 export const PRINCIPLES = [
+  { title: "Your data first", text: "AI is only as good as your data. We look at what you have first, and tell you honestly if it isn't ready yet." },
   { title: "Private by default", text: "Store only what's needed, and keep personal notes away from AI." },
   { title: "AI for one clear job", text: "Each app uses AI where it genuinely helps, and still works without it." },
   { title: "Guardrails first", text: "Clear limits on what the AI will and won't say, written with you." },
@@ -281,7 +282,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       { title: "Safe and private", text: "What's okay to paste into an AI tool and what isn't, with a simple policy your team can adopt." },
       { title: "Follow-up", text: "A short guide to keep, and an easy way to ask questions after the workshop." },
     ],
-    forWho: ["Staff teams and departments", "Leadership and boards", "Volunteers", "Owners and small offices"],
+    forWho: ["Staff teams and departments", "Leadership and boards", "Volunteers", "Owners and office teams"],
     faqs: [
       { q: "Do people need any experience with AI?", a: "No. We start from the beginning and keep it practical, and people who already use AI still pick up new habits." },
       { q: "Which AI tools do you teach?", a: "Whichever your team has or would use, such as ChatGPT, Claude, Copilot or Gemini. The habits work across all of them." },

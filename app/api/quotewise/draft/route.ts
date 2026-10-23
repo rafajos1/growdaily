@@ -3,7 +3,7 @@ import { generateJSON } from "../../../../lib/anthropic";
 import { cleanDraft, type DraftLine } from "../../../../lib/quotewise/logic";
 import { allowDaily, clientIp } from "../../../../lib/rateLimit";
 
-const SYSTEM = `You draft line items for a quote inside Quotewise, a free quote and invoice maker for small businesses (trades, home services, cleaners, photographers, florists, consultants and the like).
+const SYSTEM = `You draft line items for a quote inside Quotewise, a free quote and invoice maker for businesses (trades, home services, cleaners, photographers, florists, consultants and the like).
 You get a plain-English job description from the business owner, what their business does, and their hourly labor rate.
 Return line items a customer would understand:
 - Labor: realistic hours for the work described, priced at the owner's hourly rate exactly. If no rate is given, use 0 and say so in assumptions.
