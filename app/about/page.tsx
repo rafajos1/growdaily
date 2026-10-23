@@ -32,6 +32,7 @@ const CREDENTIALS = [
   "Google Cloud Cybersecurity Certificate",
   "Certified SAFe® 6 Agilist",
   "Professional Scrum Master™ I (PSM I)",
+  "EQ-i 2.0 / EQ 360 Certified Coach",
   "AI governance and AI security (LinkedIn Learning)",
 ];
 
