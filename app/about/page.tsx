@@ -23,12 +23,16 @@ const EXPERIENCE = [
 ];
 
 const CREDENTIALS = [
-  "IBM AI Product Manager",
-  "Databricks Generative AI Engineer",
-  "Databricks Data Engineer",
-  "SAFe 6",
-  "Google Cybersecurity",
-  "AI governance credentials",
+  "IBM AI Product Manager Specialization",
+  "Databricks Certified Generative AI Engineer Associate",
+  "Databricks Certified Data Engineer Associate",
+  "Azure Databricks Platform Architect (Databricks Academy)",
+  "Google Cloud Gemini for Application Developers",
+  "Google Cloud Digital Leader",
+  "Google Cloud Cybersecurity Certificate",
+  "Certified SAFe® 6 Agilist",
+  "Professional Scrum Master™ I (PSM I)",
+  "AI governance and AI security (LinkedIn Learning)",
 ];
 
 const PRINCIPLES = [
