@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
-import { ArrowRight, Bell, Church, Lock, Sparkles, UserX } from "lucide-react";
+import { ArrowRight, Bell, Check, Church, Compass, ShieldCheck, Sparkles, Wrench, X } from "lucide-react";
 import { getSupabase } from "../lib/supabase";
 import { APPS, type GrowApp } from "./apps";
-import { HabitArt, MealArt, MoodArt, PlanArt, SpendArt } from "./components/AppArt";
+import { CafeArt, HabitArt, MealArt, MoodArt, PilotArt, PlanArt, QuoteArt, RoomArt, SpendArt } from "./components/AppArt";
 import { FaithSwitch } from "./components/FaithSwitch";
 import { YourDay } from "./components/NextUp";
 import { useFaith } from "./components/useFaith";
@@ -32,10 +32,10 @@ const FAITH_NOTES: Record<string, string> = {
 };
 
 const BUSINESS_TOOLS = [
-  { name: "Quotewise", href: "/apps/quotewise", color: "#8fb3ff", who: "Trades & services", text: "Describe the job and AI drafts the quote. Print, PDF or email it, then turn it into an invoice." },
-  { name: "Cafewise", href: "/apps/cafewise", color: "#d9965b", who: "Coffee shops", text: "Count stock on your phone, get an order list from your par levels, and see what each drink costs you." },
-  { name: "Roomwise", href: "/apps/roomwise", color: "#4fc7b8", who: "Churches, offices & spaces", text: "Book rooms on a map of your building, with no double bookings, weekly repeats and requests to confirm." },
-  { name: "Pilotwise", href: "/apps/pilotwise", color: "#f2b54b", who: "Teams starting with AI", text: "Describe an AI idea and get what to fix first, a go/no-go test and a one-page brief for your sponsor." },
+  { name: "Quotewise", Art: QuoteArt, href: "/apps/quotewise", color: "#8fb3ff", who: "Trades & services", problem: "Writing quotes by hand after a long day.", text: "Describe the job and AI drafts the quote. Print, PDF or email it, then turn it into an invoice." },
+  { name: "Cafewise", Art: CafeArt, href: "/apps/cafewise", color: "#d9965b", who: "Coffee shops", problem: "Counting stock and guessing what to order.", text: "Count stock on your phone, get an order list from your par levels, and see what each drink costs you." },
+  { name: "Roomwise", Art: RoomArt, href: "/apps/roomwise", color: "#4fc7b8", who: "Churches, offices & spaces", problem: "Double-booked rooms and a messy shared calendar.", text: "Book rooms on a map of your building, with no double bookings, weekly repeats and requests to confirm." },
+  { name: "Pilotwise", Art: PilotArt, href: "/apps/pilotwise", color: "#f2b54b", who: "Teams starting with AI", problem: "An AI idea with no clear first step.", text: "Describe an AI idea and get what to fix first, a go/no-go test and a one-page brief for your sponsor." },
 ];
 
 function AppCard({ app, index, featured, faith }: { app: GrowApp; index: number; featured?: boolean; faith: boolean }) {
@@ -167,8 +167,31 @@ function Updates() {
   );
 }
 
+const PAINS = [
+  { icon: Compass, title: "Not sure where to start", text: "You can picture the tool, but a blank chat box isn't a plan." },
+  { icon: Wrench, title: "Stuck halfway", text: "It worked yesterday. Now something's broken and you're not sure what changed." },
+  { icon: ShieldCheck, title: "Not sure it's safe", text: "Customer data, accuracy, cost. You don't want to guess on the things that matter." },
+];
+
+const STEPS = [
+  { title: "Bring your idea", text: "Tell us the job you want done, in your own words. A free 20-minute call is enough to start." },
+  { title: "Build it together", text: "We turn the idea into a simple plan, then walk you through building it with Claude, step by step, until it works." },
+  { title: "Own it", text: "You leave with a tool that fits how you work, and the know-how to build the next one yourself." },
+];
+
+const WITH_GUIDE = [
+  "A tool your team actually uses every week",
+  "You understand how it works and can change it",
+  "The confidence to build the next one",
+];
+
+const WITHOUT_GUIDE = [
+  "A half-built project lost in an old chat",
+  "Deciding \"AI just isn't for me\"",
+  "Paying someone every time you need a change",
+];
+
 export function HomePage() {
-  const live = APPS.filter((a) => a.status === "live").length;
   const [faith, setFaith] = useFaith();
   return (
     <div className="px-[max(16px,env(safe-area-inset-left))]">
@@ -179,11 +202,10 @@ export function HomePage() {
           <span className="rounded-full border border-amber/40 bg-amber/10 px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-amber">Beta</span>
         </Link>
         <nav className="flex items-center gap-1 text-sm font-semibold text-muted">
-          <a href="#apps" className="rounded-lg px-3 py-2 hover:text-fg">Apps</a>
-          <a href="#why" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">Why it&apos;s free</a>
-          <a href="#updates" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">Get updates</a>
-          <Link href="/learn" className="rounded-lg px-3 py-2 hover:text-fg">Learn AI</Link>
-          <Link href="/build" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">Build with us</Link>
+          <a href="#examples" className="rounded-lg px-3 py-2 hover:text-fg">Examples</a>
+          <a href="#how" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">How it works</a>
+          <Link href="/learn" className="hidden rounded-lg px-3 py-2 hover:text-fg sm:block">Learn AI</Link>
+          <Link href="/build" className="rounded-lg px-3 py-2 text-amber hover:text-fg">Start building</Link>
         </nav>
       </header>
 
@@ -193,27 +215,27 @@ export function HomePage() {
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-down" aria-hidden />
-              {live === APPS.length ? `${APPS.length} free apps · public beta` : `${APPS.length} apps · ${live} live now`}
+              For non-technical builders
             </p>
             <h1 className="mt-6 text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
-              Free AI apps to run your life <span className="text-amber">better</span>.
+              You know the tool you need. <span className="text-amber">Let&apos;s build it together.</span>
             </h1>
-            <p className="mt-6 max-w-[46ch] text-lg text-soft">
-              Small, focused tools for your money, habits, time, food and mood. No account needed, and your data stays on your device unless you choose to save it.
+            <p className="mt-6 max-w-[48ch] text-lg text-soft">
+              You don&apos;t have to be a developer to build your own apps with Claude. GrowDaily guides business owners and nonprofit leaders from idea to a working tool, in plain English, one step at a time.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="/apps/spendwise" className={btnPrimary}>
-                Open Spendwise <ArrowRight className="h-4 w-4" aria-hidden />
-              </a>
-              <a href="#apps" className={btnSecondary}>
-                See all apps
+              <Link href="/build" className={btnPrimary}>
+                Start your build <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <a href="#examples" className={btnSecondary}>
+                See what&apos;s possible
               </a>
             </div>
             <p className="mt-5 max-w-[46ch] text-sm text-muted">
-              <span className="font-semibold text-soft">GrowDaily is in beta.</span> AI is now live in every app, with a free daily allowance, and the apps still work without it.
+              <span className="font-semibold text-soft">Every app on this site was built with Claude.</span> Try them free, then picture yours.
             </p>
           </div>
-          <a href="/apps/spendwise" className="group block min-w-0" aria-label="Open Spendwise">
+          <a href="/apps/spendwise" className="group block min-w-0" aria-label="Open Spendwise, an example app built with Claude">
             <div className="overflow-hidden rounded-2xl border border-line bg-panel shadow-2xl shadow-black/50 transition group-hover:border-[#35507a] lg:[transform:perspective(1600px)_rotateY(-6deg)]">
               <div className="flex items-center gap-1.5 border-b border-line px-4 py-3" aria-hidden>
                 <i className="h-2.5 w-2.5 rounded-full bg-[#2b3a50]" />
@@ -222,34 +244,20 @@ export function HomePage() {
                 <span className="ml-3 font-mono text-xs text-dim">growdaily.ai/apps/spendwise</span>
               </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/apps/spendwise/preview.png" alt="Spendwise showing a month's spending pace and a daily calendar" className="block w-full" width={1320} height={1043} />
+              <img src="/apps/spendwise/preview.png" alt="Spendwise, an example app built with Claude, showing a month's spending pace" className="block w-full" width={1320} height={1043} />
             </div>
           </a>
         </section>
 
-        <section id="apps" className="scroll-mt-8 pb-20">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">For everyday life</p>
-              <h2 className="mt-2 text-3xl font-extrabold tracking-tight">One app for each part of your day</h2>
-            </div>
-            <p className="max-w-[40ch] text-sm text-muted">Each one does one job well, and they all work on your phone.</p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {APPS.map((app, i) => (
-              <AppCard key={app.slug} app={app} index={i} featured={i === 0} faith={faith} />
-            ))}
-          </div>
-        </section>
-
-        <section id="business" aria-labelledby="business-heading" className="scroll-mt-8 pb-20">
+        <section id="examples" aria-labelledby="examples-heading" className="scroll-mt-8 pb-12">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">For your business</p>
-              <h2 id="business-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Free tools for small businesses and churches</h2>
+              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">What you could build</p>
+              <h2 id="examples-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Real apps, built with Claude</h2>
             </div>
-            <p className="max-w-[40ch] text-sm text-muted">Same idea: one job done well, free, no account. Want one built around your business? We do that too.</p>
+            <p className="max-w-[42ch] text-sm text-muted">Each one started as a simple problem. All free to try, no account, and your data stays on your device.</p>
           </div>
+          <p className="mb-3 font-mono text-xs uppercase tracking-[0.14em] text-muted">For businesses &amp; nonprofits</p>
           <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {BUSINESS_TOOLS.map((t) => (
               <li key={t.name}>
@@ -258,34 +266,107 @@ export function HomePage() {
                     {t.who}
                   </span>
                   <span className="mt-2 text-2xl font-extrabold tracking-tight">{t.name}</span>
+                  <span className="my-4 block">
+                    <t.Art color={t.color} />
+                  </span>
+                  <span className="mt-2 text-sm text-muted">
+                    <span className="font-semibold text-soft">The problem:</span> {t.problem}
+                  </span>
                   <span className="mt-2 flex-1 text-soft">{t.text}</span>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: t.color }}>
-                    Open {t.name} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+                    Try {t.name} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
                   </span>
                 </Link>
               </li>
             ))}
           </ul>
-          <Link href="/build" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-soft hover:text-fg">
-            More coming. Want a tool built for your business? <ArrowRight className="h-4 w-4" aria-hidden />
-          </Link>
         </section>
 
-        <section id="why" className="scroll-mt-8 pb-20">
-          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Why it&apos;s free</p>
-          <h2 className="mt-2 max-w-[24ch] text-3xl font-extrabold tracking-tight">Built to be cheap to run, so it can stay free</h2>
+        <section id="apps" aria-labelledby="apps-heading" className="scroll-mt-8 pb-20">
+          <p className="mb-3 font-mono text-xs uppercase tracking-[0.14em] text-muted">For everyday life</p>
+          <h3 id="apps-heading" className="sr-only">Everyday apps</h3>
+          <div className="grid gap-4 md:grid-cols-3">
+            {APPS.map((app, i) => (
+              <AppCard key={app.slug} app={app} index={i} featured={i === 0} faith={faith} />
+            ))}
+          </div>
+        </section>
+
+        <section id="stuck" aria-labelledby="stuck-heading" className="scroll-mt-8 pb-20">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Sound familiar?</p>
+          <h2 id="stuck-heading" className="mt-2 max-w-[26ch] text-3xl font-extrabold tracking-tight">Most good ideas stall before they&apos;re built</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {[
-              { icon: Lock, title: "Private by default", text: "What you enter is saved in your own browser, not on our servers. Export it any time." },
-              { icon: UserX, title: "No account needed", text: "Open an app and start. No sign-up, no password, no trial that runs out." },
-              { icon: Sparkles, title: "AI where it helps", text: "Each app uses AI for one job it's genuinely good at, with a generous free daily allowance." },
-            ].map(({ icon: Icon, title, text }) => (
+            {PAINS.map(({ icon: Icon, title, text }) => (
               <div key={title} className="rounded-2xl border border-line bg-panel p-6">
                 <Icon className="h-5 w-5 text-amber" aria-hidden />
                 <h3 className="mt-4 text-lg font-bold">{title}</h3>
                 <p className="mt-1.5 text-sm text-muted">{text}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section id="how" aria-labelledby="how-heading" className="scroll-mt-8 pb-20">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">How it works</p>
+          <h2 id="how-heading" className="mt-2 text-3xl font-extrabold tracking-tight">You&apos;re the builder. We&apos;re the guide.</h2>
+          <p className="mt-3 max-w-[62ch] text-soft">
+            You know your business and your problem better than anyone. We bring experience leading AI products from idea to launch, in plain English: what to ask Claude, how to check the work, and how to avoid the mistakes that stall most first builds.
+          </p>
+          <ol className="mt-8 grid gap-4 md:grid-cols-3">
+            {STEPS.map((s, i) => (
+              <li key={s.title} className="rounded-2xl border border-line bg-panel p-6">
+                <span className="font-mono text-xs uppercase tracking-[0.14em] text-amber">Step {i + 1}</span>
+                <h3 className="mt-2 text-lg font-bold">{s.title}</h3>
+                <p className="mt-1.5 text-sm text-muted">{s.text}</p>
+              </li>
+            ))}
+          </ol>
+          <Link href="/build" className={`${btnPrimary} mt-6`}>
+            Start your build <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
+        </section>
+
+        <section id="stakes" aria-labelledby="stakes-heading" className="scroll-mt-8 pb-20">
+          <h2 id="stakes-heading" className="text-3xl font-extrabold tracking-tight">Where your idea ends up</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-down/40 bg-down/[0.05] p-6">
+              <h3 className="text-lg font-bold">With a guide</h3>
+              <ul className="mt-3 grid gap-2 text-sm text-soft">
+                {WITH_GUIDE.map((t) => (
+                  <li key={t} className="flex gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-down" aria-hidden />{t}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-line bg-panel p-6">
+              <h3 className="text-lg font-bold">On your own</h3>
+              <ul className="mt-3 grid gap-2 text-sm text-muted">
+                {WITHOUT_GUIDE.map((t) => (
+                  <li key={t} className="flex gap-2"><X className="mt-0.5 h-4 w-4 shrink-0 text-up" aria-hidden />{t}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="build" aria-labelledby="build-heading" className="scroll-mt-8 pb-20">
+          <div className="grid gap-6 rounded-2xl border border-line bg-panel p-6 sm:p-10 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Ready to build?</p>
+              <h2 id="build-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Start with a free 20-minute call</h2>
+              <p className="mt-2 max-w-[52ch] text-muted">
+                Tell us what you want to build. We&apos;ll guide you through building it yourself, train your team to build, or build it for you if you&apos;d rather. For-profit or nonprofit, any size.
+              </p>
+              <Link href="/build" className={`${btnPrimary} mt-5`}>
+                Start your build <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            </div>
+            <ul className="grid gap-2 text-sm font-semibold">
+              <li><Link href="/learn" className="flex items-center justify-between rounded-xl border border-amber/40 bg-amber/[0.06] px-4 py-3 hover:border-amber/70">Free guides: learn to build with AI <ArrowRight className="h-4 w-4 text-amber" aria-hidden /></Link></li>
+              <li><Link href="/build/ai-training" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI training for your team <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
+              <li><Link href="/build/ai-consulting" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI consulting and planning <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
+              <li><Link href="/build/businesses" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">Ideas for businesses <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
+              <li><Link href="/build/nonprofits" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">Ideas for nonprofits <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
+            </ul>
           </div>
         </section>
 
@@ -318,34 +399,12 @@ export function HomePage() {
           </div>
         </section>
 
-        <section id="build" aria-labelledby="build-heading" className="scroll-mt-8 pb-20">
-          <div className="grid gap-6 rounded-2xl border border-line bg-panel p-6 sm:p-10 lg:grid-cols-[1.3fr_1fr] lg:items-center">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Build with us</p>
-              <h2 id="build-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Want AI working for your team?</h2>
-              <p className="mt-2 max-w-[52ch] text-muted">
-                We help businesses and nonprofits of any size put AI to work: team training, a plain-English AI plan, custom apps like these, and care to keep them running.
-              </p>
-              <Link href="/build" className={`${btnPrimary} mt-5`}>
-                Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-            </div>
-            <ul className="grid gap-2 text-sm font-semibold">
-              <li><Link href="/learn" className="flex items-center justify-between rounded-xl border border-amber/40 bg-amber/[0.06] px-4 py-3 hover:border-amber/70">Free guides: learn AI at work <ArrowRight className="h-4 w-4 text-amber" aria-hidden /></Link></li>
-              <li><Link href="/build/ai-training" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI training for your team <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
-              <li><Link href="/build/ai-consulting" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI consulting and planning <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
-              <li><Link href="/build/businesses" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI apps for businesses <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
-              <li><Link href="/build/nonprofits" className="flex items-center justify-between rounded-xl border border-line px-4 py-3 hover:border-[#35507a]">AI tools for nonprofits <ArrowRight className="h-4 w-4 text-muted" aria-hidden /></Link></li>
-            </ul>
-          </div>
-        </section>
-
         <section id="updates" className="scroll-mt-8 pb-24">
           <div className="rounded-2xl border border-line bg-panel p-6 sm:p-10">
             <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-center">
               <div>
-                <h2 className="text-3xl font-extrabold tracking-tight">Get new apps first</h2>
-                <p className="mt-2 text-muted">One email when we launch something new. Nothing else.</p>
+                <h2 className="text-3xl font-extrabold tracking-tight">Get new examples first</h2>
+                <p className="mt-2 text-muted">One email when we launch a new app or build guide. Nothing else.</p>
               </div>
               <Updates />
             </div>
@@ -355,7 +414,7 @@ export function HomePage() {
 
       <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 border-t border-hairline py-8 font-mono text-xs text-dim">
         <span>© {new Date().getFullYear()} GrowDaily</span>
-        <span>Public beta · Free apps · <Link href="/build" className="hover:text-fg">AI app development</Link> · <Link href="/about" className="hover:text-fg">About</Link> · <Link href="/privacy" className="hover:text-fg">Privacy</Link></span>
+        <span>Public beta · Guided AI app building · <Link href="/build" className="hover:text-fg">Start building</Link> · <Link href="/about" className="hover:text-fg">About</Link> · <Link href="/privacy" className="hover:text-fg">Privacy</Link></span>
       </footer>
     </div>
   );
