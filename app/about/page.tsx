@@ -16,20 +16,13 @@ export const metadata: Metadata = pageMetadata({
   image: ogImage("About GrowDaily", "Technology that helps people grow"),
 });
 
-const EXPERIENCE = [
-  "14 years as a pastor, including starting and leading the first Spanish service at Manna Church in Fayetteville, North Carolina.",
-  "Led the Church Online team at Life.Church, where more than 400 people a week said yes to following Jesus online.",
-  "25+ years of professional experience, leading enterprise-scale data, analytics and AI transformation.",
-  "Guiding cross-functional engineering and delivery teams to modernize data platforms and put AI solutions into real use.",
-  "Scaled agile delivery, cloud data platforms and generative AI enablement.",
-  "Certifications from Databricks, Google and SAFe, among others.",
+const PLAN = [
+  { title: "A free 20-minute call", text: "Tell me what you need, and I'll say honestly whether AI is a good fit." },
+  { title: "Your content and data first", text: "AI is only as good as your data, so we start by looking at what you have." },
+  { title: "We build it together, or I build it for you", text: "Either way, you own what we make." },
 ];
 
-const PRINCIPLES = [
-  { title: "Value first", text: "Start with the outcome that matters to you, and build the smallest thing that delivers it." },
-  { title: "Governance and quality", text: "Clear guardrails, careful testing and honest limits, so AI earns trust instead of creating risk." },
-  { title: "People over tools", text: "Technology should give people time back for each other, not replace the human parts of the work." },
-];
+const link = "font-semibold text-amber underline-offset-2 hover:underline";
 
 export default function AboutPage() {
   const schema = {
@@ -51,105 +44,116 @@ export default function AboutPage() {
           Hi, I&apos;m <span className="text-amber">Rafael</span>.
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-soft">
-          I started GrowDaily because I have a passion for equipping people with technology that makes their lives better. I&apos;m especially drawn to where technology and faith meet: helping churches, ministries and people exploring faith use new tools wisely, without losing what matters most.
+          If you lead a church, a nonprofit or a business, AI probably feels like one more thing you&apos;re expected to figure out, with no extra time and no one you&apos;re sure you can trust. I&apos;ve been there.
         </p>
 
-        <section className="mt-12" aria-labelledby="experience-heading">
-          <h2 id="experience-heading" className="text-2xl font-extrabold tracking-tight">
-            My background
+        <section className="mt-12" aria-labelledby="from-heading">
+          <h2 id="from-heading" className="text-2xl font-extrabold tracking-tight">
+            Where I come from
           </h2>
           <p className="mt-4 leading-relaxed text-soft">
-            By day, I lead enterprise data and AI transformation at an energy company, working alongside executives, architects and product leaders to build high-performing teams and deliver measurable results.
+            For 14 years I served as a pastor. I started and led the first Spanish service at Manna Church in Fayetteville, North Carolina. Later I led the Church Online team at Life.Church, where more than 400 people a week said yes to following Jesus online. Those years taught me what it&apos;s like to have big needs and limited time. They also taught me that technology is at its best when it gives people time back for each other.
           </p>
-          <ul className="mt-4 list-disc space-y-2 pl-5 leading-relaxed text-soft marker:text-amber">
-            {EXPERIENCE.map((e) => (
-              <li key={e}>{e}</li>
+        </section>
+
+        <section className="mt-12" aria-labelledby="bring-heading">
+          <h2 id="bring-heading" className="text-2xl font-extrabold tracking-tight">
+            What I bring
+          </h2>
+          <div className="mt-4 space-y-4 leading-relaxed text-soft">
+            <p>
+              With 25+ years of professional experience, I specialize in leading enterprise-scale data, analytics and AI-driven transformation. Today I guide cross-functional engineering and delivery teams at an energy company. We modernize data platforms, implement AI solutions and drive digital transformation aligned with key business outcomes. My expertise includes scaled agile delivery leadership, cloud data platforms and GenAI enablement, backed by certifications from Databricks, Google, SAFe and more.
+            </p>
+            <p>
+              Working with executives, architects and product leaders has taught me to focus on high-performing teams and measurable results through value-first product practices, with governance and quality built in. GrowDaily brings those same practices to churches, nonprofits and businesses of every size.
+            </p>
+          </div>
+        </section>
+
+        <section className="mt-12" aria-labelledby="how-heading">
+          <h2 id="how-heading" className="text-2xl font-extrabold tracking-tight">
+            How we&apos;ll work together
+          </h2>
+          <ol className="mt-5 grid gap-3 sm:grid-cols-3">
+            {PLAN.map((p, i) => (
+              <li key={p.title} className="rounded-2xl border border-line bg-panel p-5">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber/15 font-mono text-sm font-bold text-amber">{i + 1}</span>
+                <p className="mt-3 font-bold text-fg">{p.title}</p>
+                <p className="mt-1 text-sm leading-relaxed text-muted">{p.text}</p>
+              </li>
             ))}
-          </ul>
+          </ol>
+          <p className="mt-4 text-sm text-muted">
+            Not sure your data is ready? Start with our{" "}
+            <Link href="/learn/is-your-data-ready-for-ai" className={link}>
+              data readiness checklist
+            </Link>
+            .
+          </p>
+        </section>
+
+        <section className="mt-12" aria-labelledby="drives-heading">
+          <h2 id="drives-heading" className="text-2xl font-extrabold tracking-tight">
+            What drives me
+          </h2>
           <p className="mt-4 leading-relaxed text-soft">
-            I&apos;m writing a book on faith and AI, <em>Wise with AI</em>, publishing it here a chapter at a time.{" "}
-            <Link href="/learn/what-the-bible-teaches-about-technology-and-ai" className="font-semibold text-amber underline-offset-2 hover:underline">
+            My mission is to help organizations unlock innovation through technology while upholding governance and quality, so you can spend more time on people and less on process. My faith shapes how I work: people over tools, honesty over hype, and care for the person on the other side of every screen. I&apos;m writing a book about it, <em>Wise with AI</em>.{" "}
+            <Link href="/learn/what-the-bible-teaches-about-technology-and-ai" className={link}>
               Read chapter one
             </Link>
             .
           </p>
         </section>
 
-        <section className="mt-12" aria-labelledby="why-heading">
-          <h2 id="why-heading" className="text-2xl font-extrabold tracking-tight">
-            Why GrowDaily
-          </h2>
-          <div className="mt-4 space-y-4 leading-relaxed text-soft">
-            <p>
-              Big companies have whole teams to figure out AI. Most people and organizations don&apos;t. GrowDaily brings the same practices I use at enterprise scale to everyday life and to organizations of every size.
-            </p>
-            <p>
-              One lesson from 25 years of data and analytics work: AI is only as good as your data. Before anything gets built, we look at what you have, and we&apos;ll tell you honestly if it isn&apos;t ready yet. Our{" "}
-              <Link href="/learn/is-your-data-ready-for-ai" className="font-semibold text-amber underline-offset-2 hover:underline">
-                data readiness checklist
-              </Link>{" "}
-              is a good place to start.
-            </p>
-            <ul className="list-disc space-y-2 pl-5 marker:text-amber">
-              <li>
-                <Link href="/" className="font-semibold text-amber underline-offset-2 hover:underline">
-                  Free apps
-                </Link>{" "}
-                for money, habits, time, meals and mood, private by default.
-              </li>
-              <li>
-                <Link href="/learn" className="font-semibold text-amber underline-offset-2 hover:underline">
-                  Plain-English guides
-                </Link>{" "}
-                to using AI at work, grounded in facts, with no hype.
-              </li>
-              <li>
-                <Link href="/faith" className="font-semibold text-amber underline-offset-2 hover:underline">
-                  Faith tools
-                </Link>{" "}
-                for honest questions about God and finding a church nearby.
-              </li>
-              <li>
-                <Link href="/build" className="font-semibold text-amber underline-offset-2 hover:underline">
-                  Training, consulting and custom AI apps
-                </Link>{" "}
-                for businesses, nonprofits and churches.
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <section className="mt-12" aria-labelledby="how-heading">
-          <h2 id="how-heading" className="text-2xl font-extrabold tracking-tight">
-            How I work
-          </h2>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-3">
-            {PRINCIPLES.map((p) => (
-              <li key={p.title} className="rounded-2xl border border-line bg-panel p-5">
-                <p className="font-bold text-fg">{p.title}</p>
-                <p className="mt-1 text-sm leading-relaxed text-muted">{p.text}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-12 rounded-2xl border border-line bg-panel p-6 sm:p-8">
+        <section className="mt-12 rounded-2xl border border-amber/30 bg-amber/[0.05] p-6 sm:p-8">
           <h2 className="text-2xl font-extrabold tracking-tight">Let&apos;s talk</h2>
           <p className="mt-2 max-w-[56ch] text-muted">
-            Have an idea for an AI app, or want your team trained? Ask for a free quote, or email{" "}
-            <a href="mailto:hello@growdaily.ai" className="font-semibold text-amber underline-offset-2 hover:underline">
+            Tell me what you&apos;re hoping AI could do for you. The first 20-minute call is free, or email{" "}
+            <a href="mailto:hello@growdaily.ai" className={link}>
               hello@growdaily.ai
             </a>
             .
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link href="/build#idea" className={btnPrimary}>
-              Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
+              Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link href="/learn" className={btnSecondary}>
               Read the free guides
             </Link>
           </div>
+        </section>
+
+        <section className="mt-12" aria-labelledby="explore-heading">
+          <h2 id="explore-heading" className="text-lg font-bold">
+            Explore GrowDaily
+          </h2>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-soft marker:text-amber">
+            <li>
+              <Link href="/" className={link}>
+                Free apps
+              </Link>{" "}
+              for money, habits, time, meals and mood, private by default.
+            </li>
+            <li>
+              <Link href="/learn" className={link}>
+                Plain-English guides
+              </Link>{" "}
+              to using AI well, grounded in facts, with no hype.
+            </li>
+            <li>
+              <Link href="/faith" className={link}>
+                Faith tools
+              </Link>{" "}
+              for honest questions about God and finding a church nearby.
+            </li>
+            <li>
+              <Link href="/build" className={link}>
+                Guided builds, training, consulting and custom AI apps
+              </Link>{" "}
+              for churches, nonprofits and businesses.
+            </li>
+          </ul>
         </section>
       </main>
       <BuildFooter />
