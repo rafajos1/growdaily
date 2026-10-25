@@ -165,11 +165,11 @@ export function ChurchAssistantDemo() {
           We&apos;ll set it up with your sermons, statement of faith and church information, with your pastors deciding what goes in. Remember, it&apos;s only as good as the library behind it, so we start by looking at your content together.
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
-          <Link href="/build/churches#idea" className={btnPrimary}>
-            Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
+          <Link href="/build/church-ai-assistant" className={btnPrimary}>
+            Get this for your church <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
-          <Link href="/learn/how-to-build-a-church-chatbot-with-claude" className={btnSecondary}>
-            How it works
+          <Link href="/learn/church-ai-assistant-from-your-own-content" className={btnSecondary}>
+            Build it yourself: the guide
           </Link>
         </div>
       </section>

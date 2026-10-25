@@ -74,6 +74,23 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
           </div>
         </section>
 
+        {a.feature && (
+          <section aria-labelledby="feature-heading" className="pb-20">
+            <Link href={a.feature.href} className="group flex flex-col gap-4 rounded-2xl border border-amber/40 bg-amber/[0.05] p-6 transition hover:border-amber/70 sm:flex-row sm:items-center sm:p-8">
+              <div className="flex-1">
+                <p className="font-mono text-xs uppercase tracking-[0.14em] text-amber">{a.feature.eyebrow}</p>
+                <h2 id="feature-heading" className="mt-2 text-2xl font-extrabold tracking-tight">
+                  {a.feature.title}
+                </h2>
+                <p className="mt-2 max-w-[62ch] text-muted">{a.feature.text}</p>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-1.5 font-semibold text-amber group-hover:underline">
+                {a.feature.label} <ArrowRight className="h-4 w-4" aria-hidden />
+              </span>
+            </Link>
+          </section>
+        )}
+
         <section aria-labelledby="ideas-heading" className="pb-20">
           <p className={eyebrow}>What we could build for you</p>
           <h2 id="ideas-heading" className="mt-2 text-3xl font-extrabold tracking-tight">

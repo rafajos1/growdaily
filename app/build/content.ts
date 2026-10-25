@@ -195,6 +195,8 @@ export interface Audience {
   h1: string;
   intro: string;
   ideas: { title: string; text: string }[];
+  /** A ready-made offering shown right under the hero. */
+  feature?: { eyebrow: string; title: string; text: string; href: string; label: string };
   demos: string[];
   faqs: { q: string; a: string }[];
 }
@@ -253,11 +255,18 @@ export const AUDIENCES: Audience[] = [
     h1: "AI tools for your church, built with care",
     intro: "People with questions about faith often won't call the church office, but they will type a question at midnight. We build simple, careful AI tools that answer in your church's voice, welcome newcomers, and connect people to a real person when it matters.",
     ideas: [
-      { title: "A church library assistant", text: "Answers questions only from your sermons, statement of faith and church information, with a source for every answer. Your pastors decide what goes in." },
+      { title: "A church AI assistant", text: "Answers questions only from your sermons, statement of faith and church information, with a source for every answer. Your pastors decide what goes in." },
       { title: "Plan-your-visit helper", text: "Answers \"What should I wear? Is there something for my kids?\" and helps a newcomer plan their first Sunday." },
       { title: "Sermon to small-group guide", text: "Turns this week's sermon notes into discussion questions and a short devotional for groups." },
       { title: "Care and prayer follow-up", text: "Sorts prayer requests and care needs so the right person follows up, with privacy built in." },
     ],
+    feature: {
+      eyebrow: "New for churches",
+      title: "A church AI assistant that speaks only from your teaching",
+      text: "It answers from your own sermons, statement of faith and church information, quotes its source every time, and hands everything else to a real person.",
+      href: "/build/church-ai-assistant",
+      label: "See how it works",
+    },
     demos: ["Church library assistant", "Roomwise", "Ask"],
     faqs: [
       { q: "Will an AI assistant say things that don't match our beliefs?", a: "We write its instructions from your statement of faith and with your pastors, test it with hard questions, and have it point people to your staff on anything pastoral or sensitive." },
