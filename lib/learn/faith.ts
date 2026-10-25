@@ -86,6 +86,7 @@ export const FAITH_GUIDES: Guide[] = [
             ],
           },
           "None of these questions say don't use AI. Tubal-cain's bronze, Babel's bricks and Bezalel's gold were all real technologies, and God used skilled hands to build his own dwelling place. The question has never been whether God's people will use the tools of their day. It's whether we'll use them wisely.",
+          "That's why I prefer a phrase IBM made popular: augmented intelligence. In 2017, IBM's then-CEO Ginni Rometty put it this way: \"Our purpose is to augment and really be in service of what humans do.\" The idea goes back even further, to computer pioneer Douglas Engelbart's 1962 work on augmenting human intellect. It fits the story Scripture tells. Bezalel's skill served God's design; it didn't replace it. AI at its best should augment our intelligence, not think for us. It can draft, sort and summarize, but discernment, wisdom and love remain our calling.",
         ],
       },
       {
@@ -127,6 +128,8 @@ export const FAITH_GUIDES: Guide[] = [
       { label: "2 Chronicles 26: King Uzziah", url: "https://www.biblegateway.com/passage/?search=2+Chronicles+26&version=ESV" },
       { label: "The Dartmouth: a look back on the 1956 Dartmouth workshop that named artificial intelligence", url: "https://thedartmouth.com/article/2023/05/a-look-back-on-the-dartmouth-summer-research-project-on-artificial-intelligence" },
       { label: "OpenAI: Introducing ChatGPT (November 2022)", url: "https://openai.com/index/chatgpt/" },
+      { label: "Fortune: IBM CEO Ginni Rometty on AI at Davos (January 2017)", url: "https://fortune.com/2017/01/18/ibm-ceo-ginni-rometty-ai-davos" },
+      { label: "Intelligence amplification, including Douglas Engelbart's 1962 \"Augmenting Human Intellect\"", url: "https://en.wikipedia.org/wiki/Intelligence_amplification" },
     ],
     published: "2026-10-25",
     updated: "2026-10-26",
