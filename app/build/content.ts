@@ -263,7 +263,7 @@ export const AUDIENCES: Audience[] = [
     feature: {
       eyebrow: "New for churches",
       title: "A church AI assistant that speaks only from your teaching",
-      text: "It answers from your own sermons, statement of faith and church information, quotes its source every time, and hands everything else to a real person.",
+      text: "It answers from your own sermons, statement of faith and church information, quotes its source every time, and hands everything else to a real person. Built by a former pastor of 14 years.",
       href: "/build/church-ai-assistant",
       label: "See how it works",
     },
