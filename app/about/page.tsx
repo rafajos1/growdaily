@@ -51,6 +51,9 @@ export default function AboutPage() {
             I&apos;ve also spent 14 years serving large, mission-driven nonprofit organizations with a global reach, leading cross-cultural teams that served people around the world. I&apos;m fluent in English and Spanish, and I know the realities of mission-driven work: big goals, tight budgets and people at the center of everything.
           </p>
           <p>
+            I also know how to reach people online. I built a growth and productivity community on Instagram from the ground up, from zero to 205,000 followers.
+          </p>
+          <p>
             By collaborating with executives, architects and product leaders, I focus on fostering high-performing teams and delivering measurable results through value-first product practices. My mission is to empower organizations, from enterprises to churches and nonprofits, to unlock innovation through cutting-edge technology while upholding governance and quality.
           </p>
           <p className="text-base">
