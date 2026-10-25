@@ -7,7 +7,7 @@ import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, eyebrow } from "../
 import { JsonLd } from "../components/JsonLd";
 
 const DESCRIPTION =
-  "GrowDaily is run by Rafael, a former pastor of 14 years (Manna Church, Life.Church) with 25+ years of experience leading enterprise data, analytics and AI transformation, and a passion for technology that helps people and serves faith communities.";
+  "GrowDaily is run by Rafael, who has 25+ years of experience leading enterprise data, analytics and AI transformation, and 14 years of serving large, mission-driven nonprofit organizations.";
 
 export const metadata: Metadata = pageMetadata({
   title: "About GrowDaily · Rafael, AI & Data Transformation Leader",
@@ -43,32 +43,24 @@ export default function AboutPage() {
         <h1 className="mt-3 text-4xl font-extrabold leading-[1.08] tracking-[-0.03em] [text-wrap:balance] sm:text-5xl">
           Hi, I&apos;m <span className="text-amber">Rafael</span>.
         </h1>
-        <p className="mt-6 text-lg leading-relaxed text-soft">
-          If you lead a church, a nonprofit or a business, AI probably feels like one more thing you&apos;re expected to figure out, with no extra time and no one you&apos;re sure you can trust. I&apos;ve been there.
-        </p>
-
-        <section className="mt-12" aria-labelledby="from-heading">
-          <h2 id="from-heading" className="text-2xl font-extrabold tracking-tight">
-            Where I come from
-          </h2>
-          <p className="mt-4 leading-relaxed text-soft">
-            For 14 years I served as a pastor. I started and led the first Spanish service at Manna Church in Fayetteville, North Carolina. Later I led the Church Online team at Life.Church, where more than 400 people a week said yes to following Jesus online. Those years taught me what it&apos;s like to have big needs and limited time. They also taught me that technology is at its best when it gives people time back for each other.
+        <div className="mt-6 space-y-4 text-lg leading-relaxed text-soft">
+          <p>
+            With over 25 years of professional experience, I specialize in leading enterprise-scale data, analytics and AI-driven transformation initiatives. At an energy company, I guide cross-functional engineering and delivery teams to modernize data platforms, implement AI solutions and drive digital transformation aligned with key business outcomes. My expertise includes scaled agile delivery leadership, cloud data platforms and GenAI enablement, supported by certifications from Databricks, Google, SAFe and more.
           </p>
-        </section>
-
-        <section className="mt-12" aria-labelledby="bring-heading">
-          <h2 id="bring-heading" className="text-2xl font-extrabold tracking-tight">
-            What I bring
-          </h2>
-          <div className="mt-4 space-y-4 leading-relaxed text-soft">
-            <p>
-              With 25+ years of professional experience, I specialize in leading enterprise-scale data, analytics and AI-driven transformation. Today I guide cross-functional engineering and delivery teams at an energy company. We modernize data platforms, implement AI solutions and drive digital transformation aligned with key business outcomes. My expertise includes scaled agile delivery leadership, cloud data platforms and GenAI enablement, backed by certifications from Databricks, Google, SAFe and more.
-            </p>
-            <p>
-              Working with executives, architects and product leaders has taught me to focus on high-performing teams and measurable results through value-first product practices, with governance and quality built in. GrowDaily brings those same practices to churches, nonprofits and businesses of every size.
-            </p>
-          </div>
-        </section>
+          <p>
+            I&apos;ve also spent 14 years serving large, mission-driven nonprofit organizations, so I know the realities of that work: big goals, tight budgets and people at the center of everything.
+          </p>
+          <p>
+            By collaborating with executives, architects and product leaders, I focus on fostering high-performing teams and delivering measurable results through value-first product practices. My mission is to empower organizations, from enterprises to churches and nonprofits, to unlock innovation through cutting-edge technology while upholding governance and quality.
+          </p>
+          <p className="text-base">
+            I&apos;m also writing a book on faith and AI, <em>Wise with AI</em>.{" "}
+            <Link href="/learn/what-the-bible-teaches-about-technology-and-ai" className={link}>
+              Read chapter one
+            </Link>
+            .
+          </p>
+        </div>
 
         <section className="mt-12" aria-labelledby="how-heading">
           <h2 id="how-heading" className="text-2xl font-extrabold tracking-tight">
@@ -87,19 +79,6 @@ export default function AboutPage() {
             Not sure your data is ready? Start with our{" "}
             <Link href="/learn/is-your-data-ready-for-ai" className={link}>
               data readiness checklist
-            </Link>
-            .
-          </p>
-        </section>
-
-        <section className="mt-12" aria-labelledby="drives-heading">
-          <h2 id="drives-heading" className="text-2xl font-extrabold tracking-tight">
-            What drives me
-          </h2>
-          <p className="mt-4 leading-relaxed text-soft">
-            My mission is to help organizations unlock innovation through technology while upholding governance and quality, so you can spend more time on people and less on process. My faith shapes how I work: people over tools, honesty over hype, and care for the person on the other side of every screen. I&apos;m writing a book about it, <em>Wise with AI</em>.{" "}
-            <Link href="/learn/what-the-bible-teaches-about-technology-and-ai" className={link}>
-              Read chapter one
             </Link>
             .
           </p>
