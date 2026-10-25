@@ -62,6 +62,9 @@ export function BuildFooter() {
             For {a.label.toLowerCase()}
           </Link>
         ))}
+        <Link href="/build/church-ai-assistant" className="hover:text-fg">
+          Church AI assistant
+        </Link>
         <Link href="/" className="hover:text-fg">
           Try the free apps
         </Link>
