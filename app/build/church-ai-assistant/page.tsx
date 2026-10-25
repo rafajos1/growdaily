@@ -174,6 +174,21 @@ export default function Page() {
           </div>
         </section>
 
+        <section aria-labelledby="me-heading" className="pb-20">
+          <div className="rounded-2xl border border-line bg-panel p-6 sm:p-8">
+            <p className={eyebrow}>Who you&apos;ll work with</p>
+            <h2 id="me-heading" className="mt-2 text-2xl font-extrabold tracking-tight">
+              Rafael, a former pastor who builds with AI
+            </h2>
+            <p className="mt-2 max-w-[62ch] text-muted">
+              I served as a pastor for 14 years, so I know what it means to guard what your church teaches and to care for the people asking. I also have 25+ years of experience in data, analytics and AI, and I build every tool on GrowDaily myself.
+            </p>
+            <Link href="/about" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
+              More about me <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
+        </section>
+
         <Faqs faqs={FAQS} />
         <IdeaSection defaultOrg="Church or ministry" defaultInterest="Build an app" page={PATH} />
       </main>

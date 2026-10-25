@@ -7,7 +7,7 @@ import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, eyebrow } from "../
 import { JsonLd } from "../components/JsonLd";
 
 const DESCRIPTION =
-  "GrowDaily is run by Rafael, who has 25+ years of experience leading enterprise data, analytics and AI transformation, and a passion for technology that helps people and serves faith communities.";
+  "GrowDaily is run by Rafael, a former pastor of 14 years with 25+ years of experience leading enterprise data, analytics and AI transformation, and a passion for technology that helps people and serves faith communities.";
 
 export const metadata: Metadata = pageMetadata({
   title: "About GrowDaily · Rafael, AI & Data Transformation Leader",
@@ -17,6 +17,7 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const EXPERIENCE = [
+  "14 years as a pastor, serving a local church and its people.",
   "25+ years of professional experience, leading enterprise-scale data, analytics and AI transformation.",
   "Guiding cross-functional engineering and delivery teams to modernize data platforms and put AI solutions into real use.",
   "Scaled agile delivery, cloud data platforms and generative AI enablement.",
