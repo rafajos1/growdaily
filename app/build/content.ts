@@ -134,6 +134,14 @@ export const CASES: CaseStudy[] = [
     forYou: "Private, careful check-in tools for care teams, groups and programs.",
   },
   {
+    name: "Church library assistant",
+    href: "/demo/church-assistant",
+    color: "#4fc7b8",
+    problem: "Pastors want to offer AI to their church, but only if it teaches what their church teaches.",
+    ai: "Answers only from one church's sermons, beliefs and information, quotes its source every time, and declines what its library doesn't cover.",
+    forYou: "A website or member assistant built on your own content, with your pastors deciding what goes in.",
+  },
+  {
     name: "Ask",
     href: "/faith/ask",
     color: "#f2b54b",
@@ -245,12 +253,12 @@ export const AUDIENCES: Audience[] = [
     h1: "AI tools for your church, built with care",
     intro: "People with questions about faith often won't call the church office, but they will type a question at midnight. We build simple, careful AI tools that answer in your church's voice, welcome newcomers, and connect people to a real person when it matters.",
     ideas: [
-      { title: "A \"Questions about faith?\" assistant", text: "On your website, answering honestly in your church's beliefs and tone, with passages to read and a gentle next step." },
+      { title: "A church library assistant", text: "Answers questions only from your sermons, statement of faith and church information, with a source for every answer. Your pastors decide what goes in." },
       { title: "Plan-your-visit helper", text: "Answers \"What should I wear? Is there something for my kids?\" and helps a newcomer plan their first Sunday." },
       { title: "Sermon to small-group guide", text: "Turns this week's sermon notes into discussion questions and a short devotional for groups." },
       { title: "Care and prayer follow-up", text: "Sorts prayer requests and care needs so the right person follows up, with privacy built in." },
     ],
-    demos: ["Roomwise", "Ask", "Find a church"],
+    demos: ["Church library assistant", "Roomwise", "Ask"],
     faqs: [
       { q: "Will an AI assistant say things that don't match our beliefs?", a: "We write its instructions from your statement of faith and with your pastors, test it with hard questions, and have it point people to your staff on anything pastoral or sensitive." },
       { q: "What happens if someone in crisis uses it?", a: "It stops and shows real help first, like the 988 Suicide & Crisis Lifeline and your church's contact, the same way GrowDaily's Ask does." },
