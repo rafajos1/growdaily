@@ -241,7 +241,7 @@ export const CHURCH_GUIDES: Guide[] = [
     seoTitle: "How to Build an AI Chatbot for Your Church Website",
     description: "Step-by-step: build a safe, welcoming AI chatbot for your church website with Claude, including a free system prompt template, code, guardrails, testing and costs.",
     shortAnswer:
-      "Write clear instructions for Claude covering your church's information, beliefs, tone and firm guardrails (crisis help, no counseling, no made-up facts). Then connect it to your website through the Claude API, test it with hard questions, and keep a person reviewing it. You can try a staff-only version first with no code.",
+      "Pastors are most comfortable when the chatbot answers only from the church's own content: your sermons, statement of faith and church information. Give Claude that library and firm guardrails (crisis help, no counseling, no guessing), make it show its source for every answer, and have it say so when the library doesn't cover a question. Test it with hard questions and keep a person reviewing it.",
     sections: [
       {
         heading: "What a church chatbot should (and shouldn't) do",
@@ -249,11 +249,26 @@ export const CHURCH_GUIDES: Guide[] = [
           "A good church chatbot is a friendly front desk that's open at midnight. It answers \"What time is service? What about my kids? What do you believe?\" and invites people to come and meet real people.",
           {
             list: [
-              "Should: answer from your church's own information, explain your beliefs simply, help people plan a visit, point to staff.",
+              "Should: answer only from your church's own content, show where each answer came from, explain your beliefs simply, help people plan a visit, point to staff.",
               "Shouldn't: counsel, take prayer requests or personal details, pretend to be a pastor, or guess at facts it wasn't given.",
             ],
           },
+          { callout: "See it working: our [church library assistant demo](/demo/church-assistant) answers only from a sample church's sermons, beliefs and information, shows the source of every answer, and declines anything its library doesn't cover." },
           { callout: "See a working example: try our free [Ask tool](/faith/ask). It answers questions about God with real Bible references, a gentle next step and crisis guardrails, built the way this guide describes. Ask it something hard and see how it responds." },
+        ],
+      },
+      {
+        heading: "Answer only from your church's own content",
+        blocks: [
+          "When pastors invite their church to use an AI assistant, they want it to teach what the church teaches, not whatever a general AI happens to say. Three choices make that work:",
+          {
+            list: [
+              "A library you control: sermon transcripts or notes, your statement of faith, FAQs, class materials and events. Your pastors decide what goes in.",
+              "A source for every answer: the assistant quotes the sermon or page it used, so people can check it and go deeper in your own teaching.",
+              "No source, no answer: if the library doesn't cover a question, it says so and points to a pastor instead of guessing.",
+            ],
+          },
+          "Remember that AI is only as good as your data. If sermon notes are missing or your website's information is out of date, fix that first. Our [data readiness checklist](/learn/is-your-data-ready-for-ai) helps.",
         ],
       },
       {
