@@ -7,7 +7,7 @@ import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, eyebrow } from "../
 import { JsonLd } from "../components/JsonLd";
 
 const DESCRIPTION =
-  "GrowDaily is run by Rafael, a former pastor of 14 years with 25+ years of experience leading enterprise data, analytics and AI transformation, and a passion for technology that helps people and serves faith communities.";
+  "GrowDaily is run by Rafael, a former pastor of 14 years (Manna Church, Life.Church) with 25+ years of experience leading enterprise data, analytics and AI transformation, and a passion for technology that helps people and serves faith communities.";
 
 export const metadata: Metadata = pageMetadata({
   title: "About GrowDaily · Rafael, AI & Data Transformation Leader",
@@ -17,7 +17,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const EXPERIENCE = [
-  "14 years as a pastor, serving a local church and its people.",
+  "14 years as a pastor, including starting and leading the first Spanish service at Manna Church in Fayetteville, North Carolina.",
+  "Led the Church Online team at Life.Church, where more than 400 people a week said yes to following Jesus online.",
   "25+ years of professional experience, leading enterprise-scale data, analytics and AI transformation.",
   "Guiding cross-functional engineering and delivery teams to modernize data platforms and put AI solutions into real use.",
   "Scaled agile delivery, cloud data platforms and generative AI enablement.",
@@ -65,6 +66,13 @@ export default function AboutPage() {
               <li key={e}>{e}</li>
             ))}
           </ul>
+          <p className="mt-4 leading-relaxed text-soft">
+            I&apos;m writing a book on faith and AI, <em>Wise with AI</em>, publishing it here a chapter at a time.{" "}
+            <Link href="/learn/what-the-bible-teaches-about-technology-and-ai" className="font-semibold text-amber underline-offset-2 hover:underline">
+              Read chapter one
+            </Link>
+            .
+          </p>
         </section>
 
         <section className="mt-12" aria-labelledby="why-heading">
