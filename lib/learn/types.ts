@@ -8,7 +8,7 @@ export type Block =
   | { code: { title: string; text: string } }
   | { callout: string };
 
-export type TopicId = "delivery" | "agents" | "workplace" | "security" | "churches" | "organizations" | "everyday" | "build";
+export type TopicId = "delivery" | "agents" | "workplace" | "security" | "churches" | "organizations" | "everyday" | "build" | "faith";
 
 export type Service = "ai-training" | "ai-consulting" | "build" | "guided-build" | "church-assistant";
 
