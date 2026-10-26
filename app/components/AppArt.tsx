@@ -131,3 +131,15 @@ export function PilotArt({ color }: { color: string }) {
     </svg>
   );
 }
+
+export function ChurchArt({ color }: { color: string }) {
+  return (
+    <svg viewBox="0 0 220 64" preserveAspectRatio="xMinYMid meet" className="h-16 w-full" aria-hidden>
+      <rect x="2" y="4" width="120" height="22" rx="11" fill="#4c6584" opacity=".45" />
+      <rect x="40" y="34" width="178" height="26" rx="13" fill={color} opacity=".22" />
+      <rect x="40" y="34" width="4" height="26" rx="2" fill={color} />
+      <path d="M54 42 h18 M54 50 h46" stroke={color} strokeWidth="3" strokeLinecap="round" />
+      <path d="M110 42 h60 M110 50 h90" stroke={color} strokeWidth="3" strokeLinecap="round" opacity=".55" />
+    </svg>
+  );
+}

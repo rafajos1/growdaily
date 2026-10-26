@@ -4,10 +4,10 @@ import { JsonLd } from "./components/JsonLd";
 import { HomePage } from "./HomePage";
 
 export const metadata: Metadata = pageMetadata({
-  title: "GrowDaily: Build Your Own AI Apps with Claude, With a Guide",
-  description: "You don't have to be a developer to build your own apps with Claude. GrowDaily guides business owners and nonprofit leaders from idea to a working tool, in plain English. See real examples and try them free.",
+  title: "GrowDaily: Simple AI Tools for Businesses & Nonprofits, Built With You",
+  description: "Simple AI tools that save your team hours every week. GrowDaily guides businesses and nonprofits, including churches, from idea to a working tool, or builds it for you. Start with a free 20-minute call.",
   path: "/",
-  image: ogImage("You know the tool you need. Let's build it together.", "Guided AI app building for non-technical builders"),
+  image: ogImage("You know the tool you need. Let's build it together.", "Simple AI tools for businesses and nonprofits"),
 });
 
 export default function Page() {
