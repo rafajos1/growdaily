@@ -57,13 +57,6 @@ export default function AboutPage() {
             By collaborating with executives, architects and product leaders, I focus on fostering high-performing teams and delivering measurable results through value-first product practices. My mission is to empower organizations, from enterprises to churches and nonprofits, to unlock innovation through cutting-edge technology while upholding governance and quality.
           </p>
           <p>I believe technology is at its best when it gives people time back for each other.</p>
-          <p className="text-base">
-            I&apos;m also writing a book on faith and AI, <em>Wise with AI</em>.{" "}
-            <Link href="/learn/what-the-bible-teaches-about-technology-and-ai" className={link}>
-              Read chapter one
-            </Link>
-            .
-          </p>
         </div>
 
         <section className="mt-12" aria-labelledby="how-heading">

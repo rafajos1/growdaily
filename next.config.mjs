@@ -7,6 +7,8 @@ const nextConfig = {
       // We serve businesses of any size, so these guides dropped "small" from their URLs.
       { source: "/learn/ai-for-small-business", destination: "/learn/ai-for-business", permanent: true },
       { source: "/learn/meeting-room-booking-for-small-business", destination: "/learn/meeting-room-booking-for-business", permanent: true },
+      // A book chapter that was published briefly and then taken down.
+      { source: "/learn/what-the-bible-teaches-about-technology-and-ai", destination: "/learn/should-pastors-use-ai-for-sermons", permanent: true },
     ];
   },
   async rewrites() {
