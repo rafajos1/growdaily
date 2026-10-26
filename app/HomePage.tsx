@@ -109,7 +109,7 @@ export function HomePage() {
                 I&apos;ve lived both sides of it. For 14 years I served large, mission-driven nonprofits, where every hour and every dollar counted. For 25+ years I&apos;ve led data, analytics and AI work in large organizations, moving new technology out of pilots and into everyday use.
               </p>
               <p>
-                So we start small, with your own content and data, and build something your team will actually use. Technology is at its best when it gives people time back for each other.
+                So we start small, with your own content and data, and build something your team will actually use. Let&apos;s automate the busywork, so you can focus on what matters most.
               </p>
             </div>
             <Link href="/about" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
