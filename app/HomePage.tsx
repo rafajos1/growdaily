@@ -99,11 +99,19 @@ export function HomePage() {
 
         <section aria-labelledby="me-heading" className="pb-20">
           <div className="max-w-3xl">
-            <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Who you&apos;ll work with</p>
-            <h2 id="me-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Hi, I&apos;m Rafael.</h2>
-            <p className="mt-4 text-lg leading-relaxed text-soft">
-              I&apos;ve spent 25+ years leading data, analytics and AI transformation, and 14 years serving large, mission-driven nonprofits. I believe technology is at its best when it gives people time back for each other.
-            </p>
+            <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Hi, I&apos;m Rafael</p>
+            <h2 id="me-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Stretched thin? I&apos;ve been there.</h2>
+            <div className="mt-4 space-y-4 text-lg leading-relaxed text-soft">
+              <p>
+                Most leaders I talk to have the same problem: too much busywork, too little time, and no idea which AI tools are worth trusting with their people or their data.
+              </p>
+              <p>
+                I&apos;ve lived both sides of it. For 14 years I served large, mission-driven nonprofits, where every hour and every dollar counted. For 25+ years I&apos;ve led data, analytics and AI work in large organizations, moving new technology out of pilots and into everyday use.
+              </p>
+              <p>
+                So we start small, with your own content and data, and build something your team will actually use. Technology is at its best when it gives people time back for each other.
+              </p>
+            </div>
             <Link href="/about" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
               More about me <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
