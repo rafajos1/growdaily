@@ -35,6 +35,16 @@ describe("Learn guides", () => {
     }
   });
 
+  it("credit featured videos properly", () => {
+    for (const g of GUIDES) {
+      if (!g.video) continue;
+      expect(g.video.id, g.slug).toMatch(/^[A-Za-z0-9_-]{11}$/);
+      expect(g.video.creator.trim().length, g.slug).toBeGreaterThan(1);
+      expect(g.video.channelUrl, g.slug).toMatch(/^https:\/\/www\.youtube\.com\//);
+      expect(g.ourTake?.length ?? 0, g.slug).toBeGreaterThan(0);
+    }
+  });
+
   it("answer up front and have FAQs, sections and a known topic", () => {
     const topics = new Set(TOPICS.map((t) => t.id));
     for (const g of GUIDES) {
