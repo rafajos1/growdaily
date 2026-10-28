@@ -4,6 +4,98 @@ const D = "2026-10-19";
 
 export const AGENT_GUIDES: Guide[] = [
   {
+    slug: "what-is-claude-duet",
+    topic: "agents",
+    title: "What is Claude Duet? Anthropic's proactive AI agent, explained",
+    seoTitle: "What Is Claude Duet? Anthropic's New AI Agent, Explained",
+    description: "Claude Duet is Anthropic's new proactive AI agent. What it does, who can get it, what it costs, how it keeps you in control, and how a business, nonprofit or church can try it safely.",
+    shortAnswer:
+      "Claude Duet is a new app from Anthropic where Claude works as a proactive agent. It sends you a short morning brief, checks your connected apps every few hours, finishes tasks on its own cloud computer, and asks your approval before it sends, pays, signs or deletes anything. It opened as a US research preview on October 21, 2026, by waitlist, for Claude Pro and Max subscribers.",
+    sections: [
+      {
+        heading: "What Claude Duet does",
+        blocks: [
+          "Most AI assistants wait for you to ask. Duet comes to you with what needs your attention, then helps you deal with it.",
+          {
+            list: [
+              "A morning brief: a short summary of the important items across your connected apps, like email and calendar.",
+              "Check-ins through the day: it looks at your connected accounts every few hours and messages you only when something needs you. You choose what you want to hear about and how often.",
+              "Tasks you hand it: from scheduling meetings to building a dashboard, a forecast or a simple web app.",
+              "Work while you're away: it runs on its own virtual machine with its own browser, so your laptop or phone doesn't need to be on.",
+            ],
+          },
+          "It carries over your memory, skills and connected apps from your Claude account, and can use the connectors and plugins in the Claude Marketplace, such as Gmail, Slack, QuickBooks, HubSpot, DocuSign, Canva and Shopify.",
+        ],
+      },
+      {
+        heading: "How it keeps you in control",
+        blocks: [
+          "This is the part that matters most for any team. Anthropic built Duet so you stay the one who decides.",
+          {
+            list: [
+              "Before it sends a message, makes a payment, signs a document or deletes anything, it shows you exactly what it's about to do and waits for your approval.",
+              "Some actions are off-limits even with approval, such as trading securities or moving money between accounts.",
+              "It never directly sees your passwords or sign-in tokens.",
+              "You start every connection yourself and can disconnect any app at any time.",
+              "Highly sensitive details like credit card and government ID numbers are designed to be rejected, and health or personal finance information is shared only when you explicitly ask.",
+            ],
+          },
+          { callout: "An agent is only as good as the data it can see. If your inbox, calendar and files are messy or out of date, Duet's brief will be too. A little tidying first pays off quickly." },
+        ],
+      },
+      {
+        heading: "Who can get it, and what it costs",
+        blocks: [
+          {
+            list: [
+              "Availability: a research preview by waitlist, starting with US Claude Pro and Max subscribers. People are being let in gradually.",
+              "Where: a standalone app for iPhone and Android, and on claude.ai.",
+              "Cost: no extra charge. It's included in Pro and Max and shares the same usage limits as the rest of Claude.",
+              "Watch your limits: the morning brief, background check-ins and big tasks all count, so you may reach your limits sooner than with chat alone.",
+              "Not yet: Team and Enterprise plans aren't included.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "What it's not good at yet",
+        blocks: [
+          "Anthropic is upfront that this is early. It can misread a thread or misjudge what's urgent, personal errands like booking tickets are less developed, and you can't watch its browser yet. Because it checks every few hours, something urgent can also arrive between checks. Early reviews are mixed: people like the design and the morning brief, and some find the follow-through slow.",
+        ],
+      },
+      {
+        heading: "How a business, nonprofit or church can try it safely",
+        blocks: [
+          {
+            steps: [
+              { title: "Start with your own accounts", text: "Try it on your own email and calendar for two weeks before connecting anything shared. Notice what it flags well and what it misses." },
+              { title: "Give it one recurring job", text: "Pick something repetitive with low stakes: a daily brief, drafting replies to routine questions, or preparing for tomorrow's meetings." },
+              { title: "Keep approvals on for anything outward", text: "Read every message before it goes out. Trust is earned one week at a time." },
+              { title: "Check your AI policy first", text: "Because Team and Enterprise plans aren't supported yet, staff would be using personal Pro or Max accounts. Decide what organization data, if any, may be connected that way." },
+              { title: "Keep sensitive conversations out", text: "Don't connect inboxes that hold pastoral care, counseling, HR, donor financial or health information until you have clear rules for it." },
+            ],
+          },
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Is Claude Duet free?", a: "It costs nothing extra, but you need a paid Claude Pro or Max plan, and it shares that plan's usage limits." },
+      { q: "How do I get Claude Duet?", a: "Join the waitlist through Anthropic. The research preview started with US Pro and Max subscribers, and access is opening in stages." },
+      { q: "Can Claude Duet send emails or pay for things on its own?", a: "It can prepare them, but it shows you exactly what it's about to do and waits for your approval before it sends, pays, signs or deletes anything." },
+      { q: "Can our whole team use it?", a: "Not as a team yet. Team and Enterprise plans aren't included in the preview, so for now it's for individual Pro and Max users." },
+      { q: "Is Claude Duet the same as Claude?", a: "It's built on Claude and carries over your Claude memory, skills and connected apps, but it lives in its own app and works proactively instead of waiting for you to ask." },
+    ],
+    related: ["what-is-an-ai-agent", "how-to-start-with-ai-agents", "what-is-mcp", "is-it-safe-to-put-business-data-in-ai"],
+    service: "ai-training",
+    published: "2026-10-28",
+    updated: "2026-10-28",
+    sources: [
+      { label: "Anthropic, Introducing Claude Duet", url: "https://claude.com/resources/articles/claude-duet" },
+      { label: "TechCrunch, Claude Duet app is Anthropic's bet on agents", url: "https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/" },
+      { label: "CNBC, Anthropic announces preview of Claude Duet", url: "https://www.cnbc.com/2026/10/21/anthropic-preview-of-claude-duet-personal-ai-agent-take-on-muse-dots.html" },
+    ],
+  },
+  {
     slug: "what-is-an-ai-agent",
     topic: "agents",
     title: "What is an AI agent? A plain-English explanation",
@@ -85,7 +177,7 @@ export const AGENT_GUIDES: Guide[] = [
       { q: "Will AI agents replace employees?", a: "For most teams, agents take over repetitive steps so people can spend time on work that needs judgment and relationships. Surveys of small businesses using AI mostly describe it as helping staff rather than replacing them." },
       { q: "Are AI agents safe?", a: "They can be, with limits: give an agent only the access it needs, require approval for important actions, keep a log of what it did, and keep sensitive data out unless the tool is approved for it." },
     ],
-    related: ["ai-agent-examples", "how-to-start-with-ai-agents", "what-is-mcp", "ai-agents-vs-automation"],
+    related: ["what-is-claude-duet", "ai-agent-examples", "how-to-start-with-ai-agents", "what-is-mcp"],
     service: "ai-training",
     published: D,
     updated: D,
