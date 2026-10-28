@@ -35,13 +35,12 @@ describe("Learn guides", () => {
     }
   });
 
-  it("credit featured videos properly", () => {
+  it("credit featured Shorts properly", () => {
     for (const g of GUIDES) {
-      if (!g.video) continue;
-      expect(g.video.id, g.slug).toMatch(/^[A-Za-z0-9_-]{11}$/);
-      expect(g.video.creator.trim().length, g.slug).toBeGreaterThan(1);
-      expect(g.video.channelUrl, g.slug).toMatch(/^https:\/\/www\.youtube\.com\//);
-      expect(g.ourTake?.length ?? 0, g.slug).toBeGreaterThan(0);
+      if (!g.short) continue;
+      expect(g.short.id, g.slug).toMatch(/^[A-Za-z0-9_-]{11}$/);
+      expect(g.short.creator.trim().length, g.slug).toBeGreaterThan(1);
+      expect(g.short.channelUrl, g.slug).toMatch(/^https:\/\/www\.youtube\.com\//);
     }
   });
 

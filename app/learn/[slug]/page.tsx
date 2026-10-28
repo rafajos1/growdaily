@@ -8,7 +8,7 @@ import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../../lib/seo";
 import { BuildFooter, BuildHeader, btnPrimary, eyebrow } from "../../build/parts";
 import { JsonLd } from "../../components/JsonLd";
 import { CopyButton } from "../CopyButton";
-import { VideoEmbed } from "../VideoEmbed";
+import { ShortEmbed } from "../ShortEmbed";
 
 export const dynamicParams = false;
 
@@ -198,7 +198,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <p className="mt-2 text-lg leading-relaxed text-fg">{g.shortAnswer}</p>
           </div>
 
-          {g.video && <VideoEmbed {...g.video} />}
+          {g.short && <ShortEmbed {...g.short} />}
 
           <nav aria-labelledby="toc-heading" className="mt-8 rounded-2xl border border-line bg-panel p-5">
             <p id="toc-heading" className={eyebrow}>
@@ -230,28 +230,6 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
               </div>
             </section>
           ))}
-
-          {g.video && g.ourTake && g.ourTake.length > 0 && (
-            <section className="mt-12 rounded-2xl border border-line bg-panel p-5 sm:p-6" aria-labelledby="take-heading">
-              <h2 id="take-heading" className="text-2xl font-extrabold tracking-tight">
-                Our take
-              </h2>
-              <div className="mt-3 space-y-3 leading-relaxed text-soft">
-                {g.ourTake.map((p) => (
-                  <p key={p}>
-                    <Rich text={p} />
-                  </p>
-                ))}
-              </div>
-              <p className="mt-4 text-sm text-muted">
-                Thank you to{" "}
-                <a href={g.video.channelUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-amber underline-offset-2 hover:underline">
-                  {g.video.creator}
-                </a>{" "}
-                for the video above. All credit for it goes to them; please visit their channel.
-              </p>
-            </section>
-          )}
 
           <section id="faq" className="mt-12 scroll-mt-6" aria-labelledby="faq-heading">
             <h2 id="faq-heading" className="text-2xl font-extrabold tracking-tight">

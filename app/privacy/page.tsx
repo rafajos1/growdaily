@@ -115,9 +115,9 @@ export default function PrivacyPage() {
           </p>
         </Section>
 
-        <Section title="YouTube videos">
+        <Section title="YouTube Shorts">
           <p>
-            Some guides include YouTube videos made by other creators. A video only loads when you press play, using YouTube&apos;s privacy-enhanced mode. Once it plays, YouTube (Google) may set cookies and collect information as described in {ext("https://policies.google.com/privacy", "Google's privacy policy")}.
+            Some guides include YouTube Shorts made by other creators. A Short only loads when you press play, using YouTube&apos;s privacy-enhanced mode. Once it plays, YouTube (Google) may set cookies and collect information as described in {ext("https://policies.google.com/privacy", "Google's privacy policy")}.
           </p>
         </Section>
 
