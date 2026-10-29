@@ -27,6 +27,8 @@ export interface Guide {
   related: string[];
   /** The service this guide naturally leads to. */
   service: Service;
+  /** A YouTube Short on the topic, credited to its creator. Only add one we've watched and approved. */
+  short?: { id: string; title: string; creator: string; channelUrl: string };
   /** A free GrowDaily app that solves the problem; shown instead of the service pitch. */
   tool?: { name: string; href: string; pitch: string };
   published: string;

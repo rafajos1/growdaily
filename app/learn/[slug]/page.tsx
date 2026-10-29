@@ -8,6 +8,7 @@ import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../../lib/seo";
 import { BuildFooter, BuildHeader, btnPrimary, eyebrow } from "../../build/parts";
 import { JsonLd } from "../../components/JsonLd";
 import { CopyButton } from "../CopyButton";
+import { ShortEmbed } from "../ShortEmbed";
 
 export const dynamicParams = false;
 
@@ -196,6 +197,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-amber">The short answer</p>
             <p className="mt-2 text-lg leading-relaxed text-fg">{g.shortAnswer}</p>
           </div>
+
+          {g.short && <ShortEmbed {...g.short} />}
 
           <nav aria-labelledby="toc-heading" className="mt-8 rounded-2xl border border-line bg-panel p-5">
             <p id="toc-heading" className={eyebrow}>

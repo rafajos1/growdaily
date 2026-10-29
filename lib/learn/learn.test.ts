@@ -35,6 +35,15 @@ describe("Learn guides", () => {
     }
   });
 
+  it("credit featured Shorts properly", () => {
+    for (const g of GUIDES) {
+      if (!g.short) continue;
+      expect(g.short.id, g.slug).toMatch(/^[A-Za-z0-9_-]{11}$/);
+      expect(g.short.creator.trim().length, g.slug).toBeGreaterThan(1);
+      expect(g.short.channelUrl, g.slug).toMatch(/^https:\/\/www\.youtube\.com\//);
+    }
+  });
+
   it("answer up front and have FAQs, sections and a known topic", () => {
     const topics = new Set(TOPICS.map((t) => t.id));
     for (const g of GUIDES) {

@@ -115,6 +115,12 @@ export default function PrivacyPage() {
           </p>
         </Section>
 
+        <Section title="YouTube Shorts">
+          <p>
+            Some guides may include YouTube Shorts made by other creators. A Short only loads when you press play, using YouTube&apos;s privacy-enhanced mode. Once it plays, YouTube (Google) may set cookies and collect information as described in {ext("https://policies.google.com/privacy", "Google's privacy policy")}.
+          </p>
+        </Section>
+
         <Section title="Service providers and server logs">
           <p>
             These companies help us run GrowDaily and process information on our behalf: Vercel (hosting), Supabase (database and sign-in), Resend (email), Anthropic (AI features), Google (analytics) and Cloudflare (domain and DNS). Like most websites, our host keeps short-term technical logs, such as IP addresses and errors, to run and secure the site. To keep free AI features fair, we count requests per IP address for the day in temporary memory.
