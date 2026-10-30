@@ -7,6 +7,7 @@ import { slugFor, starterBySlug, STARTERS } from "../../../../lib/faith/ask";
 import { chapterLink } from "../../../../lib/faith/bible";
 import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../../../lib/seo";
 import { JsonLd } from "../../../components/JsonLd";
+import { LogoMark } from "../../../components/LogoMark";
 
 export const dynamicParams = false;
 
@@ -41,7 +42,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
       <header className="mx-auto flex h-20 max-w-3xl items-center justify-between">
         <Link href="/faith/questions" className="flex items-center gap-2.5 text-lg font-extrabold tracking-tight">
           <ArrowLeft className="h-5 w-5 text-muted" aria-hidden />
-          <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
+          <LogoMark className="h-8 w-8" />
           Questions
         </Link>
         <HomeLink />

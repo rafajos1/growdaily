@@ -5,6 +5,7 @@ import type { Interest, OrgType } from "../../lib/build/idea";
 import { AUDIENCES, PRINCIPLES, PROCESS, SERVICE_PAGES, SERVICES, type CaseStudy } from "./content";
 import { IdeaForm } from "./IdeaForm";
 import { QuoteButton } from "./QuoteButton";
+import { LogoMark } from "../components/LogoMark";
 
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
 export const btnPrimary = `inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-amber px-5 text-base font-bold text-[#2a1c05] transition hover:brightness-110 ${focus}`;
@@ -15,7 +16,7 @@ export function BuildHeader() {
   return (
     <header className="mx-auto flex min-h-20 max-w-6xl flex-wrap items-center justify-between gap-2 py-3">
       <Link href="/" className="flex items-center gap-2.5 text-xl font-extrabold tracking-tight">
-        <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
+        <LogoMark className="h-8 w-8" />
         GrowDaily
       </Link>
       <nav aria-label="Build with GrowDaily" className="flex items-center gap-1 text-sm font-semibold text-muted">

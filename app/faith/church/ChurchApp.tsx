@@ -7,6 +7,7 @@ import { HomeLink } from "../../components/HomeLink";
 import { SearchError, searchChurches, type Attempt } from "../../../lib/faith/churchSearch";
 import { appleDirectionsUrl, directionsUrl, RADII_MILES, type Church } from "../../../lib/faith/churches";
 import { FIRST_VISIT } from "../../../lib/faith/firstVisit";
+import { LogoMark } from "../../components/LogoMark";
 
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
 const btnPrimary = `inline-flex items-center justify-center gap-2 rounded-[10px] bg-amber px-4 py-2.5 text-sm font-bold text-amber-ink transition hover:bg-amber-hover disabled:opacity-60 ${focus}`;
@@ -79,7 +80,7 @@ export function ChurchApp() {
       <header className="mx-auto flex h-20 max-w-3xl items-center justify-between">
         <Link href="/faith" className="flex items-center gap-2.5 text-lg font-extrabold tracking-tight">
           <ArrowLeft className="h-5 w-5 text-muted" aria-hidden />
-          <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
+          <LogoMark className="h-8 w-8" />
           Faith
         </Link>
         <HomeLink />
