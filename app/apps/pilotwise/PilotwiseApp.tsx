@@ -14,6 +14,7 @@ import { EMPTY, type Inputs, type Pilot, type PilotData, type Plan } from "../..
 import { NewPlan } from "./NewPlan";
 import { PlanView } from "./PlanView";
 import { btn, eyebrow, panel } from "./ui";
+import { LogoMark } from "../../components/LogoMark";
 
 const EXAMPLES_KEY = "pilotwise:examples";
 type View = { kind: "list" } | { kind: "new" } | { kind: "plan"; id: string };
@@ -124,7 +125,7 @@ export function PilotwiseApp({ intro }: { intro?: ReactNode } = {}) {
         <div className="flex items-center gap-1 sm:gap-3">
           <HomeLink />
           <span className="flex items-center gap-2.5 text-lg font-extrabold tracking-tight sm:text-xl">
-            <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
+            <LogoMark className="h-8 w-8" />
             Pilotwise
           </span>
         </div>

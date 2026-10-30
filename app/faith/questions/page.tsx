@@ -5,6 +5,7 @@ import { HomeLink } from "../../components/HomeLink";
 import { slugFor, STARTERS } from "../../../lib/faith/ask";
 import { faqSchema, pageMetadata } from "../../../lib/seo";
 import { JsonLd } from "../../components/JsonLd";
+import { LogoMark } from "../../components/LogoMark";
 
 export const metadata: Metadata = pageMetadata({
   title: "Common Questions About God, Answered Honestly · GrowDaily",
@@ -21,7 +22,7 @@ export default function QuestionsPage() {
       <header className="mx-auto flex h-20 max-w-3xl items-center justify-between">
         <Link href="/faith" className="flex items-center gap-2.5 text-lg font-extrabold tracking-tight">
           <ArrowLeft className="h-5 w-5 text-muted" aria-hidden />
-          <span className="h-3 w-3 rounded-full bg-amber shadow-[0_0_0_4px_rgba(242,181,75,0.15)]" aria-hidden />
+          <LogoMark className="h-8 w-8" />
           Faith
         </Link>
         <HomeLink />

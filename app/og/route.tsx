@@ -15,7 +15,13 @@ export function GET(req: Request) {
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#0d1520", padding: "72px 80px", color: "#e8eef5" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 36, fontWeight: 800 }}>
-          <div style={{ width: 22, height: 22, borderRadius: 11, background: "#f2b54b", boxShadow: "0 0 0 8px rgba(242,181,75,0.18)" }} />
+          <svg width="56" height="56" viewBox="0 0 100 100">
+            <rect x="12" y="62" width="20" height="26" rx="4" fill="#e8eef5" opacity="0.6" />
+            <rect x="40" y="48" width="20" height="40" rx="4" fill="#e8eef5" opacity="0.8" />
+            <rect x="68" y="34" width="20" height="54" rx="4" fill="#e8eef5" />
+            <path d="M22 54 Q36 30 50 40 Q64 18 78 24" fill="none" stroke="#f2b54b" strokeWidth="4" strokeDasharray="0.1 9" strokeLinecap="round" />
+            <circle cx="78" cy="20" r="9" fill="#f2b54b" />
+          </svg>
           GrowDaily
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
