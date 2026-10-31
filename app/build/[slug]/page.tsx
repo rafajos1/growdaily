@@ -18,12 +18,12 @@ const GUIDES: Record<AudienceSlug, string[]> = {
   nonprofits: ["what-is-ai-governance", "how-to-brief-your-board-on-ai", "ai-for-nonprofits"],
 };
 
-/** Why AI governance matters for each audience, shown before the build ideas. */
-const GOVERNANCE: Record<AudienceSlug, string> = {
-  businesses: "Your people are likely already using AI with customer and company information, often on free personal accounts. We help you see which tools are in use, set clear rules and train your team, so AI saves time without putting customers or your business at risk.",
-  nonprofits: "Your team holds information people trust you with: donor, client and volunteer records. We help you see which AI tools are in use, set clear rules, train staff and volunteers, and brief your board.",
-  churches: "Churches hold some of the most sensitive information there is: pastoral care notes, prayer requests and giving records. We help you see which AI tools staff and volunteers use, adopt a clear church AI policy and train your team.",
-};
+/** The governance service in three steps, shown right under the headline. */
+const GOV_STEPS = [
+  { title: "Find every AI tool in use", text: "A no-blame survey and short conversations build your AI register, each tool rated with reasons." },
+  { title: "Clear rules and a trained team", text: "A tailored AI policy, then a practical session so people know what's safe to use and share." },
+  { title: "Brief your leaders", text: "A one-page summary of where you stand, the risks and next steps, with a date to review it." },
+];
 
 export function generateStaticParams() {
   return AUDIENCES.map((a) => ({ slug: a.slug }));
@@ -45,7 +45,7 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
     "@context": "https://schema.org",
     "@type": "Service",
     name: a.h1,
-    serviceType: "AI app development",
+    serviceType: "AI governance",
     description: a.description,
     url: `${SITE_URL}${path}`,
     audience: { "@type": "Audience", audienceType: a.label },
@@ -55,7 +55,7 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "AI app development", item: `${SITE_URL}/build` },
+      { "@type": "ListItem", position: 1, name: "AI services", item: `${SITE_URL}/build` },
       { "@type": "ListItem", position: 2, name: a.label, item: `${SITE_URL}${path}` },
     ],
   };
@@ -68,37 +68,36 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
       <BuildHeader />
       <main className="mx-auto max-w-6xl">
         <section className="pb-20 pt-10 lg:pt-16">
-          <p className={eyebrow}>AI app development · {a.label}</p>
+          <p className={eyebrow}>AI governance · {a.label}</p>
           <h1 className="mt-4 max-w-[22ch] text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">{a.h1}</h1>
           <p className="mt-6 max-w-[56ch] text-lg text-soft">{a.intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#idea" className={btnPrimary}>
-              Ask for a quote <ArrowRight className="h-4 w-4" aria-hidden />
+              Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
-            <a href="#work" className={btnSecondary}>
-              Try our work
-            </a>
+            <Link href="/apps/governwise" className={btnSecondary}>
+              Try the free AI governance kit
+            </Link>
           </div>
         </section>
 
         <section aria-labelledby="gov-heading" className="pb-20">
-          <div className="grid gap-6 rounded-2xl border border-line bg-panel p-6 sm:p-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
-            <div>
-              <p className={eyebrow}>Start with AI governance</p>
-              <h2 id="gov-heading" className="mt-2 text-2xl font-extrabold tracking-tight">
-                Use AI with confidence, and stay in control
-              </h2>
-              <p className="mt-2 max-w-[62ch] text-muted">{GOVERNANCE[a.slug]}</p>
-            </div>
-            <div className="flex flex-wrap gap-3 lg:justify-end">
-              <Link href="/apps/governwise" className={btnPrimary}>
-                Free AI governance kit <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-              <Link href="/build/ai-governance" className={btnSecondary}>
-                AI governance service
-              </Link>
-            </div>
-          </div>
+          <p className={eyebrow}>How AI governance works</p>
+          <h2 id="gov-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
+            Clear rules first, then the tools that help
+          </h2>
+          <ol className="mt-8 grid gap-4 md:grid-cols-3">
+            {GOV_STEPS.map((x, i) => (
+              <li key={x.title} className="rounded-2xl border border-line bg-panel p-6">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber/15 font-mono text-sm font-bold text-amber">{i + 1}</span>
+                <h3 className="mt-4 text-lg font-bold">{x.title}</h3>
+                <p className="mt-1.5 text-sm text-muted">{x.text}</p>
+              </li>
+            ))}
+          </ol>
+          <Link href="/build/ai-governance" className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
+            More about the AI governance service <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
         </section>
 
         {a.feature && (
@@ -119,7 +118,7 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
         )}
 
         <section aria-labelledby="ideas-heading" className="pb-20">
-          <p className={eyebrow}>What we could build for you</p>
+          <p className={eyebrow}>When you&apos;re ready to build</p>
           <h2 id="ideas-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
             Ideas for {a.label.toLowerCase()}
           </h2>
