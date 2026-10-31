@@ -16,7 +16,7 @@ export function GET() {
     ...TOPICS.flatMap((t) => [`## Guides: ${t.title}`, "", ...guidesIn(t.id).map((g) => link(g.title, `/learn/${g.slug}`, g.shortAnswer)), ""]),
     "## About",
     "",
-    link("About GrowDaily", "/about", "Run by Rafael, a former pastor of 14 years with 25+ years leading enterprise data, analytics and AI transformation."),
+    link("About GrowDaily", "/about", "Run by Rafael, who helps organizations govern and use AI with confidence: a former pastor of 14 years with 25+ years leading enterprise data, analytics and AI work."),
     "",
     "## Services",
     "",
