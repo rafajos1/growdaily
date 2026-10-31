@@ -48,13 +48,13 @@ export default function AboutPage() {
             I help businesses and nonprofits, including churches, use AI with confidence: knowing which AI tools their people use, setting clear rules for them, and keeping a person responsible for the results.
           </p>
           <p>
-            For more than 25 years I&apos;ve led data, analytics and AI work in large organizations: modernizing data platforms, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow. My certifications include Databricks, Google and SAFe.
+            For more than 25 years I&apos;ve led data, analytics and AI work in large organizations: modernizing data platforms, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow. I&apos;ve partnered with security teams to launch AI products safely, and my certifications include Databricks, SAFe and Google, including the Google Cybersecurity Certificate.
           </p>
           <p>
             I&apos;ve also spent 14 years serving large, mission-driven nonprofit organizations with a global reach, leading cross-cultural teams that served people around the world. I&apos;m fluent in English and Spanish, and I know the realities of mission-driven work: big goals, tight budgets and people at the center of everything.
           </p>
           <p>
-            That&apos;s why AI governance matters to me. Organizations hold information people trust them with, and AI can do a lot of good when the rules are clear. My approach is practical and plain-English: a list of what&apos;s really in use, a short policy people will actually follow, training on real work, and a one-page summary for your leaders.
+            I started GrowDaily because AI&apos;s risks are growing as fast as its benefits. AI-powered scams, attacks and data breaches are on the rise, and most organizations don&apos;t yet know which AI tools their people use or what information goes into them. I want to help them get the good of AI, safely. My approach is practical and plain-English: a list of what&apos;s really in use, a short policy people will actually follow, training on real work, and a one-page summary for your leaders.
           </p>
           <p>
             I also know how to reach people online. I built a growth and productivity community on Instagram from the ground up, from zero to 205,000 followers.
