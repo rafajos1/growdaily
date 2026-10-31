@@ -320,6 +320,10 @@ export const AGENT_GUIDES: Guide[] = [
           },
         ],
       },
+      {
+        heading: "Keep it safe: AI governance",
+        blocks: ["Agents can take actions, not just write text, so governance matters even more: list each agent in your [AI register](/learn/how-to-create-an-ai-register), give it only the access it needs, and require a person's approval for anything important."],
+      },
     ],
     faqs: [
       { q: "Do I need a developer to build an AI agent?", a: "Not for agent features built into existing tools. For an agent connected to your own systems, like your CRM, database or website, a developer helps make it reliable and secure." },

@@ -41,17 +41,20 @@ export function BuildFooter() {
   return (
     <footer className="mx-auto max-w-6xl border-t border-hairline py-8 text-sm text-muted">
       <div className="flex flex-wrap gap-x-6 gap-y-2">
+        <Link href="/apps/governwise" className="hover:text-fg">
+          Free AI governance kit
+        </Link>
+        <Link href="/learn/what-is-ai-governance" className="hover:text-fg">
+          What is AI governance?
+        </Link>
         <Link href="/learn" className="hover:text-fg">
           Learn AI at work
-        </Link>
-        <Link href="/learn/what-is-an-ai-agent" className="hover:text-fg">
-          What is an AI agent?
         </Link>
         <Link href="/learn/ai-policy-template" className="hover:text-fg">
           AI policy template
         </Link>
         <Link href="/build" className="hover:text-fg">
-          AI app development
+          Services
         </Link>
         {SERVICE_PAGES.map((p) => (
           <Link key={p.slug} href={`/build/${p.slug}`} className="hover:text-fg">

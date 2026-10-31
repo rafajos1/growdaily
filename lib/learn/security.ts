@@ -53,7 +53,7 @@ Approved by [name], [date]. Reviewed every [6 / 12] months.`;
 export const SECURITY_GUIDES: Guide[] = [
   {
     slug: "what-is-shadow-ai",
-    topic: "security",
+    topic: "governance",
     title: "What is shadow AI, and how do you manage it?",
     seoTitle: "What Is Shadow AI? Risks and How to Manage It at Work",
     description: "Shadow AI is staff using AI tools their organization hasn't approved. What it is, why banning AI backfires, and a practical plan to bring it into the open safely.",
@@ -93,7 +93,7 @@ export const SECURITY_GUIDES: Guide[] = [
             steps: [
               { title: "Ask, without blame", text: "Run a quick, anonymous survey: which AI tools do people use, and for what? Make it clear no one is in trouble. You'll learn what's genuinely helpful." },
               { title: "Approve good tools", text: "Give people a business or team plan of a major AI assistant. Business plans generally come with stronger data commitments and admin controls than personal accounts." },
-              { title: "Set simple rules", text: "Write a one-page AI policy: what's approved, what data never goes in, and what needs a human check. Our [AI policy template](/learn/ai-policy-template) is a starting point." },
+              { title: "Set simple rules", text: "Write a one-page AI policy: what's approved, what data never goes in, and what needs a human check. Our [AI policy template](/learn/ai-policy-template) is a starting point, or build one with [the free AI governance kit](/apps/governwise)." },
               { title: "Train on real work", text: "An hour of hands-on practice with the approved tool beats any memo. See [how to train your team on AI](/learn/how-to-train-your-team-on-ai)." },
               { title: "Make asking easy", text: "Name a go-to person for AI questions and new tool requests, and review the approved list every few months." },
             ],
@@ -113,8 +113,9 @@ export const SECURITY_GUIDES: Guide[] = [
       { q: "How do I find out what AI tools my team uses?", a: "Ask. An anonymous, no-blame survey is the fastest and most honest way. Technical monitoring can help larger organizations, but it works best alongside open conversation and approved alternatives." },
       { q: "Should every business and church worry about shadow AI?", a: "Yes, in proportion. Teams of every size handle sensitive information, like customer details, donor records and prayer requests. A short policy and one approved tool cover most of the risk." },
     ],
-    related: ["is-it-safe-to-put-business-data-in-ai", "how-to-stop-ai-training-on-your-data", "ai-policy-template", "how-to-train-your-team-on-ai"],
-    service: "ai-consulting",
+    related: ["what-is-ai-governance", "how-to-create-an-ai-register", "ai-policy-template", "how-to-stop-ai-training-on-your-data"],
+    service: "ai-governance",
+    tool: { name: "the AI governance kit", href: "/apps/governwise", pitch: "List your AI tools and get an AI register, a ready-to-adopt AI policy and a one-page leadership summary in about 15 minutes. Free, private, no sign-up." },
     published: D,
     updated: D,
     sources: [
@@ -202,7 +203,7 @@ export const SECURITY_GUIDES: Guide[] = [
       { q: "Is the API safer than the chat app?", a: "Generally yes for training: the major providers' APIs fall under business terms that don't use your data for training by default. You still need to handle security and retention in your own app." },
     ],
     related: ["is-it-safe-to-put-business-data-in-ai", "private-ai-for-business", "what-is-shadow-ai", "ai-policy-template"],
-    service: "ai-training",
+    service: "ai-governance",
     published: D,
     updated: D,
     sources: [
@@ -277,7 +278,7 @@ export const SECURITY_GUIDES: Guide[] = [
       { q: "Is a local AI model always safer?", a: "Not automatically. It keeps data off third-party services, but you become responsible for securing the computer, controlling access and keeping software updated." },
     ],
     related: ["how-to-stop-ai-training-on-your-data", "is-it-safe-to-put-business-data-in-ai", "what-is-shadow-ai", "ai-implementation-plan"],
-    service: "ai-consulting",
+    service: "ai-governance",
     published: D,
     updated: D,
     sources: [

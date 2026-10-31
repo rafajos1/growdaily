@@ -585,7 +585,7 @@ export const CHURCH_GUIDES: Guide[] = [
       { q: "Should we tell our congregation we use AI?", a: "Many churches choose to be open about it, especially about preaching. A brief, honest explanation tends to build trust." },
     ],
     related: ["should-pastors-use-ai-for-sermons", "how-to-build-a-church-chatbot-with-claude", "ai-for-churches", "ai-voice-cloning-scams"],
-    service: "ai-training",
+    service: "ai-governance",
     published: D,
     updated: D,
     sources: [

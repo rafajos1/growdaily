@@ -17,9 +17,9 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const PLAN = [
-  { title: "A free 20-minute call", text: "Tell me what you need, and I'll say honestly whether AI is a good fit." },
-  { title: "Your content and data first", text: "AI is only as good as your data, so we start by looking at what you have." },
-  { title: "We build it together, or I build it for you", text: "Either way, you own what we make." },
+  { title: "A free 20-minute call", text: "Tell me how your team uses AI today, and I'll say honestly what needs attention." },
+  { title: "See what's really in use", text: "We list every AI tool your people use and the information that goes into it." },
+  { title: "Clear rules, a trained team", text: "A tailored AI policy, practical training and a briefing for your leaders. When you're ready to build, we do that too." },
 ];
 
 const link = "font-semibold text-amber underline-offset-2 hover:underline";
@@ -73,9 +73,13 @@ export default function AboutPage() {
             ))}
           </ol>
           <p className="mt-4 text-sm text-muted">
-            Not sure your data is ready? Start with our{" "}
-            <Link href="/learn/is-your-data-ready-for-ai" className={link}>
-              data readiness checklist
+            Want to start on your own? Try the{" "}
+            <Link href="/apps/governwise" className={link}>
+              free AI governance kit
+            </Link>{" "}
+            or read{" "}
+            <Link href="/learn/what-is-ai-governance" className={link}>
+              what AI governance is
             </Link>
             .
           </p>
@@ -84,7 +88,7 @@ export default function AboutPage() {
         <section className="mt-12 rounded-2xl border border-amber/30 bg-amber/[0.05] p-6 sm:p-8">
           <h2 className="text-2xl font-extrabold tracking-tight">Let&apos;s talk</h2>
           <p className="mt-2 max-w-[56ch] text-muted">
-            Tell me what you&apos;re hoping AI could do for you. The first 20-minute call is free, or email{" "}
+            Tell me how your team uses AI today and what you&apos;re hoping it could do. The first 20-minute call is free, or email{" "}
             <a href="mailto:hello@growdaily.ai" className={link}>
               hello@growdaily.ai
             </a>
@@ -106,7 +110,17 @@ export default function AboutPage() {
           </h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-soft marker:text-amber">
             <li>
-              <Link href="/" className={link}>
+              <Link href="/build/ai-governance" className={link}>
+                AI governance
+              </Link>{" "}
+              for businesses and nonprofits, with a{" "}
+              <Link href="/apps/governwise" className={link}>
+                free AI governance kit
+              </Link>
+              .
+            </li>
+            <li>
+              <Link href="/apps/habitwise" className={link}>
                 Free apps
               </Link>{" "}
               for money, habits, time, meals and mood, private by default.
@@ -125,7 +139,7 @@ export default function AboutPage() {
             </li>
             <li>
               <Link href="/build" className={link}>
-                Guided builds, training, consulting and custom AI apps
+                Training, consulting, guided builds and custom AI apps
               </Link>{" "}
               for churches, nonprofits and businesses.
             </li>

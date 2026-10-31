@@ -7,16 +7,16 @@ import { BuildFooter, BuildHeader, btnPrimary, eyebrow } from "../build/parts";
 import { JsonLd } from "../components/JsonLd";
 
 const DESCRIPTION =
-  "Free, plain-English guides to using AI at work: AI agents, prompts, AI policy templates, data privacy and AI security, team training, and where businesses, nonprofits and churches should start.";
+  "Free, plain-English guides to AI governance and using AI at work: AI policies, AI registers, shadow AI, board briefings, data privacy, AI agents and team training, for businesses, nonprofits and churches.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Learn AI at Work: Free Guides to AI Agents, Policies & Training · GrowDaily",
+  title: "Learn AI Governance & AI at Work: Free Guides · GrowDaily",
   description: DESCRIPTION,
   path: "/learn",
-  image: ogImage("Learn AI at work", "Free plain-English guides: agents, policies, training"),
+  image: ogImage("Learn AI governance and AI at work", "Free plain-English guides: governance, policies, training"),
 });
 
-const START_HERE = ["why-ai-pilots-fail", "what-is-an-ai-agent", "ai-policy-template"];
+const START_HERE = ["what-is-ai-governance", "ai-policy-template", "what-is-shadow-ai"];
 
 export default function LearnPage() {
   const collection = {
@@ -39,10 +39,10 @@ export default function LearnPage() {
         <section className="pb-14 pt-10 lg:pt-16">
           <p className={eyebrow}>Free guides</p>
           <h1 className="mt-4 max-w-[18ch] text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
-            Learn to use <span className="text-amber">AI at work</span>.
+            Use <span className="text-amber">AI at work</span>, safely.
           </h1>
           <p className="mt-6 max-w-[58ch] text-lg text-soft">
-            Plain-English answers to what teams are asking right now: what AI agents really are, how to use AI safely, how to write a policy, and where to start. Written for businesses, nonprofits and churches, with no hype. Plus simple, research-backed guides for <a href="#everyday" className="underline underline-offset-2 hover:text-fg">everyday life</a>.
+            Plain-English answers to what teams are asking right now: how to govern AI, which tools are safe, how to write a policy, what AI agents really are, and where to start. Written for businesses, nonprofits and churches, with no hype. Want it organized for you? Try <a href="/apps/governwise" className="underline underline-offset-2 hover:text-fg">the free AI governance kit</a>. Plus simple, research-backed guides for <a href="#everyday" className="underline underline-offset-2 hover:text-fg">everyday life</a>.
           </p>
         </section>
 

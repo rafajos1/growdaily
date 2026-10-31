@@ -13,9 +13,16 @@ export const dynamicParams = false;
 
 /** Free Learn guides worth reading before a call, per audience. */
 const GUIDES: Record<AudienceSlug, string[]> = {
-  churches: ["how-to-use-ai-to-grow-your-church", "how-to-build-a-church-chatbot-with-claude", "church-ai-policy-template"],
-  businesses: ["ai-for-business", "what-is-an-ai-agent", "ai-implementation-plan"],
-  nonprofits: ["ai-for-nonprofits", "ai-policy-template", "how-to-train-your-team-on-ai"],
+  churches: ["church-ai-policy-template", "what-is-ai-governance", "how-to-use-ai-to-grow-your-church"],
+  businesses: ["what-is-ai-governance", "ai-policy-template", "ai-for-business"],
+  nonprofits: ["what-is-ai-governance", "how-to-brief-your-board-on-ai", "ai-for-nonprofits"],
+};
+
+/** Why AI governance matters for each audience, shown before the build ideas. */
+const GOVERNANCE: Record<AudienceSlug, string> = {
+  businesses: "Your people are likely already using AI with customer and company information, often on free personal accounts. We help you see which tools are in use, set clear rules and train your team, so AI saves time without putting customers or your business at risk.",
+  nonprofits: "Your team holds information people trust you with: donor, client and volunteer records. We help you see which AI tools are in use, set clear rules, train staff and volunteers, and brief your board.",
+  churches: "Churches hold some of the most sensitive information there is: pastoral care notes, prayer requests and giving records. We help you see which AI tools staff and volunteers use, adopt a clear church AI policy and train your team.",
 };
 
 export function generateStaticParams() {
@@ -71,6 +78,26 @@ export default async function AudiencePage({ params }: { params: Promise<{ slug:
             <a href="#work" className={btnSecondary}>
               Try our work
             </a>
+          </div>
+        </section>
+
+        <section aria-labelledby="gov-heading" className="pb-20">
+          <div className="grid gap-6 rounded-2xl border border-line bg-panel p-6 sm:p-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+            <div>
+              <p className={eyebrow}>Start with AI governance</p>
+              <h2 id="gov-heading" className="mt-2 text-2xl font-extrabold tracking-tight">
+                Use AI with confidence, and stay in control
+              </h2>
+              <p className="mt-2 max-w-[62ch] text-muted">{GOVERNANCE[a.slug]}</p>
+            </div>
+            <div className="flex flex-wrap gap-3 lg:justify-end">
+              <Link href="/apps/governwise" className={btnPrimary}>
+                Free AI governance kit <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link href="/build/ai-governance" className={btnSecondary}>
+                AI governance service
+              </Link>
+            </div>
           </div>
         </section>
 
