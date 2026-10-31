@@ -50,6 +50,10 @@ export const ORGANIZATION_GUIDES: Guide[] = [
           "Business plans for AI assistants are usually priced per person per month. Custom tools and agents add setup plus small usage-based AI costs. Start with what you need and measure time saved before spending more.",
         ],
       },
+      {
+        heading: "Keep it safe: AI governance",
+        blocks: ["Before AI touches customer or company information, set simple rules: know which AI tools your people use, keep work information on business accounts, and have a person review what goes out. [What AI governance is](/learn/what-is-ai-governance) explains the basics, and [the free AI governance kit](/apps/governwise) builds your AI register and policy in about 15 minutes."],
+      },
     ],
     faqs: [
       { q: "What is the best AI tool for a business?", a: "The one your team will actually use well. A business plan from a major AI assistant covers most needs. Add specialized or custom tools only for specific workflows." },
@@ -175,6 +179,10 @@ Biggest gap: ______   Fix by: ______` } },
           "2026 research found nonprofit executives far more optimistic about AI than their staff, and most groups lacking a written policy or rollout plan. Ask staff what would genuinely help, train together, and frame AI as taking busywork off their plates.",
         ],
       },
+      {
+        heading: "Keep it safe: AI governance",
+        blocks: ["Nonprofits hold information people trust you with, like donor, client and volunteer records. A short AI policy, a list of the AI tools in use and one named owner protect it. Start with [what AI governance is](/learn/what-is-ai-governance) or [the free AI governance kit](/apps/governwise), and see [how to brief your board on AI](/learn/how-to-brief-your-board-on-ai)."],
+      },
     ],
     faqs: [
       { q: "Can AI write a grant proposal?", a: "It can help outline, draft and tailor sections, but funders expect accurate facts and your organization's voice. A person should own the content and check every claim." },
@@ -232,6 +240,10 @@ Biggest gap: ______   Fix by: ______` } },
         blocks: [
           "Surveys in 2026 found church leaders using AI widely but only a small minority of churches with written AI guidelines, even though most pastors say they need one. Our free [church AI policy template](/learn/church-ai-policy-template) covers preaching, pastoral care and prayer requests.",
         ],
+      },
+      {
+        heading: "Keep it safe: AI governance",
+        blocks: ["Churches hold sensitive information, like pastoral care notes, prayer requests and giving records. Know which AI tools your staff and volunteers use, and adopt simple rules: our [church AI policy template](/learn/church-ai-policy-template) and [the free AI governance kit](/apps/governwise) are good places to start."],
       },
     ],
     faqs: [

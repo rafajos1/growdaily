@@ -8,9 +8,9 @@ export type Block =
   | { code: { title: string; text: string } }
   | { callout: string };
 
-export type TopicId = "delivery" | "agents" | "workplace" | "security" | "churches" | "organizations" | "everyday" | "build";
+export type TopicId = "governance" | "delivery" | "agents" | "workplace" | "security" | "churches" | "organizations" | "everyday" | "build";
 
-export type Service = "ai-training" | "ai-consulting" | "build" | "guided-build" | "church-assistant";
+export type Service = "ai-governance" | "ai-training" | "ai-consulting" | "build" | "guided-build" | "church-assistant";
 
 export interface Guide {
   slug: string;

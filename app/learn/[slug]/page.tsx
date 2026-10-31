@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 const CTA: Record<Service, { title: string; text: string; href: string; label: string }> = {
+  "ai-governance": { title: "Want help putting AI governance in place?", text: "We'll find every AI tool in use, tailor your AI policy, train your team and brief your leadership. The first 20-minute call is free.", href: "/build/ai-governance", label: "About AI governance" },
   "ai-training": { title: "Want your team trained on this?", text: "Hands-on AI training for your staff or volunteers, live or on Zoom, using your own real work.", href: "/build/ai-training", label: "About AI training" },
   "ai-consulting": { title: "Want help choosing where to start?", text: "We'll find where AI saves your team the most time and give you a clear, one-page plan.", href: "/build/ai-consulting", label: "About AI consulting" },
   "church-assistant": { title: "Want this for your church?", text: "We'll set it up with your sermons, beliefs and church information, with your pastors deciding what goes in. Start with a free 20-minute call.", href: "/build/church-ai-assistant", label: "See the church AI assistant" },
@@ -251,9 +252,16 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <p className="text-lg font-extrabold">Try {g.tool.name}, free</p>
             <p className="mt-1 text-soft">{g.tool.pitch}</p>
             {/* A plain link: some apps are static pages outside the Next router. */}
-            <a href={g.tool.href} className={`${btnPrimary} mt-4`}>
-              Open {g.tool.name} <ArrowRight className="h-4 w-4" aria-hidden />
-            </a>
+            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <a href={g.tool.href} className={btnPrimary}>
+                Open {g.tool.name} <ArrowRight className="h-4 w-4" aria-hidden />
+              </a>
+              {g.service === "ai-governance" && (
+                <Link href={cta.href} className="text-sm font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
+                  Want help putting it in place? {cta.label}
+                </Link>
+              )}
+            </div>
           </aside>
         ) : (
           <aside className="mt-12 rounded-2xl border border-line bg-panel p-6">

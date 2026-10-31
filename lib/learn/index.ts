@@ -3,6 +3,7 @@ import { BUILD_GUIDES } from "./build";
 import { CHURCH_GUIDES } from "./churches";
 import { DELIVERY_GUIDES } from "./delivery";
 import { EVERYDAY_GUIDES } from "./everyday";
+import { GOVERNANCE_GUIDES } from "./governance";
 import { ORGANIZATION_GUIDES } from "./organizations";
 import { SECURITY_GUIDES } from "./security";
 import type { Guide, TopicId } from "./types";
@@ -10,9 +11,10 @@ import { WORKPLACE_GUIDES } from "./workplace";
 
 export type { Block, Guide, Service, TopicId } from "./types";
 
-export const GUIDES: Guide[] = [...DELIVERY_GUIDES, ...AGENT_GUIDES, ...WORKPLACE_GUIDES, ...SECURITY_GUIDES, ...CHURCH_GUIDES, ...ORGANIZATION_GUIDES, ...EVERYDAY_GUIDES, ...BUILD_GUIDES];
+export const GUIDES: Guide[] = [...GOVERNANCE_GUIDES, ...DELIVERY_GUIDES, ...AGENT_GUIDES, ...WORKPLACE_GUIDES, ...SECURITY_GUIDES, ...CHURCH_GUIDES, ...ORGANIZATION_GUIDES, ...EVERYDAY_GUIDES, ...BUILD_GUIDES];
 
 export const TOPICS: { id: TopicId; title: string; blurb: string }[] = [
+  { id: "governance", title: "AI governance", blurb: "Know which AI tools your people use and set clear rules: an AI register, a policy, shadow AI, board briefings and a free kit." },
   { id: "build", title: "Build your own tools", blurb: "Step-by-step guides to building simple, private apps with AI, no coding needed, with our apps as the finished examples." },
   { id: "delivery", title: "AI projects & delivery", blurb: "Getting AI from pilot to production: why pilots fail, exit criteria and planning." },
   { id: "agents", title: "AI agents", blurb: "What agents are, real examples, MCP, and how to start safely." },

@@ -95,6 +95,10 @@ export const WORKPLACE_GUIDES: Guide[] = [
           },
         ],
       },
+      {
+        heading: "Keep it safe: AI governance",
+        blocks: ["Check whether your organization has an AI policy and approved tools before you paste in work information. If it doesn't yet, share [what AI governance is](/learn/what-is-ai-governance) with whoever runs operations; it takes an afternoon to set up."],
+      },
     ],
     faqs: [
       { q: "Which AI tool should I use at work?", a: "Use the one your organization has approved. If there isn't one, choose a business or team plan from a major provider, which typically offers stronger privacy terms than free personal accounts." },
@@ -109,7 +113,7 @@ export const WORKPLACE_GUIDES: Guide[] = [
   },
   {
     slug: "ai-policy-template",
-    topic: "workplace",
+    topic: "governance",
     title: "How to write an AI policy for your team (free template)",
     seoTitle: "AI Policy Template for Businesses & Nonprofits (Free)",
     description: "A free, plain-English AI use policy template for businesses, nonprofits and churches of any size: approved tools, data rules, human review, AI agents, and how to roll it out.",
@@ -147,8 +151,9 @@ export const WORKPLACE_GUIDES: Guide[] = [
       { q: "Should we ban ChatGPT at work?", a: "Bans tend to push AI use underground. Approving specific tools, with clear rules about data and review, is usually safer than a ban." },
       { q: "What should an AI policy for a church include?", a: "The same basics, plus clear lines on pastoral care information, prayer requests, and how AI may or may not be used in preaching and teaching." },
     ],
-    related: ["is-it-safe-to-put-business-data-in-ai", "how-to-train-your-team-on-ai", "what-is-shadow-ai", "ai-for-nonprofits"],
-    service: "ai-training",
+    related: ["what-is-ai-governance", "how-to-create-an-ai-register", "what-is-shadow-ai", "how-to-train-your-team-on-ai"],
+    service: "ai-governance",
+    tool: { name: "the AI governance kit", href: "/apps/governwise", pitch: "List your AI tools and get an AI register, a ready-to-adopt AI policy and a one-page leadership summary in about 15 minutes. Free, private, no sign-up." },
     published: D,
     updated: D,
     sources: [
@@ -199,7 +204,7 @@ export const WORKPLACE_GUIDES: Guide[] = [
       { q: "What is the safest way to use AI with customer data?", a: "Use an approved business or enterprise plan, share only the data the task needs, remove identifying details where possible, and follow a written policy." },
     ],
     related: ["how-to-stop-ai-training-on-your-data", "private-ai-for-business", "what-is-shadow-ai", "ai-policy-template"],
-    service: "ai-consulting",
+    service: "ai-governance",
     published: D,
     updated: "2026-10-20",
   },
@@ -243,6 +248,10 @@ export const WORKPLACE_GUIDES: Guide[] = [
             ],
           },
         ],
+      },
+      {
+        heading: "Keep it safe: AI governance",
+        blocks: ["Training is part of AI governance: people can only follow rules they know. Pair the session with a short AI policy and an [AI register](/learn/how-to-create-an-ai-register), so the training covers the tools your team actually uses."],
       },
     ],
     faqs: [
@@ -392,6 +401,10 @@ export const WORKPLACE_GUIDES: Guide[] = [
           "Taking a bigger AI project from pilot to production? See [why most AI pilots fail](/learn/why-ai-pilots-fail), or plan it with [Pilotwise](/apps/pilotwise).",
           { callout: "Plenty of organizations use AI without seeing major results. The difference is usually choosing specific tasks, training people and measuring, not buying more tools." },
         ],
+      },
+      {
+        heading: "Keep it safe: AI governance",
+        blocks: ["Put governance in place before you scale: an [AI register](/learn/how-to-create-an-ai-register) of tools in use, a short AI policy and a named owner. Use the [AI governance checklist](/learn/ai-governance-checklist) to see where you stand."],
       },
     ],
     faqs: [

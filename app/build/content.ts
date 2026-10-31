@@ -342,6 +342,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     faqs: [
       { q: "Do people need any experience with AI?", a: "No. We start from the beginning and keep it practical, and people who already use AI still pick up new habits." },
       { q: "Which AI tools do you teach?", a: "Whichever your team has or would use, such as ChatGPT, Claude, Copilot or Gemini. The habits work across all of them." },
+      { q: "How does training fit with AI governance?", a: "Training is how a policy becomes a habit. We can pair the workshop with our AI governance service, so your team learns the tools and the rules together." },
       { q: "Can it be done on Zoom?", a: "Yes. Workshops work live or on Zoom, and we can record it for people who can't attend." },
       { q: "How much does AI training cost?", a: "Ask for a quote. It depends on the length of the workshop and the size of your group." },
     ],
