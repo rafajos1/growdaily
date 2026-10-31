@@ -7,13 +7,13 @@ import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, eyebrow } from "../
 import { JsonLd } from "../components/JsonLd";
 
 const DESCRIPTION =
-  "GrowDaily is run by Rafael, who has 25+ years of experience leading enterprise data, analytics and AI transformation, and 14 years of serving large, global, mission-driven nonprofit organizations.";
+  "GrowDaily helps businesses and nonprofits use AI with confidence. It's run by Rafael, who brings 25+ years of enterprise data, analytics and AI leadership and 14 years serving large, global, mission-driven nonprofits.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About GrowDaily · Rafael, AI & Data Transformation Leader",
+  title: "About GrowDaily · Rafael, AI Governance & Data Leader",
   description: DESCRIPTION,
   path: "/about",
-  image: ogImage("About GrowDaily", "Technology that helps people grow"),
+  image: ogImage("About GrowDaily", "AI with confidence, people at the center"),
 });
 
 const PLAN = [
@@ -45,16 +45,19 @@ export default function AboutPage() {
         </h1>
         <div className="mt-6 space-y-4 text-lg leading-relaxed text-soft">
           <p>
-            With over 25 years of professional experience, I specialize in leading enterprise-scale data, analytics and AI-driven transformation initiatives. At an energy company, I guide cross-functional engineering and delivery teams to modernize data platforms, implement AI solutions and drive digital transformation aligned with key business outcomes. My expertise includes scaled agile delivery leadership, cloud data platforms and GenAI enablement, supported by certifications from Databricks, Google, SAFe and more.
+            I help businesses and nonprofits, including churches, use AI with confidence: knowing which AI tools their people use, setting clear rules for them, and keeping a person responsible for the results.
+          </p>
+          <p>
+            For more than 25 years I&apos;ve led data, analytics and AI work in large organizations: modernizing data platforms, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow. My certifications include Databricks, Google and SAFe.
           </p>
           <p>
             I&apos;ve also spent 14 years serving large, mission-driven nonprofit organizations with a global reach, leading cross-cultural teams that served people around the world. I&apos;m fluent in English and Spanish, and I know the realities of mission-driven work: big goals, tight budgets and people at the center of everything.
           </p>
           <p>
-            I also know how to reach people online. I built a growth and productivity community on Instagram from the ground up, from zero to 205,000 followers.
+            That&apos;s why AI governance matters to me. Organizations hold information people trust them with, and AI can do a lot of good when the rules are clear. My approach is practical and plain-English: a list of what&apos;s really in use, a short policy people will actually follow, training on real work, and a one-page summary for your leaders.
           </p>
           <p>
-            By collaborating with executives, architects and product leaders, I focus on fostering high-performing teams and delivering measurable results through value-first product practices. My mission is to empower organizations, from enterprises to churches and nonprofits, to unlock innovation through cutting-edge technology while upholding governance and quality.
+            I also know how to reach people online. I built a growth and productivity community on Instagram from the ground up, from zero to 205,000 followers.
           </p>
           <p>I believe technology is at its best when it gives people time back for each other.</p>
         </div>
