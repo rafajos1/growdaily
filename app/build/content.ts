@@ -16,11 +16,18 @@ export interface Service {
 /** Each service leads naturally to the next: learn, plan, build, look after it. */
 export const SERVICES: Service[] = [
   {
+    name: "AI governance",
+    interest: "AI governance",
+    tagline: "Know which AI tools your people use, set clear rules, and show your leadership you're in control, without slowing your team down.",
+    includes: ["An AI register of every tool in use, each rated with reasons", "A tailored AI policy and a short team training", "A one-page leadership or board briefing"],
+    href: "/build/ai-governance",
+    featured: true,
+  },
+  {
     name: "Guided build",
     interest: "Guided build",
     tagline: "Build your own AI tool with Claude, with Rafael guiding you from idea to something that works. No coding experience needed.",
     includes: ["A free 20-minute first call to shape the idea", "Paid working sessions, priced up front", "You own the tool and understand how it works"],
-    featured: true,
   },
   {
     name: "AI training",
@@ -281,7 +288,7 @@ export const audienceBySlug = (slug: string) => AUDIENCES.find((a) => a.slug ===
 export const caseByName = (name: string) => CASES.find((c) => c.name === name)!;
 
 export interface ServicePage {
-  slug: "ai-training" | "ai-consulting";
+  slug: "ai-governance" | "ai-training" | "ai-consulting";
   interest: Interest;
   label: string;
   title: string;
@@ -294,6 +301,29 @@ export interface ServicePage {
 }
 
 export const SERVICE_PAGES: ServicePage[] = [
+  {
+    slug: "ai-governance",
+    interest: "AI governance",
+    label: "AI governance",
+    title: "AI Governance Consulting for Businesses & Nonprofits · GrowDaily",
+    description: "Practical AI governance for businesses and nonprofits of any size: an AI register of the tools your people use, a tailored AI policy, team training and a leadership briefing. Plain English, sized for you.",
+    h1: "AI governance that fits how your team really works",
+    intro: "Your people are already using AI, often on free personal accounts, with information you'd rather keep in house. AI governance means knowing which tools are in use, setting clear rules for them, and keeping a person responsible for the results. We put that in place with you, in plain English, without slowing your team down.",
+    sections: [
+      { title: "Find every AI tool in use", text: "Short conversations and a quick survey to build your AI register, including the free tools on personal phones that nobody mentions." },
+      { title: "Rate each one, with reasons", text: "Approved, approved with limits, or not allowed, based on the account type, the information that goes in and who sees the results." },
+      { title: "A policy people will follow", text: "A short, tailored AI policy: approved tools, what may and may not go in, human review and who to ask. Then a 45-minute session so your team actually knows it." },
+      { title: "Brief your leadership", text: "A one-page summary of where you stand, the biggest risks and the next steps, for your leaders or board, plus a review date so it stays current." },
+    ],
+    forWho: ["Owners and executive directors", "Operations and HR leads", "Boards asking \"what's our AI policy?\"", "Churches and ministries with staff and volunteers"],
+    faqs: [
+      { q: "We're small. Do we really need AI governance?", a: "If anyone on your team uses AI with work information, yes, but the small version: a list of tools, a short policy and a named person who owns it. Our free Governwise kit gets you started in about 15 minutes." },
+      { q: "Will this stop our team from using AI?", a: "No. The goal is the opposite: clear rules let people use AI confidently. Most tools end up approved, some with simple limits." },
+      { q: "Is this legal compliance?", a: "It's practical governance, not legal advice. We'll flag areas like health, financial or children's information where you should check with a qualified advisor, and keep your policy easy to update as laws change." },
+      { q: "What do we get at the end?", a: "Your AI register, a tailored AI policy, a team training session and a one-page leadership briefing, all yours to keep and update." },
+      { q: "How much does AI governance cost?", a: "The first 20-minute call is free. After that it's priced up front, based on the size of your team and how many tools are in use." },
+    ],
+  },
   {
     slug: "ai-training",
     interest: "AI training",

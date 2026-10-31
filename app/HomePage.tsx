@@ -1,23 +1,22 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { ChurchArt, HabitArt, QuoteArt } from "./components/AppArt";
+import { ArrowRight, ClipboardCheck, EyeOff, FileText } from "lucide-react";
 import { LogoMark } from "./components/LogoMark";
 
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
 const btnPrimary = `inline-flex items-center justify-center gap-2 rounded-[10px] bg-amber px-5 py-3 text-sm font-bold text-amber-ink transition hover:bg-amber-hover ${focus}`;
 const CALL = "/build#idea";
 
-/** One example for each kind of visitor: their life, their nonprofit, their business. */
-const EXAMPLES = [
-  { label: "Your life", name: "Habitwise", Art: HabitArt, href: "/apps/habitwise", color: "#53cfa0", text: "Build habits that stick, with streaks, a 15-week calendar and a short weekly review." },
-  { label: "Your nonprofit", name: "Church AI assistant", Art: ChurchArt, href: "/demo/church-assistant", color: "#b48cf2", text: "Answers questions only from your own content, with a source for every answer." },
-  { label: "Your business", name: "Quotewise", Art: QuoteArt, href: "/apps/quotewise", color: "#8fb3ff", text: "Describe the job and get a professional quote in minutes, then turn it into an invoice." },
+/** Where to start: the free kit, then the two questions leaders ask first. */
+const START = [
+  { label: "Free tool", name: "AI governance kit", Icon: ClipboardCheck, href: "/apps/governwise", cta: "Build your kit", text: "List the AI tools your team uses and get an AI register, a ready-to-adopt policy and a one-page summary for your leaders, in about 15 minutes." },
+  { label: "Free guide", name: "AI policy template", Icon: FileText, href: "/learn/ai-policy-template", cta: "Read the guide", text: "What a simple AI policy should cover, with a template you can copy and adapt for your team." },
+  { label: "Free guide", name: "What is shadow AI?", Icon: EyeOff, href: "/learn/what-is-shadow-ai", cta: "Read the guide", text: "Why your people are already using AI you don't know about, and how to bring it into the open without banning it." },
 ];
 
 const STEPS = [
-  { title: "A free 20-minute call", text: "Tell us what you need. We'll say honestly whether AI is a good fit." },
-  { title: "Your content and data first", text: "AI is only as good as your data, so we start by looking at what you have." },
-  { title: "We build it with you, or for you", text: "Either way, you own the tool and understand how it works." },
+  { title: "A free 20-minute call", text: "Tell us how your team uses AI today. We'll say honestly what needs attention and what doesn't." },
+  { title: "Find every AI tool in use", text: "We build your AI register together, including the free tools on personal phones, and rate each one with reasons." },
+  { title: "Clear rules, a trained team", text: "A tailored AI policy, a short training so people actually know it, and a briefing for your leaders." },
 ];
 
 export function HomePage() {
@@ -39,49 +38,42 @@ export function HomePage() {
         <section className="pb-20 pt-10 lg:pt-20">
           <p className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-down" aria-hidden />
-            For businesses and nonprofits, including churches
+            AI governance for businesses and nonprofits, including churches
           </p>
           <h1 className="mt-6 max-w-[18ch] text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl lg:text-7xl">
-            You know the tool you need. <span className="text-amber">Let&apos;s build it together.</span>
+            Use AI with confidence. <span className="text-amber">Stay in control.</span>
           </h1>
           <p className="mt-6 max-w-[58ch] text-lg text-soft sm:text-xl">
-            Simple AI tools that save your team hours every week, so you can spend more time on what matters most. You don&apos;t need to be a developer: we&apos;ll guide you from idea to a working tool, or build it for you.
+            Your people are already using AI, often on free personal accounts, with information you&apos;d rather keep in house. We help you see which tools are in use, set clear rules and train your team, so AI saves time without putting your people or your data at risk.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <Link href={CALL} className={btnPrimary}>
               Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <a href="#examples" className="text-sm font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
-              See live examples
-            </a>
+            <Link href="/apps/governwise" className="text-sm font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
+              Try the free AI governance kit
+            </Link>
           </div>
         </section>
 
-        <section id="examples" aria-labelledby="examples-heading" className="scroll-mt-8 pb-20">
-          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">See what&apos;s possible</p>
-          <h2 id="examples-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Real tools you can try right now</h2>
+        <section id="start" aria-labelledby="start-heading" className="scroll-mt-8 pb-20">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Start here</p>
+          <h2 id="start-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Get your AI house in order, free</h2>
           <ul className="mt-8 grid gap-4 md:grid-cols-3">
-            {EXAMPLES.map((e) => (
+            {START.map((e) => (
               <li key={e.name}>
-                <a href={e.href} className="group flex h-full flex-col rounded-2xl border border-line bg-panel p-6 transition hover:border-[#35507a]">
-                  <span className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: e.color }}>
-                    {e.label}
+                <Link href={e.href} className="group flex h-full flex-col rounded-2xl border border-line bg-panel p-6 transition hover:border-[#35507a]">
+                  <e.Icon className="h-6 w-6 text-amber" aria-hidden />
+                  <span className="mt-4 font-mono text-xs uppercase tracking-[0.14em] text-muted">{e.label}</span>
+                  <span className="mt-1 text-2xl font-extrabold tracking-tight">{e.name}</span>
+                  <span className="mt-3 flex-1 text-soft">{e.text}</span>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-amber">
+                    {e.cta} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
                   </span>
-                  <span className="mt-2 text-2xl font-extrabold tracking-tight">{e.name}</span>
-                  <span className="my-5 block">
-                    <e.Art color={e.color} />
-                  </span>
-                  <span className="flex-1 text-soft">{e.text}</span>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: e.color }}>
-                    Try it free <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
-                  </span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <Link href="/build#work" className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-muted hover:text-fg">
-            See all examples <ArrowRight className="h-4 w-4" aria-hidden />
-          </Link>
         </section>
 
         <section aria-labelledby="how-heading" className="pb-20">
@@ -110,7 +102,7 @@ export function HomePage() {
                 I&apos;ve lived both sides of it. For 14 years I served large, mission-driven nonprofits, where every hour and every dollar counted. For 25+ years I&apos;ve led data, analytics and AI work in large organizations, moving new technology out of pilots and into everyday use.
               </p>
               <p>
-                So we start small, with your own content and data, and build something your team will actually use. Let&apos;s automate the busywork, so you can focus on what matters most.
+                So we start with what&apos;s really happening: the AI tools your people already use and the information that goes into them. Then we set simple rules your team will actually follow, so AI saves time without putting anyone at risk, and you can focus on what matters most.
               </p>
             </div>
             <Link href="/about" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
@@ -122,7 +114,7 @@ export function HomePage() {
         <section className="pb-24">
           <div className="rounded-2xl border border-amber/30 bg-amber/[0.05] p-6 sm:p-10">
             <h2 className="text-3xl font-extrabold tracking-tight">Start with a free 20-minute call</h2>
-            <p className="mt-2 max-w-[56ch] text-muted">Tell us what you&apos;d like to build. No cost, no pressure, and an honest answer about whether AI is a good fit.</p>
+            <p className="mt-2 max-w-[56ch] text-muted">Tell us how your team uses AI today. No cost, no pressure, and an honest answer about what needs attention.</p>
             <Link href={CALL} className={`${btnPrimary} mt-6`}>
               Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
@@ -132,7 +124,8 @@ export function HomePage() {
 
       <footer className="mx-auto max-w-6xl border-t border-hairline py-8 text-sm text-muted">
         <nav aria-label="More from GrowDaily" className="flex flex-wrap gap-x-6 gap-y-2">
-          <Link href="/build#work" className="hover:text-fg">All examples</Link>
+          <Link href="/apps/governwise" className="hover:text-fg">Free AI governance kit</Link>
+          <Link href="/build/ai-governance" className="hover:text-fg">AI governance</Link>
           <Link href="/learn" className="hover:text-fg">Free guides</Link>
           <Link href="/build" className="hover:text-fg">Services</Link>
           <Link href="/build/businesses" className="hover:text-fg">For businesses</Link>

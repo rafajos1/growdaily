@@ -7,13 +7,13 @@ import { AUDIENCES, BUILD_FAQS, CASES, SERVICES } from "./content";
 import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection, ServicesSection } from "./parts";
 
 const DESCRIPTION =
-  "Build your own AI tool with Claude, with a guide, or have us build it. Guided builds, AI training, consulting and custom apps for businesses and nonprofits of any size. The first 20-minute call is free.";
+  "AI governance, training and consulting for businesses and nonprofits of any size: an AI register, a tailored AI policy and a trained team, plus guided builds when you're ready. The first 20-minute call is free.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Guided AI App Building, Training & Consulting · GrowDaily",
+  title: "AI Governance, Training & Consulting for Businesses & Nonprofits · GrowDaily",
   description: DESCRIPTION,
   path: "/build",
-  image: ogImage("Build the tool you need, with a guide", "Guided builds · Training · Consulting · Custom apps"),
+  image: ogImage("Use AI with confidence, and stay in control", "AI governance · Training · Consulting · Guided builds"),
 });
 
 const serviceSchema = {
@@ -22,8 +22,8 @@ const serviceSchema = {
   name: "GrowDaily",
   url: `${SITE_URL}/build`,
   description: DESCRIPTION,
-  serviceType: ["Guided AI app building", "AI training", "AI consulting", "AI app development", "AI app maintenance"],
-  knowsAbout: ["AI training for teams", "AI consulting", "AI app development", "AI chatbots for websites", "AI tools for nonprofits", "Custom web apps"],
+  serviceType: ["AI governance", "Guided AI app building", "AI training", "AI consulting", "AI app development", "AI app maintenance"],
+  knowsAbout: ["AI governance", "AI policy", "Shadow AI", "AI training for teams", "AI consulting", "AI app development", "AI chatbots for websites", "AI tools for nonprofits", "Custom web apps"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Services",
@@ -39,12 +39,12 @@ export default function BuildPage() {
       <BuildHeader />
       <main className="mx-auto max-w-6xl">
         <section className="pb-20 pt-10 lg:pt-16">
-          <p className={eyebrow}>Guided builds · training · consulting · custom apps</p>
+          <p className={eyebrow}>AI governance · training · consulting · guided builds</p>
           <h1 className="mt-4 max-w-[20ch] text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
-            Build the tool you need, <span className="text-amber">with a guide</span>.
+            Use AI with confidence, <span className="text-amber">and stay in control</span>.
           </h1>
           <p className="mt-6 max-w-[54ch] text-lg text-soft">
-            Bring the idea. We&apos;ll guide you to build it yourself with Claude, in plain English, or build it for you. We also train teams and write plain-English AI plans. Every app on GrowDaily was built this way, and you can try them right now.
+            We help businesses and nonprofits see which AI tools their people use, set clear rules for them, and train their teams. When you&apos;re ready to build, we guide you or build it for you. Every app on GrowDaily was built this way.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#idea" className={btnPrimary}>

@@ -4,10 +4,10 @@ import { JsonLd } from "./components/JsonLd";
 import { HomePage } from "./HomePage";
 
 export const metadata: Metadata = pageMetadata({
-  title: "GrowDaily: Simple AI Tools for Businesses & Nonprofits, Built With You",
-  description: "Simple AI tools that save your team hours every week. GrowDaily guides businesses and nonprofits, including churches, from idea to a working tool, or builds it for you. Start with a free 20-minute call.",
+  title: "GrowDaily: AI Governance for Businesses & Nonprofits",
+  description: "Practical AI governance for businesses and nonprofits, including churches: find the AI tools your people use, set clear rules, and train your team. Free AI governance kit and a free 20-minute call.",
   path: "/",
-  image: ogImage("You know the tool you need. Let's build it together.", "Simple AI tools for businesses and nonprofits"),
+  image: ogImage("Use AI with confidence. Stay in control.", "AI governance for businesses and nonprofits"),
 });
 
 export default function Page() {
