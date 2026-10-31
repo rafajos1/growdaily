@@ -212,11 +212,11 @@ export const AUDIENCES: Audience[] = [
   {
     slug: "businesses",
     label: "Businesses",
-    short: "Customer assistants, quote and intake tools, recommenders and internal helpers, for teams of any size.",
-    title: "Custom AI App Development for Businesses · GrowDaily",
-    description: "Custom AI apps for businesses of any size: website assistants that answer customer questions, quote and intake tools, product recommenders and internal helpers. Quoted up front, and you own it.",
-    h1: "Custom AI apps for your business",
-    intro: "Whether you're a team of five or five hundred, the best AI projects start with one job done well: a tool that saves time every week or helps customers decide faster. We build focused AI apps around how your business actually works, and you own them.",
+    short: "Know which AI tools your team uses, set clear rules and train your people, then build the tools that help.",
+    title: "AI Governance for Businesses: AI Policy & Training · GrowDaily",
+    description: "AI governance for businesses of any size: find the AI tools your team uses, rate each one, adopt a tailored AI policy and train your people. Plus custom AI tools when you're ready.",
+    h1: "AI governance for your business",
+    intro: "Your team is already using AI, often on free personal accounts, with customer and company information. We help you see which tools are in use, set clear rules and train your people, so AI saves time without putting your customers or your business at risk. When you're ready to build, we do that too.",
     ideas: [
       { title: "A website assistant that knows your business", text: "Answers customer questions from your own hours, services, policies and pricing, and hands off to you for anything else." },
       { title: "Quote and estimate builder", text: "Customers describe the job in their own words; the app asks follow-ups and drafts an estimate for you to approve." },
@@ -225,6 +225,7 @@ export const AUDIENCES: Audience[] = [
     ],
     demos: ["Pilotwise", "Quotewise", "Roomwise"],
     faqs: [
+      { q: "Where should a business start with AI?", a: "With what your team already uses. A quick AI register, a short policy and an hour of training remove most of the risk and help people use AI confidently. Our free AI governance kit gets you started in about 15 minutes." },
       { q: "Will it make things up about my business?", a: "It answers from information you give it, says when it doesn't know, and hands off to you. We test it with real customer questions before launch." },
       { q: "Do I need to change my website?", a: "No. The app can live on its own page or as a small box on your current site." },
       { q: "How long does it take?", a: "We agree on a small first version and a timeline on the free call, so you can try it with real customers quickly and improve from there." },
@@ -234,11 +235,11 @@ export const AUDIENCES: Audience[] = [
   {
     slug: "nonprofits",
     label: "Nonprofits",
-    short: "Volunteer, intake, referral and reporting helpers that give staff time back.",
-    title: "AI Tools & App Development for Nonprofits · GrowDaily",
-    description: "Custom AI tools for nonprofits: volunteer and FAQ assistants, intake and referral helpers, donor thank-you drafts and report summaries. Private by default, fixed price.",
-    h1: "AI tools for nonprofits",
-    intro: "Nonprofit teams spend hours answering the same questions and writing the same updates. We build careful AI tools that give that time back, while keeping the people you serve private and safe.",
+    short: "Protect donor, client and volunteer information with clear AI rules, team training and a board briefing.",
+    title: "AI Governance for Nonprofits: AI Policy & Training · GrowDaily",
+    description: "AI governance for nonprofits: find the AI tools staff and volunteers use, adopt a clear AI policy, train your team and brief your board. Plus careful AI tools that give time back.",
+    h1: "AI governance for nonprofits",
+    intro: "Your team holds information people trust you with: donor, client and volunteer records. We help you see which AI tools staff and volunteers use, set clear rules, train your team and brief your board, so AI gives time back without putting the people you serve at risk.",
     ideas: [
       { title: "Volunteer and FAQ assistant", text: "Answers \"When is the next shift? What do I bring?\" from your own information, any time of day." },
       { title: "Intake and referral helper", text: "Helps people describe what they need and points them to the right program or partner nearby, like Find a church does." },
@@ -247,6 +248,7 @@ export const AUDIENCES: Audience[] = [
     ],
     demos: ["Find a church", "Moodwise", "Habitwise"],
     faqs: [
+      { q: "Where should a nonprofit start with AI?", a: "With a list of the AI tools staff and volunteers already use, a short AI policy that protects donor and client information, and a one-page briefing for your board. Our free AI governance kit gets you started in about 15 minutes." },
       { q: "How do you keep the people we serve private?", a: "We store only what's needed, keep sensitive notes away from AI, and design access so only your team sees what they should." },
       { q: "Can it work for people who aren't comfortable with technology?", a: "Yes. The apps use plain words, work on any phone, and need no account to start." },
       { q: "Is it affordable on a nonprofit budget?", a: "First versions are deliberately small, with a fixed price after a free call, and running costs designed to stay low." },
@@ -256,11 +258,11 @@ export const AUDIENCES: Audience[] = [
   {
     slug: "churches",
     label: "Churches & ministries",
-    short: "Website assistants, newcomer welcome and care tools that sound like your church.",
-    title: "AI Chatbot & App Development for Churches · GrowDaily",
-    description: "Custom AI tools for churches and ministries: a faith questions assistant for your website, newcomer welcome, small-group and care tools. Built with guardrails, in your church's voice.",
-    h1: "AI tools for your church, built with care",
-    intro: "People with questions about faith often won't call the church office, but they will type a question at midnight. We build simple, careful AI tools that answer in your church's voice, welcome newcomers, and connect people to a real person when it matters.",
+    short: "A clear church AI policy, trained staff and volunteers, and AI tools that speak only from your teaching.",
+    title: "AI Governance & AI Policy for Churches · GrowDaily",
+    description: "AI governance for churches and ministries: find the AI tools staff and volunteers use, adopt a clear church AI policy and train your team. Plus an AI assistant that answers only from your teaching.",
+    h1: "AI governance for your church",
+    intro: "Churches hold some of the most sensitive information there is: pastoral care notes, prayer requests and giving records. We help you see which AI tools staff and volunteers use, adopt a clear church AI policy and train your team, so AI serves your people without putting their trust at risk.",
     ideas: [
       { title: "A church AI assistant", text: "Answers questions only from your sermons, statement of faith and church information, with a source for every answer. Your pastors decide what goes in." },
       { title: "Plan-your-visit helper", text: "Answers \"What should I wear? Is there something for my kids?\" and helps a newcomer plan their first Sunday." },
@@ -276,6 +278,7 @@ export const AUDIENCES: Audience[] = [
     },
     demos: ["Church library assistant", "Roomwise", "Ask"],
     faqs: [
+      { q: "Where should a church start with AI?", a: "With a clear church AI policy: which tools are approved, and a firm line that pastoral care notes, prayer requests and giving records stay out of AI tools unless approved. Our free AI governance kit and church AI policy template help you start." },
       { q: "Will an AI assistant say things that don't match our beliefs?", a: "We write its instructions from your statement of faith and with your pastors, test it with hard questions, and have it point people to your staff on anything pastoral or sensitive." },
       { q: "What happens if someone in crisis uses it?", a: "It stops and shows real help first, like the 988 Suicide & Crisis Lifeline and your church's contact, the same way GrowDaily's Ask does." },
       { q: "Can it be added to our existing website?", a: "Yes. It can live on its own page or as a small box on the site you already have." },

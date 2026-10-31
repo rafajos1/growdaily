@@ -59,9 +59,9 @@ export default function BuildPage() {
         <ServicesSection />
 
         <section aria-labelledby="who-heading" className="pb-20">
-          <p className={eyebrow}>Who we build for</p>
+          <p className={eyebrow}>Who we help</p>
           <h2 id="who-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
-            Teams of any size, one clear job at a time
+            Businesses, nonprofits and churches of any size
           </h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {AUDIENCES.map((a) => (
@@ -69,7 +69,7 @@ export default function BuildPage() {
                 <h3 className="text-lg font-bold">{a.label}</h3>
                 <p className="mt-1.5 text-sm text-muted">{a.short}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber group-hover:underline">
-                  Ideas for {a.label.toLowerCase()} <ArrowRight className="h-4 w-4" aria-hidden />
+                  AI governance for {a.label.toLowerCase()} <ArrowRight className="h-4 w-4" aria-hidden />
                 </span>
               </Link>
             ))}
