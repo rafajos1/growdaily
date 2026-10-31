@@ -18,7 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/faith/church", 0.7),
     page("/faith/questions", 0.7),
     ...STARTERS.map((s) => page(`/faith/questions/${slugFor(s.question)}`, 0.6)),
-    page("/apps/barnabas", 0.8),
     page("/apps/pilotwise", 0.9),
     page("/apps/cafewise", 0.8),
     page("/apps/quotewise", 0.8),
