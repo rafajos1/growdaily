@@ -64,7 +64,7 @@ export default function PrivacyPage() {
 
         <Section title="What stays on your device">
           <p>
-            Spendwise, Habitwise, Planwise, Mealwise, Moodwise, Cafewise, Quotewise, Roomwise and Pilotwise save what you enter (expenses, habits, plans, meals, check-ins, notes, café stock, quotes, invoices, room bookings and AI pilot plans) in your browser&apos;s local storage. So do your settings, like the Faith toggle, and your recent questions in Ask. We can&apos;t see any of it. Clearing your browser&apos;s site data deletes it.
+            Spendwise, Habitwise, Planwise, Mealwise, Moodwise, Cafewise, Quotewise, Roomwise, Pilotwise and Barnabas save what you enter (expenses, habits, plans, meals, check-ins, notes, café stock, quotes, invoices, room bookings, AI pilot plans and your Barnabas conversation) in your browser&apos;s local storage. So do your settings, like the Faith toggle, and your recent questions in Ask. We can&apos;t see any of it. Clearing your browser&apos;s site data deletes it.
           </p>
         </Section>
 
@@ -80,12 +80,13 @@ export default function PrivacyPage() {
             <li>Quotewise AI drafting: the job description you type, what your business does and your hourly rate. Client details aren&apos;t sent.</li>
             <li>Roomwise AI search: your room request, today&apos;s date and the names of your rooms&apos; features. Bookings and contacts aren&apos;t sent.</li>
             <li>Cafewise ordering review: your item and drink names with their numbers (par levels, counts, use, waste and costs).</li>
+            <li>Barnabas: the message you type, what Barnabas remembers about you (first name, what you&apos;re working on, when it&apos;s hardest, short notes and counts of wins and slips) and the last few messages, so it can write a reply or a check-in. Messages that mention suicide or self-harm are not sent; you see crisis resources instead.</li>
             <li>Quote form: the idea you describe, if you ask for an AI sketch.</li>
           </ul>
           <p>
             We don&apos;t save these requests or answers on our servers, apart from quote requests (below). Anthropic processes them under its commercial terms, which say it does not train its models on this data. See {ext("https://www.anthropic.com/legal/privacy", "Anthropic's privacy policy")}.
           </p>
-          <p>Please don&apos;t include sensitive personal details, like health information or other people&apos;s names, in what you send to AI features.</p>
+          <p>Please don&apos;t include sensitive personal details, like health information or other people&apos;s names, in what you send to AI features. Barnabas is the exception by design: it exists so you can be honest about personal struggles, so share only what you&apos;re comfortable with, and you can erase your conversation anytime.</p>
         </Section>
 
         <Section title="Quote requests">
