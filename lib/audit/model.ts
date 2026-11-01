@@ -5,6 +5,8 @@
  * and pure functions, so scores and readiness checks are easy to test and explain.
  */
 
+import type { DataKind, Tool } from "../governwise/logic";
+
 export const FUNCTIONS = [
   { id: "govern", name: "Govern", blurb: "Policies, roles, training and accountability for AI." },
   { id: "map", name: "Map", blurb: "Knowing which AI is in use, for what, with what data and impact." },
@@ -98,6 +100,20 @@ export interface LogEntry {
   text: string;
 }
 
+export type ArtifactType = "register" | "policy" | "briefing" | "action-plan" | "report";
+
+/** An issued, versioned document. The fingerprint is a SHA-256 of the exact text issued. */
+export interface Artifact {
+  id: string;
+  type: ArtifactType;
+  version: number;
+  title: string;
+  issuedAt: string;
+  issuedBy: string;
+  sha256: string;
+  content: string;
+}
+
 export interface Engagement {
   id: string;
   client: string;
@@ -108,6 +124,15 @@ export interface Engagement {
   start: string;
   end: string;
   results: Record<string, ControlResult>;
+  /** The client's AI tools, rated with the same rules as the free Governwise kit. */
+  tools: Tool[];
+  size: string;
+  /** Who owns AI decisions at the client. */
+  aiOwner: string;
+  dataKinds: DataKind[];
+  /** Draft text the auditor has customized, per artifact type. */
+  drafts: Partial<Record<ArtifactType, string>>;
+  artifacts: Artifact[];
   log: LogEntry[];
   created: string;
   updated: string;
@@ -121,7 +146,7 @@ export { uid };
 
 export function newEngagement(client: string, today = new Date().toISOString().slice(0, 10)): Engagement {
   const now = new Date().toISOString();
-  return { id: uid(), client, orgType: "Business", contact: "", auditor: "", scope: "All AI tools and uses across the organization.", start: today, end: "", results: {}, log: [{ at: now, text: "Audit created." }], created: now, updated: now };
+  return { id: uid(), client, orgType: "Business", contact: "", auditor: "", scope: "All AI tools and uses across the organization.", start: today, end: "", results: {}, tools: [], size: "11–50", aiOwner: "", dataKinds: [], drafts: {}, artifacts: [], log: [{ at: now, text: "Audit created." }], created: now, updated: now };
 }
 
 /** Points for a status: met 1, partly 0.5, not met 0. Not assessed counts as 0; not applicable is left out. */
@@ -206,5 +231,10 @@ export function parseImport(text: string): Engagement[] {
   const list = Array.isArray((data as { engagements?: unknown }).engagements) ? (data as { engagements: unknown[] }).engagements : [data];
   const ok = list.filter((x): x is Engagement => !!x && typeof x === "object" && typeof (x as Engagement).id === "string" && typeof (x as Engagement).client === "string" && typeof (x as Engagement).results === "object");
   if (!ok.length) throw new Error("No audits found in that file.");
-  return ok.map((x) => ({ ...newEngagement(x.client), ...x, log: Array.isArray(x.log) ? x.log : [] }));
+  return ok.map(normalize);
+}
+
+/** Fills in fields added since an audit was saved, so older saves and backups keep working. */
+export function normalize(x: Engagement): Engagement {
+  return { ...newEngagement(x.client), ...x, tools: Array.isArray(x.tools) ? x.tools : [], dataKinds: Array.isArray(x.dataKinds) ? x.dataKinds : [], drafts: x.drafts && typeof x.drafts === "object" ? x.drafts : {}, artifacts: Array.isArray(x.artifacts) ? x.artifacts : [], log: Array.isArray(x.log) ? x.log : [] };
 }
