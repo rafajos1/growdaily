@@ -103,7 +103,7 @@ export const GOVERNANCE_GUIDES: Guide[] = [
       { q: "Do we need to follow the NIST framework or ISO 42001?", a: "Usually not formally. They're useful references, and some customers or funders ask about them. Starting with a register, policy, training and an owner covers the basics they describe." },
       { q: "Is AI governance a legal requirement?", a: "It depends on where you operate and what you do. Some laws, like the EU AI Act's AI literacy duty, already apply to certain organizations, and US states are adding their own. Check with a qualified advisor; good governance makes any requirement easier to meet." },
     ],
-    related: ["how-to-create-an-ai-register", "ai-governance-checklist", "ai-policy-template", "what-is-shadow-ai"],
+    related: ["how-to-create-an-ai-register", "ai-governance-checklist", "how-to-check-ai-for-bias", "what-is-shadow-ai"],
     service: "ai-governance",
     tool: KIT,
     published: D,
@@ -198,7 +198,7 @@ export const GOVERNANCE_GUIDES: Guide[] = [
               { title: "4. Is work information only in business accounts?", text: "Good: no customer, donor, member or staff details in free personal accounts. Fix: move that work to a business plan, or remove personal details first." },
               { title: "5. Is training on our data turned off?", text: "Good: confirmed in settings or by contract for every tool. Fix: see [how to stop AI training on your data](/learn/how-to-stop-ai-training-on-your-data)." },
               { title: "6. Does a person review AI work before it goes out?", text: "Good: facts, names and numbers checked before anything reaches customers or the public. Fix: write it into the policy and model it from the top." },
-              { title: "7. Do people make decisions about people?", text: "Good: AI may help prepare, but a person decides on hiring, eligibility, discipline or care, and notes how AI was used. Fix: mark these uses \"approved with limits\"." },
+              { title: "7. Do people make decisions about people?", text: "Good: AI may help prepare, but a person decides on hiring, eligibility, discipline or care, notes how AI was used, and the AI has been [checked for bias](/learn/how-to-check-ai-for-bias). Fix: mark these uses \"approved with limits\" and run a bias test." },
               { title: "8. Do we tell people when they're dealing with AI?", text: "Good: AI chat tools and mostly AI-written public content are labeled, with a way to reach a person. Fix: add a short label and a contact link." },
               { title: "9. Has our team been trained?", text: "Good: everyone who uses AI has had practical training on the policy. Fix: an hour of practice on real work; see [how to train your team on AI](/learn/how-to-train-your-team-on-ai)." },
               { title: "10. Is there a review date?", text: "Good: the register and policy are reviewed at least every six months, with a short update to leaders. Fix: put the date in the policy now." },
@@ -279,5 +279,74 @@ export const GOVERNANCE_GUIDES: Guide[] = [
     tool: KIT,
     published: D,
     updated: D,
+  },
+  {
+    slug: "how-to-check-ai-for-bias",
+    topic: "governance",
+    title: "How to check AI for bias: a practical test any organization can run",
+    seoTitle: "How to Check AI for Bias: A Practical Test You Can Run",
+    description: "A plain-English way to check AI for bias: when you need to, paired tests that swap only names or traits, comparing outcomes across groups, and how to fix and record what you find.",
+    shortAnswer:
+      "Check AI for bias wherever it affects people, like hiring, eligibility, pricing or care. Review the data for who's missing, run paired tests that change only a name or trait, compare outcome rates across groups (a ratio below 0.8 is a warning sign), then fix, re-test and write it all down.",
+    sections: [
+      {
+        heading: "When you need a bias check",
+        blocks: [
+          "Any time AI informs a decision about a person or writes content about people: screening applications, approving requests, setting prices, prioritizing cases, drafting performance notes, or answering the public. If AI only helps with internal drafts that a person rewrites, a lighter review is usually enough.",
+          { callout: "Employment, housing, lending, insurance, education and health are legally sensitive. If AI touches those decisions, involve a qualified advisor before relying on any test." },
+        ],
+      },
+      {
+        heading: "A five-step bias test",
+        blocks: [
+          {
+            steps: [
+              { title: "1. Scope it", text: "Write down the decision AI influences, who is affected, and which groups could be treated unfairly: sex or gender, age, race or ethnicity, disability, language, religion, location, and proxies for them like names, zip codes or gaps in work history." },
+              { title: "2. Check the data", text: "Does the information the AI uses represent the people it affects? Who's missing? Is any input a stand-in for a protected trait that you could remove? Your AI is only as good as your data." },
+              { title: "3. Run paired tests", text: "Build 10 to 30 realistic cases. Make versions that differ in only one thing, like the same résumé with a different name, or the same question in another language. Run each several times and note any difference in outcome, score or tone." },
+              { title: "4. Compare outcomes across groups", text: "When you have enough real decisions, work out each group's selection rate (selected ÷ considered) and divide the lowest by the highest. Below 0.8, the \"four-fifths rule\" used by the US EEOC, is a warning sign to investigate, not proof of discrimination. Small numbers can mislead." },
+              { title: "5. Fix, re-test, record", text: "Remove proxy inputs, change instructions, add a person's review, or stop using AI for that decision. Re-test, then record what you tested, what you found, what you changed, and who signed off. Repeat yearly and whenever the tool or data changes." },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Free bias test record",
+        blocks: [
+          { template: { title: "AI bias test record", text: `AI BIAS TEST RECORD · [Organization] · [date]
+
+AI use and decision: ______
+People affected: ______
+Groups considered: ______
+Data review (who's missing, proxy inputs removed): ______
+
+Paired tests run: [n] · Differences found: ______
+Outcome rates by group: ______ · Impact ratio (lowest ÷ highest): ______
+
+Findings: ______
+Fixes made: ______
+Re-test result: ______
+
+Signed off by: ______ · Next test due: ______` } },
+          "Keep the record with your [AI register](/learn/how-to-create-an-ai-register). It's the evidence that shows you checked, if anyone ever asks.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Do small organizations really need to test AI for bias?", a: "If AI influences decisions about people, yes, in proportion. A dozen paired tests and a written record take an afternoon and show you took care." },
+      { q: "Does the four-fifths rule prove discrimination?", a: "No. It's a screening heuristic from the US EEOC's guidelines: a ratio below 0.8 is a signal to look closer. Small samples, job requirements and other factors all matter, so get advice for anything legally sensitive." },
+      { q: "Can generative AI be biased in what it writes?", a: "Yes. Review a sample of its output for stereotypes, uneven tone or missing perspectives, especially in anything public or about people." },
+      { q: "Are there laws that require bias audits?", a: "Some. New York City, for example, requires bias audits for automated employment decision tools. Rules differ by place and change often, so check with a qualified advisor." },
+    ],
+    related: ["what-is-ai-governance", "ai-governance-checklist", "how-to-create-an-ai-register", "ai-policy-template"],
+    service: "ai-governance",
+    tool: KIT,
+    published: D,
+    updated: D,
+    sources: [
+      { label: "NIST SP 1270: Towards a Standard for Identifying and Managing Bias in AI", url: "https://www.nist.gov/publications/towards-standard-identifying-and-managing-bias-artificial-intelligence" },
+      { label: "US EEOC Uniform Guidelines, 29 CFR 1607.4(D) (four-fifths rule)", url: "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607/section-1607.4" },
+      { label: "NYC: Automated employment decision tools (Local Law 144)", url: "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page" },
+    ],
   },
 ];
