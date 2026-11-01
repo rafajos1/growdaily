@@ -9,7 +9,7 @@ export const AUTHOR = {
     name: "Rafael",
     url: `${SITE_URL}/about`,
     jobTitle: "Founder, GrowDaily",
-    description: "Helps businesses and nonprofits govern and use AI with confidence. Former pastor of 14 years, with 25+ years leading enterprise data, analytics and AI work.",
+    description: "Helps businesses and nonprofits govern and use AI with confidence. Former pastor of 14 years, with extensive experience leading complex data platform projects, including enterprise AI.",
     knowsAbout: ["AI governance", "AI policy", "Artificial intelligence", "Generative AI", "Data platforms", "Analytics", "Agile delivery", "Technology and faith"],
   },
 } as const;

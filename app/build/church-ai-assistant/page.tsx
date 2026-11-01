@@ -181,7 +181,7 @@ export default function Page() {
               Rafael, a former pastor who builds with AI
             </h2>
             <p className="mt-2 max-w-[62ch] text-muted">
-              I served as a pastor for 14 years, so I know what it means to guard what your church teaches and to care for the people asking. I also have 25+ years of experience in data, analytics and AI, and I build every tool on GrowDaily myself.
+              I served as a pastor for 14 years, so I know what it means to guard what your church teaches and to care for the people asking. I also have extensive experience leading complex data platform projects, including enterprise AI, and I build every tool on GrowDaily myself.
             </p>
             <Link href="/about" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
               More about me <ArrowRight className="h-4 w-4" aria-hidden />
