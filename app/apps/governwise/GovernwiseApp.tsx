@@ -24,6 +24,7 @@ import {
 } from "../../../lib/governwise/logic";
 
 const KEY = "growdaily.governwise.v1";
+const SIGNUP_KEY = "growdaily.governwise.signup";
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
 const input = `w-full rounded-lg border border-line bg-sunken px-3 py-2.5 text-base text-fg placeholder:text-dim focus:border-amber/60 focus:outline-none`;
 const label = "text-sm font-semibold text-soft";
@@ -47,6 +48,7 @@ export function GovernwiseApp() {
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [view, setView] = useState<"summary" | "register" | "policy">("summary");
   const [ready, setReady] = useState(false);
+  const [signedUp, setSignedUp] = useState(false);
 
   useEffect(() => {
     try {
@@ -56,6 +58,7 @@ export function GovernwiseApp() {
         setOrg({ ...blankOrg(), ...v.org });
         setTools(v.tools ?? []);
       }
+      setSignedUp(!!localStorage.getItem(SIGNUP_KEY));
     } catch {}
     setReady(true);
   }, []);
@@ -290,7 +293,20 @@ export function GovernwiseApp() {
         </div>
       )}
 
-      {step === 3 && (
+      {step === 3 && !signedUp && (
+        <SignupGate
+          org={org}
+          toolCount={tools.length}
+          onDone={(email) => {
+            try {
+              localStorage.setItem(SIGNUP_KEY, email);
+            } catch {}
+            setSignedUp(true);
+          }}
+        />
+      )}
+
+      {step === 3 && signedUp && (
         <div className="grid gap-6 p-5 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3 print:hidden">
             <div className="flex flex-wrap gap-1 rounded-xl border border-line p-1">
@@ -404,5 +420,74 @@ export function GovernwiseApp() {
         </div>
       )}
     </div>
+  );
+}
+
+function SignupGate({ org, toolCount, onDone }: { org: Org; toolCount: number; onDone: (email: string) => void }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [organization, setOrganization] = useState(org.name);
+  const [website, setWebsite] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/kit/signup", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ name, email, organization, orgType: org.type, size: org.size, website }),
+      });
+      const body = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) throw new Error(body.error || "Something went wrong. Please try again.");
+      onDone(email.trim().toLowerCase());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <form onSubmit={submit} className="grid gap-5 p-5 sm:p-8 lg:grid-cols-[1fr_1.2fr]">
+      <div>
+        <p className="font-mono text-xs uppercase tracking-[0.14em] text-amber">One step to your kit</p>
+        <h3 className="mt-2 text-2xl font-extrabold tracking-tight">Get your free AI governance kit</h3>
+        <p className="mt-2 text-muted">
+          {toolCount ? `Your ${toolCount} AI tool${toolCount === 1 ? " is" : "s are"} rated and ready.` : "Your kit is ready."} Sign up to see your leadership summary, AI register and draft AI policy, and download them.
+        </p>
+        <p className="mt-4 text-sm text-dim">Only your name, email and organization are sent to GrowDaily. Your list of AI tools stays in this browser. We may email you about your kit and AI governance; unsubscribe anytime.</p>
+      </div>
+      <div className="grid content-start gap-3">
+        <div className="grid gap-1.5">
+          <label htmlFor="su-name" className={label}>
+            Your name
+          </label>
+          <input id="su-name" className={input} value={name} maxLength={100} onChange={(e) => setName(e.target.value)} required autoComplete="name" />
+        </div>
+        <div className="grid gap-1.5">
+          <label htmlFor="su-email" className={label}>
+            Work email
+          </label>
+          <input id="su-email" type="email" className={input} value={email} maxLength={200} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
+        </div>
+        <div className="grid gap-1.5">
+          <label htmlFor="su-org" className={label}>
+            Organization
+          </label>
+          <input id="su-org" className={input} value={organization} maxLength={120} onChange={(e) => setOrganization(e.target.value)} required autoComplete="organization" />
+        </div>
+        <input type="text" name="website" value={website} onChange={(e) => setWebsite(e.target.value)} tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
+        {error && (
+          <p role="alert" className="text-sm font-semibold text-up">
+            {error}
+          </p>
+        )}
+        <button type="submit" disabled={busy} className="justify-self-start rounded-[10px] bg-amber px-5 py-3 font-bold text-amber-ink hover:brightness-110 disabled:opacity-60">
+          {busy ? "Signing you up…" : "Get my free kit"}
+        </button>
+      </div>
+    </form>
   );
 }

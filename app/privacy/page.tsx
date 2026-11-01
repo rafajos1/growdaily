@@ -88,6 +88,12 @@ export default function PrivacyPage() {
           <p>Please don&apos;t include sensitive personal details, like health information or other people&apos;s names, in what you send to AI features.</p>
         </Section>
 
+        <Section title="AI governance kit sign-ups">
+          <p>
+            When you sign up for the free AI governance kit, we collect your name, email, organization name, organization type and size. We save it in our database (Supabase) and email it to ourselves (through Resend). We use it to follow up about your kit and to send occasional AI governance tips, and you can ask us to stop or delete it anytime. The AI tools and details you enter in the kit stay in your browser and are not sent to us.
+          </p>
+        </Section>
+
         <Section title="Quote requests">
           <p>
             When you ask for a quote, we collect your name, email, type of organization, what you&apos;re interested in, your idea, and the page you sent it from. We save it in our database (Supabase) and email it to ourselves (through Resend) so we can reply. We use it only to respond and to discuss working together, and we don&apos;t add you to a mailing list.

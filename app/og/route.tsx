@@ -30,7 +30,7 @@ export function GET(req: Request) {
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 26, color: "#8a9bb2" }}>
           <div style={{ width: 64, height: 8, borderRadius: 4, background: color }} />
-          Free apps · No sign-up · growdaily.ai
+          AI governance · growdaily.ai
         </div>
       </div>
     ),

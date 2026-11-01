@@ -2,7 +2,7 @@ import type { Guide } from "./types";
 
 const D = "2026-11-01";
 
-const KIT = { name: "the AI governance kit", href: "/apps/governwise", pitch: "List your AI tools and get an AI register, a ready-to-adopt AI policy and a one-page leadership summary in about 15 minutes. Free, private, no sign-up." };
+const KIT = { name: "the AI governance kit", href: "/apps/governwise", pitch: "List your AI tools and get an AI register, a ready-to-adopt AI policy and a one-page leadership summary in about 15 minutes. Free with a quick sign-up; your tool list stays private." };
 
 const REGISTER = `AI REGISTER · [Organization] · Owner: [name] · Last reviewed: [date]
 
