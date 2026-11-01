@@ -45,7 +45,7 @@ export default function AboutPage() {
         </h1>
         <div className="mt-6 space-y-4 text-lg leading-relaxed text-soft">
           <p>
-            I help businesses and nonprofits, including churches, use AI with confidence: knowing which AI tools their people use, setting clear rules for them, and keeping a person responsible for the results.
+            I help businesses and nonprofits use AI with confidence: knowing which AI tools their people use, setting clear rules for them, and keeping a person responsible for the results.
           </p>
           <p>
             My background is in governance. I have extensive experience leading complex data platform projects, including enterprise AI: modernizing data platforms, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow. I&apos;m also trained in Microsoft Enterprise AI Governance.

@@ -91,7 +91,7 @@ export default function LearnPage() {
         <section className="pb-24">
           <div className="rounded-2xl border border-line bg-panel p-6 sm:p-10">
             <h2 className="text-2xl font-extrabold tracking-tight">Rather have someone walk your team through it?</h2>
-            <p className="mt-2 max-w-[60ch] text-muted">We run hands-on AI training, build simple AI plans, and set up AI agents for businesses, nonprofits and churches.</p>
+            <p className="mt-2 max-w-[60ch] text-muted">We run hands-on AI training, build simple AI plans, and set up AI agents for businesses and nonprofits.</p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link href="/build/ai-training" className={btnPrimary}>
                 AI training <ArrowRight className="h-4 w-4" aria-hidden />

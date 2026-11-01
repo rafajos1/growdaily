@@ -11,7 +11,7 @@ export function GET() {
   const body = [
     "# GrowDaily",
     "",
-    "> GrowDaily helps businesses and nonprofits, including churches, use AI with confidence: practical AI governance (AI registers, AI policies, team training and leadership briefings), a free AI governance kit, plain-English guides, and AI training, consulting and guided builds.",
+    "> GrowDaily helps businesses and nonprofits use AI with confidence: practical AI governance (AI registers, AI policies, team training and leadership briefings), a free AI governance kit, plain-English guides, and AI training, consulting and guided builds.",
     "",
     ...TOPICS.flatMap((t) => [`## Guides: ${t.title}`, "", ...guidesIn(t.id).map((g) => link(g.title, `/learn/${g.slug}`, g.shortAnswer)), ""]),
     "## About",
