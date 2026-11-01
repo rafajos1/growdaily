@@ -48,7 +48,7 @@ export default function AboutPage() {
             I help businesses and nonprofits, including churches, use AI with confidence: knowing which AI tools their people use, setting clear rules for them, and keeping a person responsible for the results.
           </p>
           <p>
-            For more than 25 years I&apos;ve led data, analytics and AI work in large organizations: modernizing data platforms, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow.
+            For more than 25 years I&apos;ve led data, analytics and AI work in large organizations: modernizing data platforms, launching AI products, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow.
           </p>
           <p>
             I started GrowDaily because AI&apos;s risks are growing as fast as its benefits. AI-powered scams, attacks and data breaches are on the rise, and most organizations don&apos;t yet know which AI tools their people use or what information goes into them. I want to help them get the good of AI, safely. My approach is practical and plain-English: a list of what&apos;s really in use, a short policy people will actually follow, training on real work, and a one-page summary for your leaders.
