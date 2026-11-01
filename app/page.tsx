@@ -5,7 +5,7 @@ import { HomePage } from "./HomePage";
 
 export const metadata: Metadata = pageMetadata({
   title: "GrowDaily: AI Governance for Businesses & Nonprofits",
-  description: "Practical AI governance for businesses and nonprofits, including churches: find the AI tools your people use, set clear rules, and train your team. Free AI governance kit and a free 20-minute call.",
+  description: "Practical AI governance for businesses and nonprofits: find the AI tools your people use, set clear rules, and train your team. Free AI governance kit and a free 20-minute call.",
   path: "/",
   image: ogImage("Use AI with confidence. Stay in control.", "AI governance for businesses and nonprofits"),
 });

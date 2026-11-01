@@ -38,7 +38,7 @@ export function HomePage() {
         <section className="pb-20 pt-10 lg:pt-20">
           <p className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-down" aria-hidden />
-            AI governance for businesses and nonprofits, including churches
+            AI governance for businesses and nonprofits
           </p>
           <h1 className="mt-6 max-w-[18ch] text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl lg:text-7xl">
             Use AI with confidence. <span className="text-amber">Stay in control.</span>
