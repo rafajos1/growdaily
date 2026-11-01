@@ -96,7 +96,7 @@ export default function BuildPage() {
               Rafael, founder of GrowDaily
             </h2>
             <p className="mt-2 max-w-[62ch] text-muted">
-              25+ years leading data, analytics and AI work in large organizations, including launching AI products. Now helping businesses, nonprofits and churches of every size use AI with confidence.
+              Extensive experience leading complex data platform projects, including enterprise AI, and training in Microsoft Enterprise AI Governance. Now helping businesses, nonprofits and churches of every size use AI with confidence.
             </p>
             <Link href="/about" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
               More about me <ArrowRight className="h-4 w-4" aria-hidden />

@@ -99,7 +99,7 @@ export function HomePage() {
                 Most leaders I talk to have the same problem: too much busywork, too little time, and no idea which AI tools are worth trusting with their people or their data.
               </p>
               <p>
-                My background is in governance. For 25+ years I&apos;ve led data, analytics and AI work in large organizations, launching AI products and moving new technology out of pilots and into everyday use.
+                My background is in governance. I have extensive experience leading complex data platform projects, including enterprise AI, and moving new technology out of pilots and into everyday use.
               </p>
               <p>
                 So we start with what&apos;s really happening: the AI tools your people already use and the information that goes into them. Then we set simple rules your team will actually follow, so you can launch AI without regret and focus on what matters most.

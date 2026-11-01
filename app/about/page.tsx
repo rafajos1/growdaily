@@ -7,7 +7,7 @@ import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, eyebrow } from "../
 import { JsonLd } from "../components/JsonLd";
 
 const DESCRIPTION =
-  "GrowDaily helps businesses and nonprofits use AI with confidence. It's run by Rafael, who brings 25+ years of data, analytics and AI leadership in large organizations.";
+  "GrowDaily helps businesses and nonprofits use AI with confidence. It's run by Rafael, who has extensive experience leading complex data platform projects, including enterprise AI.";
 
 export const metadata: Metadata = pageMetadata({
   title: "About GrowDaily · Rafael, AI Governance & Data Leader",
@@ -48,7 +48,7 @@ export default function AboutPage() {
             I help businesses and nonprofits, including churches, use AI with confidence: knowing which AI tools their people use, setting clear rules for them, and keeping a person responsible for the results.
           </p>
           <p>
-            My background is in governance. For more than 25 years I&apos;ve led data, analytics and AI work in large organizations: modernizing data platforms, launching AI products, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow. I&apos;m also trained in Microsoft Enterprise AI Governance.
+            My background is in governance. I have extensive experience leading complex data platform projects, including enterprise AI: modernizing data platforms, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow. I&apos;m also trained in Microsoft Enterprise AI Governance.
           </p>
           <p>
             I started GrowDaily because the pressure to launch AI fast is real, and so are the consequences of launching without proper governance: private information exposed, confident wrong answers, and trust that&apos;s hard to win back. AI-powered scams, attacks and data breaches are rising too, and most organizations don&apos;t yet know which AI tools their people use or what information goes into them.

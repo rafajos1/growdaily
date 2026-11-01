@@ -320,7 +320,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     ],
     forWho: ["Owners and executive directors", "Operations and HR leads", "Boards asking \"what's our AI policy?\"", "Churches and ministries with staff and volunteers"],
     faqs: [
-      { q: "Who will we work with?", a: "Rafael, who has 25+ years leading data, analytics and AI work in large organizations, including launching AI products, and is trained in Microsoft Enterprise AI Governance. His background is in governance, and he started GrowDaily because organizations often rush AI out the door with serious consequences. His goal: help you launch AI without regret." },
+      { q: "Who will we work with?", a: "Rafael, who has extensive experience leading complex data platform projects, including enterprise AI, and is trained in Microsoft Enterprise AI Governance. His background is in governance, and he started GrowDaily because organizations often rush AI out the door with serious consequences. His goal: help you launch AI without regret." },
       { q: "We're small. Do we really need AI governance?", a: "If anyone on your team uses AI with work information, yes, but the small version: a list of tools, a short policy and a named person who owns it. Our free Governwise kit gets you started in about 15 minutes." },
       { q: "Will this stop our team from using AI?", a: "No. The goal is the opposite: clear rules let people use AI confidently. Most tools end up approved, some with simple limits." },
       { q: "Is this legal compliance?", a: "It's practical governance, not legal advice. We'll flag areas like health, financial or children's information where you should check with a qualified advisor, and keep your policy easy to update as laws change." },
