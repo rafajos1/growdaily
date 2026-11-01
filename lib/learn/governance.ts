@@ -128,7 +128,7 @@ export const GOVERNANCE_GUIDES: Guide[] = [
       {
         heading: "Why start with a register",
         blocks: [
-          "You can't set sensible rules for tools you don't know about. The register turns \"I think people use ChatGPT\" into a clear picture: which tools, for what, and with what information. Everything else in AI governance, from your policy to your training, builds on it.",
+          "You can't set sensible rules for tools you don't know about. The register turns \"I think people use ChatGPT\" into a clear picture: which tools, for what, and with what information. Everything else in [AI governance](/learn/what-is-ai-governance), from your [AI policy](/learn/ai-policy-template) to your [team training](/learn/how-to-train-your-team-on-ai), builds on it.",
         ],
       },
       {
@@ -139,10 +139,10 @@ export const GOVERNANCE_GUIDES: Guide[] = [
               "The tool, and what it's used for (\"drafting donor letters\", not just \"writing\").",
               "Who uses it: a team, a role, or everyone.",
               "The account type: free or personal, paid by an individual, or a business or team plan.",
-              "The most sensitive information that goes in: public, internal, personal (about real people), or sensitive (health, financial, children's or confidential).",
+              "The most sensitive information that goes in: public, internal, personal (about real people), or sensitive (health, financial, children's or confidential). Not sure what's safe? See [is it safe to put business data in AI?](/learn/is-it-safe-to-put-business-data-in-ai)",
               "Whether it helps make decisions about people, like hiring, eligibility or care.",
               "Whether customers, members or the public see its output directly.",
-              "Whether training on your data is turned off.",
+              "Whether training on your data is turned off. See [how to stop AI training on your data](/learn/how-to-stop-ai-training-on-your-data).",
               "Its rating (approved, approved with limits, or not allowed) and any conditions.",
             ],
           },
@@ -154,17 +154,33 @@ export const GOVERNANCE_GUIDES: Guide[] = [
           {
             steps: [
               { title: "Ask, without blame", text: "Send a two-minute anonymous survey: which AI tools do you use for work, for what, and what do you paste in? Promise no one is in trouble. Honest answers are the whole point; see [how to manage shadow AI](/learn/what-is-shadow-ai)." },
-              { title: "Check the tools you already pay for", text: "Many everyday tools now include AI: meeting note-takers, email, design and writing tools. Add those too." },
+              { title: "Check the tools you already pay for", text: "Many everyday tools now include AI: meeting note-takers, email, design and writing tools. Add those too, along with any [AI agents](/learn/what-is-an-ai-agent) or automations that act on your behalf." },
               { title: "Rate each tool", text: "Personal or sensitive information in a personal account is not allowed. Sensitive information on a business plan needs the right agreement. Anything about people or seen by the public needs a person's review, and AI that affects people should be [checked for bias](/learn/how-to-check-ai-for-bias)." },
               { title: "Name an owner", text: "One person keeps the register, approves new tools and reviews it every six months, alongside your [AI policy](/learn/ai-policy-template)." },
             ],
           },
-          { callout: "Want this done for you? Enter your tools into [the free AI governance kit](/apps/governwise). It rates each one with reasons and exports your register as a spreadsheet." },
+          { callout: "Want it faster? Enter your tools into [the free AI governance kit](/apps/governwise). It rates each one with reasons and exports your register as a spreadsheet." },
         ],
       },
       {
         heading: "Free AI register template",
         blocks: [{ template: { title: "AI register template", text: REGISTER } }],
+      },
+      {
+        heading: "Blank template vs. a register built for you",
+        blocks: [
+          "The template gives you the columns. Filling them in well is the hard part:",
+          {
+            list: [
+              "Finding the tools nobody mentions, like free accounts on personal phones and AI switched on inside software you already use.",
+              "Rating each tool consistently, with a reason you could defend to your board or a customer.",
+              "Turning each rating into clear conditions, like business accounts, training off, a data agreement or a person's review.",
+              "Connecting the register to your [AI policy](/learn/ai-policy-template), so the approved list and the rules always match.",
+              "Keeping it current, with evidence and a review date, and summarizing it for your leaders in a [board briefing](/learn/how-to-brief-your-board-on-ai).",
+            ],
+          },
+          { callout: "Get your register rated automatically, plus a draft AI policy and a one-page leadership summary, in about 15 minutes: [build your AI register free](/apps/governwise). Want it built with your team, verified and kept current? See [AI governance with GrowDaily](/build/ai-governance)." },
+        ],
       },
     ],
     faqs: [
