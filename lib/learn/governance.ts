@@ -63,7 +63,7 @@ export const GOVERNANCE_GUIDES: Guide[] = [
               { title: "Clear ratings", text: "Each tool approved, approved with limits, or not allowed, with the reason written down so anyone can understand it." },
               { title: "A short AI policy", text: "Approved tools, what must never go in, when a person must review AI work, and who to ask. Start from our [AI policy template](/learn/ai-policy-template)." },
               { title: "A trained team", text: "An hour of practice on real work, so people know the rules and use AI well. See [how to train your team on AI](/learn/how-to-train-your-team-on-ai)." },
-              { title: "An owner and a review date", text: "One named person keeps the register and policy current, and leaders see a short update at least twice a year." },
+              { title: "An owner and a review date", text: "One named person keeps the register and policy current, and leaders see a short update at least twice a year. See [how to brief your board on AI](/learn/how-to-brief-your-board-on-ai)." },
             ],
           },
         ],
@@ -90,7 +90,7 @@ export const GOVERNANCE_GUIDES: Guide[] = [
             steps: [
               { title: "Ask what people use", text: "A quick, no-blame survey: which AI tools, for what, and with what information. See [what shadow AI is and how to manage it](/learn/what-is-shadow-ai)." },
               { title: "Build your kit", text: "Enter what you learn into [the free AI governance kit](/apps/governwise). It rates each tool and drafts your register, policy and leadership summary." },
-              { title: "Fix the riskiest use first", text: "Usually that's personal or sensitive information in free personal accounts. Move it to a business plan or remove the personal details." },
+              { title: "Fix the riskiest use first", text: "Usually that's personal or sensitive information in free personal accounts. Move it to a business plan or remove the personal details. Where AI affects people, [check it for bias](/learn/how-to-check-ai-for-bias), and use the [AI governance checklist](/learn/ai-governance-checklist) to see what else needs attention." },
               { title: "Adopt the policy and train", text: "Adjust the policy with your leaders, then spend an hour walking your team through it with real examples." },
             ],
           },
@@ -153,10 +153,10 @@ export const GOVERNANCE_GUIDES: Guide[] = [
         blocks: [
           {
             steps: [
-              { title: "Ask, without blame", text: "Send a two-minute anonymous survey: which AI tools do you use for work, for what, and what do you paste in? Promise no one is in trouble. Honest answers are the whole point." },
+              { title: "Ask, without blame", text: "Send a two-minute anonymous survey: which AI tools do you use for work, for what, and what do you paste in? Promise no one is in trouble. Honest answers are the whole point; see [how to manage shadow AI](/learn/what-is-shadow-ai)." },
               { title: "Check the tools you already pay for", text: "Many everyday tools now include AI: meeting note-takers, email, design and writing tools. Add those too." },
-              { title: "Rate each tool", text: "Personal or sensitive information in a personal account is not allowed. Sensitive information on a business plan needs the right agreement. Anything about people or seen by the public needs a person's review." },
-              { title: "Name an owner", text: "One person keeps the register, approves new tools and reviews it every six months." },
+              { title: "Rate each tool", text: "Personal or sensitive information in a personal account is not allowed. Sensitive information on a business plan needs the right agreement. Anything about people or seen by the public needs a person's review, and AI that affects people should be [checked for bias](/learn/how-to-check-ai-for-bias)." },
+              { title: "Name an owner", text: "One person keeps the register, approves new tools and reviews it every six months, alongside your [AI policy](/learn/ai-policy-template)." },
             ],
           },
           { callout: "Want this done for you? Enter your tools into [the free AI governance kit](/apps/governwise). It rates each one with reasons and exports your register as a spreadsheet." },
@@ -201,7 +201,7 @@ export const GOVERNANCE_GUIDES: Guide[] = [
               { title: "7. Do people make decisions about people?", text: "Good: AI may help prepare, but a person decides on hiring, eligibility, discipline or care, notes how AI was used, and the AI has been [checked for bias](/learn/how-to-check-ai-for-bias). Fix: mark these uses \"approved with limits\" and run a bias test." },
               { title: "8. Do we tell people when they're dealing with AI?", text: "Good: AI chat tools and mostly AI-written public content are labeled, with a way to reach a person. Fix: add a short label and a contact link." },
               { title: "9. Has our team been trained?", text: "Good: everyone who uses AI has had practical training on the policy. Fix: an hour of practice on real work; see [how to train your team on AI](/learn/how-to-train-your-team-on-ai)." },
-              { title: "10. Is there a review date?", text: "Good: the register and policy are reviewed at least every six months, with a short update to leaders. Fix: put the date in the policy now." },
+              { title: "10. Is there a review date?", text: "Good: the register and policy are reviewed at least every six months, with a short update to leaders. Fix: put the date in the policy now, and use a one-page [board briefing](/learn/how-to-brief-your-board-on-ai)." },
             ],
           },
         ],
@@ -258,7 +258,7 @@ export const GOVERNANCE_GUIDES: Guide[] = [
         blocks: [
           {
             list: [
-              "Lead with the facts from your [AI register](/learn/how-to-create-an-ai-register), not with hype or fear.",
+              "Lead with the facts from your [AI register](/learn/how-to-create-an-ai-register) and your answers to the [AI governance checklist](/learn/ai-governance-checklist), not with hype or fear.",
               "Name the riskiest use you found and what you did about it. It builds trust.",
               "Show one real example of time saved, so the board sees the benefit as well as the risk.",
               "Ask for a specific decision, such as approving the policy or a budget for business accounts.",
@@ -292,7 +292,7 @@ export const GOVERNANCE_GUIDES: Guide[] = [
       {
         heading: "When you need a bias check",
         blocks: [
-          "Any time AI informs a decision about a person or writes content about people: screening applications, approving requests, setting prices, prioritizing cases, drafting performance notes, or answering the public. If AI only helps with internal drafts that a person rewrites, a lighter review is usually enough.",
+          "Any time AI informs a decision about a person or writes content about people: screening applications, approving requests, setting prices, prioritizing cases, drafting performance notes, or answering the public. If AI only helps with internal drafts that a person rewrites, a lighter review is usually enough. Bias testing is one part of [AI governance](/learn/what-is-ai-governance).",
           { callout: "Employment, housing, lending, insurance, education and health are legally sensitive. If AI touches those decisions, involve a qualified advisor before relying on any test." },
         ],
       },

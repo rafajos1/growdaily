@@ -152,11 +152,11 @@ export const WORKPLACE_GUIDES: Guide[] = [
         blocks: [
           {
             steps: [
-              { title: "Ask what people already use", text: "A quick, no-blame survey. You'll learn where AI already helps and where data might be at risk." },
-              { title: "Pick approved tools", text: "Prefer business or team plans, which usually offer better privacy terms than free accounts." },
+              { title: "Ask what people already use", text: "A quick, no-blame survey. You'll learn where AI already helps and where data might be at risk, including [shadow AI](/learn/what-is-shadow-ai). List what you find in an [AI register](/learn/how-to-create-an-ai-register)." },
+              { title: "Pick approved tools", text: "Prefer business or team plans, which usually offer better privacy terms than free accounts, and [turn off AI training on your data](/learn/how-to-stop-ai-training-on-your-data)." },
               { title: "Fill in the template together", text: "Involve a few staff members so the rules match real work." },
-              { title: "Train for an hour", text: "Walk through the policy with real examples of good and bad use." },
-              { title: "Review every six months", text: "AI tools change quickly; your policy should too." },
+              { title: "Train for an hour", text: "Walk through the policy with real examples of good and bad use. See [how to train your team on AI](/learn/how-to-train-your-team-on-ai)." },
+              { title: "Review every six months", text: "AI tools change quickly; your policy should too. The [AI governance checklist](/learn/ai-governance-checklist) makes the review quick, and a one-page [board briefing](/learn/how-to-brief-your-board-on-ai) keeps leaders informed." },
             ],
           },
         ],

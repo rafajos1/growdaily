@@ -73,7 +73,7 @@ export const SECURITY_GUIDES: Guide[] = [
           {
             list: [
               "Data leaves your control: customer, donor, member or employee information ends up in accounts and systems you don't manage.",
-              "Training and retention: depending on the plan and settings, what's typed into personal AI accounts may be stored or used to improve the service.",
+              "Training and retention: depending on the plan and settings, what's typed into personal AI accounts may be stored or used to improve the service. See [how to stop AI training on your data](/learn/how-to-stop-ai-training-on-your-data).",
               "No visibility: you can't support, secure or learn from tools you don't know are being used.",
               "Quality: AI output that goes out unchecked can contain mistakes in your organization's name.",
             ],
@@ -91,13 +91,20 @@ export const SECURITY_GUIDES: Guide[] = [
         blocks: [
           {
             steps: [
-              { title: "Ask, without blame", text: "Run a quick, anonymous survey: which AI tools do people use, and for what? Make it clear no one is in trouble. You'll learn what's genuinely helpful." },
-              { title: "Approve good tools", text: "Give people a business or team plan of a major AI assistant. Business plans generally come with stronger data commitments and admin controls than personal accounts." },
+              { title: "Ask, without blame", text: "Run a quick, anonymous survey: which AI tools do people use, and for what? Make it clear no one is in trouble. You'll learn what's genuinely helpful, and it becomes the start of your [AI register](/learn/how-to-create-an-ai-register)." },
+              { title: "Approve good tools", text: "Give people a business or team plan of a major AI assistant. Business plans generally come with stronger data commitments and admin controls than personal accounts. Not sure what's safe to share? See [is it safe to put business data in AI?](/learn/is-it-safe-to-put-business-data-in-ai)" },
               { title: "Set simple rules", text: "Write a one-page AI policy: what's approved, what data never goes in, and what needs a human check. Our [AI policy template](/learn/ai-policy-template) is a starting point, or build one with [the free AI governance kit](/apps/governwise)." },
               { title: "Train on real work", text: "An hour of hands-on practice with the approved tool beats any memo. See [how to train your team on AI](/learn/how-to-train-your-team-on-ai)." },
-              { title: "Make asking easy", text: "Name a go-to person for AI questions and new tool requests, and review the approved list every few months." },
+              { title: "Make asking easy", text: "Name a go-to person for AI questions and new tool requests, and review the approved list every few months. The [AI governance checklist](/learn/ai-governance-checklist) helps you check you've covered the basics." },
             ],
           },
+        ],
+      },
+      {
+        heading: "From shadow AI to an AI register",
+        blocks: [
+          "Finding shadow AI is only the first step. To bring it into the open for good, turn what you learn into a simple [AI register](/learn/how-to-create-an-ai-register): each tool, what it's used for, what information goes in, and whether it's approved, approved with limits or not allowed, with the reason. That register is the heart of [AI governance](/learn/what-is-ai-governance).",
+          { callout: "Do it in about 15 minutes: list the tools you found in [the free AI governance kit](/apps/governwise) and get each one rated, plus a draft AI policy and a one-page summary for your leaders. Want the whole thing done with you, including staff training and a board briefing? See [AI governance with GrowDaily](/build/ai-governance)." },
         ],
       },
       {
