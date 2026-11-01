@@ -153,7 +153,7 @@ export const WORKPLACE_GUIDES: Guide[] = [
     ],
     related: ["what-is-ai-governance", "how-to-create-an-ai-register", "what-is-shadow-ai", "how-to-train-your-team-on-ai"],
     service: "ai-governance",
-    tool: { name: "the AI governance kit", href: "/apps/governwise", pitch: "List your AI tools and get an AI register, a ready-to-adopt AI policy and a one-page leadership summary in about 15 minutes. Free, private, no sign-up." },
+    tool: { name: "the AI governance kit", href: "/apps/governwise", pitch: "List your AI tools and get an AI register, a ready-to-adopt AI policy and a one-page leadership summary in about 15 minutes. Free with a quick sign-up; your tool list stays private." },
     published: D,
     updated: D,
     sources: [

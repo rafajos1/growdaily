@@ -26,7 +26,8 @@ const OUTPUTS = [
 const FAQS = [
   { q: "What is AI governance?", a: "The simple rules for how your organization uses AI: which tools are allowed, what information can go into them, who reviews the results, and who is responsible. For most organizations it starts with a list of tools and a short policy." },
   { q: "How are tools rated?", a: "By fixed, readable rules, not AI. For example, personal details in a free personal account are not allowed; sensitive information on a business plan is allowed only with the right agreement; and anything that informs decisions about people always needs a person to decide. You can see the reasons for every rating." },
-  { q: "Is my information private?", a: "Yes. Everything stays in your browser on this device. Nothing you enter is sent to us or to an AI." },
+  { q: "Is my information private?", a: "Your organization details and list of AI tools stay in your browser on this device and are never sent to us or to an AI. When you sign up for your kit, only your name, email and organization name are sent to GrowDaily." },
+  { q: "Why do I need to sign up?", a: "So we can follow up with help if you want it, and occasionally share practical AI governance tips. It takes a few seconds, and you can unsubscribe anytime." },
   { q: "Is this legal advice?", a: "No. It's practical guidance to get you organized. Laws differ by industry and location, so check anything regulated, like health or children's information, with a qualified advisor." },
   { q: "Can you help us put it in place?", a: "Yes. Our AI governance service reviews your tools with you, tailors the policy, trains your team and briefs your leadership. The first 20-minute call is free." },
 ];
@@ -46,7 +47,7 @@ export default function Page() {
             Know which AI tools your team uses, and <span className="text-amber">set the rules</span>.
           </h1>
           <p className="mt-6 max-w-[60ch] text-lg text-soft">
-            Your people are already using AI, often on free personal accounts. In about 15 minutes, list your tools and get an AI register, a ready-to-adopt AI policy and a one-page summary for your leaders. Free, private, no sign-up.
+            Your people are already using AI, often on free personal accounts. In about 15 minutes, list your tools and get an AI register, a ready-to-adopt AI policy and a one-page summary for your leaders. Free with a quick sign-up, and your tool list stays private.
           </p>
         </section>
 

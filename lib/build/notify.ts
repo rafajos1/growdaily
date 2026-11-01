@@ -10,9 +10,11 @@ const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 const oneLine = (t: string, max: number) => t.replace(/[\r\n]+/g, " ").slice(0, max);
 
 export function buildAlertEmail(input: IdeaInput, sketch: IdeaSketch | null, page: string) {
-  const subject = oneLine(`New quote request: ${input.interest}, ${input.orgType} (${input.name})`, 150);
+  const kit = page === "/apps/governwise";
+  const did = kit ? "signed up for the free AI governance kit" : "asked for a quote";
+  const subject = oneLine(kit ? `New AI governance kit sign-up: ${input.orgType} (${input.name})` : `New quote request: ${input.interest}, ${input.orgType} (${input.name})`, 150);
   const lines = [
-    `${input.name} <${input.email}> asked for a quote.`,
+    `${input.name} <${input.email}> ${did}.`,
     "",
     `Looking for: ${input.interest}`,
     `For a: ${input.orgType}`,
@@ -29,7 +31,7 @@ export function buildAlertEmail(input: IdeaInput, sketch: IdeaSketch | null, pag
 
   const row = (k: string, v: string) => `<tr><td style="padding:4px 12px 4px 0;color:#667085;white-space:nowrap">${k}</td><td style="padding:4px 0">${esc(v)}</td></tr>`;
   const html = `<div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.5;color:#1d2433;max-width:560px">
-<p style="margin:0 0 12px"><strong>${esc(input.name)}</strong> (<a href="mailto:${esc(input.email)}">${esc(input.email)}</a>) asked for a quote.</p>
+<p style="margin:0 0 12px"><strong>${esc(input.name)}</strong> (<a href="mailto:${esc(input.email)}">${esc(input.email)}</a>) ${did}.</p>
 <table style="border-collapse:collapse;margin:0 0 16px">${row("Looking for", input.interest)}${row("For a", input.orgType)}${row("From page", `growdaily.ai${page || "/build"}`)}</table>
 <p style="margin:0 0 4px;color:#667085">What they wrote</p>
 <blockquote style="margin:0 0 16px;padding:12px 16px;background:#f4f6f8;border-radius:8px;white-space:pre-wrap">${esc(input.idea)}</blockquote>
