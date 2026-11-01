@@ -19,7 +19,7 @@ export default function Page() {
           <p className={eyebrow}>Governwise Audit · private workspace</p>
           <h1 className="mt-3 text-4xl font-extrabold tracking-[-0.03em]">AI governance audits</h1>
           <p className="mt-3 max-w-[70ch] text-soft">
-            One audit per client. Work through 24 controls mapped to the NIST AI Risk Management Framework, record evidence for each, track findings to an owner and due date, and print the report. Everything stays in this browser; back up after each session.
+            One audit per client. Work through 29 controls mapped to the NIST AI Risk Management Framework, record evidence for each, track findings to an owner and due date, and print the report. Everything stays in this browser; back up after each session.
           </p>
         </section>
         <AuditApp />

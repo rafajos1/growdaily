@@ -300,6 +300,8 @@ export interface ServicePage {
   intro: string;
   sections: { title: string; text: string }[];
   forWho: string[];
+  /** What makes this service different, shown after what's included. */
+  different?: { title: string; text: string }[];
   faqs: { q: string; a: string }[];
 }
 
@@ -316,7 +318,17 @@ export const SERVICE_PAGES: ServicePage[] = [
       { title: "Find every AI tool in use", text: "Short conversations and a quick survey to build your AI register, including the free tools on personal phones that nobody mentions." },
       { title: "Rate each one, with reasons", text: "Approved, approved with limits, or not allowed, based on the account type, the information that goes in and who sees the results." },
       { title: "A policy people will follow", text: "A short, tailored AI policy: approved tools, what may and may not go in, human review and who to ask. Then a 45-minute session so your team actually knows it." },
+      { title: "Harden what's riskiest", text: "Lock down accounts and data, fence in AI agents (least access, a person approves actions, an off-switch), test for prompt injection, and add a call-back rule against voice-clone fraud." },
+      { title: "Test for bias", text: "Where AI affects people, like hiring, eligibility or care, we run paired tests and compare outcomes across groups, then fix and record what we find." },
       { title: "Brief your leadership", text: "A one-page summary of where you stand, the biggest risks and the next steps, for your leaders or board, plus a review date so it stays current." },
+    ],
+    different: [
+      { title: "Evidence, not opinions", text: "Nothing is marked as met without evidence, and every document is versioned and fingerprinted, so your board, customers or auditors can verify it." },
+      { title: "From someone who builds AI", text: "Extensive experience leading complex data platform projects, including enterprise AI, so we harden how AI is really used, not a theory of it." },
+      { title: "Your data first", text: "Your AI is only as good as your data, so we check what goes in before we judge what comes out." },
+      { title: "Sized for you", text: "Recognized frameworks like the NIST AI Risk Management Framework, translated into plain English and one-page policies people actually follow." },
+      { title: "Enable, don't ban", text: "The goal is to launch AI without regret: clear rules that let your team move faster, not slower." },
+      { title: "Fast and consistent", text: "A proven method and AI-assisted workflow mean quick turnaround and fixed, up-front pricing." },
     ],
     forWho: ["Owners and executive directors", "Operations and HR leads", "Boards asking \"what's our AI policy?\"", "Churches and ministries with staff and volunteers"],
     faqs: [

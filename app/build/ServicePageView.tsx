@@ -71,6 +71,23 @@ export function ServicePageView({ page: p }: { page: ServicePage }) {
           </p>
         </section>
 
+        {p.different && (
+          <section aria-labelledby="diff-heading" className="pb-20">
+            <p className={eyebrow}>Why GrowDaily</p>
+            <h2 id="diff-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
+              What makes our approach different
+            </h2>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {p.different.map((x) => (
+                <div key={x.title} className="rounded-2xl border border-line bg-panel p-6">
+                  <h3 className="text-lg font-bold">{x.title}</h3>
+                  <p className="mt-1.5 text-sm text-muted">{x.text}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         <section id="work" aria-labelledby="work-heading" className="scroll-mt-8 pb-20">
           <p className={eyebrow}>Our work</p>
           <h2 id="work-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
