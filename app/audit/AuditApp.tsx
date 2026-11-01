@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AlertTriangle, CheckCircle2, ChevronDown, Download, FileUp, Plus, Printer, ShieldCheck, Trash2, X } from "lucide-react";
+import { AlertTriangle, CheckCircle2, ChevronDown, Download, FileText, FileUp, Fingerprint, Plus, Printer, RotateCcw, ShieldCheck, Trash2, X } from "lucide-react";
+import { ARTIFACTS, generate, issue, issuedFile, registerCsvFor, sha256 } from "../../lib/audit/artifacts";
+import { COMMON_TOOLS, DATA_KINDS, newTool, PLANS, rateTool, SENSITIVITY, SIZES, TIER_LABEL, type Answer, type Tier, type Tool } from "../../lib/governwise/logic";
 import {
   CONTROLS,
   controlsCsv,
@@ -10,6 +12,7 @@ import {
   FUNCTIONS,
   maturity,
   newEngagement,
+  normalize,
   parseImport,
   readinessIssues,
   resultFor,
@@ -18,6 +21,7 @@ import {
   uid,
   type Control,
   type ControlResult,
+  type ArtifactType,
   type Engagement,
   type Finding,
   type Severity,
@@ -46,7 +50,7 @@ function download(name: string, text: string, type: string) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-type Tab = "overview" | "checklist" | "findings" | "report" | "log";
+type Tab = "overview" | "register" | "checklist" | "findings" | "documents" | "report" | "log";
 
 export function AuditApp() {
   const [list, setList] = useState<Engagement[]>([]);
@@ -62,7 +66,7 @@ export function AuditApp() {
       const raw = localStorage.getItem(KEY);
       if (raw) {
         const v = JSON.parse(raw) as { engagements: Engagement[]; active?: string };
-        setList(v.engagements ?? []);
+        setList((v.engagements ?? []).map(normalize));
         setActiveId(v.active ?? v.engagements?.[0]?.id ?? null);
       }
     } catch {}
@@ -167,15 +171,17 @@ export function AuditApp() {
             <div className="flex flex-wrap items-center justify-between gap-3 print:hidden">
               <h2 className="text-2xl font-extrabold tracking-tight">{active.client}</h2>
               <div className="flex flex-wrap gap-1 rounded-xl border border-line p-1">
-                {(["overview", "checklist", "findings", "report", "log"] as Tab[]).map((t) => (
+                {(["overview", "register", "checklist", "findings", "documents", "report", "log"] as Tab[]).map((t) => (
                   <button key={t} type="button" className={tabCls(tab === t)} onClick={() => setTab(t)}>
-                    {t === "overview" ? "Overview" : t === "checklist" ? "Checklist" : t === "findings" ? `Findings (${findings(active).length})` : t === "report" ? "Report" : "Change log"}
+                    {t === "overview" ? "Overview" : t === "register" ? `AI register (${active.tools.length})` : t === "checklist" ? "Checklist" : t === "findings" ? `Findings (${findings(active).length})` : t === "documents" ? `Documents (${active.artifacts.length})` : t === "report" ? "Report" : "Change log"}
                   </button>
                 ))}
               </div>
             </div>
             {tab === "overview" && <Overview e={active} update={update} onDelete={() => { if (window.confirm(`Delete the audit for ${active.client}? This can't be undone unless you have a backup.`)) { setList((ls) => ls.filter((x) => x.id !== active.id)); setActiveId(null); } }} />}
+            {tab === "register" && <Register e={active} update={update} />}
             {tab === "checklist" && <Checklist e={active} update={update} />}
+            {tab === "documents" && <Documents e={active} update={update} />}
             {tab === "findings" && <Findings e={active} update={update} />}
             {tab === "report" && <Report e={active} />}
             {tab === "log" && (
@@ -268,6 +274,28 @@ function Overview({ e, update, onDelete }: { e: Engagement; update: Update; onDe
         </div>
         <Field id="ov-contact" text="Client contact" value={e.contact} onChange={set("contact")} placeholder="Name, role" />
         <Field id="ov-auditor" text="Auditor" value={e.auditor} onChange={set("auditor")} placeholder="Your name" />
+        <Field id="ov-owner" text="Client's AI owner" value={e.aiOwner} onChange={set("aiOwner")} placeholder="Name and role at the client" />
+        <div className="grid gap-1">
+          <label htmlFor="ov-size" className={label}>
+            People (staff and regular volunteers)
+          </label>
+          <select id="ov-size" className={input} value={e.size} onChange={(x) => set("size")(x.target.value)}>
+            {SIZES.map((t) => (
+              <option key={t}>{t}</option>
+            ))}
+          </select>
+        </div>
+        <fieldset className="grid gap-1.5 sm:col-span-2">
+          <legend className={label}>Information the client handles</legend>
+          <div className="mt-1 grid gap-1.5 sm:grid-cols-2">
+            {DATA_KINDS.map((d) => (
+              <label key={d.id} className="flex items-start gap-2 text-sm text-soft">
+                <input type="checkbox" className="mt-0.5 accent-[#f2b54b]" checked={e.dataKinds.includes(d.id)} onChange={() => update((x) => ({ ...x, dataKinds: x.dataKinds.includes(d.id) ? x.dataKinds.filter((k) => k !== d.id) : [...x.dataKinds, d.id] }))} />
+                {d.label}
+              </label>
+            ))}
+          </div>
+        </fieldset>
         <Field id="ov-start" text="Start date" type="date" value={e.start} onChange={set("start")} />
         <Field id="ov-end" text="Report date" type="date" value={e.end} onChange={set("end")} />
         <div className="grid gap-1 sm:col-span-2">
@@ -605,6 +633,179 @@ function Report({ e }: { e: Engagement }) {
           Prepared with Governwise Audit by GrowDaily. This report reflects the evidence reviewed during the audit period. It is practical governance guidance, not legal advice; controls are mapped to the NIST AI Risk Management Framework (AI RMF 1.0) for reference.
         </p>
       </article>
+    </div>
+  );
+}
+
+const TIER_STYLE: Record<Tier, string> = { approved: "border-down/60 bg-down/10 text-down", limited: "border-amber/60 bg-amber/10 text-amber", "not-allowed": "border-up/60 bg-up/10 text-up" };
+
+function Register({ e, update }: { e: Engagement; update: Update }) {
+  const patch = (id: string, p: Partial<Tool>) => update((x) => ({ ...x, tools: x.tools.map((t) => (t.id === id ? { ...t, ...p } : t)) }));
+  const add = (name: string) => update((x) => ({ ...x, tools: [...x.tools, newTool(name)] }), `AI register: added ${name || "a tool"}.`);
+  const unused = COMMON_TOOLS.filter((n) => !e.tools.some((t) => t.name === n));
+  return (
+    <div className="grid gap-4">
+      <p className="text-sm text-muted">List every AI tool the client&apos;s people use, including free tools on personal phones and AI built into existing software. Ratings follow the same fixed rules as the free Governwise kit and feed the AI register and AI policy documents.</p>
+      <div className="flex flex-wrap gap-2">
+        {unused.map((n) => (
+          <button key={n} type="button" onClick={() => add(n)} className={`inline-flex items-center gap-1 rounded-full border border-line bg-raised px-3 py-1.5 text-sm text-soft hover:border-amber/50 ${focus}`}>
+            <Plus className="h-3.5 w-3.5" aria-hidden /> {n}
+          </button>
+        ))}
+        <button type="button" onClick={() => add("")} className={`inline-flex items-center gap-1 rounded-full border border-amber/50 px-3 py-1.5 text-sm font-semibold text-amber ${focus}`}>
+          <Plus className="h-3.5 w-3.5" aria-hidden /> Another tool
+        </button>
+      </div>
+      {e.tools.map((t) => {
+        const r = rateTool(t);
+        return (
+          <div key={t.id} className="grid gap-3 rounded-xl border border-line bg-panel p-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className={`rounded-full border px-2.5 py-0.5 text-xs font-bold ${TIER_STYLE[r.tier]}`}>{TIER_LABEL[r.tier]}</span>
+              <button type="button" onClick={() => update((x) => ({ ...x, tools: x.tools.filter((y) => y.id !== t.id) }), `AI register: removed ${t.name || "a tool"}.`)} className={`inline-flex items-center gap-1 text-sm text-muted hover:text-up ${focus}`}>
+                <Trash2 className="h-4 w-4" aria-hidden /> Remove
+              </button>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <Field id={`tn-${t.id}`} text="Tool" value={t.name} onChange={(v) => patch(t.id, { name: v })} />
+              <Field id={`tu-${t.id}`} text="Used for" value={t.use} onChange={(v) => patch(t.id, { use: v })} placeholder="e.g. donor letters" />
+              <div className="grid gap-1">
+                <label htmlFor={`tp-${t.id}`} className={label}>
+                  Account
+                </label>
+                <select id={`tp-${t.id}`} className={input} value={t.plan} onChange={(x) => patch(t.id, { plan: x.target.value as Tool["plan"] })}>
+                  {PLANS.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="grid gap-1">
+                <label htmlFor={`td-${t.id}`} className={label}>
+                  Most sensitive information
+                </label>
+                <select id={`td-${t.id}`} className={input} value={t.data} onChange={(x) => patch(t.id, { data: x.target.value as Tool["data"] })}>
+                  {SENSITIVITY.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="grid gap-1">
+                <label htmlFor={`tt-${t.id}`} className={label}>
+                  Training on data off?
+                </label>
+                <select id={`tt-${t.id}`} className={input} value={t.trainingOff} onChange={(x) => patch(t.id, { trainingOff: x.target.value as Answer })}>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                  <option value="unsure">Not sure</option>
+                </select>
+              </div>
+              <div className="grid content-end gap-1.5 text-sm text-soft">
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" className="accent-[#f2b54b]" checked={t.aboutPeople} onChange={(x) => patch(t.id, { aboutPeople: x.target.checked })} /> Decisions about people
+                </label>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" className="accent-[#f2b54b]" checked={t.publicFacing} onChange={(x) => patch(t.id, { publicFacing: x.target.checked })} /> Public sees its output
+                </label>
+              </div>
+            </div>
+            <p className="text-sm text-muted">{r.reasons.join(" ")}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function Documents({ e, update }: { e: Engagement; update: Update }) {
+  const [type, setType] = useState<ArtifactType>("register");
+  const [verified, setVerified] = useState<Record<string, boolean>>({});
+  const [busy, setBusy] = useState(false);
+  const generated = generate(e, type);
+  const text = e.drafts[type] ?? generated;
+  const edited = e.drafts[type] !== undefined && e.drafts[type] !== generated;
+  const meta = ARTIFACTS.find((a) => a.type === type)!;
+  const versions = e.artifacts.filter((a) => a.type === type).sort((a, b) => b.version - a.version);
+  const doIssue = async () => {
+    if (!e.auditor.trim()) return window.alert("Add your name as the auditor on the Overview tab first, so the document records who issued it.");
+    setBusy(true);
+    const a = await issue(e, type, text, e.auditor.trim());
+    update((x) => ({ ...x, artifacts: [...x.artifacts, a] }), `Issued ${a.title} (SHA-256 ${a.sha256.slice(0, 12)}…).`);
+    setBusy(false);
+  };
+  const verify = async (id: string, content: string, hash: string) => {
+    const ok = (await sha256(content)) === hash;
+    setVerified((v) => ({ ...v, [id]: ok }));
+  };
+  return (
+    <div className="grid gap-5 lg:grid-cols-[240px_minmax(0,1fr)]">
+      <nav className="grid content-start gap-1.5" aria-label="Documents">
+        {ARTIFACTS.map((a) => {
+          const n = e.artifacts.filter((x) => x.type === a.type).length;
+          return (
+            <button key={a.type} type="button" onClick={() => setType(a.type)} className={`rounded-xl border p-3 text-left ${focus} ${type === a.type ? "border-amber/60 bg-amber/[0.06]" : "border-line bg-panel hover:border-[#35507a]"}`}>
+              <span className="flex items-center gap-2 font-semibold">
+                <FileText className="h-4 w-4 text-amber" aria-hidden /> {a.name}
+              </span>
+              <span className="text-xs text-muted">{n ? `${n} issued · latest v${Math.max(...e.artifacts.filter((x) => x.type === a.type).map((x) => x.version))}` : "Not issued yet"}</span>
+            </button>
+          );
+        })}
+      </nav>
+      <div className="grid min-w-0 gap-4">
+        <div>
+          <h3 className="text-xl font-extrabold">{meta.name}</h3>
+          <p className="text-sm text-muted">{meta.blurb} Built from this audit; edit freely, then issue a numbered version. Issued versions are locked and fingerprinted.</p>
+        </div>
+        <textarea aria-label={`${meta.name} text`} className={`${input} min-h-[420px] font-mono text-[13px] leading-relaxed`} value={text} onChange={(x) => update((y) => ({ ...y, drafts: { ...y.drafts, [type]: x.target.value } }))} />
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={() => void doIssue()} disabled={busy} className="inline-flex items-center gap-1.5 rounded-lg bg-amber px-4 py-2 text-sm font-bold text-amber-ink hover:brightness-110 disabled:opacity-60">
+            <Fingerprint className="h-4 w-4" aria-hidden /> Issue v{versions.length ? versions[0].version + 1 : 1}
+          </button>
+          <button type="button" className={btn} onClick={() => download(`${slug(e.client)}-${type}-draft.md`, text, "text/markdown")}>
+            <Download className="h-4 w-4" aria-hidden /> Download draft
+          </button>
+          {type === "register" && (
+            <button type="button" className={btn} onClick={() => download(`${slug(e.client)}-ai-register.csv`, registerCsvFor(e), "text/csv")}>
+              <Download className="h-4 w-4" aria-hidden /> Register spreadsheet
+            </button>
+          )}
+          {e.drafts[type] !== undefined && (
+            <button type="button" className={btn} onClick={() => window.confirm("Replace your edits with freshly generated text from the audit?") && update((y) => { const d = { ...y.drafts }; delete d[type]; return { ...y, drafts: d }; })}>
+              <RotateCcw className="h-4 w-4" aria-hidden /> {edited ? "Regenerate from audit" : "Refresh from audit"}
+            </button>
+          )}
+        </div>
+        <div>
+          <p className={label}>Issued versions</p>
+          {versions.length === 0 ? (
+            <p className="mt-1 text-sm text-dim">None yet.</p>
+          ) : (
+            <ul className="mt-2 grid gap-2">
+              {versions.map((a) => (
+                <li key={a.id} className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-lg border border-line bg-panel px-3 py-2 text-sm">
+                  <span className="font-bold">v{a.version}</span>
+                  <span className="text-soft">{stamp(a.issuedAt)} · {a.issuedBy}</span>
+                  <span className="font-mono text-xs text-dim" title={a.sha256}>
+                    SHA-256 {a.sha256.slice(0, 16)}…
+                  </span>
+                  <span className="ml-auto flex gap-2">
+                    <button type="button" className={btn} onClick={() => void verify(a.id, a.content, a.sha256)}>
+                      {verified[a.id] === undefined ? "Verify" : verified[a.id] ? "Intact" : "Changed!"}
+                    </button>
+                    <button type="button" className={btn} onClick={() => download(`${slug(a.title)}.md`, issuedFile(a), "text/markdown")}>
+                      <Download className="h-4 w-4" aria-hidden /> Download
+                    </button>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

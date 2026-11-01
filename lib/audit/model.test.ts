@@ -53,3 +53,33 @@ describe("audit model", () => {
     expect(() => parseImport('{"x":1}')).toThrow();
   });
 });
+
+import { generate, issue, issuedFile, sha256 } from "./artifacts";
+
+describe("audit artifacts", () => {
+  const e = newEngagement("Riverside");
+  e.auditor = "Rafael";
+  e.aiOwner = "Dana Lopez";
+  e.orgType = "Nonprofit";
+  e.dataKinds = ["donors", "health"];
+  e.tools = [{ id: "t1", name: "ChatGPT", use: "donor letters", plan: "free", data: "personal", aboutPeople: false, trainingOff: "unsure", publicFacing: false }];
+  e.results.G1 = { status: "not-met", notes: "", evidence: [], finding: { severity: "high", recommendation: "Adopt a policy.", owner: "Dana", due: "2026-12-01", state: "open" } };
+
+  it("generates each document from the audit", () => {
+    expect(generate(e, "register")).toMatch(/\| ChatGPT \| donor letters \| Free or personal account \| Personal \| Not allowed \|/);
+    expect(generate(e, "policy")).toMatch(/# Riverside AI policy[\s\S]*Owner: Dana Lopez[\s\S]*HIPAA/);
+    expect(generate(e, "briefing")).toMatch(/AI tools in use: 1 \(0 approved, 0 approved with limits, 1 not allowed\)/);
+    expect(generate(e, "action-plan")).toMatch(/\| 1 \| high \| G1 .* \| Adopt a policy\. \| Dana \| December 1, 2026 \| Open \|/);
+    expect(generate(e, "report")).toMatch(/### G1 Written AI policy, approved by leadership · Not met/);
+  });
+
+  it("issues numbered versions with a verifiable fingerprint", async () => {
+    const a1 = await issue(e, "policy", "Hello", "Rafael");
+    expect(a1.version).toBe(1);
+    expect(a1.sha256).toBe(await sha256("Hello"));
+    expect(a1.sha256).toBe("185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969");
+    const a2 = await issue({ ...e, artifacts: [a1] }, "policy", "Hello again", "Rafael");
+    expect(a2.version).toBe(2);
+    expect(issuedFile(a2)).toMatch(/SHA-256 of the text above this line: [0-9a-f]{64}\n$/);
+  });
+});
