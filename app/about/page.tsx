@@ -48,10 +48,13 @@ export default function AboutPage() {
             I help businesses and nonprofits, including churches, use AI with confidence: knowing which AI tools their people use, setting clear rules for them, and keeping a person responsible for the results.
           </p>
           <p>
-            For more than 25 years I&apos;ve led data, analytics and AI work in large organizations: modernizing data platforms, launching AI products, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow.
+            My background is in governance. For more than 25 years I&apos;ve led data, analytics and AI work in large organizations: modernizing data platforms, launching AI products, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow.
           </p>
           <p>
-            I started GrowDaily because AI&apos;s risks are growing as fast as its benefits. AI-powered scams, attacks and data breaches are on the rise, and most organizations don&apos;t yet know which AI tools their people use or what information goes into them. I want to help them get the good of AI, safely. My approach is practical and plain-English: a list of what&apos;s really in use, a short policy people will actually follow, training on real work, and a one-page summary for your leaders.
+            I started GrowDaily because the pressure to launch AI fast is real, and so are the consequences of launching without proper governance: private information exposed, confident wrong answers, and trust that&apos;s hard to win back. AI-powered scams, attacks and data breaches are rising too, and most organizations don&apos;t yet know which AI tools their people use or what information goes into them.
+          </p>
+          <p>
+            Your AI is only as good as your data, and only as safe as the rules around it. I want to help you launch AI without regret. My approach is practical and plain-English: a list of what&apos;s really in use, a short policy people will actually follow, training on real work, and a one-page summary for your leaders.
           </p>
         </div>
 
