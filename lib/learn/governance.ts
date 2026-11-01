@@ -36,6 +36,30 @@ We found [number] AI tools in use across [teams]. [number] are approved, [number
 
 Next review: [date]`;
 
+const RACI = `AI GOVERNANCE RACI · [Organization] · Approved by: [name] · [date]
+
+R = Responsible · A = Accountable (one per task) · C = Consulted · I = Informed
+
+Task                                                   Leadership  AI owner  Compliance/advisor  Operations/IT
+1. Approve the AI policy                                   A          R             C                 I
+2. Define acceptable use                                   A          R             C                 I
+3. Maintain the AI register                                I          A             C                 R
+4. Approve new AI tools and vendors                        I          A             C                 R
+5. Configure and test AI before launch                     I          A             C                 R
+6. Manage access and logins (SSO, MFA)                     I          C             I                A/R
+7. Set AI agent permissions and approvals                  I          A             C                 R
+8. Review bias and fairness                                I          A             C                 R
+9. Monitor AI outputs after launch                         I          A             C                 R
+10. Train staff and volunteers                             I          A             C                 R
+11. Respond to AI incidents                                I          A             C                 R
+12. Verify payment requests (deepfake call-back rule)      I          A             C                 R
+13. Keep the audit trail and records                       I          C             A                 R
+14. Brief leadership or the board                          A          R             C                 I
+15. Approve launch of significant AI                       A          R             C                 C
+
+Rules: exactly one A per task · at least one R · the A must have authority to act.
+Review: when roles change, when significant AI is added, and every six months.`;
+
 export const GOVERNANCE_GUIDES: Guide[] = [
   {
     slug: "what-is-ai-governance",
@@ -210,7 +234,7 @@ export const GOVERNANCE_GUIDES: Guide[] = [
             steps: [
               { title: "1. Do we know every AI tool in use?", text: "Good: an up-to-date AI register, including free tools and AI built into software we already use. Fix: run a no-blame survey and build [an AI register](/learn/how-to-create-an-ai-register)." },
               { title: "2. Do we have a written AI policy?", text: "Good: one or two pages that staff have read. Fix: adapt our [AI policy template](/learn/ai-policy-template)." },
-              { title: "3. Does one person own AI decisions?", text: "Good: a named owner who approves new tools and keeps the register current. Fix: name one this week; [what AI governance is](/learn/what-is-ai-governance) explains the role." },
+              { title: "3. Does one person own AI decisions?", text: "Good: a named owner who approves new tools and keeps the register current. Fix: name one this week; [what AI governance is](/learn/what-is-ai-governance) explains the role, and an [AI governance RACI](/learn/ai-governance-raci) makes everyone's part clear." },
               { title: "4. Is work information only in business accounts?", text: "Good: no customer, donor, member or staff details in free personal accounts. Fix: move that work to a business plan, or remove personal details first. See [is it safe to put business data in AI?](/learn/is-it-safe-to-put-business-data-in-ai)" },
               { title: "5. Is training on our data turned off?", text: "Good: confirmed in settings or by contract for every tool. Fix: see [how to stop AI training on your data](/learn/how-to-stop-ai-training-on-your-data)." },
               { title: "6. Does a person review AI work before it goes out?", text: "Good: facts, names and numbers checked before anything reaches customers or the public. Fix: write it into the policy and model it from the top." },
@@ -306,7 +330,7 @@ export const GOVERNANCE_GUIDES: Guide[] = [
       { q: "What if we don't have answers yet?", a: "Say so, and present a short plan: survey the team, build the register, adopt a policy and train staff within a set number of weeks. Boards respond well to a clear plan." },
       { q: "Does a church council or elder board need this too?", a: "Yes. Churches hold sensitive information, like pastoral care notes and giving records. See our [church AI policy template](/learn/church-ai-policy-template)." },
     ],
-    related: ["what-is-ai-governance", "ai-governance-checklist", "ai-policy-template", "ai-for-nonprofits"],
+    related: ["what-is-ai-governance", "ai-governance-checklist", "ai-governance-raci", "ai-for-nonprofits"],
     service: "ai-governance",
     tool: KIT,
     published: D,
@@ -380,5 +404,59 @@ Signed off by: ______ · Next test due: ______` } },
       { label: "US EEOC Uniform Guidelines, 29 CFR 1607.4(D) (four-fifths rule)", url: "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607/section-1607.4" },
       { label: "NYC: Automated employment decision tools (Local Law 144)", url: "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page" },
     ],
+  },
+  {
+    slug: "ai-governance-raci",
+    topic: "governance",
+    title: "AI governance RACI: who owns each AI decision (free template)",
+    seoTitle: "AI Governance RACI Matrix: Free Template and Guide",
+    description: "A free AI governance RACI template: who is Responsible, Accountable, Consulted and Informed for AI policy, tool approvals, testing, bias reviews, agents, incidents and board briefings.",
+    shortAnswer:
+      "An AI governance RACI shows who is Responsible (does the work), Accountable (owns the outcome), Consulted and Informed for each AI decision. The golden rule: exactly one Accountable person per task. Leadership owns policy and go-live, a named AI owner owns day-to-day AI decisions, IT runs access and tools, and an independent person keeps the audit trail.",
+    sections: [
+      {
+        heading: "Why a RACI matters for AI",
+        blocks: [
+          "Most AI problems aren't technical; they're ownership gaps. Who approved that tool? Who checks the chatbot's answers? Who decides when an AI agent can send emails? A RACI answers those questions before something goes wrong, and it's one of the first things a board, auditor or larger customer asks to see.",
+          "It's also the backbone of [AI governance](/learn/what-is-ai-governance): your [AI policy](/learn/ai-policy-template) says what the rules are, your [AI register](/learn/how-to-create-an-ai-register) says which tools are in use, and the RACI says who is on the hook for each.",
+        ],
+      },
+      {
+        heading: "The four roles",
+        blocks: [
+          {
+            list: [
+              "Leadership: the owner, CEO or executive director, or the board for the biggest decisions.",
+              "AI owner: one named person who owns AI decisions and the AI register.",
+              "Compliance or advisor: compliance, legal or HR, or an outside advisor in a small organization.",
+              "Operations or IT: the people who set up, run and secure the tools.",
+            ],
+          },
+          { callout: "The golden rule: exactly one A (Accountable) per task, at least one R (Responsible), and whoever is Accountable must have the authority to act." },
+        ],
+      },
+      {
+        heading: "Free AI governance RACI template",
+        blocks: [{ template: { title: "AI governance RACI", text: RACI } }],
+      },
+      {
+        heading: "For small organizations",
+        blocks: [
+          "One person often wears several hats, and that's fine. Combine roles, but keep the separations that matter: leadership stays Accountable for the policy and for launching anything significant, and someone independent (an accountant, lawyer or IT provider) checks the records. Get the RACI signed off by your owner or board so everyone knows it's official.",
+          { callout: "Want your RACI filled in with your real names, alongside an AI register, tailored policy and board briefing? Start with [the free AI governance kit](/apps/governwise), or see [AI governance with GrowDaily](/build/ai-governance)." },
+        ],
+      },
+    ],
+    faqs: [
+      { q: "What does RACI stand for?", a: "Responsible (does the work), Accountable (owns the outcome and signs off), Consulted (gives input before) and Informed (told after)." },
+      { q: "Can two people be Accountable for the same AI task?", a: "No. Shared accountability usually means no accountability. Pick one person per task; others can be Responsible or Consulted." },
+      { q: "Who should own AI in a small business or nonprofit?", a: "Usually an operations or IT lead, with leadership accountable for the policy and big decisions. What matters most is that one named person keeps the AI register and approves new tools." },
+      { q: "How often should we update the RACI?", a: "When roles change, when you add significant AI such as a customer chatbot or an agent, and at your six-month AI governance review. Use the [AI governance checklist](/learn/ai-governance-checklist) to check the rest." },
+    ],
+    related: ["what-is-ai-governance", "how-to-create-an-ai-register", "ai-policy-template", "how-to-brief-your-board-on-ai"],
+    service: "ai-governance",
+    tool: KIT,
+    published: "2026-11-01",
+    updated: "2026-11-01",
   },
 ];

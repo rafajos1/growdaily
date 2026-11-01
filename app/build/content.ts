@@ -320,6 +320,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       { title: "A policy people will follow", text: "A short, tailored AI policy: approved tools, what may and may not go in, human review and who to ask. Then a 45-minute session so your team actually knows it." },
       { title: "Harden what's riskiest", text: "Lock down accounts and data, fence in AI agents (least access, a person approves actions, an off-switch), test for prompt injection, and add a call-back rule against voice-clone fraud." },
       { title: "Test for bias", text: "Where AI affects people, like hiring, eligibility or care, we run paired tests and compare outcomes across groups, then fix and record what we find." },
+      { title: "Clear ownership", text: "A RACI that names who is responsible and accountable for each AI decision, from tool approvals and agent permissions to incidents and audit records." },
       { title: "Brief your leadership", text: "A one-page summary of where you stand, the biggest risks and the next steps, for your leaders or board, plus a review date so it stays current." },
     ],
     different: [
