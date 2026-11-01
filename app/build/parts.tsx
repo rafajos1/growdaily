@@ -69,8 +69,8 @@ export function BuildFooter() {
         <Link href="/build/church-ai-assistant" className="hover:text-fg">
           Church AI assistant
         </Link>
-        <Link href="/" className="hover:text-fg">
-          Try the free apps
+        <Link href="/build#work" className="hover:text-fg">
+          Free apps we&apos;ve built
         </Link>
         <Link href="/about" className="hover:text-fg">
           About
