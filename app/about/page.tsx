@@ -111,36 +111,26 @@ export default function AboutPage() {
             <li>
               <Link href="/build/ai-governance" className={link}>
                 AI governance
-              </Link>{" "}
-              for businesses and nonprofits, with a{" "}
-              <Link href="/apps/governwise" className={link}>
-                free AI governance kit
               </Link>
-              .
+              : find every AI tool your people use, set clear rules, train your team and brief your leaders.
             </li>
             <li>
-              <Link href="/apps/habitwise" className={link}>
-                Free apps
-              </Link>{" "}
-              for money, habits, time, meals and mood, private by default.
+              <Link href="/apps/governwise" className={link}>
+                Free AI governance kit
+              </Link>
+              : list your team&apos;s AI tools in about 15 minutes and get each one rated, plus a draft AI policy and AI register.
             </li>
             <li>
-              <Link href="/learn" className={link}>
-                Plain-English guides
-              </Link>{" "}
-              to using AI well, grounded in facts, with no hype.
+              <Link href="/learn#governance" className={link}>
+                Free AI governance guides
+              </Link>
+              : AI policies, AI registers, shadow AI, bias testing and board briefings, in plain English.
             </li>
             <li>
-              <Link href="/faith" className={link}>
-                Faith tools
-              </Link>{" "}
-              for honest questions about God and finding a church nearby.
-            </li>
-            <li>
-              <Link href="/build" className={link}>
-                Training, consulting, guided builds and custom AI apps
-              </Link>{" "}
-              for churches, nonprofits and businesses.
+              <Link href="/build/ai-training" className={link}>
+                AI training
+              </Link>
+              : hands-on sessions so your team knows what&apos;s safe to use and share.
             </li>
           </ul>
         </section>
