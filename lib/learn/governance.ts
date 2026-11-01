@@ -210,8 +210,8 @@ export const GOVERNANCE_GUIDES: Guide[] = [
             steps: [
               { title: "1. Do we know every AI tool in use?", text: "Good: an up-to-date AI register, including free tools and AI built into software we already use. Fix: run a no-blame survey and build [an AI register](/learn/how-to-create-an-ai-register)." },
               { title: "2. Do we have a written AI policy?", text: "Good: one or two pages that staff have read. Fix: adapt our [AI policy template](/learn/ai-policy-template)." },
-              { title: "3. Does one person own AI decisions?", text: "Good: a named owner who approves new tools and keeps the register current. Fix: name one this week." },
-              { title: "4. Is work information only in business accounts?", text: "Good: no customer, donor, member or staff details in free personal accounts. Fix: move that work to a business plan, or remove personal details first." },
+              { title: "3. Does one person own AI decisions?", text: "Good: a named owner who approves new tools and keeps the register current. Fix: name one this week; [what AI governance is](/learn/what-is-ai-governance) explains the role." },
+              { title: "4. Is work information only in business accounts?", text: "Good: no customer, donor, member or staff details in free personal accounts. Fix: move that work to a business plan, or remove personal details first. See [is it safe to put business data in AI?](/learn/is-it-safe-to-put-business-data-in-ai)" },
               { title: "5. Is training on our data turned off?", text: "Good: confirmed in settings or by contract for every tool. Fix: see [how to stop AI training on your data](/learn/how-to-stop-ai-training-on-your-data)." },
               { title: "6. Does a person review AI work before it goes out?", text: "Good: facts, names and numbers checked before anything reaches customers or the public. Fix: write it into the policy and model it from the top." },
               { title: "7. Do people make decisions about people?", text: "Good: AI may help prepare, but a person decides on hiring, eligibility, discipline or care, notes how AI was used, and the AI has been [checked for bias](/learn/how-to-check-ai-for-bias). Fix: mark these uses \"approved with limits\" and run a bias test." },
@@ -227,6 +227,22 @@ export const GOVERNANCE_GUIDES: Guide[] = [
         blocks: [
           "Count your clear \"yes\" answers. Eight to ten: you're well governed; keep it current. Five to seven: you're on the way; fix the gaps in the order above. Four or fewer: start with questions 1 to 4 this month. They remove most of the risk.",
           { callout: "Prefer a guided version? [The free AI governance kit](/apps/governwise) asks these questions, rates each AI tool and gives you a readiness score with next steps." },
+        ],
+      },
+      {
+        heading: "Self-check vs. a full AI governance audit",
+        blocks: [
+          "These ten questions cover the basics, and answering them honestly puts you ahead of most organizations. A full audit goes further:",
+          {
+            list: [
+              "Evidence for every answer, not just a yes or no, so your board, funders or customers can check it.",
+              "Every AI tool rated with reasons in an [AI register](/learn/how-to-create-an-ai-register), including the ones staff don't mention ([shadow AI](/learn/what-is-shadow-ai)).",
+              "The newer risks: [AI agents](/learn/what-is-an-ai-agent) acting on your behalf, prompt injection, and voice-clone or deepfake payment scams ([what to watch for](/learn/ai-voice-cloning-scams)).",
+              "[Bias testing](/learn/how-to-check-ai-for-bias) wherever AI affects people.",
+              "A tailored [AI policy](/learn/ai-policy-template), team training, a prioritized action plan and a one-page [board briefing](/learn/how-to-brief-your-board-on-ai), each versioned so changes are tracked.",
+            ],
+          },
+          { callout: "Start free: [run the AI governance kit](/apps/governwise) for your readiness score, AI register and draft policy in about 15 minutes. Want the full audit, done with your team? See [AI governance with GrowDaily](/build/ai-governance)." },
         ],
       },
     ],
