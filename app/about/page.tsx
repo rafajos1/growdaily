@@ -48,7 +48,7 @@ export default function AboutPage() {
             I help businesses and nonprofits, including churches, use AI with confidence: knowing which AI tools their people use, setting clear rules for them, and keeping a person responsible for the results.
           </p>
           <p>
-            My background is in governance. For more than 25 years I&apos;ve led data, analytics and AI work in large organizations: modernizing data platforms, launching AI products, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow.
+            My background is in governance. For more than 25 years I&apos;ve led data, analytics and AI work in large organizations: modernizing data platforms, launching AI products, moving AI from pilots into everyday use, and putting in place the governance that makes it safe to grow. I&apos;m also trained in Microsoft Enterprise AI Governance.
           </p>
           <p>
             I started GrowDaily because the pressure to launch AI fast is real, and so are the consequences of launching without proper governance: private information exposed, confident wrong answers, and trust that&apos;s hard to win back. AI-powered scams, attacks and data breaches are rising too, and most organizations don&apos;t yet know which AI tools their people use or what information goes into them.
