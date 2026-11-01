@@ -56,10 +56,6 @@ export default function AboutPage() {
           <p>
             I started GrowDaily because AI&apos;s risks are growing as fast as its benefits. AI-powered scams, attacks and data breaches are on the rise, and most organizations don&apos;t yet know which AI tools their people use or what information goes into them. I want to help them get the good of AI, safely. My approach is practical and plain-English: a list of what&apos;s really in use, a short policy people will actually follow, training on real work, and a one-page summary for your leaders.
           </p>
-          <p>
-            I also know how to reach people online. I built a growth and productivity community on Instagram from the ground up, from zero to 205,000 followers.
-          </p>
-          <p>I believe technology is at its best when it gives people time back for each other.</p>
         </div>
 
         <section className="mt-12" aria-labelledby="how-heading">
