@@ -550,7 +550,7 @@ export const CHURCH_GUIDES: Guide[] = [
     seoTitle: "Church AI Policy Template (Free): Preaching, Care & Privacy",
     description: "A free church AI policy template covering preaching and teaching, pastoral care and prayer requests, children's information, communications, website chatbots and volunteers.",
     shortAnswer:
-      "A church AI policy should say which tools are approved, keep the message personal to the preacher, keep pastoral care, prayer requests and children's information out of AI tools, require review of anything sent or posted, and set rules for any AI that talks with the public. Copy the template below and adapt it with your leadership.",
+      "A church AI policy should say which tools are approved, keep the message personal to the preacher, keep pastoral care, prayer requests and children's information out of AI tools, require review of anything sent or posted, and set rules for any AI that talks with the public. Copy the template below as a starting point, or build a policy tailored to your church's own tools and information with the free AI governance kit.",
     sections: [
       {
         heading: "Why churches need their own version",
@@ -563,6 +563,22 @@ export const CHURCH_GUIDES: Guide[] = [
       {
         heading: "Free church AI policy template",
         blocks: [{ template: { title: "Church AI use policy template", text: CHURCH_POLICY } }],
+      },
+      {
+        heading: "Generic template vs. a policy tailored to your church",
+        blocks: [
+          "The template above is a solid starting point. What it can't know is how your church actually uses AI:",
+          {
+            list: [
+              "Which AI tools your staff and volunteers really use, including free ones on personal phones and AI built into your church software.",
+              "Whether each tool is safe for your information, rated approved, approved with limits or not allowed, with the reasons written down.",
+              "Rules that match what you hold: pastoral care notes, prayer requests, giving records and children's information.",
+              "Conditions for each tool, like business accounts, training turned off and a person's review.",
+              "A record your elders, board or council can review, with a date to revisit it.",
+            ],
+          },
+          { callout: "Get a policy built from your church's own tools and information, plus an AI register and a one-page summary for your leadership, in about 15 minutes: [build your tailored policy free](/apps/governwise). Want help putting it in place? See [AI governance for churches](/build/churches)." },
+        ],
       },
       {
         heading: "How to adopt it",
@@ -586,6 +602,7 @@ export const CHURCH_GUIDES: Guide[] = [
     ],
     related: ["should-pastors-use-ai-for-sermons", "how-to-build-a-church-chatbot-with-claude", "ai-for-churches", "ai-voice-cloning-scams"],
     service: "ai-governance",
+    tool: { name: "the AI governance kit", href: "/apps/governwise", pitch: "List your church's AI tools and get a tailored AI policy, an AI register and a one-page summary for your leadership in about 15 minutes. Free with a quick sign-up; your tool list stays private." },
     published: D,
     updated: D,
     sources: [
