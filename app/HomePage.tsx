@@ -99,7 +99,7 @@ export function HomePage() {
                 Most leaders I talk to have the same problem: too much busywork, too little time, and no idea which AI tools are worth trusting with their people or their data.
               </p>
               <p>
-                I&apos;ve lived both sides of it. For 14 years I served large, mission-driven nonprofits, where every hour and every dollar counted. For 25+ years I&apos;ve led data, analytics and AI work in large organizations, moving new technology out of pilots and into everyday use.
+                For 25+ years I&apos;ve led data, analytics and AI work in large organizations, moving new technology out of pilots and into everyday use, and partnering with security teams to launch AI products safely.
               </p>
               <p>
                 So we start with what&apos;s really happening: the AI tools your people already use and the information that goes into them. Then we set simple rules your team will actually follow, so AI saves time without putting anyone at risk, and you can focus on what matters most.
