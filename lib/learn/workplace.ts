@@ -118,7 +118,7 @@ export const WORKPLACE_GUIDES: Guide[] = [
     seoTitle: "AI Policy Template for Businesses & Nonprofits (Free)",
     description: "A free, plain-English AI use policy template for businesses, nonprofits and churches of any size: approved tools, data rules, human review, AI agents, and how to roll it out.",
     shortAnswer:
-      "A good AI policy fits on one or two pages and answers five things: which tools are approved, what information must never go into them, when a person must review AI work, who approves AI tools that take actions, and who to ask. Copy the template below and fill in the brackets.",
+      "A good AI policy fits on one or two pages and answers five things: which tools are approved, what information must never go into them, when a person must review AI work, who approves AI tools that take actions, and who to ask. Copy the template below as a starting point, or build a policy tailored to your own tools and data with the free AI governance kit.",
     sections: [
       {
         heading: "Why you need one now",
@@ -130,6 +130,22 @@ export const WORKPLACE_GUIDES: Guide[] = [
       {
         heading: "Free AI policy template",
         blocks: [{ template: { title: "AI use policy template", text: POLICY } }],
+      },
+      {
+        heading: "Generic template vs. a tailored policy",
+        blocks: [
+          "The template above is a solid starting point. What it can't know is how your organization actually uses AI:",
+          {
+            list: [
+              "Which AI tools your people really use, including free ones on personal phones and AI built into software you already have.",
+              "Whether each tool is safe for your information, rated approved, approved with limits or not allowed, with the reasons written down.",
+              "Data rules that match what you actually handle: customer, donor, staff, health, financial or children's information.",
+              "The conditions for each tool, like business accounts, training turned off and a person's review.",
+              "Evidence your leadership, board or customers can check, and a date to review it.",
+            ],
+          },
+          { callout: "Get a policy built from your own tools and data, plus your AI register and a one-page leadership summary, in about 15 minutes: [build your tailored policy free](/apps/governwise). Want it verified, trained and board-ready? See [AI governance with GrowDaily](/build/ai-governance)." },
+        ],
       },
       {
         heading: "How to roll it out",
