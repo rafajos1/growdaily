@@ -133,6 +133,7 @@ export function HomePage() {
           <Link href="/build/churches" className="hover:text-fg">For churches</Link>
           <Link href="/faith" className="hover:text-fg">Faith</Link>
           <Link href="/about" className="hover:text-fg">About</Link>
+          <a href="mailto:hello@growdaily.ai" className="hover:text-fg">Contact: hello@growdaily.ai</a>
           <Link href="/privacy" className="hover:text-fg">Privacy</Link>
         </nav>
         <p className="mt-4 font-mono text-xs text-dim">© {new Date().getFullYear()} GrowDaily</p>
