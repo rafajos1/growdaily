@@ -34,7 +34,7 @@ export function buildAlertEmail(input: IdeaInput, sketch: IdeaSketch | null, pag
 <p style="margin:0 0 12px"><strong>${esc(input.name)}</strong> (<a href="mailto:${esc(input.email)}">${esc(input.email)}</a>) ${did}.</p>
 <table style="border-collapse:collapse;margin:0 0 16px">${row("Looking for", input.interest)}${row("For a", input.orgType)}${row("From page", `growdaily.ai${page || "/build"}`)}</table>
 <p style="margin:0 0 4px;color:#667085">What they wrote</p>
-<blockquote style="margin:0 0 16px;padding:12px 16px;background:#f4f6f8;border-radius:8px;white-space:pre-wrap">${esc(input.idea)}</blockquote>
+<blockquote style="margin:0 0 16px;padding:12px 16px;background:#f4f6f8;border-radius:8px;white-space:pre-wrap">${input.idea ? esc(input.idea) : "<em>No message, just wants a call.</em>"}</blockquote>
 ${
   sketch
     ? `<p style="margin:0 0 4px;color:#667085">AI sketch shown to them</p>

@@ -12,7 +12,9 @@ describe("validateIdea", () => {
   it("asks for what's missing", () => {
     expect(validateIdea({ ...ok, name: "" })).toEqual({ error: expect.stringContaining("name") });
     expect(validateIdea({ ...ok, email: "nope" })).toEqual({ error: expect.stringContaining("email") });
-    expect(validateIdea({ ...ok, idea: "an app" })).toEqual({ error: expect.stringContaining("more") });
+    expect(validateIdea({ ...ok, interest: "Build an app", idea: "an app" })).toEqual({ error: expect.stringContaining("more") });
+    // Booking a governance or training call needs only a name and email.
+    expect(validateIdea({ ...ok, interest: "AI governance", idea: "" })).toEqual({ ...ok, name: "Sam", email: "sam@example.com", interest: "AI governance", idea: "" });
     expect(validateIdea({ ...ok, idea: "x".repeat(2001) })).toEqual({ error: expect.stringContaining("2,000") });
   });
 });

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 import { Check, Loader2, Sparkles } from "lucide-react";
+import { BOOKING_URL } from "../../lib/build/contact";
 import { INTERESTS, ORG_TYPES, wantsSketch, type IdeaSketch, type Interest, type OrgType } from "../../lib/build/idea";
 
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
@@ -66,9 +67,14 @@ export function IdeaForm({ defaultOrg = "Business", defaultInterest = "AI govern
         <p className="flex items-start gap-3 rounded-xl border border-down/40 bg-down/10 p-4 text-sm text-soft">
           <Check className="mt-0.5 h-5 w-5 shrink-0 text-down" aria-hidden />
           <span>
-            <strong className="text-fg">Thanks, {name.split(" ")[0]}.</strong> We&apos;ve got your request and will email {email} to set up a free 20-minute call and a quote.
+            <strong className="text-fg">Thanks, {name.split(" ")[0]}.</strong> We&apos;ve got your request and will email {email} to set up a free 20-minute call.
           </span>
         </p>
+        {BOOKING_URL && (
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={`inline-flex min-h-12 items-center justify-center rounded-[10px] bg-amber px-5 font-bold text-[#2a1c05] hover:brightness-110 ${focus}`}>
+            Pick a time now
+          </a>
+        )}
         {s && (
           <div className="rounded-2xl border border-line bg-sunken p-5 sm:p-6">
             <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-amber">
@@ -128,6 +134,7 @@ export function IdeaForm({ defaultOrg = "Business", defaultInterest = "AI govern
       <div>
         <label htmlFor="idea-text" className="mb-1.5 block text-sm font-semibold">
           {PROMPTS[interest].label}
+          {!wantsSketch(interest) && <span className="font-normal text-muted"> (optional)</span>}
         </label>
         <textarea
           id="idea-text"
@@ -167,7 +174,7 @@ export function IdeaForm({ defaultOrg = "Business", defaultInterest = "AI govern
         {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : wantsSketch(interest) ? <Sparkles className="h-4 w-4" aria-hidden /> : null}
         {busy ? (wantsSketch(interest) ? "Sketching your idea…" : "Sending…") : wantsSketch(interest) ? "Request my free call and see a sketch" : "Request my free call"}
       </button>
-      <p className="text-xs text-dim">
+      <p className="text-xs text-muted">
         The first 20-minute call is free, with no obligation. We only use your details to reply to you.{" "}
         <Link href="/privacy" className="underline underline-offset-2 hover:text-fg">
           Privacy

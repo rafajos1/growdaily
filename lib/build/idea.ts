@@ -61,7 +61,8 @@ export function validateIdea(body: Record<string, unknown>): IdeaInput | { error
   const idea = typeof body.idea === "string" ? body.idea.trim().slice(0, 2001) : "";
   if (!name) return { error: "Add your name so we know who to reply to." };
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { error: "Enter a valid email address." };
-  if (idea.length < 20) return { error: "Tell us a little more (a sentence or two is plenty)." };
+  // A short note is enough to book a call; only an app sketch needs a real description.
+  if (wantsSketch(interest) && idea.length < 20) return { error: "Tell us a little more (a sentence or two is plenty)." };
   if (idea.length > 2000) return { error: "Keep your idea under 2,000 characters. We'll talk through the details on the call." };
   return { name, email, orgType, interest, idea };
 }

@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Check } from "lucide-react";
 import type { Interest, OrgType } from "../../lib/build/idea";
 import { AUDIENCES, PRINCIPLES, PROCESS, SERVICE_PAGES, SERVICES, type CaseStudy } from "./content";
+import { BOOKING_URL, CONTACT_EMAIL } from "../../lib/build/contact";
 import { IdeaForm } from "./IdeaForm";
 import { QuoteButton } from "./QuoteButton";
 import { LogoMark } from "../components/LogoMark";
@@ -72,6 +73,9 @@ export function BuildFooter() {
         <Link href="/about" className="hover:text-fg">
           About
         </Link>
+        <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-fg">
+          Contact: {CONTACT_EMAIL}
+        </a>
         <Link href="/privacy" className="hover:text-fg">
           Privacy
         </Link>
@@ -199,9 +203,24 @@ export function IdeaSection({ defaultOrg, defaultInterest, page }: { defaultOrg?
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-amber">Get started</p>
           <h2 id="idea-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
-            Book your free 20-minute call
+            Talk with Rafael: free 20-minute call
           </h2>
-          <p className="mt-3 text-muted">Tell us what you&apos;d like to build or improve, in your own words. We&apos;ll email you to set up a free 20-minute call. After that, paid sessions and projects are priced up front, so there are no surprises. Thinking about an app? You&apos;ll also see an instant AI sketch of a first version.</p>
+          <p className="mt-3 text-muted">Just your name and email is enough. We&apos;ll reply to find a time that works. No preparation needed, and no obligation. Any paid work after that is priced up front, so there are no surprises.</p>
+          <ul className="mt-6 space-y-3 text-sm">
+            {BOOKING_URL && (
+              <li>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-amber underline-offset-2 hover:underline">
+                  Pick a time on the calendar
+                </a>
+              </li>
+            )}
+            <li className="text-muted">
+              Prefer email?{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-amber underline-offset-2 hover:underline">
+                {CONTACT_EMAIL}
+              </a>
+            </li>
+          </ul>
         </div>
         <IdeaForm defaultOrg={defaultOrg} defaultInterest={defaultInterest} page={page} />
       </div>
