@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../lib/seo";
 import { JsonLd } from "../components/JsonLd";
+import { GovScorecard } from "./GovScorecard";
 import { CASES, SERVICE_PAGES, type ServicePage } from "./content";
 import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection, ServicesSection } from "./parts";
 
@@ -70,6 +71,8 @@ export function ServicePageView({ page: p }: { page: ServicePage }) {
             <strong className="text-soft">Great for:</strong> {p.forWho.join(" · ")}
           </p>
         </section>
+
+        {p.slug === "ai-governance" && <GovScorecard />}
 
         {p.different && (
           <section aria-labelledby="diff-heading" className="pb-20">
