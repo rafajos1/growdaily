@@ -6,14 +6,13 @@ import { JsonLd } from "../components/JsonLd";
 import { AUDIENCES, BUILD_FAQS, CASES, SERVICES } from "./content";
 import { BuildFooter, BuildHeader, btnPrimary, btnSecondary, CaseCard, eyebrow, Faqs, HowItWorks, IdeaSection, ServicesSection } from "./parts";
 
-const DESCRIPTION =
-  "AI governance, training and consulting for businesses and nonprofits of any size: an AI register, a tailored AI policy and a trained team, plus guided builds when you're ready. The first 20-minute call is free.";
+const DESCRIPTION = "Learn to build your own AI apps, safely: hands-on workshops, guided builds and custom apps for businesses and nonprofits, plus AI governance and training.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "AI Governance, Training & Consulting for Businesses & Nonprofits · GrowDaily",
+  title: "AI App Building, Training & Governance · GrowDaily",
   description: DESCRIPTION,
   path: "/build",
-  image: ogImage("Use AI with confidence, and stay in control", "AI governance · Training · Consulting · Guided builds"),
+  image: ogImage("Build the AI tools your team needs, safely", "Workshops · Guided builds · Custom apps · AI governance"),
 });
 
 const serviceSchema = {
@@ -39,12 +38,12 @@ export default function BuildPage() {
       <BuildHeader />
       <main className="mx-auto max-w-6xl">
         <section className="pb-20 pt-10 lg:pt-16">
-          <p className={eyebrow}>AI governance · training · consulting · guided builds</p>
+          <p className={eyebrow}>Workshops · guided builds · custom apps · AI governance</p>
           <h1 className="mt-4 max-w-[20ch] text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl">
-            Use AI with confidence, <span className="text-amber">and stay in control</span>.
+            Build the AI tools your team needs, <span className="text-amber">safely</span>.
           </h1>
           <p className="mt-6 max-w-[54ch] text-lg text-soft">
-            We help businesses and nonprofits see which AI tools their people use, set clear rules for them, and train their teams. When you&apos;re ready to build, we guide you or build it for you. Every app on GrowDaily was built this way.
+            We teach businesses and nonprofits to build their own AI apps, guide you while you build, or build it for you. Every app on GrowDaily was built this way, with the governance that keeps your people and data safe.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#idea" className={btnPrimary}>
