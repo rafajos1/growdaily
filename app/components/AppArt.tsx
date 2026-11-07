@@ -144,6 +144,22 @@ export function ChurchArt({ color }: { color: string }) {
   );
 }
 
+export function DashArt({ color }: { color: string }) {
+  const bars = [22, 30, 26, 38, 34, 46];
+  return (
+    <svg viewBox="0 0 220 64" preserveAspectRatio="xMinYMid meet" className="h-16 w-full" aria-hidden>
+      <rect x="2" y="4" width="40" height="24" rx="5" fill={color} opacity=".22" />
+      <rect x="2" y="36" width="40" height="24" rx="5" fill="#4c6584" opacity=".45" />
+      <path d="M9 14 h20 M9 21 h12" stroke={color} strokeWidth="3" strokeLinecap="round" />
+      {bars.map((b, i) => (
+        <rect key={i} x={56 + i * 17} y={60 - b} width="11" height={b} rx="3" fill={color} opacity={i === bars.length - 1 ? 1 : 0.5} />
+      ))}
+      <path d="M160 48 L178 36 L194 40 L216 14" fill="none" stroke={color} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
+      <circle cx="216" cy="14" r="3.5" fill={color} />
+    </svg>
+  );
+}
+
 export function FindArt({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 220 64" preserveAspectRatio="xMinYMid meet" className="h-16 w-full" aria-hidden>

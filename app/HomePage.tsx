@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ClipboardCheck, Hammer, Users } from "lucide-react";
 import { caseByName, WORKSHOP_PRICE } from "./build/content";
-import { CafeArt, PilotArt, QuoteArt, RoomArt } from "./components/AppArt";
+import { CafeArt, DashArt, QuoteArt, RoomArt } from "./components/AppArt";
 import { LogoMark } from "./components/LogoMark";
 
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
@@ -17,10 +17,10 @@ const START = [
 
 /** Four apps we built, shown with their card art as proof of what's possible. */
 const SHOWCASE = [
+  { name: "Dashwise", Art: DashArt, who: "AI dashboards" },
   { name: "Quotewise", Art: QuoteArt, who: "Trades & services" },
   { name: "Cafewise", Art: CafeArt, who: "Coffee shops" },
   { name: "Roomwise", Art: RoomArt, who: "Churches, offices & spaces" },
-  { name: "Pilotwise", Art: PilotArt, who: "Teams starting with AI" },
 ].map((s) => ({ ...s, ...caseByName(s.name) }));
 
 const STEPS = [
@@ -79,7 +79,10 @@ export function HomePage() {
               <li key={t.name}>
                 <Link href={t.href} className={`group flex h-full flex-col rounded-2xl border border-line bg-panel p-6 transition hover:border-[#35507a] ${focus}`}>
                   <span className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: t.color }}>{t.who}</span>
-                  <span className="mt-2 text-2xl font-extrabold tracking-tight">{t.name}</span>
+                  <span className="mt-2 flex items-center gap-2 text-2xl font-extrabold tracking-tight">
+                    {t.name}
+                    {t.beta && <span className="rounded-full bg-[#a3d35c] px-2 py-0.5 text-[10px] font-bold tracking-normal text-[#17220a]">New · Beta</span>}
+                  </span>
                   <span className="-mx-2 my-4 block rounded-xl border border-hairline bg-sunken px-4 py-5">
                     <t.Art color={t.color} />
                   </span>

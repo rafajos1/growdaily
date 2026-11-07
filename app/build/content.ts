@@ -65,9 +65,20 @@ export interface CaseStudy {
   ai: string;
   /** What an organization could build on the same idea. */
   forYou: string;
+  /** Shown with a "New · Beta" badge. */
+  beta?: boolean;
 }
 
 export const CASES: CaseStudy[] = [
+  {
+    name: "Dashwise",
+    href: "/apps/dashwise",
+    color: "#a3d35c",
+    problem: "Small businesses have the numbers in spreadsheets, but no time or analyst to turn them into decisions.",
+    ai: "An AI dashboard for a sample café: key numbers, charts, plain-English insights on what changed, and answers to questions about the data.",
+    forYou: "A dashboard built on your own sales, donations or programs data that explains itself every week.",
+    beta: true,
+  },
   {
     name: "Pilotwise",
     href: "/apps/pilotwise",

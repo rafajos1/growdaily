@@ -110,4 +110,101 @@ export const BUILD_GUIDES: Guide[] = [
     published: D,
     updated: D,
   },
+  {
+    slug: "how-to-build-an-ai-dashboard",
+    topic: "build",
+    title: "How to build an AI dashboard from a spreadsheet (no BI team needed)",
+    seoTitle: "How to Build an AI Dashboard From a Spreadsheet",
+    description: "A plain-English guide to AI BI for small businesses and nonprofits: turn a spreadsheet into a dashboard that explains itself, with a prompt template and accuracy checks.",
+    shortAnswer:
+      "Pick the three to five questions you want answered every week, tidy your spreadsheet so each row is one sale, donation or day, and ask an AI assistant like Claude to build a dashboard page from it. Have the numbers calculated by formulas or code, let AI explain what changed, and check the totals against your spreadsheet before you trust it.",
+    sections: [
+      {
+        heading: "What an AI dashboard is",
+        blocks: [
+          "A regular dashboard shows charts. An AI dashboard, sometimes called AI BI (AI business intelligence), also tells you what the charts mean in plain English and answers questions like \"why was last week slower?\" That matters most for small teams with no data analyst: the dashboard does the first read for you.",
+          { list: ["Key numbers compared with last week or last month", "A few charts that answer your real questions", "A short, plain-English summary of what changed", "A box where you can ask the data a question"] },
+        ],
+      },
+      {
+        heading: "See one first: Dashwise (new, in beta)",
+        blocks: [
+          "We built [Dashwise](/apps/dashwise) to show what this looks like for a small business. It uses eight weeks of made-up sales for a fictional café: revenue, orders, average ticket and pastry waste, charts you can hover over, three insights written from the numbers, and a box where you can ask the data a question. It's brand new and in beta, and it's free to try.",
+        ],
+      },
+      {
+        heading: "Build your own, step by step",
+        blocks: [
+          {
+            steps: [
+              { title: "Write down your questions", text: "Three to five questions you want answered every week, such as: Are sales up or down? What sells best? Where are we wasting money? A dashboard without questions is just decoration." },
+              { title: "Tidy the spreadsheet", text: "One row per sale, donation, visit or day. Clear column names, dates in one format, no merged cells or totals in the middle. Export it as a CSV file." },
+              { title: "Take out what AI doesn't need", text: "Remove names, emails, phone numbers and anything personal. Totals by day and product are usually enough. Use a business AI account where your data isn't used for training." },
+              { title: "Ask AI to build it", text: "Upload the file to an AI assistant like Claude and use the prompt below. Ask for a single dashboard page you can open in your browser." },
+              { title: "Check the numbers", text: "Compare two or three totals on the dashboard with your spreadsheet. If one is off, tell the AI exactly which number is wrong and what it should be." },
+              { title: "Make it a weekly habit", text: "Each week, export the new data and ask the AI to refresh the dashboard. Read the summary at the same time each week, and act on one thing." },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "A prompt you can copy",
+        blocks: [
+          {
+            template: {
+              title: "Dashboard prompt",
+              text: `I've attached a CSV of our [sales / donations / visits] for the last [8 weeks]. Each row is [one sale: date, product, quantity, price].
+
+Please build me a dashboard as a single web page that answers these questions:
+1. How did this week compare with last week (revenue, orders, average order)?
+2. Which [products / programs] are growing or shrinking?
+3. Where are we [losing money / wasting stock]?
+
+How it should work:
+- Calculate every number from the data with code, not by estimating
+- Key numbers at the top with the change from last week
+- Simple charts, each with a title and a way to see the exact numbers
+- A short "What changed this week" section in plain English
+- Works well on a phone
+
+Then tell me two totals I can check against my spreadsheet.`,
+            },
+          },
+        ],
+      },
+      {
+        heading: "Keep it accurate and safe",
+        blocks: [
+          { callout: "Let formulas or code calculate the numbers, and let AI explain them. AI is good at describing a trend and suggesting a next step, but it can misread or round numbers if you ask it to do the math in its head." },
+          {
+            list: [
+              "Spot-check totals against your spreadsheet every time the data changes.",
+              "Label anything estimated or projected, so nobody mistakes it for a real result.",
+              "Keep customer and donor details out of AI tools unless your AI policy allows it. Our [AI policy template](/learn/ai-policy-template) covers what may go in.",
+              "Use a business account and check [how to stop AI training on your data](/learn/how-to-stop-ai-training-on-your-data).",
+              "Keep a person responsible for decisions. The dashboard suggests; your team decides.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "When to go further",
+        blocks: [
+          "A spreadsheet dashboard is a great start. When you're updating it every week, the next step is a dashboard that reads straight from your point of sale, accounting or donor system, so it's always current. Your team can build its first one in our [build workshop](/build/ai-training), or we can build it with you.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "What is AI BI?", a: "AI business intelligence: dashboards and reports that use AI to explain your numbers in plain English, point out what changed and answer questions about the data, on top of the usual charts." },
+      { q: "Do I need Power BI or Tableau?", a: "Not to start. An AI assistant can build a simple dashboard page from a spreadsheet. Dedicated BI tools make sense when you have many data sources, many users or need live connections." },
+      { q: "Is it safe to upload my spreadsheet to AI?", a: "Remove personal details first, use a business account where your data isn't used for training, and follow your organization's AI policy. Totals by day and product are usually all a dashboard needs." },
+      { q: "How accurate are AI dashboards?", a: "As accurate as the calculations behind them. Ask the AI to calculate with code rather than estimate, check a few totals yourself, and treat its explanations as a first read, not the final word." },
+      { q: "Is Dashwise free?", a: "Yes. Dashwise is a free demo with fictional café data. It's new and in beta, so we're still improving it." },
+    ],
+    related: ["build-your-own-expense-tracker-with-ai", "coffee-shop-inventory-management", "how-to-stop-ai-training-on-your-data"],
+    service: "ai-training",
+    tool: { name: "Dashwise", href: "/apps/dashwise", pitch: "Try an AI dashboard with a sample café's data: charts, plain-English insights and answers to your questions. New, in beta, free." },
+    published: "2026-11-07",
+    updated: "2026-11-07",
+  },
 ];
