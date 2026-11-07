@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildDays, dataSummary, END_DATE, insights, productRevenue, wasteByWeekday, WEEKS, weekTotals } from "./data";
+import { buildDays, dataSummary, END_DATE, insights, productRevenue, salesMix, wasteByWeekday, WEEKS, weekTotals } from "./data";
 
 describe("Dashwise sample data", () => {
   const days = buildDays();
@@ -32,6 +32,15 @@ describe("Dashwise sample data", () => {
     const worst = [...waste].sort((a, b) => b.cost - a.cost)[0];
     expect(["Mon", "Tue", "Wed", "Thu"]).toContain(worst.weekday);
     expect(insights(days)).toHaveLength(3);
+  });
+
+  it("splits this week's revenue into a mix that adds up", () => {
+    const mix = salesMix(days);
+    expect(mix.map((m) => m.group)).toEqual(["Hot drinks", "Cold drinks", "Food"]);
+    expect(mix.reduce((s, m) => s + m.revenue, 0)).toBeCloseTo(weekTotals(days).at(-1)!.revenue, 1);
+    expect(mix.reduce((s, m) => s + m.share, 0)).toBeGreaterThan(99.8);
+    const cold = mix.find((m) => m.group === "Cold drinks")!;
+    expect(cold.share).toBeLessThan(cold.lastShare);
   });
 
   it("gives the AI a summary that names the data as fictional", () => {

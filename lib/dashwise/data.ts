@@ -18,18 +18,22 @@ export interface Product {
   /** Change in daily units per week (a gentle trend that tells a story). */
   trend: number;
   weekendLift: number;
+  group: Group;
   /** Pastries are baked in batches, so unsold ones are thrown away. */
   baked?: { batch: number; cost: number };
 }
 
+export const GROUPS = ["Hot drinks", "Cold drinks", "Food"] as const;
+export type Group = (typeof GROUPS)[number];
+
 export const PRODUCTS: Product[] = [
-  { id: "latte", name: "Latte", price: 5.25, base: 62, trend: 2.4, weekendLift: 1.35 },
-  { id: "drip", name: "Drip coffee", price: 3.0, base: 48, trend: 0, weekendLift: 0.85 },
-  { id: "cold-brew", name: "Cold brew", price: 4.75, base: 40, trend: -3.6, weekendLift: 1.2 },
-  { id: "cappuccino", name: "Cappuccino", price: 4.75, base: 26, trend: 0.6, weekendLift: 1.25 },
-  { id: "croissant", name: "Croissant", price: 3.75, base: 30, trend: 0.3, weekendLift: 1.4, baked: { batch: 44, cost: 1.2 } },
-  { id: "sandwich", name: "Breakfast sandwich", price: 7.5, base: 22, trend: 0.8, weekendLift: 1.6 },
-  { id: "muffin", name: "Muffin", price: 3.25, base: 18, trend: -0.4, weekendLift: 1.15, baked: { batch: 26, cost: 0.9 } },
+  { id: "latte", name: "Latte", price: 5.25, base: 62, trend: 2.4, weekendLift: 1.35, group: "Hot drinks" },
+  { id: "drip", name: "Drip coffee", price: 3.0, base: 48, trend: 0, weekendLift: 0.85, group: "Hot drinks" },
+  { id: "cold-brew", name: "Cold brew", price: 4.75, base: 40, trend: -3.6, weekendLift: 1.2, group: "Cold drinks" },
+  { id: "cappuccino", name: "Cappuccino", price: 4.75, base: 26, trend: 0.6, weekendLift: 1.25, group: "Hot drinks" },
+  { id: "croissant", name: "Croissant", price: 3.75, base: 30, trend: 0.3, weekendLift: 1.4, group: "Food", baked: { batch: 44, cost: 1.2 } },
+  { id: "sandwich", name: "Breakfast sandwich", price: 7.5, base: 22, trend: 0.8, weekendLift: 1.6, group: "Food" },
+  { id: "muffin", name: "Muffin", price: 3.25, base: 18, trend: -0.4, weekendLift: 1.15, group: "Food", baked: { batch: 26, cost: 0.9 } },
 ];
 
 export const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
@@ -150,6 +154,25 @@ export function productRevenue(days: Day[]): ProductWeek[] {
   }).sort((a, b) => b.thisWeek - a.thisWeek);
 }
 
+export interface MixSlice {
+  group: Group;
+  revenue: number;
+  /** Share of the week's revenue, one decimal. */
+  share: number;
+  lastShare: number;
+}
+
+/** This week's revenue by group (hot drinks, cold drinks, food), with last week's shares for comparison. */
+export function salesMix(days: Day[]): MixSlice[] {
+  const byGroup = (w: number) =>
+    GROUPS.map((g) => days.filter((d) => d.week === w).reduce((s, d) => s + PRODUCTS.filter((p) => p.group === g).reduce((a, p) => a + d.units[p.id] * p.price, 0), 0));
+  const now = byGroup(WEEKS - 1);
+  const before = byGroup(WEEKS - 2);
+  const total = now.reduce((a, b) => a + b, 0);
+  const totalBefore = before.reduce((a, b) => a + b, 0);
+  return GROUPS.map((g, i) => ({ group: g, revenue: round2(now[i]), share: Math.round((now[i] / total) * 1000) / 10, lastShare: Math.round((before[i] / totalBefore) * 1000) / 10 }));
+}
+
 /** Pastry waste cost by weekday over the last four weeks. */
 export function wasteByWeekday(days: Day[]): { weekday: string; cost: number; items: number }[] {
   const recent = days.filter((d) => d.week >= WEEKS - 4);
@@ -214,5 +237,6 @@ export function dataSummary(days: Day[]) {
       return { weekday: wd, revenue: round2(d.reduce((s, x) => s + x.revenue, 0) / d.length) };
     }),
     pastryWasteLast4WeeksByWeekday: wasteByWeekday(days),
+    salesMixThisWeek: salesMix(days),
   };
 }

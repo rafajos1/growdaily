@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } 
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Loader2, Sparkles } from "lucide-react";
 import { HomeLink } from "../../components/HomeLink";
 import { ACCENT } from "./accent";
-import { buildDays, CAFE_NAME, insights, money, pct, productRevenue, shortDate, wasteByWeekday, WEEKS, weekTotals, type Day } from "../../../lib/dashwise/data";
+import { buildDays, CAFE_NAME, insights, money, pct, productRevenue, salesMix, shortDate, wasteByWeekday, WEEKS, weekTotals, type Day } from "../../../lib/dashwise/data";
 
 /** Two-series palette, checked for color-blind separation and contrast on the dark panel. */
 const THIS = "#bd8526";
@@ -298,6 +298,84 @@ function WasteChart({ days }: { days: Day[] }) {
   );
 }
 
+/** Sales-mix colors: checked for color-blind separation, and every slice is also labelled with its name and share. */
+const MIX_COLORS: Record<string, string> = { "Hot drinks": "#c4772c", "Cold drinks": "#26a38e", Food: "#8f73e0" };
+
+function MixChart({ days }: { days: Day[] }) {
+  const mix = useMemo(() => salesMix(days), [days]);
+  const [hover, setHover] = useState<string | null>(null);
+  const total = mix.reduce((s, m) => s + m.revenue, 0);
+  const size = 180;
+  const r = 70;
+  const inner = 46;
+  const c = size / 2;
+  let angle = -Math.PI / 2;
+  const arcs = mix.map((m) => {
+    const sweep = (m.revenue / total) * Math.PI * 2;
+    const a0 = angle;
+    const a1 = angle + sweep;
+    angle = a1;
+    const pt = (rad: number, a: number) => `${(c + rad * Math.cos(a)).toFixed(2)} ${(c + rad * Math.sin(a)).toFixed(2)}`;
+    const large = sweep > Math.PI ? 1 : 0;
+    const d = `M ${pt(r, a0)} A ${r} ${r} 0 ${large} 1 ${pt(r, a1)} L ${pt(inner, a1)} A ${inner} ${inner} 0 ${large} 0 ${pt(inner, a0)} Z`;
+    return { ...m, d };
+  });
+  const active = mix.find((m) => m.group === hover);
+  return (
+    <div className={panel}>
+      <h2 className="font-bold">Sales mix this week</h2>
+      <p className="mt-1 text-xs text-muted">Share of revenue, compared with last week.</p>
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-5">
+        <svg viewBox={`0 0 ${size} ${size}`} className="h-44 w-44 shrink-0" role="img" aria-label={`Sales mix: ${mix.map((m) => `${m.group} ${m.share}%`).join(", ")}.`}>
+          {arcs.map((a) => (
+            <path
+              key={a.group}
+              d={a.d}
+              fill={MIX_COLORS[a.group]}
+              stroke="var(--color-panel)"
+              strokeWidth="2"
+              opacity={hover && hover !== a.group ? 0.45 : 1}
+              onMouseEnter={() => setHover(a.group)}
+              onMouseLeave={() => setHover(null)}
+            />
+          ))}
+          <text x={c} y={c - 4} textAnchor="middle" className="fill-fg text-[19px] font-extrabold">
+            {active ? `${active.share}%` : money(total, false)}
+          </text>
+          <text x={c} y={c + 14} textAnchor="middle" className="fill-muted text-[10px]">
+            {active ? active.group.toLowerCase() : "this week"}
+          </text>
+        </svg>
+        <ul className="min-w-0 space-y-2.5 text-sm">
+          {mix.map((m) => {
+            const diff = Math.round((m.share - m.lastShare) * 10) / 10;
+            return (
+              <li
+                key={m.group}
+                tabIndex={0}
+                onMouseEnter={() => setHover(m.group)}
+                onMouseLeave={() => setHover(null)}
+                onFocus={() => setHover(m.group)}
+                onBlur={() => setHover(null)}
+                className={`flex items-start gap-2 rounded-md ${focus}`}
+              >
+                <span className="mt-1 h-3 w-3 shrink-0 rounded-sm" style={{ background: MIX_COLORS[m.group] }} aria-hidden />
+                <span>
+                  <span className="font-semibold text-fg">{m.group}</span> <span className="tabular-nums text-fg">{m.share}%</span>
+                  <span className="block text-xs text-muted">
+                    {money(m.revenue, false)} · {diff === 0 ? "same share as" : `${diff > 0 ? "+" : "−"}${Math.abs(diff)} pts vs`} last week
+                  </span>
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <DataTable caption="Sales mix" head={["Group", "Revenue", "Share", "Last week's share"]} rows={mix.map((m) => [m.group, money(m.revenue), `${m.share}%`, `${m.lastShare}%`])} />
+    </div>
+  );
+}
+
 const SUGGESTIONS = ["What was our best day and why?", "Should we keep cold brew on the menu?", "How much could we save on pastry waste?"];
 
 function Ask() {
@@ -433,7 +511,10 @@ export function DashwiseApp({ intro }: { intro?: ReactNode }) {
       </section>
 
       <section aria-label="Charts" className="mt-4 grid gap-3">
-        <RevenueChart days={days} />
+        <div className="grid gap-3 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+          <RevenueChart days={days} />
+          <MixChart days={days} />
+        </div>
         <div className="grid gap-3 lg:grid-cols-2">
           <ProductChart days={days} />
           <WasteChart days={days} />
