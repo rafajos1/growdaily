@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import type { Metadata } from "next";
 import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../lib/seo";
 import { JsonLd } from "../components/JsonLd";
@@ -24,6 +24,7 @@ export function ServicePageView({ page: p }: { page: ServicePage }) {
     url: `${SITE_URL}${path}`,
     audience: { "@type": "Audience", audienceType: "Businesses and nonprofits" },
     provider: { "@type": "Organization", name: "GrowDaily", url: SITE_URL },
+    ...(p.price ? { offers: { "@type": "Offer", price: p.price.pilot, priceCurrency: "USD", description: p.price.pilotLabel } } : {}),
   };
   const breadcrumbs = {
     "@context": "https://schema.org",
@@ -71,6 +72,39 @@ export function ServicePageView({ page: p }: { page: ServicePage }) {
             <strong className="text-soft">Great for:</strong> {p.forWho.join(" · ")}
           </p>
         </section>
+
+        {p.price && (
+          <section aria-labelledby="price-heading" className="pb-20">
+            <p className={eyebrow}>Pricing</p>
+            <h2 id="price-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
+              One clear price
+            </h2>
+            <div className="mt-8 grid gap-6 rounded-2xl border border-amber/30 bg-amber/[0.05] p-6 sm:p-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]">
+              <div>
+                <p className="text-sm font-semibold text-amber">{p.price.pilotLabel}</p>
+                <p className="mt-2 flex items-baseline gap-3">
+                  <span className="text-5xl font-extrabold tracking-tight">${p.price.pilot.toLocaleString("en-US")}</span>
+                  <span className="text-lg text-muted">
+                    <span className="sr-only">Regular price </span>
+                    <s>${p.price.regular.toLocaleString("en-US")}</s>
+                  </span>
+                </p>
+                <p className="mt-1 text-sm text-muted">Per workshop, not per person.</p>
+                <a href="#idea" className={`${btnPrimary} mt-6`}>
+                  Claim a pilot spot <ArrowRight className="h-4 w-4" aria-hidden />
+                </a>
+              </div>
+              <ul className="space-y-3 text-sm text-soft">
+                {p.price.terms.map((t) => (
+                  <li key={t} className="flex gap-2.5">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-amber" aria-hidden />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
 
         {p.slug === "ai-governance" && <GovScorecard />}
 

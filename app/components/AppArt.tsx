@@ -143,3 +143,16 @@ export function ChurchArt({ color }: { color: string }) {
     </svg>
   );
 }
+
+export function FindArt({ color }: { color: string }) {
+  return (
+    <svg viewBox="0 0 220 64" preserveAspectRatio="xMinYMid meet" className="h-16 w-full" aria-hidden>
+      <path d="M0 44 C40 30 70 54 110 40 S180 20 220 30" fill="none" stroke="#4c6584" strokeWidth="2" opacity=".8" />
+      <path d="M0 18 L220 58" fill="none" stroke="#4c6584" strokeWidth="2" opacity=".45" />
+      <circle cx="46" cy="40" r="4" fill={color} opacity=".45" />
+      <circle cx="168" cy="30" r="4" fill={color} opacity=".45" />
+      <path d="M110 6 a12 12 0 0 1 12 12 c0 9 -12 22 -12 22 s-12 -13 -12 -22 a12 12 0 0 1 12 -12 z" fill={color} />
+      <circle cx="110" cy="18" r="4.5" fill="#131e2c" />
+    </svg>
+  );
+}

@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, ClipboardCheck, Hammer, LayoutGrid } from "lucide-react";
+import { ArrowRight, ClipboardCheck, Hammer, Users } from "lucide-react";
+import { caseByName, WORKSHOP_PRICE } from "./build/content";
+import { CafeArt, PilotArt, QuoteArt, RoomArt } from "./components/AppArt";
 import { LogoMark } from "./components/LogoMark";
 
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
@@ -8,10 +10,18 @@ const CALL = "/build#idea";
 
 /** Where to start: proof we build, a guide to try it, and the "safely" part. */
 const START = [
-  { label: "Our work", name: "Apps we've built", Icon: LayoutGrid, href: "/build#work", cta: "Try them free", text: "Every app on GrowDaily was built with AI, the same way we teach you to build. Try a few and imagine one made for your team." },
+  { label: `Workshop · pilot price $${WORKSHOP_PRICE.pilot}`, name: "Build your first app, together", Icon: Users, href: "/build/ai-training", cta: "See the workshop", text: "A half-day, hands-on workshop where your team builds a working app on a real problem of yours, with the rules to keep it safe." },
   { label: "Free guide", name: "Build your first app", Icon: Hammer, href: "/learn/build-your-own-expense-tracker-with-ai", cta: "Read the guide", text: "A step-by-step walkthrough of building a real, working app with AI, no coding experience needed." },
   { label: "Free tool", name: "AI governance kit", Icon: ClipboardCheck, href: "/apps/governwise", cta: "Build your kit", text: "The safely part: list the AI tools your team uses and get an AI register, a ready-to-adopt policy and a leadership summary." },
 ];
+
+/** Four apps we built, shown with their card art as proof of what's possible. */
+const SHOWCASE = [
+  { name: "Quotewise", Art: QuoteArt, who: "Trades & services" },
+  { name: "Cafewise", Art: CafeArt, who: "Coffee shops" },
+  { name: "Roomwise", Art: RoomArt, who: "Churches, offices & spaces" },
+  { name: "Pilotwise", Art: PilotArt, who: "Teams starting with AI" },
+].map((s) => ({ ...s, ...caseByName(s.name) }));
 
 const STEPS = [
   { title: "A free 20-minute call", text: "Tell us where your team loses time. We'll pick one problem a small app could solve, and say honestly if AI isn't the answer." },
@@ -50,15 +60,42 @@ export function HomePage() {
             <Link href={CALL} className={btnPrimary}>
               Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <Link href="/build#work" className="text-sm font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
+            <Link href="#apps" className="text-sm font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
               See apps we&apos;ve built
             </Link>
           </div>
         </section>
 
+        <section id="apps" aria-labelledby="apps-heading" className="scroll-mt-8 pb-20">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Apps we&apos;ve built</p>
+              <h2 id="apps-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Real apps, built with AI</h2>
+            </div>
+            <Link href="/build#work" className="text-sm font-semibold text-amber hover:underline">See all our apps</Link>
+          </div>
+          <ul className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {SHOWCASE.map((t) => (
+              <li key={t.name}>
+                <Link href={t.href} className={`group flex h-full flex-col rounded-2xl border border-line bg-panel p-6 transition hover:border-[#35507a] ${focus}`}>
+                  <span className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: t.color }}>{t.who}</span>
+                  <span className="mt-2 text-2xl font-extrabold tracking-tight">{t.name}</span>
+                  <span className="-mx-2 my-4 block rounded-xl border border-hairline bg-sunken px-4 py-5">
+                    <t.Art color={t.color} />
+                  </span>
+                  <span className="flex-1 text-sm text-soft">{t.ai}</span>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: t.color }}>
+                    Try {t.name} free <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <section id="start" aria-labelledby="start-heading" className="scroll-mt-8 pb-20">
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Start here</p>
-          <h2 id="start-heading" className="mt-2 text-3xl font-extrabold tracking-tight">See what&apos;s possible, free</h2>
+          <h2 id="start-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Ways to start</h2>
           <ul className="mt-8 grid gap-4 md:grid-cols-3">
             {START.map((e) => (
               <li key={e.name}>
