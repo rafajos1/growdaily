@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ClipboardCheck, Hammer, Users } from "lucide-react";
 import { caseByName, WORKSHOP_PRICE } from "./build/content";
 import { CafeArt, DashArt, QuoteArt, RoomArt } from "./components/AppArt";
+import { DashPreview } from "./components/DashPreview";
 import { LogoMark } from "./components/LogoMark";
 
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
@@ -60,11 +61,13 @@ export function HomePage() {
             <Link href={CALL} className={btnPrimary}>
               Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <Link href="#apps" className="text-sm font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
-              See apps we&apos;ve built
+            <Link href="/apps/dashwise" className="text-sm font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
+              Try the AI dashboard demo
             </Link>
           </div>
         </section>
+
+        <DashPreview />
 
         <section id="apps" aria-labelledby="apps-heading" className="scroll-mt-8 pb-20">
           <div className="flex flex-wrap items-end justify-between gap-4">
