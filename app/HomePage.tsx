@@ -1,22 +1,22 @@
 import Link from "next/link";
-import { ArrowRight, ClipboardCheck, EyeOff, FileText } from "lucide-react";
+import { ArrowRight, ClipboardCheck, Hammer, LayoutGrid } from "lucide-react";
 import { LogoMark } from "./components/LogoMark";
 
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
 const btnPrimary = `inline-flex items-center justify-center gap-2 rounded-[10px] bg-amber px-5 py-3 text-sm font-bold text-amber-ink transition hover:bg-amber-hover ${focus}`;
 const CALL = "/build#idea";
 
-/** Where to start: the free kit, then the two questions leaders ask first. */
+/** Where to start: proof we build, a guide to try it, and the "safely" part. */
 const START = [
-  { label: "Free tool", name: "AI governance kit", Icon: ClipboardCheck, href: "/apps/governwise", cta: "Build your kit", text: "List the AI tools your team uses and get an AI register, a ready-to-adopt policy and a one-page summary for your leaders, in about 15 minutes." },
-  { label: "Free guide", name: "AI policy template", Icon: FileText, href: "/learn/ai-policy-template", cta: "Read the guide", text: "What a simple AI policy should cover, with a template you can copy and adapt for your team." },
-  { label: "Free guide", name: "What is shadow AI?", Icon: EyeOff, href: "/learn/what-is-shadow-ai", cta: "Read the guide", text: "Why your people are already using AI you don't know about, and how to bring it into the open without banning it." },
+  { label: "Our work", name: "Apps we've built", Icon: LayoutGrid, href: "/build#work", cta: "Try them free", text: "Every app on GrowDaily was built with AI, the same way we teach you to build. Try a few and imagine one made for your team." },
+  { label: "Free guide", name: "Build your first app", Icon: Hammer, href: "/learn/build-your-own-expense-tracker-with-ai", cta: "Read the guide", text: "A step-by-step walkthrough of building a real, working app with AI, no coding experience needed." },
+  { label: "Free tool", name: "AI governance kit", Icon: ClipboardCheck, href: "/apps/governwise", cta: "Build your kit", text: "The safely part: list the AI tools your team uses and get an AI register, a ready-to-adopt policy and a leadership summary." },
 ];
 
 const STEPS = [
-  { title: "A free 20-minute call", text: "Tell us how your team uses AI today. We'll say honestly what needs attention and what doesn't." },
-  { title: "Find every AI tool in use", text: "We build your AI register together, including the free tools on personal phones, and rate each one with reasons." },
-  { title: "Clear rules, a trained team", text: "A tailored AI policy, a short training so people actually know it, and a briefing for your leaders." },
+  { title: "A free 20-minute call", text: "Tell us where your team loses time. We'll pick one problem a small app could solve, and say honestly if AI isn't the answer." },
+  { title: "Build it together", text: "A hands-on workshop where your team builds a working first version with AI, on your own real problem. No coding experience needed." },
+  { title: "Keep it safe, keep going", text: "Simple rules for data, accounts and review, so what you build stays safe. Then build the next one yourselves, with support if you want it." },
 ];
 
 export function HomePage() {
@@ -38,27 +38,27 @@ export function HomePage() {
         <section className="pb-20 pt-10 lg:pt-20">
           <p className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-down" aria-hidden />
-            AI governance for businesses and nonprofits
+            AI app building for businesses and nonprofits
           </p>
           <h1 className="mt-6 max-w-[18ch] text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl lg:text-7xl">
-            Use AI with confidence. <span className="text-amber">Stay in control.</span>
+            Build your own AI apps. <span className="text-amber">Safely.</span>
           </h1>
           <p className="mt-6 max-w-[58ch] text-lg text-soft sm:text-xl">
-            Your people are already using AI, often on free personal accounts, with information you&apos;d rather keep in house. We help you see which tools are in use, set clear rules and train your team, so AI saves time without putting your people or your data at risk.
+            Your team knows its problems better than any software vendor. With AI, they can now build the tools to fix them, in days, without a developer. We teach you how, hands-on, with the guardrails that keep your people and your data safe.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <Link href={CALL} className={btnPrimary}>
               Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <Link href="/apps/governwise" className="text-sm font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
-              Try the free AI governance kit
+            <Link href="/build#work" className="text-sm font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
+              See apps we&apos;ve built
             </Link>
           </div>
         </section>
 
         <section id="start" aria-labelledby="start-heading" className="scroll-mt-8 pb-20">
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Start here</p>
-          <h2 id="start-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Get your AI house in order, free</h2>
+          <h2 id="start-heading" className="mt-2 text-3xl font-extrabold tracking-tight">See what&apos;s possible, free</h2>
           <ul className="mt-8 grid gap-4 md:grid-cols-3">
             {START.map((e) => (
               <li key={e.name}>
@@ -96,13 +96,13 @@ export function HomePage() {
             <h2 id="me-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Stretched thin? I&apos;ve been there.</h2>
             <div className="mt-4 space-y-4 text-lg leading-relaxed text-soft">
               <p>
-                Most leaders I talk to have the same problem: too much busywork, too little time, and no idea which AI tools are worth trusting with their people or their data.
+                Most leaders I talk to have the same problem: too much busywork, too little time, and a list of tools they wish existed but could never justify paying a developer for.
               </p>
               <p>
-                My background is in governance. I have extensive experience leading complex data platform projects, including enterprise AI, and moving new technology out of pilots and into everyday use.
+                AI has changed that. I build apps with AI every day, including every app on this site, and I have extensive experience leading complex data platform projects, including enterprise AI, and moving new technology out of pilots and into everyday use.
               </p>
               <p>
-                So we start with what&apos;s really happening: the AI tools your people already use and the information that goes into them. Then we set simple rules your team will actually follow, so you can launch AI without regret and focus on what matters most.
+                My background is also in governance, so we build the safe way from day one: the right accounts, clear rules for your data, and a person checking what matters. You end up with tools that fit how you work, a team that can build the next one, and no regrets.
               </p>
             </div>
             <Link href="/about" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
@@ -114,7 +114,7 @@ export function HomePage() {
         <section className="pb-24">
           <div className="rounded-2xl border border-amber/30 bg-amber/[0.05] p-6 sm:p-10">
             <h2 className="text-3xl font-extrabold tracking-tight">Start with a free 20-minute call</h2>
-            <p className="mt-2 max-w-[56ch] text-muted">Tell us how your team uses AI today. No cost, no pressure, and an honest answer about what needs attention.</p>
+            <p className="mt-2 max-w-[56ch] text-muted">Tell us where your team loses time. No cost, no pressure, and an honest answer about whether a small app could help.</p>
             <Link href={CALL} className={`${btnPrimary} mt-6`}>
               Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
