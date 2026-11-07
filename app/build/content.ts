@@ -366,7 +366,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     h1: "Build your first AI app, safely, in one workshop",
     intro: "Your team knows exactly which tools it wishes it had. In this hands-on workshop, they build one: a working first version of a small app for a real problem of yours, built with AI and no coding experience. Along the way they learn what AI is good at, where it makes mistakes, and the simple rules that keep your data safe.",
     sections: [
-      { title: "Pick a real problem", text: "Before the day, we choose one problem worth solving together: a tracker, an intake form, a FAQ assistant, a report that takes hours by hand." },
+      { title: "Pick a real problem", text: "Before the day, we choose one problem worth solving together: a tracker, an intake form, a FAQ assistant, or a spreadsheet nobody reads turned into an AI dashboard like our Dashwise demo." },
       { title: "Build it together", text: "Your team describes what they need, builds a first version with AI, tests it on real examples and improves it. Everyone leaves having built something that works." },
       { title: "Safe from day one", text: "Business accounts, what information may go in, who checks the results and who owns the app, with a simple AI policy your team can adopt." },
       { title: "Everyday AI, done right", text: "The same habits make emails, meeting notes and summaries faster, and people learn how to check AI's work." },
