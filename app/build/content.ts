@@ -26,7 +26,7 @@ export const SERVICES: Service[] = [
     name: "Build workshop",
     interest: "AI training",
     tagline: "A hands-on workshop where your team builds its first AI app, on a real problem, with the rules to keep it safe.",
-    includes: ["Half a day, live or on Zoom", "Everyone leaves with a working first version", "A simple AI policy you can adopt"],
+    includes: ["Half a day, live or on Zoom", "Everyone leaves with a working first version", "Pilot price $750 for our first three teams (regular $2,000)"],
     href: "/build/ai-training",
   },
   {
@@ -302,8 +302,13 @@ export interface ServicePage {
   forWho: string[];
   /** What makes this service different, shown after what's included. */
   different?: { title: string; text: string }[];
+  /** Published pricing, when the service has a fixed price. */
+  price?: { regular: number; pilot: number; pilotLabel: string; terms: string[] };
   faqs: { q: string; a: string }[];
 }
+
+/** The build workshop's price; shown on the workshop page, the services list and in search results. */
+export const WORKSHOP_PRICE = { regular: 2000, pilot: 750 };
 
 export const SERVICE_PAGES: ServicePage[] = [
   {
@@ -357,13 +362,23 @@ export const SERVICE_PAGES: ServicePage[] = [
       { title: "Keep going", text: "A short guide to building the next app on your own, and an easy way to ask questions or book a guided session after the workshop." },
     ],
     forWho: ["Staff teams and departments", "Leadership and boards", "Volunteers", "Owners and office teams"],
+    price: {
+      ...WORKSHOP_PRICE,
+      pilotLabel: "Pilot price for our first three teams",
+      terms: [
+        "Half a day, for up to 12 people, on Zoom or in person locally",
+        "Includes a planning call to pick your problem, and a follow-up guide",
+        "In return, a short testimonial and permission to describe what you built (nothing confidential)",
+        "Your team uses its own AI accounts; we'll help you pick the right business plan",
+      ],
+    },
     faqs: [
       { q: "Do people need any experience with AI or coding?", a: "No. We start from the beginning and build in plain English. People who already use AI still pick up new skills." },
       { q: "What kind of app can we build in a workshop?", a: "A small, focused first version: a tracker, a form that sorts requests, an assistant that answers questions from your own documents, or a tool that drafts a routine report. We agree on it with you beforehand so it fits the time." },
       { q: "Which AI tools do you teach?", a: "Whichever your team has or would use, such as ChatGPT, Claude, Copilot or Gemini. The habits work across all of them." },
       { q: "How do you keep what we build safe?", a: "We build on business accounts, agree what information may go in, keep a person reviewing anything important, and give you a simple AI policy. For more, our AI governance service covers every AI tool your team uses." },
       { q: "Can it be done on Zoom?", a: "Yes. Workshops work live or on Zoom, and we can record it for people who can't attend." },
-      { q: "How much does AI training cost?", a: "Ask for a quote. It depends on the length of the workshop and the size of your group." },
+      { q: "How much does the workshop cost?", a: "The half-day build workshop is $2,000 for up to 12 people. Our first three teams get a pilot price of $750, in exchange for a short testimonial. Longer or custom training is quoted up front." },
     ],
   },
   {

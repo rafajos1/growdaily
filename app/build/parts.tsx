@@ -5,6 +5,7 @@ import type { Interest, OrgType } from "../../lib/build/idea";
 import { AUDIENCES, PRINCIPLES, PROCESS, SERVICE_PAGES, SERVICES, type CaseStudy } from "./content";
 import { BOOKING_URL, CONTACT_EMAIL } from "../../lib/build/contact";
 import { IdeaForm } from "./IdeaForm";
+import { CafeArt, ChurchArt, FindArt, HabitArt, MealArt, MoodArt, PilotArt, PlanArt, QuoteArt, RoomArt, SpendArt } from "../components/AppArt";
 import { QuoteButton } from "./QuoteButton";
 import { LogoMark } from "../components/LogoMark";
 
@@ -85,9 +86,30 @@ export function BuildFooter() {
   );
 }
 
+const CASE_ART: Record<string, (p: { color: string }) => React.JSX.Element> = {
+  Pilotwise: PilotArt,
+  Spendwise: SpendArt,
+  Habitwise: HabitArt,
+  Planwise: PlanArt,
+  Roomwise: RoomArt,
+  Quotewise: QuoteArt,
+  Cafewise: CafeArt,
+  Moodwise: MoodArt,
+  Ask: ChurchArt,
+  Mealwise: MealArt,
+  "Church library assistant": ChurchArt,
+  "Find a church": FindArt,
+};
+
 export function CaseCard({ c }: { c: CaseStudy }) {
+  const Art = CASE_ART[c.name];
   return (
     <article className="flex flex-col rounded-2xl border border-line bg-panel p-6">
+      {Art && (
+        <div className="-mx-2 mb-5 rounded-xl border border-hairline bg-sunken px-4 py-5">
+          <Art color={c.color} />
+        </div>
+      )}
       <h3 className="flex items-center gap-2.5 text-lg font-extrabold">
         <span className="h-2.5 w-2.5 rounded-full" style={{ background: c.color }} aria-hidden />
         {c.name}
