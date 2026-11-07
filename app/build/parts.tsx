@@ -5,7 +5,7 @@ import type { Interest, OrgType } from "../../lib/build/idea";
 import { AUDIENCES, PRINCIPLES, PROCESS, SERVICE_PAGES, SERVICES, type CaseStudy } from "./content";
 import { BOOKING_URL, CONTACT_EMAIL } from "../../lib/build/contact";
 import { IdeaForm } from "./IdeaForm";
-import { CafeArt, ChurchArt, FindArt, HabitArt, MealArt, MoodArt, PilotArt, PlanArt, QuoteArt, RoomArt, SpendArt } from "../components/AppArt";
+import { CafeArt, ChurchArt, DashArt, FindArt, HabitArt, MealArt, MoodArt, PilotArt, PlanArt, QuoteArt, RoomArt, SpendArt } from "../components/AppArt";
 import { QuoteButton } from "./QuoteButton";
 import { LogoMark } from "../components/LogoMark";
 
@@ -87,6 +87,7 @@ export function BuildFooter() {
 }
 
 const CASE_ART: Record<string, (p: { color: string }) => React.JSX.Element> = {
+  Dashwise: DashArt,
   Pilotwise: PilotArt,
   Spendwise: SpendArt,
   Habitwise: HabitArt,
@@ -113,6 +114,7 @@ export function CaseCard({ c }: { c: CaseStudy }) {
       <h3 className="flex items-center gap-2.5 text-lg font-extrabold">
         <span className="h-2.5 w-2.5 rounded-full" style={{ background: c.color }} aria-hidden />
         {c.name}
+        {c.beta && <span className="rounded-full bg-[#a3d35c] px-2 py-0.5 text-[10px] font-bold text-[#17220a]">New · Beta</span>}
       </h3>
       <dl className="mt-4 flex-1 space-y-3 text-sm">
         <div>

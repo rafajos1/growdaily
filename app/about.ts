@@ -3,7 +3,24 @@ import type { AboutContent } from "./components/AppAbout";
 const PRIVATE = "Everything you enter is saved in your own browser on this device. If you tap Save my progress and sign in with your email, a private copy is kept in your GrowDaily account so it comes back on any device.";
 
 /** Search-friendly explainers for each app, shown under the app and used in structured data. */
-export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | "cafewise" | "quotewise" | "roomwise" | "pilotwise", AboutContent> = {
+export const ABOUT: Record<"habitwise" | "planwise" | "mealwise" | "moodwise" | "cafewise" | "quotewise" | "roomwise" | "pilotwise" | "dashwise", AboutContent> = {
+  dashwise: {
+    name: "Dashwise",
+    problem: "Numbers in a spreadsheet but no time to make sense of them? See what an AI dashboard tells you at a glance.",
+    guide: { href: "/learn/how-to-build-an-ai-dashboard", title: "How to build an AI dashboard from a spreadsheet" },
+    path: "/apps/dashwise",
+    category: "BusinessApplication",
+    description: "A free AI dashboard demo (beta): a sample café's sales and waste as interactive charts, plain-English insights, and answers to your questions about the data.",
+    heading: "An AI dashboard demo: charts, plain-English insights and answers to your questions",
+    intro: "Dashwise shows what AI business intelligence (AI BI) can look like for a small business, using eight weeks of made-up sales for a fictional café. Key numbers compare this week with last, charts show daily revenue, product sales and pastry waste, a short list explains what changed, and you can ask the data a question in plain English. Dashwise is new and in beta.",
+    faqs: [
+      { q: "Is this real data?", a: "No. Corner Bean Café is fictional, and its eight weeks of sales and waste are generated sample data, the same for every visitor. Nothing you type is saved." },
+      { q: "What is AI BI?", a: "AI business intelligence: dashboards that don't just chart your numbers but explain them in plain English and answer questions, so you don't need a data analyst to read them." },
+      { q: "Can I get a dashboard like this for my own data?", a: "Yes. In our build workshop your team can turn a spreadsheet into its own AI dashboard, or we can build one for you that connects to your point of sale, accounting or CRM." },
+      { q: "What is sent to AI when I ask a question?", a: "Only your question and the sample café's numbers. Answers come from Claude, Anthropic's AI model, and can make mistakes, so check them against the charts." },
+      { q: "Why is it in beta?", a: "Dashwise is brand new. We're still adding features, and we'd love to hear what you'd want from a dashboard for your organization." },
+    ],
+  },
   habitwise: {
     name: "Habitwise",
     problem: "Keep starting habits and dropping them? Start small, keep the streak, and see what makes them slip.",

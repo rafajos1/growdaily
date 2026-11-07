@@ -31,6 +31,7 @@ export function GET() {
     "## Free tools for businesses",
     "",
     link("Governwise: free AI governance kit", "/apps/governwise", "List the AI tools your team uses; each is rated approved, approved with limits or not allowed with reasons, and you get an AI register, a ready-to-adopt AI policy and a leadership summary."),
+    link("Dashwise: free AI dashboard demo (beta)", "/apps/dashwise", "A sample café's sales and waste as interactive charts, plain-English insights on what changed, and answers to questions about the data."),
     link("Pilotwise: free AI pilot planner", "/apps/pilotwise", "Turn an AI use case into a pilot-to-production plan: readiness score, go/no-go exit criteria, agile phases, ROAM risks and an executive brief."),
     link("Cafewise: free coffee shop inventory app", "/apps/cafewise", "Quick stock counts, order lists from par levels, cost per drink and margin, a waste log and an AI ordering review."),
     link("Quotewise: free quote, estimate and invoice maker", "/apps/quotewise", "Describe a job and AI drafts the line items; print, save as PDF or email it, and turn it into an invoice."),

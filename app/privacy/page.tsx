@@ -79,6 +79,7 @@ export default function PrivacyPage() {
             <li>Pilotwise AI planning: the use case details you type in the form (the use case, organization size, industry, who builds it, data notes and timeline).</li>
             <li>Quotewise AI drafting: the job description you type, what your business does and your hourly rate. Client details aren&apos;t sent.</li>
             <li>Roomwise AI search: your room request, today&apos;s date and the names of your rooms&apos; features. Bookings and contacts aren&apos;t sent.</li>
+            <li>Dashwise questions: your question and the sample café&apos;s numbers (no data of yours).</li>
             <li>Cafewise ordering review: your item and drink names with their numbers (par levels, counts, use, waste and costs).</li>
             <li>Quote form: the idea you describe, if you ask for an AI sketch.</li>
           </ul>
