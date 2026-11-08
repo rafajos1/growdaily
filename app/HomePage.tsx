@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, ClipboardCheck, Hammer, Users } from "lucide-react";
-import { caseByName, WORKSHOP_PRICE } from "./build/content";
+import { ArrowRight, ClipboardCheck, EyeOff, FileText } from "lucide-react";
+import { GovScorecard } from "./build/GovScorecard";
+import { caseByName } from "./build/content";
 import { CafeArt, DashArt, QuoteArt, RoomArt } from "./components/AppArt";
 import { DashPreview } from "./components/DashPreview";
 import { LogoMark } from "./components/LogoMark";
@@ -9,11 +10,11 @@ const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outli
 const btnPrimary = `inline-flex items-center justify-center gap-2 rounded-[10px] bg-amber px-5 py-3 text-sm font-bold text-amber-ink transition hover:bg-amber-hover ${focus}`;
 const CALL = "/build#idea";
 
-/** Where to start: proof we build, a guide to try it, and the "safely" part. */
+/** Where to start: the free kit, then the two questions leaders ask first. */
 const START = [
-  { label: `Workshop · pilot price $${WORKSHOP_PRICE.pilot}`, name: "Build your first app, together", Icon: Users, href: "/build/ai-training", cta: "See the workshop", text: "A half-day, hands-on workshop where your team builds a working app on a real problem of yours, with the rules to keep it safe." },
-  { label: "Free guide", name: "Build your first app", Icon: Hammer, href: "/learn/build-your-own-expense-tracker-with-ai", cta: "Read the guide", text: "A step-by-step walkthrough of building a real, working app with AI, no coding experience needed." },
-  { label: "Free tool", name: "AI governance kit", Icon: ClipboardCheck, href: "/apps/governwise", cta: "Build your kit", text: "The safely part: list the AI tools your team uses and get an AI register, a ready-to-adopt policy and a leadership summary." },
+  { label: "Free tool", name: "AI governance kit", Icon: ClipboardCheck, href: "/apps/governwise", cta: "Build your kit", text: "List the AI tools your team uses and get an AI register, a ready-to-adopt policy and a one-page summary for your leaders, in about 15 minutes." },
+  { label: "Free guide", name: "AI policy template", Icon: FileText, href: "/learn/ai-policy-template", cta: "Read the guide", text: "What a simple AI policy should cover, with a template you can copy and adapt for your team." },
+  { label: "Free guide", name: "What is shadow AI?", Icon: EyeOff, href: "/learn/what-is-shadow-ai", cta: "Read the guide", text: "Why your people are already using AI you don't know about, and how to bring it into the open without banning it." },
 ];
 
 /** Four apps we built, shown with their card art as proof of what's possible. */
@@ -25,9 +26,9 @@ const SHOWCASE = [
 ].map((s) => ({ ...s, ...caseByName(s.name) }));
 
 const STEPS = [
-  { title: "A free 20-minute call", text: "Tell us where your team loses time. We'll pick one problem a small app could solve, and say honestly if AI isn't the answer." },
-  { title: "Build it together", text: "A hands-on workshop where your team builds a working first version with AI, on your own real problem. No coding experience needed." },
-  { title: "Keep it safe, keep going", text: "Simple rules for data, accounts and review, so what you build stays safe. Then build the next one yourselves, with support if you want it." },
+  { title: "A free 20-minute call", text: "Tell us how your team uses AI today. We'll say honestly what needs attention and what doesn't." },
+  { title: "Find every AI tool in use", text: "We build your AI register together, including the free tools on personal phones, and rate each one with reasons." },
+  { title: "Clear rules, then put AI to work", text: "A tailored AI policy, training so people actually follow it, and a briefing for your leaders. Then we help your team build with AI, safely." },
 ];
 
 export function HomePage() {
@@ -49,59 +50,27 @@ export function HomePage() {
         <section className="pb-20 pt-10 lg:pt-20">
           <p className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-down" aria-hidden />
-            AI app building for businesses and nonprofits
+            AI governance for businesses and nonprofits
           </p>
           <h1 className="mt-6 max-w-[18ch] text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] [text-wrap:balance] sm:text-6xl lg:text-7xl">
-            Build your own AI apps. <span className="text-amber">Safely.</span>
+            Use AI safely. <span className="text-amber">Then put it to work.</span>
           </h1>
           <p className="mt-6 max-w-[58ch] text-lg text-soft sm:text-xl">
-            Your team knows its problems better than any software vendor. With AI, they can now build the tools to fix them, in days, without a developer. We teach you how, hands-on, with the guardrails that keep your people and your data safe.
+            Your people are already using AI, often on free personal accounts, with information you&apos;d rather keep in house. We help you see which tools are in use, set clear rules and train your team. Then we help you put AI to work, safely, so it saves time without putting your people or your data at risk.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <Link href={CALL} className={btnPrimary}>
               Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <Link href="/apps/dashwise" className="text-sm font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
-              Try the AI dashboard demo
+            <Link href="/apps/governwise" className="text-sm font-semibold text-soft underline-offset-4 hover:text-fg hover:underline">
+              Try the free AI governance kit
             </Link>
           </div>
         </section>
 
-        <DashPreview />
-
-        <section id="apps" aria-labelledby="apps-heading" className="scroll-mt-8 pb-20">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Apps we&apos;ve built</p>
-              <h2 id="apps-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Real apps, built with AI</h2>
-            </div>
-            <Link href="/build#work" className="text-sm font-semibold text-amber hover:underline">See all our apps</Link>
-          </div>
-          <ul className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {SHOWCASE.map((t) => (
-              <li key={t.name}>
-                <Link href={t.href} className={`group flex h-full flex-col rounded-2xl border border-line bg-panel p-6 transition hover:border-[#35507a] ${focus}`}>
-                  <span className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: t.color }}>{t.who}</span>
-                  <span className="mt-2 flex items-center gap-2 text-2xl font-extrabold tracking-tight">
-                    {t.name}
-                    {t.beta && <span className="rounded-full bg-[#a3d35c] px-2 py-0.5 text-[10px] font-bold tracking-normal text-[#17220a]">New · Beta</span>}
-                  </span>
-                  <span className="-mx-2 my-4 block rounded-xl border border-hairline bg-sunken px-4 py-5">
-                    <t.Art color={t.color} />
-                  </span>
-                  <span className="flex-1 text-sm text-soft">{t.ai}</span>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: t.color }}>
-                    Try {t.name} free <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
         <section id="start" aria-labelledby="start-heading" className="scroll-mt-8 pb-20">
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Start here</p>
-          <h2 id="start-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Ways to start</h2>
+          <h2 id="start-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Get your AI house in order, free</h2>
           <ul className="mt-8 grid gap-4 md:grid-cols-3">
             {START.map((e) => (
               <li key={e.name}>
@@ -133,19 +102,53 @@ export function HomePage() {
           </ol>
         </section>
 
+        <GovScorecard />
+
+        <section id="apps" aria-labelledby="apps-heading" className="scroll-mt-8 pb-20">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Then put AI to work</p>
+              <h2 id="apps-heading" className="mt-2 text-3xl font-extrabold tracking-tight">What your team can build once it&apos;s safe</h2>
+            </div>
+            <Link href="/build#work" className="text-sm font-semibold text-amber hover:underline">See all our apps</Link>
+          </div>
+          <ul className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {SHOWCASE.map((t) => (
+              <li key={t.name}>
+                <Link href={t.href} className={`group flex h-full flex-col rounded-2xl border border-line bg-panel p-6 transition hover:border-[#35507a] ${focus}`}>
+                  <span className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: t.color }}>{t.who}</span>
+                  <span className="mt-2 flex items-center gap-2 text-2xl font-extrabold tracking-tight">
+                    {t.name}
+                    {t.beta && <span className="rounded-full bg-[#a3d35c] px-2 py-0.5 text-[10px] font-bold tracking-normal text-[#17220a]">New · Beta</span>}
+                  </span>
+                  <span className="-mx-2 my-4 block rounded-xl border border-hairline bg-sunken px-4 py-5">
+                    <t.Art color={t.color} />
+                  </span>
+                  <span className="flex-1 text-sm text-soft">{t.ai}</span>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: t.color }}>
+                    Try {t.name} free <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <DashPreview />
+
         <section aria-labelledby="me-heading" className="pb-20">
           <div className="max-w-3xl">
             <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Hi, I&apos;m Rafael</p>
             <h2 id="me-heading" className="mt-2 text-3xl font-extrabold tracking-tight">Stretched thin? I&apos;ve been there.</h2>
             <div className="mt-4 space-y-4 text-lg leading-relaxed text-soft">
               <p>
-                Most leaders I talk to have the same problem: too much busywork, too little time, and a list of tools they wish existed but could never justify paying a developer for.
+                Most leaders I talk to have the same problem: too much busywork, too little time, and no idea which AI tools are worth trusting with their people or their data.
               </p>
               <p>
-                AI has changed that. I build apps with AI every day, including every app on this site, and I have extensive experience leading complex data platform projects, including enterprise AI, and moving new technology out of pilots and into everyday use.
+                My background is in governance. I have extensive experience leading complex data platform projects, including enterprise AI, and moving new technology out of pilots and into everyday use. I also build with AI every day, including every app on this site.
               </p>
               <p>
-                My background is also in governance, so we build the safe way from day one: the right accounts, clear rules for your data, and a person checking what matters. You end up with tools that fit how you work, a team that can build the next one, and no regrets.
+                So we start with what&apos;s really happening: the AI tools your people already use and the information that goes into them. Then we set simple rules your team will actually follow, and help you put AI to work, so you can launch AI without regret and focus on what matters most.
               </p>
             </div>
             <Link href="/about" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber hover:underline">
@@ -157,7 +160,7 @@ export function HomePage() {
         <section className="pb-24">
           <div className="rounded-2xl border border-amber/30 bg-amber/[0.05] p-6 sm:p-10">
             <h2 className="text-3xl font-extrabold tracking-tight">Start with a free 20-minute call</h2>
-            <p className="mt-2 max-w-[56ch] text-muted">Tell us where your team loses time. No cost, no pressure, and an honest answer about whether a small app could help.</p>
+            <p className="mt-2 max-w-[56ch] text-muted">Tell us how your team uses AI today. No cost, no pressure, and an honest answer about what needs attention.</p>
             <Link href={CALL} className={`${btnPrimary} mt-6`}>
               Book a free 20-minute call <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>

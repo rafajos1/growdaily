@@ -16,11 +16,18 @@ export interface Service {
 /** Each service leads naturally to the next: learn, plan, build, look after it. */
 export const SERVICES: Service[] = [
   {
+    name: "AI governance",
+    interest: "AI governance",
+    tagline: "Know which AI tools your people use, set clear rules, and show your leadership you're in control, without slowing your team down.",
+    includes: ["An AI register of every tool in use, each rated with reasons", "A tailored AI policy and a short team training", "A one-page leadership or board briefing"],
+    href: "/build/ai-governance",
+    featured: true,
+  },
+  {
     name: "Guided build",
     interest: "Guided build",
     tagline: "Build your own AI tool with Rafael guiding you from idea to something that works, the safe way. No coding experience needed.",
     includes: ["A free 20-minute first call to shape the idea", "Paid working sessions, priced up front", "You own the tool and understand how it works"],
-    featured: true,
   },
   {
     name: "Build workshop",
@@ -41,13 +48,6 @@ export const SERVICES: Service[] = [
     interest: "Build an app",
     tagline: "A small, focused app or website assistant built around how you work. You own it.",
     includes: ["A fixed quote before work starts", "A small first version to try with real people", "Guardrails written with you"],
-  },
-  {
-    name: "AI governance",
-    interest: "AI governance",
-    tagline: "Know which AI tools your people use, set clear rules, and show your leadership you're in control, without slowing your team down.",
-    includes: ["An AI register of every tool in use, each rated with reasons", "A tailored AI policy and a short team training", "A one-page leadership or board briefing"],
-    href: "/build/ai-governance",
   },
   {
     name: "Care plan",
