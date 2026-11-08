@@ -4,10 +4,10 @@ import { JsonLd } from "./components/JsonLd";
 import { HomePage } from "./HomePage";
 
 export const metadata: Metadata = pageMetadata({
-  title: "GrowDaily: Build Your Own AI Apps, Safely",
-  description: "Hands-on workshops and guided builds that teach businesses and nonprofits to build their own AI apps, with the guardrails that keep people and data safe.",
+  title: "GrowDaily: AI Governance for Businesses & Nonprofits",
+  description: "Practical AI governance for businesses and nonprofits: find the AI tools your people use, set clear rules, train your team, then put AI to work safely.",
   path: "/",
-  image: ogImage("Build your own AI apps. Safely.", "Workshops and guided builds for businesses and nonprofits"),
+  image: ogImage("Use AI safely. Then put it to work.", "AI governance for businesses and nonprofits"),
 });
 
 export default function Page() {

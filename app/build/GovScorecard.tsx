@@ -38,7 +38,7 @@ const PLAN = [
 ];
 
 const card = "rounded-2xl border border-line bg-panel p-5";
-const label = "text-xs font-semibold uppercase tracking-wider text-dim";
+const label = "text-xs font-semibold uppercase tracking-wider text-muted";
 const pct = (a: number, b: number) => Math.round((a / b) * 100);
 
 function Gauge({ value }: { value: number }) {
@@ -137,7 +137,7 @@ export function GovScorecard() {
                   <li key={f.name} className="grid grid-cols-[8.5rem_minmax(0,1fr)_3rem] items-center gap-3 text-sm" title={`${f.name}: ${f.score} of ${f.of} controls (${v}%)`}>
                     <span>
                       <span className="block font-semibold text-fg">{f.name}</span>
-                      <span className="block text-xs leading-snug text-dim">{f.what}</span>
+                      <span className="block text-xs leading-snug text-muted">{f.what}</span>
                     </span>
                     <span className="h-2.5 rounded-full bg-raised">
                       <span className="block h-full rounded-full bg-amber" style={{ width: `${v}%` }} />
@@ -175,7 +175,7 @@ export function GovScorecard() {
                   <div className="mt-1.5 h-2 rounded-full bg-raised">
                     <div className="h-full rounded-full" style={{ width: `${s.pct}%`, background: s.pct === 100 ? GOOD : "var(--color-amber)" }} />
                   </div>
-                  <p className="mt-1 text-xs text-dim">{s.detail}</p>
+                  <p className="mt-1 text-xs text-muted">{s.detail}</p>
                 </li>
               ))}
             </ul>
