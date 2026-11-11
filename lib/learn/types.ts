@@ -6,7 +6,13 @@ export type Block =
   | { steps: { title: string; text: string }[] }
   | { template: { title: string; text: string } }
   | { code: { title: string; text: string } }
-  | { callout: string };
+  | { callout: string }
+  /** A table: first row is the header. Cells take inline [label](href) links. */
+  | { table: { caption?: string; head: string[]; rows: string[][] } }
+  /** A Mermaid diagram, drawn in the browser; readers can copy its source. */
+  | { mermaid: { title: string; code: string; caption?: string } }
+  /** A landscape YouTube video, credited to its creator. Only add one we've watched and approved. */
+  | { video: { id: string; title: string; creator: string; channelUrl: string; note?: string } };
 
 export type TopicId = "governance" | "delivery" | "agents" | "workplace" | "security" | "churches" | "organizations" | "everyday" | "build";
 

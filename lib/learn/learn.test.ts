@@ -44,6 +44,21 @@ describe("Learn guides", () => {
     }
   });
 
+  it("credit embedded videos and keep diagrams and tables well-formed", () => {
+    for (const g of GUIDES) {
+      for (const b of g.sections.flatMap((s) => s.blocks)) {
+        if (typeof b === "string") continue;
+        if ("video" in b) {
+          expect(b.video.id, g.slug).toMatch(/^[A-Za-z0-9_-]{11}$/);
+          expect(b.video.creator.trim().length, g.slug).toBeGreaterThan(1);
+          expect(b.video.channelUrl, g.slug).toMatch(/^https:\/\/www\.youtube\.com\//);
+        }
+        if ("mermaid" in b) expect(b.mermaid.code, g.slug).toMatch(/^(flowchart|graph|sequenceDiagram|stateDiagram|journey|timeline|mindmap)/);
+        if ("table" in b) for (const row of b.table.rows) expect(row.length, g.slug).toBe(b.table.head.length);
+      }
+    }
+  });
+
   it("answer up front and have FAQs, sections and a known topic", () => {
     const topics = new Set(TOPICS.map((t) => t.id));
     for (const g of GUIDES) {
