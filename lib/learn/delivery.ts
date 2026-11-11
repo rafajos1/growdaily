@@ -46,7 +46,152 @@ Business owner: [name]          Gate review date: [date]
 Decision: [ ] Go   [ ] Adjust and re-test by [date]   [ ] Stop
 Signed: [owner], [sponsor]`;
 
+const LIFECYCLE_DATE = "2026-11-11";
+
+const LIFECYCLE_FLOW = `flowchart TD
+  A(["1 · Capture the use case<br/>problem, owner, baseline"]) --> B["2 · Score and prioritize<br/>value · feasibility · adoption + risk tier"]
+  B --> C["3 · Design<br/>who's in charge, success measure, test set"]
+  C --> G1{"Gate 1<br/>Approve to build?"}
+  G1 -- "Not yet" --> B
+  G1 -- "Yes" --> D["4 · Build and test<br/>smallest version, run the test set"]
+  D --> E["5 · Pilot<br/>real users, real work"]
+  E --> G2{"Gate 2<br/>Go, adjust or stop?"}
+  G2 -- "Adjust" --> D
+  G2 -- "Stop" --> S(["Stop and keep the lessons"])
+  G2 -- "Go" --> F["6 · Launch<br/>owner, sign-off, training, register"]
+  F --> G3{"Gate 3<br/>Approve for production?"}
+  G3 -- "Yes" --> M["7 · Monitor<br/>outputs, usage, cost"]
+  M -- "Drifting" --> D
+  M -- "Value drops" --> R(["8 · Retire<br/>switch off, update the register"])
+  classDef gate fill:#f2b54b,stroke:#f6c56d,color:#1b1408,font-weight:bold
+  classDef live fill:#1f4a3a,stroke:#3f8f6e,color:#e8eef5
+  classDef stop fill:#3a1f24,stroke:#8f3f4a,color:#e8eef5
+  class G1,G2,G3 gate
+  class M live
+  class S,R stop`;
+
+const INTAKE = `AI USE CASE: [name]          Owner: [one person]
+
+Problem (no tool names): [what takes too long or goes wrong]
+Who has it, how often:   [team, times per week]
+Today's baseline:        [time, errors or cost per task]
+Better looks like:       [the one number, and the target]
+Data it needs:           [where it lives; personal or confidential? Y/N]
+Who stays in charge:     AI drafts, person approves / AI acts within limits
+
+Value __/5   Feasibility __/5   Adoption __/5   Risk: Low / Med / High
+Decision: Build now / Later / No      Reviewed by: ____   Date: ____`;
+
 export const DELIVERY_GUIDES: Guide[] = [
+  {
+    slug: "ai-lifecycle",
+    topic: "delivery",
+    title: "The AI lifecycle: from use case to production, the way the pros do it",
+    seoTitle: "The AI Lifecycle: From Use Case to Production (Free Form)",
+    description: "The eight stages every AI idea should move through, from use case and scoring to launch and retirement, with three approval gates, a scoring rubric and a free intake form.",
+    shortAnswer:
+      "Pros don't start by building. Every AI idea moves through eight stages, from use case to retirement, with three approval gates where governance happens: approve to build, go or stop after the pilot, and approve for production. You can run a light version as a team of one.",
+    sections: [
+      {
+        heading: "The lifecycle at a glance",
+        blocks: [
+          "Gartner predicted that at least 30% of generative AI projects would be abandoned after proof of concept by the end of 2025, citing poor data, weak risk controls, rising costs and unclear value. A lifecycle catches each of those before people depend on the tool. See also [why most AI pilots fail](/learn/why-ai-pilots-fail).",
+          {
+            mermaid: {
+              title: "The AI lifecycle: eight stages, three gates",
+              code: LIFECYCLE_FLOW,
+              caption: "Amber diamonds are the approval gates. Copy the Mermaid source into Notion, GitHub or Confluence to reuse it.",
+            },
+          },
+        ],
+      },
+      {
+        heading: "The eight stages",
+        blocks: [
+          {
+            steps: [
+              { title: "Capture the use case", text: "Put every idea on one intake form (below): the problem, not the tool; who has it; and how long it takes today. That time is your baseline." },
+              { title: "Score and prioritize", text: "Rate value, feasibility and adoption from 1 to 5, and set a risk tier separately (rubric below). Start with high-value, low-risk wins." },
+              { title: "Design", text: "Decide who stays in charge (start with \"AI drafts, a person approves\"), pick the simplest tool that could work, and agree the success measure, exit criteria and a test set of real cases. → Gate 1: approve to build." },
+              { title: "Build and test", text: "Build the smallest version, run the test set, fix what fails and repeat. Check quality, safe failure, fairness and cost per task, not just a good demo." },
+              { title: "Pilot", text: "Give it to a few real users for real work and measure against the baseline. If they don't use it, find the gap with Prosci's [ADKAR model](https://www.prosci.com/methodology/adkar): Awareness, Desire, Knowledge, Ability, Reinforcement. → Gate 2: go, adjust or stop." },
+              { title: "Launch 🚀", text: "Name an owner, get sign-off for the risk tier, train users, add it to your [AI register](/learn/how-to-create-an-ai-register), and know how to switch it off. → Gate 3: approve for production." },
+              { title: "Monitor", text: "Spot-check outputs, usage and cost on a schedule. Models and data change even when you don't touch them." },
+              { title: "Retire", text: "When the value drops or something better arrives, tell users, switch it off, keep or delete the data per policy, and update the register." },
+            ],
+          },
+          { callout: "Need exit criteria for Gate 2? Use the [go/no-go checklist](/learn/ai-pilot-exit-criteria). Not sure who signs each gate? See the [AI governance RACI](/learn/ai-governance-raci)." },
+        ],
+      },
+      {
+        heading: "How to score a use case",
+        blocks: [
+          "Rate each from 1 to 5. Keep risk out of the total: it sets how much review the idea needs, not whether it's worth doing.",
+          {
+            table: {
+              head: ["Score", "A 1 looks like", "A 5 looks like"],
+              rows: [
+                ["Value", "Saves a few minutes a month", "Saves hours every week"],
+                ["Feasibility", "Data is scattered; needs heavy custom work", "Data is ready; a tool you have can do it"],
+                ["Adoption", "No owner; users weren't asked", "Owner named; users want it"],
+              ],
+            },
+          },
+          {
+            table: {
+              head: ["Risk tier", "Typical use", "Review needed"],
+              rows: [
+                ["Low", "Internal drafting, no personal data", "Owner signs off"],
+                ["Medium", "Customer-facing, or uses personal data", "Plus a privacy and security check"],
+                ["High", "Decisions about people: hiring, credit, schooling, benefits", "Leadership and legal review; a person makes the decision"],
+              ],
+            },
+          },
+          "The high tier follows the areas the [EU AI Act lists as high-risk](https://artificialintelligenceact.eu/annex/3/).",
+        ],
+      },
+      {
+        heading: "Watch: the lifecycle in five minutes",
+        blocks: [
+          {
+            video: {
+              id: "-x9bVcEmkUk",
+              title: "AI Model Life Cycle: From Planning to Deployment to Retirement",
+              creator: "IBM Technology",
+              channelUrl: "https://www.youtube.com/@IBMTechnology",
+              note: "The middle covers training a model, more technical than you need if you build with Claude, but the shape matches this page.",
+            },
+          },
+        ],
+      },
+      {
+        heading: "Copy-ready intake form",
+        blocks: [
+          "Paste this into a doc, a form or a ticket. One per idea; review them together once a month.",
+          { template: { title: "AI use case intake form", text: INTAKE } },
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Does a small organization really need all this?", a: "You need the thinking, not the paperwork. For a small team, each stage is a few lines in one document and each gate is a ten-minute talk with one other person." },
+      { q: "Is this the same as MLOps?", a: "No. MLOps is the engineering of building and running models. The lifecycle also covers the business decisions before the build and the people side after launch." },
+      { q: "Which framework should we follow?", a: "Start with the free NIST AI Risk Management Framework; its Govern, Map, Measure and Manage functions fit these stages. ISO/IEC 5338 and CRISP-ML(Q) describe the same shape, and ISO/IEC 42001 is the standard if you want certification." },
+    ],
+    related: ["why-ai-pilots-fail", "ai-pilot-exit-criteria", "how-to-create-an-ai-register", "ai-governance-raci"],
+    service: "ai-governance",
+    tool: { name: "the AI governance kit", href: "/apps/governwise", pitch: "Get your AI register and policy in place before your first launch: list your AI tools and get a register, a ready-to-adopt policy and a leadership summary in about 15 minutes." },
+    published: LIFECYCLE_DATE,
+    updated: LIFECYCLE_DATE,
+    sources: [
+      { label: "NIST AI Risk Management Framework (AI RMF 1.0), January 2023", url: "https://www.nist.gov/itl/ai-risk-management-framework" },
+      { label: "ISO/IEC 5338:2023, AI system life cycle processes", url: "https://www.iso.org/standard/81118.html" },
+      { label: "ISO/IEC 42001:2023, AI management system", url: "https://www.iso.org/standard/42001" },
+      { label: "Studer et al., Towards CRISP-ML(Q): a machine learning process model with quality assurance", url: "https://arxiv.org/abs/2003.05155" },
+      { label: "Gartner: 30% of generative AI projects will be abandoned after proof of concept by end of 2025 (July 29, 2024)", url: "https://www.gartner.com/en/newsroom/press-releases/2024-07-29-gartner-predicts-30-percent-of-generative-ai-projects-will-be-abandoned-after-proof-of-concept-by-end-of-2025" },
+      { label: "EU AI Act, Annex III: high-risk AI systems", url: "https://artificialintelligenceact.eu/annex/3/" },
+      { label: "Prosci: the ADKAR Model", url: "https://www.prosci.com/methodology/adkar" },
+    ],
+  },
   {
     slug: "why-ai-pilots-fail",
     topic: "delivery",
@@ -117,7 +262,7 @@ export const DELIVERY_GUIDES: Guide[] = [
       { q: "What is the most common reason AI pilots fail?", a: "Research points to problem framing and leadership: teams that aren't clear on the problem, owner and measure of success, followed by data and infrastructure gaps." },
       { q: "How long should an AI pilot take?", a: "Often 8 to 16 weeks for a focused use case: a couple of weeks to frame and measure, a few sprints with real users, and a gate review before scaling." },
     ],
-    related: ["ai-pilot-exit-criteria", "ai-implementation-plan", "private-ai-for-business", "what-is-shadow-ai"],
+    related: ["ai-lifecycle", "ai-pilot-exit-criteria", "ai-implementation-plan", "what-is-shadow-ai"],
     service: "ai-consulting",
     published: D,
     updated: D,
@@ -185,7 +330,7 @@ export const DELIVERY_GUIDES: Guide[] = [
       { q: "How big should an AI test set be?", a: "A common starting point is 100 or more real cases, including hard and unusual ones, with good answers agreed by the people who do the work. Keep it fixed so results are comparable sprint to sprint." },
       { q: "Is stopping a pilot a failure?", a: "No. Stopping a pilot that doesn't meet its criteria saves the cost of scaling something that won't deliver, and what you learned (and the test set) carries into the next one." },
     ],
-    related: ["why-ai-pilots-fail", "ai-implementation-plan", "ai-policy-template", "how-to-stop-ai-training-on-your-data"],
+    related: ["why-ai-pilots-fail", "ai-lifecycle", "ai-implementation-plan", "ai-policy-template"],
     service: "ai-consulting",
     published: D,
     updated: D,

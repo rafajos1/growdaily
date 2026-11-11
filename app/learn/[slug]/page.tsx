@@ -8,7 +8,9 @@ import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../../lib/seo";
 import { BuildFooter, BuildHeader, btnPrimary, eyebrow } from "../../build/parts";
 import { JsonLd } from "../../components/JsonLd";
 import { CopyButton } from "../CopyButton";
+import { MermaidDiagram } from "../MermaidDiagram";
 import { ShortEmbed } from "../ShortEmbed";
+import { VideoEmbed } from "../VideoEmbed";
 
 export const dynamicParams = false;
 
@@ -113,6 +115,42 @@ function BlockView({ block }: { block: Block }) {
           <Rich text={block.callout} />
         </span>
       </p>
+    );
+  if ("mermaid" in block) return <MermaidDiagram {...block.mermaid} />;
+  if ("video" in block) return <VideoEmbed {...block.video} />;
+  if ("table" in block)
+    return (
+      <div className="overflow-x-auto rounded-2xl border border-line">
+        <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
+          {block.table.caption && <caption className="border-b border-line bg-raised px-4 py-3 text-left font-semibold text-fg">{block.table.caption}</caption>}
+          <thead className="bg-panel">
+            <tr>
+              {block.table.head.map((h) => (
+                <th key={h} scope="col" className="px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.1em] text-amber">
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {block.table.rows.map((row) => (
+              <tr key={row[0]} className="border-t border-line align-top">
+                {row.map((cell, i) =>
+                  i === 0 ? (
+                    <th key={i} scope="row" className="px-4 py-3 font-semibold text-fg">
+                      <Rich text={cell} />
+                    </th>
+                  ) : (
+                    <td key={i} className="px-4 py-3">
+                      <Rich text={cell} />
+                    </td>
+                  ),
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   if ("code" in block)
     return (
