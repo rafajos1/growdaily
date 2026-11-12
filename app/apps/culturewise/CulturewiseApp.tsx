@@ -31,7 +31,7 @@ const tab = (on: boolean) => `rounded-lg px-3 py-2 text-sm font-semibold transit
 const btnPrimary = `inline-flex items-center justify-center gap-2 rounded-[10px] bg-amber px-5 py-3 text-sm font-bold text-amber-ink transition hover:brightness-110 ${focus}`;
 const btnSecondary = `inline-flex items-center justify-center gap-2 rounded-[10px] border border-line bg-raised px-4 py-2.5 text-sm font-semibold text-fg transition hover:bg-[#24364f] ${focus}`;
 const RATINGS: Rating[] = [1, 2, 3, 4, 5];
-/** Map quadrants in grid order: top row is high trust and safety, left column is careful. */
+/** Map quadrants in grid order: top row is high psychological safety, left column is lower readiness. */
 const QUADRANTS: CultureType[] = ["builder", "explorer", "guarded", "sprinter"];
 
 /** Score color: red below 40, amber below 60, green from 60. */
@@ -132,7 +132,7 @@ export function CulturewiseApp() {
           </div>
           <fieldset className="grid gap-3">
             <legend className={label}>Which teams will you compare?</legend>
-            <p className="-mt-1 text-sm text-muted">Culture often differs by department. Add up to {MAX_DEPTS}, or keep one for the whole organization. You&apos;ll rate each one from what you see day to day.</p>
+            <p className="-mt-1 text-sm text-muted">Culture often differs by department. Add up to {MAX_DEPTS}, or keep one for the whole organization. For each, you&apos;ll answer 19 statements from two published questionnaires.</p>
             <ul className="grid gap-2">
               {depts.map((d, i) => (
                 <li key={d.id} className="flex items-center gap-2">
@@ -183,12 +183,17 @@ export function CulturewiseApp() {
           )}
           <div>
             <h3 className="text-xl font-bold">How true is each statement for {results[active]?.name}?</h3>
-            <p className="mt-1 text-sm text-muted">Answer for how things really are, not how they should be. Your first instinct is usually right.</p>
+            <p className="mt-1 text-sm text-muted">Answer for how things really are, not how they should be. &ldquo;Here&rdquo; and &ldquo;this team&rdquo; mean {results[active]?.name}. Some statements are worded negatively on purpose, so read each one.</p>
           </div>
 
           {DIMENSIONS.map((dim) => (
             <fieldset key={dim.id} className="grid gap-3">
-              <legend className="font-mono text-xs uppercase tracking-[0.14em] text-amber">{dim.name}</legend>
+              <legend className="grid gap-0.5">
+                <span className="font-mono text-xs uppercase tracking-[0.14em] text-amber">{dim.name}</span>
+                <span className="text-sm text-muted">
+                  {dim.measures} <span className="text-dim">· {dim.source}</span>
+                </span>
+              </legend>
               {dim.statements.map((s) => (
                 <div key={s.id} className="rounded-xl border border-line bg-sunken p-3 sm:p-4">
                   <p id={`q-${s.id}`} className="text-[15px] font-medium text-fg">
@@ -248,7 +253,7 @@ export function CulturewiseApp() {
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">{orgName.trim() || "Your organization"} · AI culture check</p>
                 <h3 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">Your culture map</h3>
-                <p className="mt-1 max-w-[62ch] text-muted">Each team sits where its pace of change meets its trust and safety. Where a team sits tells you how to introduce AI there.</p>
+                <p className="mt-1 max-w-[62ch] text-muted">Each team sits where its readiness for AI meets its psychological safety. Where a team sits tells you how to introduce AI there.</p>
               </div>
 
               <CultureMap results={done} />
@@ -278,7 +283,9 @@ export function CulturewiseApp() {
                   </button>
                 )}
               </div>
-              <p className="text-sm text-muted">This is a conversation starter, not a diagnosis. Compare it with what people tell you, and ask a few people in each team to rate it too.</p>
+              <p className="text-sm text-muted">
+                Built on the ORIC readiness questionnaire (Shea et al., 2014; adapted to name AI, used under CC BY 2.0) and Edmondson&apos;s team psychological safety scale (1999), both rated 1 to 5. The scales don&apos;t publish cutoffs, so the map splits at the neutral midpoint. They were designed for team members to answer, so for the truest picture, have several people in each team answer and compare. A conversation starter, not a diagnosis.
+              </p>
             </>
           )}
         </div>
@@ -288,11 +295,11 @@ export function CulturewiseApp() {
 }
 
 function CultureMap({ results }: { results: DeptResult[] }) {
-  const description = results.map((r) => `${r.name}: ${TYPES[r.type!].name}, pace ${r.scores.pace}, trust and safety ${r.trustSafety}`).join("; ");
+  const description = results.map((r) => `${r.name}: ${TYPES[r.type!].name}, readiness ${r.readiness}, psychological safety ${r.scores.safety}`).join("; ");
   return (
     <figure className="grid gap-2">
       <div className="flex gap-2">
-        <span className="flex w-5 shrink-0 items-center justify-center font-mono text-[11px] uppercase tracking-[0.12em] text-muted [writing-mode:vertical-rl] rotate-180">Trust and safety →</span>
+        <span className="flex w-5 shrink-0 items-center justify-center font-mono text-[11px] uppercase tracking-[0.12em] text-muted [writing-mode:vertical-rl] rotate-180">Psychological safety →</span>
         <div role="img" aria-label={`Culture map. ${description}`} className="relative aspect-square w-full max-w-[560px] overflow-hidden rounded-2xl border border-line sm:aspect-[4/3]">
           <div className="grid h-full grid-cols-2 grid-rows-2">
             {QUADRANTS.map((t) => (
@@ -305,14 +312,14 @@ function CultureMap({ results }: { results: DeptResult[] }) {
             ))}
           </div>
           {results.map((r, i) => (
-            <span key={r.id} className="absolute flex -translate-x-1/2 translate-y-1/2 items-center gap-1.5" style={{ left: `${clamp(r.scores.pace!)}%`, bottom: `${clamp(r.trustSafety! + (i % 2 ? -3 : 3))}%` }}>
+            <span key={r.id} className="absolute flex -translate-x-1/2 translate-y-1/2 items-center gap-1.5" style={{ left: `${clamp(r.readiness!)}%`, bottom: `${clamp(r.scores.safety! + (i % 2 ? -3 : 3))}%` }}>
               <span className="h-4 w-4 shrink-0 rounded-full border-2 border-[#0b1220] shadow-lg" style={{ background: TYPES[r.type!].color }} aria-hidden />
               <span className="whitespace-nowrap rounded-md bg-[#0b1220]/85 px-1.5 py-0.5 text-xs font-semibold text-fg">{r.name}</span>
             </span>
           ))}
         </div>
       </div>
-      <figcaption className="ml-7 max-w-[560px] text-center font-mono text-[11px] uppercase tracking-[0.12em] text-muted">Pace of change →</figcaption>
+      <figcaption className="ml-7 max-w-[560px] text-center font-mono text-[11px] uppercase tracking-[0.12em] text-muted">Readiness for AI →</figcaption>
     </figure>
   );
 }
@@ -328,6 +335,9 @@ function ScoreTable({ results }: { results: DeptResult[] }) {
           <tr>
             <th scope="col" className="px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.1em] text-amber">
               Team
+            </th>
+            <th scope="col" className="px-3 py-3 font-mono text-xs font-bold uppercase tracking-[0.1em] text-amber">
+              Readiness
             </th>
             {DIMENSIONS.map((d) => (
               <th key={d.id} scope="col" className="px-3 py-3 font-mono text-xs font-bold uppercase tracking-[0.1em] text-amber">
@@ -345,6 +355,9 @@ function ScoreTable({ results }: { results: DeptResult[] }) {
                   {TYPES[r.type!].name}
                 </span>
               </th>
+              <td className="px-3 py-3">
+                <span className={`inline-block min-w-[3rem] rounded-md px-2 py-1 text-center font-mono font-bold ${heat(r.readiness)}`}>{r.readiness}</span>
+              </td>
               {DIMENSIONS.map((d) => (
                 <td key={d.id} className="px-3 py-3">
                   <span className={`inline-block min-w-[3rem] rounded-md px-2 py-1 text-center font-mono font-bold ${heat(r.scores[d.id])}`}>{r.scores[d.id]}</span>

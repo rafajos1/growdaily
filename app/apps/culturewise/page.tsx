@@ -8,7 +8,7 @@ import { CulturewiseApp } from "./CulturewiseApp";
 
 const PATH = "/apps/culturewise";
 const DESCRIPTION =
-  "Free AI culture check for businesses, nonprofits and churches: rate each department on 12 statements, see where each one sits on a culture map, and get the AI rollout style that fits each team.";
+  "Free AI culture check built on two published questionnaires, ORIC readiness for change and Edmondson's psychological safety scale: map each team and get the AI rollout style that fits it.";
 
 export const metadata: Metadata = pageMetadata({
   title: "Free AI Culture Check: Is Your Team Ready for AI? · GrowDaily",
@@ -18,18 +18,19 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const OUTPUTS = [
-  { Icon: MapIcon, title: "A culture map", text: "Each team placed by its pace of change and its trust and safety, so you can see the differences at a glance." },
+  { Icon: MapIcon, title: "A culture map", text: "Each team placed by its readiness for AI and its psychological safety, so you can see the differences at a glance." },
   { Icon: Route, title: "A rollout style per team", text: "Explorer, Sprinter, Builder or Guarded, with what to lead with and what to watch for when you introduce AI." },
   { Icon: Compass, title: "Where to start", text: "Each team's weakest area, linked to the ADKAR stage to work on first, and a summary you can copy for your leaders." },
 ];
 
 const FAQS = [
   { q: "Why check culture before rolling out AI?", a: "The same AI tool lands differently in different teams. A team that tries things quickly needs guardrails; a careful team needs proof; a team that doesn't trust the why needs to hear it first. Knowing which is which keeps you from running one plan that fits nobody." },
-  { q: "What does it measure?", a: "Four things that shape how people take to AI: pace of change, safety to learn from mistakes, trust in leaders, and voice and sharing. Plus how each team uses AI today. Pace and trust-and-safety place each team on the culture map." },
-  { q: "Who should fill it in?", a: "Start with a leader who knows each team well. For a truer picture, ask two or three people in each team to rate it too and compare. Where the answers differ is often the most useful finding." },
+  { q: "What is it based on?", a: "Two published, tested questionnaires. Readiness comes from ORIC, Organizational Readiness for Implementing Change (Shea and colleagues, 2014): 12 statements on commitment to a change and confidence in carrying it out, adapted to name AI and used under its open CC BY license. Psychological safety comes from Amy Edmondson's 7-item team scale (1999), the most widely used measure of whether people feel safe to speak up, ask for help and admit mistakes." },
+  { q: "What parts are GrowDaily's own?", a: "The questions and their scoring come from the published scales; we rate them 1 to 5. The culture map, the four type names, the advice for each and the link to ADKAR are our practical interpretation. The scales don't publish cutoffs, so the map splits at the neutral midpoint of the scale." },
+  { q: "Who should fill it in?", a: "Both questionnaires were designed for team members to answer. A leader who knows a team well can start, but for a truer picture have several people in each team answer privately and compare. Where a leader's view and the team's differ is often the most useful finding." },
   { q: "Is my information private?", a: "Yes. Your answers stay in your browser on this device. Nothing is sent to us or to an AI, and you don't need to sign up." },
-  { q: "Is this a scientific assessment?", a: "No. It's a quick, practical conversation starter built on well-known ideas about change and team culture, like psychological safety and the ADKAR model. Use it to start the right conversations, not to label people." },
-  { q: "Can you help us plan the rollout?", a: "Yes. We help teams introduce AI with the right pace for each department: the governance, the pilots and the people side. The first 20-minute call is free." },
+  { q: "Is this a scientific assessment?", a: "The questions are from validated research scales, but a few ratings from one leader aren't a research study. Use the results to start the right conversations, not to label people or teams." },
+  { q: "Can you help us plan the rollout?", a: "Yes. We help teams introduce AI in a way that fits each department: the governance, the pilots and the people side. The first 20-minute call is free." },
 ];
 
 export default function Page() {
@@ -47,7 +48,7 @@ export default function Page() {
             Know how each team will <span className="text-amber">receive AI</span>, before you roll it out.
           </h1>
           <p className="mt-6 max-w-[60ch] text-lg text-soft">
-            Culture often differs from one department to the next, and the culture leaders describe isn&apos;t always the one people live. In about 5 minutes per team, map where each one sits and get the rollout style that fits it. Free, no sign-up, and your answers stay in your browser.
+            Culture often differs from one department to the next, and the culture leaders describe isn&apos;t always the one people live. In about 5 minutes per team, answer two published questionnaires, see where each team sits and get the rollout style that fits it. Free, no sign-up, and your answers stay in your browser.
           </p>
         </section>
 

@@ -85,10 +85,10 @@ Decision: Build now / Later / No      Reviewed by: ____   Date: ____`;
 const CULTURE_DATE = "2026-11-12";
 
 const CULTURE_FLOW = `flowchart LR
-  A(["Culture check<br/>rate each team"]) --> B["Culture map<br/>pace × trust and safety"]
+  A(["Culture check<br/>ORIC + psychological safety"]) --> B["Culture map<br/>readiness × safety"]
   B --> E1["Explorer<br/>quick wins + guardrails"]
-  B --> E2["Sprinter<br/>make the safe way easy"]
-  B --> E3["Builder<br/>governance, then proof"]
+  B --> E2["Sprinter<br/>make it safe to try"]
+  B --> E3["Builder<br/>show the why, build confidence"]
   B --> E4["Guarded<br/>listen, explain the why"]
   E1 --> P["Pilot and launch<br/>at each team's pace"]
   E2 --> P
@@ -110,9 +110,9 @@ export const DELIVERY_GUIDES: Guide[] = [
     topic: "delivery",
     title: "How to assess your culture before rolling out AI",
     seoTitle: "AI Culture Assessment: Check Readiness by Team (Free Tool)",
-    description: "Why culture decides how AI lands, the four things to check in each department, the four culture types and how to roll out AI in each, with a free culture check.",
+    description: "Why culture decides how AI lands, the two tested questionnaires to use (ORIC readiness and psychological safety), and how to roll out AI in each type of team.",
     shortAnswer:
-      "Check culture team by team before you roll out AI, because the same tool lands differently in different departments. Look at four things: pace of change, safety to learn, trust in leaders, and voice. Then match the rollout to each team: guardrails for fast teams, proof for careful ones, and the why first where trust is low.",
+      "Check culture team by team before you roll out AI, because the same tool lands differently in different departments. Use two tested questionnaires: ORIC for readiness (do people want the change and believe they can make it work?) and Edmondson's scale for psychological safety (is it safe to try and fail?). Then match the rollout to each team.",
     sections: [
       {
         heading: "Why culture comes first",
@@ -129,20 +129,21 @@ export const DELIVERY_GUIDES: Guide[] = [
         ],
       },
       {
-        heading: "The four things to check",
+        heading: "What to measure: two tested questionnaires",
         blocks: [
+          "You don't need to invent questions. Two short, published scales cover what matters most for AI: whether a team is ready for the change, and whether it's safe to learn in front of each other.",
           {
             table: {
-              head: ["Area", "What to ask", "Why it matters for AI"],
+              head: ["Questionnaire", "What it measures", "Why it matters for AI"],
               rows: [
-                ["Pace of change", "Do people try new things quickly, or wait for proof?", "Sets how fast you can move and how much evidence you need first"],
-                ["Safety to learn", "Can people admit mistakes and question decisions without fear?", "AI takes practice; people won't experiment where mistakes are punished"],
-                ["Trust in leaders", "Do people believe the real reasons behind changes?", "Without trust, people assume AI is about cutting jobs or watching them"],
-                ["Voice and sharing", "Do the people doing the work help decide how it's done?", "Teams adopt what they helped shape, and share what works"],
+                ["[ORIC](https://doi.org/10.1186/1748-5908-9-7): change commitment (5 items)", "Do people want to make this change?", "People adopt what they're committed to; without it, training changes little"],
+                ["ORIC: change efficacy (7 items)", "Do people believe they can make it work?", "Confidence decides whether people push through the awkward first weeks"],
+                ["[Edmondson's psychological safety scale](https://doi.org/10.2307/2666999) (7 items)", "Is it safe to take risks, ask for help and admit mistakes?", "AI takes practice; people won't experiment, or flag AI errors, where mistakes are held against them"],
               ],
             },
           },
-          "Also ask how each team uses AI today. If the honest answer is \"quietly, on personal accounts,\" you have [shadow AI](/learn/what-is-shadow-ai) to bring into the open first.",
+          "ORIC (Organizational Readiness for Implementing Change) was developed by Shea and colleagues in 2014 from Weiner's theory of readiness for change, and is free to adapt under an open license. Edmondson's 1999 scale is the most widely used measure of psychological safety.",
+          "The four types are a practical way to read the two scores together, not part of the published scales. Also ask how each team uses AI today. If the honest answer is \"quietly, on personal accounts,\" you have [shadow AI](/learn/what-is-shadow-ai) to bring into the open first.",
         ],
       },
       {
@@ -150,12 +151,12 @@ export const DELIVERY_GUIDES: Guide[] = [
         blocks: [
           {
             table: {
-              head: ["Type", "Looks like", "Lead with", "Watch for"],
+              head: ["Type", "Readiness and safety", "Lead with", "Watch for"],
               rows: [
-                ["Explorer", "Fast, with high trust and safety", "Quick wins with light guardrails", "Running ahead of governance"],
-                ["Sprinter", "Fast, but people don't feel safe", "Approved tools that are easier than the workarounds", "Shadow AI"],
-                ["Builder", "Careful, with high trust", "Governance first, then a well-run pilot", "Waiting for perfect"],
-                ["Guarded", "Careful and wary of change", "Listening sessions and a visible sponsor explaining the why", "Rumors and quiet resistance"],
+                ["Explorer", "Ready, and safe to learn", "Quick wins with light guardrails", "Running ahead of governance"],
+                ["Sprinter", "Ready, but mistakes feel risky", "Leaders going first and low-stakes early uses", "Hidden use and hidden AI errors"],
+                ["Builder", "Safe to learn, not yet ready", "The why, then training and one visible pilot", "Polite agreement without action"],
+                ["Guarded", "Neither yet", "Listening sessions and a visible sponsor explaining the why", "Rumors and quiet resistance"],
               ],
             },
           },
@@ -167,8 +168,8 @@ export const DELIVERY_GUIDES: Guide[] = [
         blocks: [
           {
             steps: [
-              { title: "Rate each team separately", text: "Start with a leader who knows each team. Departments, sites and ministries often differ more than you expect." },
-              { title: "Ask the team too", text: "Have two or three people in each team rate it. Where their answers differ from the leader's is often the most useful finding." },
+              { title: "Rate each team separately", text: "Departments, sites and ministries often differ more than you expect, so score each one on its own." },
+              { title: "Ask the team, not just the leader", text: "Both questionnaires were designed for team members to answer, privately. A leader's view is a starting point; where it differs from the team's is often the most useful finding." },
               { title: "Watch what happens, not what's said", text: "Notice how decisions really get made, who gets praised, and what happens after a mistake. Those show the culture people live." },
               { title: "Plan each team's path", text: "Use the culture type to set the pace and the message, then the [AI lifecycle](/learn/ai-lifecycle) to run the pilots and launches." },
               { title: "Check again after launch", text: "Rerun it in three to six months. A good rollout should raise trust and safety, not only usage." },
@@ -180,14 +181,16 @@ export const DELIVERY_GUIDES: Guide[] = [
     faqs: [
       { q: "Isn't culture too vague to measure?", a: "You can't measure it precisely, but you can see its signs: how fast people try new things, what happens after mistakes, whether people trust the why, and who gets a say. A quick check turns hunches into a shared picture leaders can talk about." },
       { q: "How is this different from ADKAR?", a: "Culture is the ground the change lands on, across a whole team. ADKAR looks at each person: whether they know why, want to, know how, can do it, and keep doing it. Use the culture check to set each team's rollout, and ADKAR to find where individuals are stuck." },
-      { q: "Should we use a formal culture survey?", a: "For a large or regulated rollout, a validated instrument run by HR or a consultant is worth it. Frameworks like the Competing Values Framework are widely used. For most teams, a quick check plus honest conversations is enough to start." },
+      { q: "Why not a full culture survey?", a: "Broad culture models like the Competing Values Framework describe a whole culture, but they're longer and many are licensed. For an AI rollout, readiness and psychological safety are the two things that most directly shape whether people take it up, and both have short, tested questionnaires." },
     ],
     related: ["ai-lifecycle", "what-is-shadow-ai", "how-to-train-your-team-on-ai", "ai-implementation-plan"],
     service: "ai-governance",
-    tool: { name: "Culturewise", href: "/apps/culturewise", pitch: "Rate each team on 12 statements, see them on a culture map, and get the AI rollout style that fits each one. About 5 minutes per team, no sign-up." },
+    tool: { name: "Culturewise", href: "/apps/culturewise", pitch: "Answer the ORIC and psychological safety questionnaires for each team, see them on a culture map, and get the AI rollout style that fits each one. About 5 minutes per team, no sign-up." },
     published: CULTURE_DATE,
     updated: CULTURE_DATE,
     sources: [
+      { label: "Shea et al., Organizational readiness for implementing change: a psychometric assessment of a new measure, Implementation Science (2014), CC BY 2.0", url: "https://doi.org/10.1186/1748-5908-9-7" },
+      { label: "Weiner, A theory of organizational readiness for change, Implementation Science (2009)", url: "https://doi.org/10.1186/1748-5908-4-67" },
       { label: "Edmondson, Psychological Safety and Learning Behavior in Work Teams, Administrative Science Quarterly (1999)", url: "https://doi.org/10.2307/2666999" },
       { label: "Prosci: the ADKAR Model", url: "https://www.prosci.com/methodology/adkar" },
       { label: "NIST AI Risk Management Framework (AI RMF 1.0), Govern function", url: "https://www.nist.gov/itl/ai-risk-management-framework" },
