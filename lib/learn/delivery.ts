@@ -82,7 +82,120 @@ Who stays in charge:     AI drafts, person approves / AI acts within limits
 Value __/5   Feasibility __/5   Adoption __/5   Risk: Low / Med / High
 Decision: Build now / Later / No      Reviewed by: ____   Date: ____`;
 
+const CULTURE_DATE = "2026-11-12";
+
+const CULTURE_FLOW = `flowchart LR
+  A(["Culture check<br/>ORIC + psychological safety"]) --> B["Culture map<br/>readiness × safety"]
+  B --> E1["Explorer<br/>quick wins + guardrails"]
+  B --> E2["Sprinter<br/>make it safe to try"]
+  B --> E3["Builder<br/>show the why, build confidence"]
+  B --> E4["Guarded<br/>listen, explain the why"]
+  E1 --> P["Pilot and launch<br/>at each team's pace"]
+  E2 --> P
+  E3 --> P
+  E4 --> P
+  P --> K(["ADKAR<br/>find where each person is stuck"])
+  classDef explorer fill:#1f4a3a,stroke:#53cfa0,color:#e8eef5
+  classDef sprinter fill:#4a3a14,stroke:#f2b54b,color:#e8eef5
+  classDef builder fill:#16384a,stroke:#5cb8e6,color:#e8eef5
+  classDef guarded fill:#4a2620,stroke:#e8826b,color:#e8eef5
+  class E1 explorer
+  class E2 sprinter
+  class E3 builder
+  class E4 guarded`;
+
 export const DELIVERY_GUIDES: Guide[] = [
+  {
+    slug: "ai-culture-assessment",
+    topic: "delivery",
+    title: "How to assess your culture before rolling out AI",
+    seoTitle: "AI Culture Assessment: Check Readiness by Team (Free Tool)",
+    description: "Why culture decides how AI lands, the two tested questionnaires to use (ORIC readiness and psychological safety), and how to roll out AI in each type of team.",
+    shortAnswer:
+      "Check culture team by team before you roll out AI, because the same tool lands differently in different departments. Use two tested questionnaires: ORIC for readiness (do people want the change and believe they can make it work?) and Edmondson's scale for psychological safety (is it safe to try and fail?). Then match the rollout to each team.",
+    sections: [
+      {
+        heading: "Why culture comes first",
+        blocks: [
+          "Most organizations don't fully know their own culture. The culture leaders describe in values statements is often not the one people live day to day, and it can differ sharply between departments. Finance may want proof and controls while Programs wants to try things this week.",
+          "Run one rollout plan across both and it fits neither. A quick culture check, before the first pilot, tells you which pace and which message each team needs.",
+          {
+            mermaid: {
+              title: "From culture check to rollout",
+              code: CULTURE_FLOW,
+              caption: "The culture map sets each team's pace. ADKAR then shows where individual people are stuck.",
+            },
+          },
+        ],
+      },
+      {
+        heading: "What to measure: two tested questionnaires",
+        blocks: [
+          "You don't need to invent questions. Two short, published scales cover what matters most for AI: whether a team is ready for the change, and whether it's safe to learn in front of each other.",
+          {
+            table: {
+              head: ["Questionnaire", "What it measures", "Why it matters for AI"],
+              rows: [
+                ["[ORIC](https://doi.org/10.1186/1748-5908-9-7): change commitment (5 items)", "Do people want to make this change?", "People adopt what they're committed to; without it, training changes little"],
+                ["ORIC: change efficacy (7 items)", "Do people believe they can make it work?", "Confidence decides whether people push through the awkward first weeks"],
+                ["[Edmondson's psychological safety scale](https://doi.org/10.2307/2666999) (7 items)", "Is it safe to take risks, ask for help and admit mistakes?", "AI takes practice; people won't experiment, or flag AI errors, where mistakes are held against them"],
+              ],
+            },
+          },
+          "ORIC (Organizational Readiness for Implementing Change) was developed by Shea and colleagues in 2014 from Weiner's theory of readiness for change, and is free to adapt under an open license. Edmondson's 1999 scale is the most widely used measure of psychological safety.",
+          "The four types are a practical way to read the two scores together, not part of the published scales. Also ask how each team uses AI today. If the honest answer is \"quietly, on personal accounts,\" you have [shadow AI](/learn/what-is-shadow-ai) to bring into the open first.",
+        ],
+      },
+      {
+        heading: "The four culture types and how to roll out AI",
+        blocks: [
+          {
+            table: {
+              head: ["Type", "Readiness and safety", "Lead with", "Watch for"],
+              rows: [
+                ["Explorer", "Ready, and safe to learn", "Quick wins with light guardrails", "Running ahead of governance"],
+                ["Sprinter", "Ready, but mistakes feel risky", "Leaders going first and low-stakes early uses", "Hidden use and hidden AI errors"],
+                ["Builder", "Safe to learn, not yet ready", "The why, then training and one visible pilot", "Polite agreement without action"],
+                ["Guarded", "Neither yet", "Listening sessions and a visible sponsor explaining the why", "Rumors and quiet resistance"],
+              ],
+            },
+          },
+          { callout: "Map your own teams in about 5 minutes each with [Culturewise, the free AI culture check](/apps/culturewise). No sign-up, and your answers stay in your browser." },
+        ],
+      },
+      {
+        heading: "How to run it well",
+        blocks: [
+          {
+            steps: [
+              { title: "Rate each team separately", text: "Departments, sites and ministries often differ more than you expect, so score each one on its own." },
+              { title: "Ask the team, not just the leader", text: "Both questionnaires were designed for team members to answer, privately. A leader's view is a starting point; where it differs from the team's is often the most useful finding." },
+              { title: "Watch what happens, not what's said", text: "Notice how decisions really get made, who gets praised, and what happens after a mistake. Those show the culture people live." },
+              { title: "Plan each team's path", text: "Use the culture type to set the pace and the message, then the [AI lifecycle](/learn/ai-lifecycle) to run the pilots and launches." },
+              { title: "Check again after launch", text: "Rerun it in three to six months. A good rollout should raise trust and safety, not only usage." },
+            ],
+          },
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Isn't culture too vague to measure?", a: "You can't measure it precisely, but you can see its signs: how fast people try new things, what happens after mistakes, whether people trust the why, and who gets a say. A quick check turns hunches into a shared picture leaders can talk about." },
+      { q: "How is this different from ADKAR?", a: "Culture is the ground the change lands on, across a whole team. ADKAR looks at each person: whether they know why, want to, know how, can do it, and keep doing it. Use the culture check to set each team's rollout, and ADKAR to find where individuals are stuck." },
+      { q: "Why not a full culture survey?", a: "Broad culture models like the Competing Values Framework describe a whole culture, but they're longer and many are licensed. For an AI rollout, readiness and psychological safety are the two things that most directly shape whether people take it up, and both have short, tested questionnaires." },
+    ],
+    related: ["ai-lifecycle", "what-is-shadow-ai", "how-to-train-your-team-on-ai", "ai-implementation-plan"],
+    service: "ai-governance",
+    tool: { name: "Culturewise", href: "/apps/culturewise", pitch: "Answer the ORIC and psychological safety questionnaires for each team, see them on a culture map, and get the AI rollout style that fits each one. About 5 minutes per team, no sign-up." },
+    published: CULTURE_DATE,
+    updated: CULTURE_DATE,
+    sources: [
+      { label: "Shea et al., Organizational readiness for implementing change: a psychometric assessment of a new measure, Implementation Science (2014), CC BY 2.0", url: "https://doi.org/10.1186/1748-5908-9-7" },
+      { label: "Weiner, A theory of organizational readiness for change, Implementation Science (2009)", url: "https://doi.org/10.1186/1748-5908-4-67" },
+      { label: "Edmondson, Psychological Safety and Learning Behavior in Work Teams, Administrative Science Quarterly (1999)", url: "https://doi.org/10.2307/2666999" },
+      { label: "Prosci: the ADKAR Model", url: "https://www.prosci.com/methodology/adkar" },
+      { label: "NIST AI Risk Management Framework (AI RMF 1.0), Govern function", url: "https://www.nist.gov/itl/ai-risk-management-framework" },
+    ],
+  },
   {
     slug: "ai-lifecycle",
     topic: "delivery",
@@ -177,7 +290,7 @@ export const DELIVERY_GUIDES: Guide[] = [
       { q: "Is this the same as MLOps?", a: "No. MLOps is the engineering of building and running models. The lifecycle also covers the business decisions before the build and the people side after launch." },
       { q: "Which framework should we follow?", a: "Start with the free NIST AI Risk Management Framework; its Govern, Map, Measure and Manage functions fit these stages. ISO/IEC 5338 and CRISP-ML(Q) describe the same shape, and ISO/IEC 42001 is the standard if you want certification." },
     ],
-    related: ["why-ai-pilots-fail", "ai-pilot-exit-criteria", "how-to-create-an-ai-register", "ai-governance-raci"],
+    related: ["why-ai-pilots-fail", "ai-pilot-exit-criteria", "ai-culture-assessment", "how-to-create-an-ai-register", "ai-governance-raci"],
     service: "ai-governance",
     tool: { name: "the AI governance kit", href: "/apps/governwise", pitch: "Get your AI register and policy in place before your first launch: list your AI tools and get a register, a ready-to-adopt policy and a leadership summary in about 15 minutes." },
     published: LIFECYCLE_DATE,
