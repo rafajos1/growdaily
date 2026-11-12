@@ -82,7 +82,117 @@ Who stays in charge:     AI drafts, person approves / AI acts within limits
 Value __/5   Feasibility __/5   Adoption __/5   Risk: Low / Med / High
 Decision: Build now / Later / No      Reviewed by: ____   Date: ____`;
 
+const CULTURE_DATE = "2026-11-12";
+
+const CULTURE_FLOW = `flowchart LR
+  A(["Culture check<br/>rate each team"]) --> B["Culture map<br/>pace × trust and safety"]
+  B --> E1["Explorer<br/>quick wins + guardrails"]
+  B --> E2["Sprinter<br/>make the safe way easy"]
+  B --> E3["Builder<br/>governance, then proof"]
+  B --> E4["Guarded<br/>listen, explain the why"]
+  E1 --> P["Pilot and launch<br/>at each team's pace"]
+  E2 --> P
+  E3 --> P
+  E4 --> P
+  P --> K(["ADKAR<br/>find where each person is stuck"])
+  classDef explorer fill:#1f4a3a,stroke:#53cfa0,color:#e8eef5
+  classDef sprinter fill:#4a3a14,stroke:#f2b54b,color:#e8eef5
+  classDef builder fill:#16384a,stroke:#5cb8e6,color:#e8eef5
+  classDef guarded fill:#4a2620,stroke:#e8826b,color:#e8eef5
+  class E1 explorer
+  class E2 sprinter
+  class E3 builder
+  class E4 guarded`;
+
 export const DELIVERY_GUIDES: Guide[] = [
+  {
+    slug: "ai-culture-assessment",
+    topic: "delivery",
+    title: "How to assess your culture before rolling out AI",
+    seoTitle: "AI Culture Assessment: Check Readiness by Team (Free Tool)",
+    description: "Why culture decides how AI lands, the four things to check in each department, the four culture types and how to roll out AI in each, with a free culture check.",
+    shortAnswer:
+      "Check culture team by team before you roll out AI, because the same tool lands differently in different departments. Look at four things: pace of change, safety to learn, trust in leaders, and voice. Then match the rollout to each team: guardrails for fast teams, proof for careful ones, and the why first where trust is low.",
+    sections: [
+      {
+        heading: "Why culture comes first",
+        blocks: [
+          "Most organizations don't fully know their own culture. The culture leaders describe in values statements is often not the one people live day to day, and it can differ sharply between departments. Finance may want proof and controls while Programs wants to try things this week.",
+          "Run one rollout plan across both and it fits neither. A quick culture check, before the first pilot, tells you which pace and which message each team needs.",
+          {
+            mermaid: {
+              title: "From culture check to rollout",
+              code: CULTURE_FLOW,
+              caption: "The culture map sets each team's pace. ADKAR then shows where individual people are stuck.",
+            },
+          },
+        ],
+      },
+      {
+        heading: "The four things to check",
+        blocks: [
+          {
+            table: {
+              head: ["Area", "What to ask", "Why it matters for AI"],
+              rows: [
+                ["Pace of change", "Do people try new things quickly, or wait for proof?", "Sets how fast you can move and how much evidence you need first"],
+                ["Safety to learn", "Can people admit mistakes and question decisions without fear?", "AI takes practice; people won't experiment where mistakes are punished"],
+                ["Trust in leaders", "Do people believe the real reasons behind changes?", "Without trust, people assume AI is about cutting jobs or watching them"],
+                ["Voice and sharing", "Do the people doing the work help decide how it's done?", "Teams adopt what they helped shape, and share what works"],
+              ],
+            },
+          },
+          "Also ask how each team uses AI today. If the honest answer is \"quietly, on personal accounts,\" you have [shadow AI](/learn/what-is-shadow-ai) to bring into the open first.",
+        ],
+      },
+      {
+        heading: "The four culture types and how to roll out AI",
+        blocks: [
+          {
+            table: {
+              head: ["Type", "Looks like", "Lead with", "Watch for"],
+              rows: [
+                ["Explorer", "Fast, with high trust and safety", "Quick wins with light guardrails", "Running ahead of governance"],
+                ["Sprinter", "Fast, but people don't feel safe", "Approved tools that are easier than the workarounds", "Shadow AI"],
+                ["Builder", "Careful, with high trust", "Governance first, then a well-run pilot", "Waiting for perfect"],
+                ["Guarded", "Careful and wary of change", "Listening sessions and a visible sponsor explaining the why", "Rumors and quiet resistance"],
+              ],
+            },
+          },
+          { callout: "Map your own teams in about 5 minutes each with [Culturewise, the free AI culture check](/apps/culturewise). No sign-up, and your answers stay in your browser." },
+        ],
+      },
+      {
+        heading: "How to run it well",
+        blocks: [
+          {
+            steps: [
+              { title: "Rate each team separately", text: "Start with a leader who knows each team. Departments, sites and ministries often differ more than you expect." },
+              { title: "Ask the team too", text: "Have two or three people in each team rate it. Where their answers differ from the leader's is often the most useful finding." },
+              { title: "Watch what happens, not what's said", text: "Notice how decisions really get made, who gets praised, and what happens after a mistake. Those show the culture people live." },
+              { title: "Plan each team's path", text: "Use the culture type to set the pace and the message, then the [AI lifecycle](/learn/ai-lifecycle) to run the pilots and launches." },
+              { title: "Check again after launch", text: "Rerun it in three to six months. A good rollout should raise trust and safety, not only usage." },
+            ],
+          },
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Isn't culture too vague to measure?", a: "You can't measure it precisely, but you can see its signs: how fast people try new things, what happens after mistakes, whether people trust the why, and who gets a say. A quick check turns hunches into a shared picture leaders can talk about." },
+      { q: "How is this different from ADKAR?", a: "Culture is the ground the change lands on, across a whole team. ADKAR looks at each person: whether they know why, want to, know how, can do it, and keep doing it. Use the culture check to set each team's rollout, and ADKAR to find where individuals are stuck." },
+      { q: "Should we use a formal culture survey?", a: "For a large or regulated rollout, a validated instrument run by HR or a consultant is worth it. Frameworks like the Competing Values Framework are widely used. For most teams, a quick check plus honest conversations is enough to start." },
+    ],
+    related: ["ai-lifecycle", "what-is-shadow-ai", "how-to-train-your-team-on-ai", "ai-implementation-plan"],
+    service: "ai-governance",
+    tool: { name: "Culturewise", href: "/apps/culturewise", pitch: "Rate each team on 12 statements, see them on a culture map, and get the AI rollout style that fits each one. About 5 minutes per team, no sign-up." },
+    published: CULTURE_DATE,
+    updated: CULTURE_DATE,
+    sources: [
+      { label: "Edmondson, Psychological Safety and Learning Behavior in Work Teams, Administrative Science Quarterly (1999)", url: "https://doi.org/10.2307/2666999" },
+      { label: "Prosci: the ADKAR Model", url: "https://www.prosci.com/methodology/adkar" },
+      { label: "NIST AI Risk Management Framework (AI RMF 1.0), Govern function", url: "https://www.nist.gov/itl/ai-risk-management-framework" },
+    ],
+  },
   {
     slug: "ai-lifecycle",
     topic: "delivery",
@@ -177,7 +287,7 @@ export const DELIVERY_GUIDES: Guide[] = [
       { q: "Is this the same as MLOps?", a: "No. MLOps is the engineering of building and running models. The lifecycle also covers the business decisions before the build and the people side after launch." },
       { q: "Which framework should we follow?", a: "Start with the free NIST AI Risk Management Framework; its Govern, Map, Measure and Manage functions fit these stages. ISO/IEC 5338 and CRISP-ML(Q) describe the same shape, and ISO/IEC 42001 is the standard if you want certification." },
     ],
-    related: ["why-ai-pilots-fail", "ai-pilot-exit-criteria", "how-to-create-an-ai-register", "ai-governance-raci"],
+    related: ["why-ai-pilots-fail", "ai-pilot-exit-criteria", "ai-culture-assessment", "how-to-create-an-ai-register", "ai-governance-raci"],
     service: "ai-governance",
     tool: { name: "the AI governance kit", href: "/apps/governwise", pitch: "Get your AI register and policy in place before your first launch: list your AI tools and get a register, a ready-to-adopt policy and a leadership summary in about 15 minutes." },
     published: LIFECYCLE_DATE,

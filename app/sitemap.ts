@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/apps/governwise", 0.9),
     page("/apps/dashwise", 0.9),
     page("/apps/pilotwise", 0.9),
+    page("/apps/culturewise", 0.9),
     page("/apps/cafewise", 0.8),
     page("/apps/quotewise", 0.8),
     page("/apps/roomwise", 0.8),
