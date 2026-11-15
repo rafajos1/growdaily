@@ -1,5 +1,6 @@
 import { ArrowRight, Check } from "lucide-react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { faqSchema, ogImage, pageMetadata, SITE_URL } from "../../lib/seo";
 import { JsonLd } from "../components/JsonLd";
 import { GovScorecard } from "./GovScorecard";
@@ -121,6 +122,40 @@ export function ServicePageView({ page: p }: { page: ServicePage }) {
                   <p className="mt-1.5 text-sm text-muted">{x.text}</p>
                 </div>
               ))}
+            </div>
+          </section>
+        )}
+
+        {p.slug === "ai-governance" && (
+          <section aria-labelledby="founder-heading" className="pb-20">
+            <div className="grid items-center gap-8 rounded-2xl border border-line bg-panel p-6 sm:p-10 md:grid-cols-[220px_minmax(0,1fr)] md:gap-12">
+              <Image
+                src="/rafael-abreu.jpg"
+                alt="Rafael Abreu, founder of GrowDaily"
+                width={220}
+                height={220}
+                className="h-40 w-40 rounded-2xl object-cover object-[center_35%] md:h-[220px] md:w-[220px]"
+              />
+              <div>
+                <p className={eyebrow}>Who you&apos;ll work with</p>
+                <h2 id="founder-heading" className="mt-2 max-w-[28ch] text-3xl font-extrabold tracking-tight [text-wrap:balance]">
+                  Governance from someone who has shipped AI, not just written policy
+                </h2>
+                <p className="mt-4 max-w-[62ch] text-soft">
+                  I&apos;ve spent years taking data and AI products from idea to production for large organizations in healthcare, energy and entertainment, most recently launching enterprise AI agents and leading the change work that got people to actually use them.
+                </p>
+                <p className="mt-3 max-w-[62ch] text-soft">
+                  Before technology, I spent 14 years leading people through change in churches and nonprofits. So whether you run a business or a mission, I&apos;ll meet you where you are: practical guardrails, plain language, and a plan your team will follow.
+                </p>
+                <blockquote className="mt-6 border-l-2 border-amber pl-4 text-lg italic text-fg">
+                  A policy nobody follows protects no one. My job is to make doing AI right the easy path.
+                </blockquote>
+                <p className="mt-6 font-bold">Rafael Abreu</p>
+                <p className="text-sm text-muted">Founder, GrowDaily</p>
+                <a href="#idea" className={`${btnPrimary} mt-6`}>
+                  Book a governance conversation <ArrowRight className="h-4 w-4" aria-hidden />
+                </a>
+              </div>
             </div>
           </section>
         )}
