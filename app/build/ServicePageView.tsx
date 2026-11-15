@@ -127,6 +127,28 @@ export function ServicePageView({ page: p }: { page: ServicePage }) {
         )}
 
         {p.slug === "ai-governance" && (
+          <section aria-labelledby="start-heading" className="pb-20">
+            <p className={eyebrow}>How we start</p>
+            <h2 id="start-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
+              Three steps before any policy gets written
+            </h2>
+            <ol className="mt-8 grid gap-4 md:grid-cols-3">
+              {[
+                { title: "Find what you already have", text: "Most organizations already have pieces of governance in privacy, security or IT. We build on them instead of starting over." },
+                { title: "Name a champion", text: "One senior leader who backs the work out loud. Without one, AI policies stay in draft forever." },
+                { title: "Assign clear owners", text: "Who writes the policy, who builds the systems, and who keeps watching after launch." },
+              ].map((x, i) => (
+                <li key={x.title} className="rounded-2xl border border-line bg-panel p-6">
+                  <span className="font-mono text-sm text-amber">0{i + 1}</span>
+                  <h3 className="mt-2 text-lg font-bold">{x.title}</h3>
+                  <p className="mt-1.5 text-sm text-muted">{x.text}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        {p.slug === "ai-governance" && (
           <section aria-labelledby="founder-heading" className="pb-20">
             <div className="grid items-center gap-8 rounded-2xl border border-line bg-panel p-6 sm:p-10 md:grid-cols-[220px_minmax(0,1fr)] md:gap-12">
               <Image
